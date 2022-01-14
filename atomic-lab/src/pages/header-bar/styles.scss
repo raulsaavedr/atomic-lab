@@ -1,0 +1,11 @@
+@import "src/globals";
+
+.header-bar {
+    justify-content: space-around;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    .option {
+        cursor: pointer;
+    }
+}

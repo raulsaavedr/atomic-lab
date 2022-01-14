@@ -1,0 +1,39 @@
+@import "src/globals";
+
+.card-service {
+    flex-grow: 1;
+    flex: 1 1 30%;
+    min-height: 25vh; /* set height as you need */
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 40px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    cursor: pointer;
+
+    .card-content {
+        flex-direction: column;
+        align-items: center;
+        height: 21vh;
+        justify-content: center;
+
+        .description {
+            display: none;
+        }
+    }
+
+    .card-footer {
+        margin-top: auto;
+        background: #ffffff;
+        border-bottom-left-radius: 40px;
+        border-bottom-right-radius: 40px;
+        height: 40px;
+        justify-content: space-around;
+    }
+}
+
+.card-service:hover .description {
+    display: block;
+}
+.card-service:hover .status {
+    display: none;
+}
