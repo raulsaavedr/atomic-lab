@@ -4,8 +4,44 @@
     justify-content: space-around;
     background-color: #ffffff;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height: 64px;
+    padding: 0 42px;
 
     .option {
         cursor: pointer;
+    }
+
+    .search {
+        border: 0.3px solid #707070;
+        background-color: #f2f2f2;
+        border-radius: 8px;
+        width: 294px;
+        height: 39px;
+        gap: 13px;
+        padding: 0 10px;
+        color: #aeb3b3;
+    }
+
+    .credits {
+        border: 0.3px solid #e7e7e8;
+        border-radius: 22.5px;
+        width: 223px;
+        height: 45px;
+        padding: 0 10px;
+        justify-content: space-between;
+
+        .icon-credit {
+            gap: 6px;
+        }
+
+        .credits-buy {
+            background-color: #6461f2;
+            width: 90px;
+            height: 32px;
+            border-radius: 16px;
+            color: #ffffff;
+            justify-content: center;
+            font-size: 14px;
+        }
     }
 }

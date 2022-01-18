@@ -1,0 +1,89 @@
+@import "src/globals";
+
+.card-service {
+    flex-grow: 1;
+    flex: 1 1 30%;
+    min-height: 183px;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 13px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    cursor: pointer;
+    max-width: 334px;
+
+    .card-content {
+        flex-direction: column;
+        align-items: center;
+        height: 137px;
+        justify-content: center;
+
+        .status {
+            background-color: rgba(221, 221, 221, 0.87);
+        }
+
+        .description {
+            display: none;
+            text-align: center;
+            background-color: rgba(221, 221, 221, 1);
+        }
+        .status,
+        .description {
+            border-top-left-radius: 13px;
+            border-top-right-radius: 13px;
+            height: 137px;
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    .card-footer {
+        margin-top: auto;
+        background: #ffffff;
+        border-bottom-left-radius: 13px;
+        border-bottom-right-radius: 13px;
+        height: 40px;
+        justify-content: space-around;
+
+        .icon-credit {
+            gap: 5px;
+        }
+    }
+
+    .redes-sociales {
+        background-image: url("../../../../../icons/redes-sociales.png");
+    }
+    .impresion {
+        background-image: url("../../../../../icons/impresion.png");
+    }
+    .papeleria {
+        background-image: url("../../../../../icons/papeleria.png");
+    }
+    .diseno-web {
+        background-image: url("../../../../../icons/diseno-web.png");
+    }
+    .infografias {
+        background-image: url("../../../../../icons/infografias.png");
+    }
+    .presentaciones {
+        background-image: url("../../../../../icons/presentaciones.png");
+    }
+    .manual-de-marca {
+        background-image: url("../../../../../icons/manual-de-marca.png");
+    }
+    .logotipo {
+        background-image: url("../../../../../icons/logotipo.png");
+    }
+    .otros {
+        background-image: url("../../../../../icons/otros.png");
+    }
+}
+
+.card-service:hover .description {
+    display: flex;
+}
+.card-service:hover .status.coming-soon {
+    background-color: rgba(221, 221, 221, 1);
+}
+.card-service:hover .status {
+    display: none;
+}

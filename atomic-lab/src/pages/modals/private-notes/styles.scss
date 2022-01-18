@@ -1,0 +1,27 @@
+.private-notes {
+    .modal-content {
+        position: relative;
+
+        .content-notes {
+            margin-top: 13px;
+            width: 96%;
+            height: 215px;
+            border-radius: 10px;
+            background-color: #f5f5f5;
+            padding: 10px;
+            overflow: scroll;
+            overflow-x: hidden;
+
+            p {
+                margin-bottom: 10px;
+            }
+        }
+
+        .section-buttons {
+            position: absolute;
+            bottom: 20px;
+            justify-content: space-between;
+            width: 90%;
+        }
+    }
+}

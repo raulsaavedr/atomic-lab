@@ -1,38 +1,52 @@
 import React from "react";
+import { USER_DATA } from "../constats";
+import { Icons } from "../icons";
+
 import "./styles.scss";
 
 function View({ redirectTo }) {
   return (
     <div className="header-bar flex">
-      <div className="logo">logo</div>
+      <div className="icon-logo">{Icons("logo")}</div>
       <div className="icon-home option" onClick={() => redirectTo("/")}>
-        home
+        {Icons("home")}
       </div>
-      <div className="icon-add option">add</div>
+      <div
+        className="icon-add option"
+        onClick={() => redirectTo("/new-project")}
+      >
+        {Icons("add")}
+      </div>
       <div
         className="icon-active option"
         onClick={() => redirectTo("active-projects")}
       >
-        active
+        {Icons("active")}
       </div>
-      <div className="icon-finish option">finish</div>
+      <div
+        className="icon-finish option"
+        onClick={() => redirectTo("/finish-projects")}
+      >
+        {Icons("finish")}
+      </div>
       <div className="search flex">
-        <div className="icon-search">lupa</div>
+        <div className="icon-search flex"> {Icons("search")}</div>
         <p>Buscar...</p>
       </div>
-      <div className="icon-notifications option">notifications</div>
+      <div className="icon-notifications option">{Icons("notifications")}</div>
       <div className="credits flex">
-        <div className="icon-credit">credit</div>
-        <div className="credits-value">$0</div>
-        <div className="credits-buy">comprar</div>
+        <div className="icon-credit flex">
+          {Icons("credits")} ${USER_DATA.credits}
+        </div>
+        <div className="credits-buy flex">Comprar</div>
       </div>
       <div className="account flex">
         <div className="icon-account">account</div>
         <div className="account-value">
-          <p>Pepsi</p>
-          <p>Usuario</p>
+          <div>Pepsi</div>
+          <div>Usuario</div>
         </div>
-        <div className="icon-arrow-up">+</div>
+        <div className="icon-arrow-up">{Icons("arrow_down")}</div>
       </div>
     </div>
   );

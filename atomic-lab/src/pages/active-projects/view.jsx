@@ -1,66 +1,138 @@
 import React from "react";
+import { Icons } from "../icons";
+import { USER_DATA, ACTIVE_TABLES } from "../constats";
+import ModalPrivateNotes from "../modals/private-notes";
+import ModalLastVersion from "../modals/last-version";
+import ModalReviews from "../modals/reviews";
 import PageTitle from "../page-title";
-import { USER_DATA } from "../constats";
 import "./styles.scss";
 
-function View() {
+function View({
+  page,
+  setModalPrivateNotes,
+  modalPrivateNotes,
+  dataModals,
+  setDataModals,
+  modalLastVersion,
+  setModalLastVersion,
+  modalReviews,
+  setModalReviews,
+  redirectToStatusProject,
+}) {
   return (
-    <div className="active-projects">
-      <div className="hello">Hola Usuario,</div>
-
-      <PageTitle title="Proyectos activos" />
-
-      <div className="page-content">
-        <div className="table-data">
-          <table>
-            <thead>
+    <div className="page active-projects">
+      <PageTitle page={page} user={true} title="Proyectos activos" />
+      <div className="table-data">
+        <table>
+          <thead>
+            <tr>
+              {ACTIVE_TABLES(page).map((item) => (
+                <th>
+                  {item.title !== "Opciones" && item.isActive && (
+                    <div className="th-flex flex">
+                      <p>{item.title}</p>
+                      {item.title !== "" && (
+                        <p className="flex">{Icons("help_circle")}</p>
+                      )}
+                    </div>
+                  )}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {USER_DATA.active_projects.map((project) => (
               <tr>
-                <th>Nombre del proyecto</th>
-                <th>Estado</th>
-                <th>Fecha estimada próx. revisión</th>
-                <th>Mis notas privadas</th>
-                <th>Visualizar última versión</th>
-                <th>Revisión</th>
-                <th>Retroalimentación revisiones</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {USER_DATA?.active_projects?.map((project, index) => (
-                <tr key={index}>
-                  <td> {project.name} </td>
-                  <td> {project.status} </td>
-                  <td> {project.date_next_review} </td>
-                  <td> {project.private_notes.length} </td>
-                  <td> {project.last_version}</td>
-                  <td> {project.review} de 4</td>
+                <td>{project.name}</td>
+                <td>
+                  <div>
+                    <p>{Icons("status_check_" + project.status)}</p>
+                    <p
+                      className="view-more pointer"
+                      onClick={() => redirectToStatusProject(project)}
+                    >
+                      Ver más...
+                    </p>
+                  </div>
+                </td>
+                <td>{project.date_next_review}</td>
+                {page === "home" && (
                   <td>
-                    <div className="icon-review"></div>
+                    <div className="pointer">{Icons("add_plus")}</div>
                   </td>
-                  <td>
-                    <div className="menu-float">
-                      <div className="icon-points-menu">x</div>
-                      <div className="menu-float-options">
-                        <div className="menu-float-options-item flex">
-                          Más información
-                        </div>
-                        <div className="menu-float-options-item flex">
-                          Compartir
-                        </div>
-                        <div className="menu-float-options-item flex">
-                          Invitar personas
-                        </div>
-                        <div className="menu-float-options-item flex">
-                          Eliminar
+                )}
+                {page !== "home" && (
+                  <>
+                    <td>
+                      <div
+                        className="pointer"
+                        onClick={() => {
+                          setModalPrivateNotes(!modalPrivateNotes);
+                          setDataModals(project.private_notes);
+                        }}
+                      >
+                        <p>{Icons("private_notes")}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        className="pointer"
+                        onClick={() => {
+                          setModalLastVersion(!modalLastVersion);
+                          setDataModals(project.view_last_review);
+                        }}
+                      >
+                        {Icons("last_version")}
+                      </div>
+                    </td>
+                    <td>
+                      <div className="review flex">
+                        {project.review} de 4
+                        <div
+                          className="pointer flex"
+                          onClick={() => {
+                            setModalReviews(!modalReviews);
+                            setDataModals(project.review);
+                          }}
+                        >
+                          {Icons("add_plus")}
                         </div>
                       </div>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                    </td>
+
+                    <td>
+                      <div className="pointer">{Icons("review")}</div>
+                    </td>
+                    <td>
+                      <div className="pointer">{Icons("menu_points")}</div>
+                    </td>
+                  </>
+                )}
+
+                {page === "home" && (
+                  <>
+                    <td>
+                      <div className="pointer">{Icons("retro_review")}</div>
+                    </td>
+                    <td>
+                      <div className="view-more pointer">Ver más...</div>
+                    </td>
+                  </>
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        {modalPrivateNotes && (
+          <ModalPrivateNotes close={setModalPrivateNotes} data={dataModals} />
+        )}
+        {modalLastVersion && (
+          <ModalLastVersion close={setModalLastVersion} data={dataModals} />
+        )}
+        {modalReviews && (
+          <ModalReviews close={setModalReviews} data={dataModals} />
+        )}
       </div>
     </div>
   );

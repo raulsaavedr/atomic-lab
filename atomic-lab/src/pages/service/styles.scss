@@ -79,24 +79,6 @@
         }
     }
 
-    .section-buttons {
-        justify-content: space-between;
-
-        .button {
-            padding: 10px 30px;
-            width: fit-content;
-            border-radius: 22px;
-            border: 1px solid #6b72fd;
-            color: #6b72fd;
-            cursor: pointer;
-        }
-
-        .button:hover {
-            background-color: #6b72fd;
-            color: #ffffff;
-        }
-    }
-
     .section-cards-manuals {
         gap: 40px;
         .card-manual {

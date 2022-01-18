@@ -1,36 +1,106 @@
 export const USER_DATA = {
   name: "JArgoty",
-  credits: "1000",
+  credits: 1000,
   brands: [
     { id: "1", name: "Pepsi", value: "pepsi" },
     { id: "2", name: "Coca Cola", value: "cocacola" },
   ],
   active_projects: [
     {
+      id: 123,
       name: "Manual de marca #1",
       status: 1,
       date_next_review: "2021-01-30",
       private_notes: ["nota1", "nota2", "nota3"],
-      last_version: "imagen.png",
+      view_last_review: "test_review", //imagen sin extension
       review: 2,
+      status_test: [
+        {
+          title: "Tu proyecto ha sido confirmado e iniciado",
+          date: "2022-01-18:10:18",
+        },
+        {
+          title: "Tu proyecto ha sido asignado a un gerente de cuentas",
+          date: "2022-01-18:10:18",
+        },
+        {
+          title:
+            "Tu proyecto ha sido asignado a un diseñador y está en proceso de diseño",
+          date: "2022-01-18:10:18",
+        },
+        {
+          title: "La versión 1 de tu proyecto está lista",
+          date: "2022-01-18:10:18",
+        },
+        { title: "Tu proyecto fue finalizado", date: "2022-01-18:10:18" },
+        {
+          title: "Tu proyecto está listo para ser descargado",
+          date: "2022-01-18:10:18",
+        },
+      ],
     },
     {
-      name: "Manual de marca #2",
-      status: 3,
-      date_next_review: "2021-02-30",
-      private_notes: ["nota1", "nota2"],
-      last_version: "imagen.png",
-      review: 1,
-    },
-    {
-      name: "Manual de marca #3",
+      id: 321,
+      name: "Manual de marca #1",
       status: 2,
-      date_next_review: "2021-03-30",
-      private_notes: ["nota1", "nota2"],
-      last_version: "imagen.png",
-      review: 4,
+      date_next_review: "2021-01-30",
+      private_notes: ["nota1", "nota2", "nota3"],
+      view_last_review: "img.png", //imagen sin extension
+      review: 3,
     },
   ],
+  finish_projects: [
+    {
+      id: 123,
+      name: "Manual de marca #1",
+      status: 3,
+      date_finish: "2021-10-10",
+      private_notes: ["nota1", "nota2", "nota3"],
+      view_last_review: "img.png", //imagen sin extension
+    },
+  ],
+};
+
+export const STATUS_TABLES = (page) => {
+  const listContent = [
+    { title: "Estado", isActive: true },
+    { title: "Fecha y Hora", isActive: true },
+    { title: "Ver proyecto", isActive: true },
+  ];
+  return listContent.filter((item) => item.isActive === true);
+};
+
+export const FINISH_TABLES = (page) => {
+  const listContent = [
+    { title: "Nombre del proyecto", isActive: true },
+    { title: "Estado", isActive: true },
+    { title: "Fecha finalización", isActive: true },
+    { title: "Mis notas privadas", isActive: page === "home" ? false : true },
+    { title: "Visualizar diseño final", isActive: true },
+    { title: "Comentarios finales", isActive: page === "home" ? false : true },
+    { title: "Descargar", isActive: true },
+    { title: "", isActive: true },
+  ];
+  return listContent.filter((item) => item.isActive === true);
+};
+
+export const ACTIVE_TABLES = (page) => {
+  const listContent = [
+    { title: "Nombre del proyecto", isActive: true },
+    { title: "Estado", isActive: true },
+
+    { title: "Fecha estimada próx. revisión", isActive: true },
+    { title: "Mis notas privadas", isActive: page === "home" ? false : true },
+    { title: "Más Información", isActive: page === "home" ? true : false },
+    {
+      title: "Visualizar última versión",
+      isActive: page === "home" ? false : true,
+    },
+    { title: "Revisión", isActive: page === "home" ? false : true },
+    { title: "Retroalimentación revisiones", isActive: true },
+    { title: "", isActive: true },
+  ];
+  return listContent.filter((item) => item.isActive === true);
 };
 
 export const TYPE_PUBLICATION_DATA = {

@@ -12,6 +12,7 @@
 
     .service {
         flex-wrap: wrap;
-        gap: 4em;
+        grid-gap: 29px 95px;
+        justify-content: space-between;
     }
 }

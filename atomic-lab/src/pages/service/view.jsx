@@ -1,5 +1,6 @@
 import React from "react";
 import { USER_DATA, TYPE_PUBLICATION_DATA } from "../constats";
+import PageTitle from "../page-title";
 import parse from "html-react-parser";
 import "./styles.scss";
 
@@ -13,44 +14,13 @@ function View({
   modalPriceTotal,
 }) {
   return (
-    <div className="service-page">
-      <section className="section-header flex">
-        <div className="section-header-name">
-          <h1>{serviceData?.title}</h1>
-        </div>
-        <div className="section-header-rigth flex">
-          <div className="section-header-credit flex">
-            <div className="icon-credit">icon</div>
-            <div className="credit-value">
-              ${serviceData?.price?.basic[0]?.price} monedas
-            </div>
+    <div className="page service-page">
+      <PageTitle
+        title={serviceData?.title}
+        price={serviceData?.price?.basic}
+        modalPriceTotal={modalPriceTotal}
+      />
 
-            <div className="section-header-credit-modal">
-              {serviceData?.price?.basic.map((price) => (
-                <div className="price-option flex">
-                  <p>{price.name}</p>
-                  <p>{price.price}</p>
-                </div>
-              ))}
-
-              <div className="total flex">
-                <p>Total</p>
-                <div className="total-icon flex">
-                  <div className="icon-credit">x</div>
-                  <div className="credit-total">
-                    $ {modalPriceTotal} Monedas
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="section-header-help flex">
-            <div className="icon-help">icon</div>
-            <div className="help-text">Ayuda</div>
-          </div>
-        </div>
-      </section>
       <section className="section-image">image</section>
       <section className="section-description">
         {parse(serviceData?.description_page)}

@@ -1,6 +1,10 @@
 @import "src/globals";
 .home {
-    &-content {
-        padding: 0 4em 6em 4em;
+    .page {
+        padding: 0;
+    }
+
+    .section-page {
+        margin-bottom: 8em;
     }
 }
