@@ -3,6 +3,7 @@ import { USER_DATA, TYPE_PUBLICATION_DATA } from "../constats";
 import PageTitle from "../page-title";
 import parse from "html-react-parser";
 import "./styles.scss";
+import { Icons } from "../icons";
 
 function View({
   serviceData,
@@ -12,6 +13,7 @@ function View({
   setTypeManual,
   redirectToHome,
   modalPriceTotal,
+  redirectToForm,
 }) {
   return (
     <div className="page service-page">
@@ -21,7 +23,9 @@ function View({
         modalPriceTotal={modalPriceTotal}
       />
 
-      <section className="section-image">image</section>
+      <section className="section-image">
+        {Icons(`header_${serviceData?.title.replace(" ", "_").toLowerCase()}`)}
+      </section>
       <section className="section-description">
         {parse(serviceData?.description_page)}
       </section>
@@ -145,7 +149,9 @@ function View({
         <div className="button" onClick={() => redirectToHome()}>
           Atrás
         </div>
-        <div className="button">Continuar</div>
+        <div className="button" onClick={() => redirectToForm()}>
+          Continuar
+        </div>
       </section>
     </div>
   );

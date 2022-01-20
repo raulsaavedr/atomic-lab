@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { USER_DATA } from "../constats";
 import { Icons } from "../icons";
 
 import "./styles.scss";
 
-function View({ redirectTo }) {
+function View({ redirectTo, menuActive, setMenuActive }) {
   return (
     <div className="header-bar flex">
       <div className="icon-logo">{Icons("logo")}</div>
@@ -46,7 +46,66 @@ function View({ redirectTo }) {
           <div>Pepsi</div>
           <div>Usuario</div>
         </div>
-        <div className="icon-arrow-up">{Icons("arrow_down")}</div>
+        <div className="icon-arrow-up">
+          <div className="icon" onClick={() => setMenuActive(!menuActive)}>
+            {!menuActive ? Icons("arrow_down") : Icons("arrow_up")}
+          </div>
+
+          {menuActive && (
+            <div className="menu-account">
+              <ul>
+                <li
+                  onClick={() => {
+                    redirectTo("profile");
+                  }}
+                >
+                  Mi perfil
+                </li>
+                <li
+                  onClick={() => {
+                    redirectTo("brands");
+                  }}
+                >
+                  Mis marcas
+                </li>
+                <li
+                  onClick={() => {
+                    redirectTo("attached");
+                  }}
+                >
+                  Mis adjuntos
+                </li>
+                <li
+                  onClick={() => {
+                    redirectTo("team");
+                  }}
+                >
+                  Mi equipo
+                </li>
+                <hr />
+                <li
+                  onClick={() => {
+                    redirectTo("configuration");
+                  }}
+                >
+                  Mi configuración
+                </li>
+                <li
+                  onClick={() => {
+                    redirectTo("help-support");
+                  }}
+                >
+                  Ayuda y soporte
+                </li>
+                <hr />
+
+                <li className="text-purple" onClick={() => {}}>
+                  Cerrar sesión
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

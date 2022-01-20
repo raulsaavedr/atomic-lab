@@ -25,6 +25,26 @@ import start_off from "../icons/start-off.png";
 import start_on from "../icons/start-on.png";
 import last_comments from "../icons/last-comments.png";
 import download from "../icons/download.png";
+import header_redes_sociales from "../icons/header-redes-sociales.png";
+import clip_white from "../icons/clip-white.png";
+import add_white from "../icons/add-white.png";
+import step_form from "../icons/step-form.png";
+import icon_menu_h from "../icons/icon_menu_h.png";
+import icon_img_post from "../icons/icon_img_post.png";
+import icons_post from "../icons/icons_post.png";
+import step_selection from "../icons/step_selection.png";
+import step_summary from "../icons/step_summary.png";
+import edit from "../icons/edit.png";
+import arrow_up from "../icons/arrow_up.png";
+import add_brand from "../icons/add_brand.png";
+import linkedin from "../icons/linkedin.png";
+import youtube from "../icons/youtube.png";
+import twitter from "../icons/twitter.png";
+import instagram from "../icons/instagram.png";
+import facebook from "../icons/facebook.png";
+import upload_circle from "../icons/upload_circle.png";
+import download_circle from "../icons/download_circle.png";
+import notification_circle from "../icons/notification_circle.png";
 
 export const Icons = (icon) => {
   const listIcons = {
@@ -54,6 +74,26 @@ export const Icons = (icon) => {
     start_on: start_on,
     last_comments: last_comments,
     download: download,
+    header_redes_sociales: header_redes_sociales,
+    clip_white: clip_white,
+    add_white: add_white,
+    step_form: step_form,
+    icon_menu_h: icon_menu_h,
+    icon_img_post: icon_img_post,
+    icons_post: icons_post,
+    step_selection: step_selection,
+    step_summary: step_summary,
+    edit: edit,
+    arrow_up: arrow_up,
+    add_brand: add_brand,
+    linkedin: linkedin,
+    youtube: youtube,
+    twitter: twitter,
+    instagram: instagram,
+    facebook: facebook,
+    upload_circle: upload_circle,
+    download_circle: download_circle,
+    notification_circle: notification_circle,
   };
 
   return <img src={listIcons[icon]} alt={icon} />;

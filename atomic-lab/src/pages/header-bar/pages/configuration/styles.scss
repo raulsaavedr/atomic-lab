@@ -1,0 +1,55 @@
+.configuration-page {
+    .lenguaje {
+        gap: 20px;
+        margin-bottom: 3em;
+    }
+
+    .text {
+        gap: 20px;
+    }
+
+    .table {
+        margin: 1em 0 3em 0;
+
+        td {
+            height: 40px;
+            padding-right: 3em;
+        }
+    }
+
+    .switch {
+        width: 40px;
+        height: 27px;
+        border-radius: 16px;
+        position: relative;
+
+        &-toogle {
+            background-color: #ffffff;
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 3px;
+        }
+
+        &-toogle.active {
+            position: absolute;
+            right: 0;
+        }
+        &-toogle.inactive {
+            position: absolute;
+            left: 0;
+        }
+    }
+
+    .switch.active {
+        background-color: #6f3bff;
+    }
+    .switch.inactive {
+        background-color: #70707042;
+    }
+
+    .section-buttons {
+        justify-content: end;
+    }
+}

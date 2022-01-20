@@ -19,6 +19,7 @@ function Index() {
   }, []);
 
   const redirectToHome = () => navigate(`/`);
+  const redirectToForm = () => navigate(`/service/create/form`);
 
   const properties = {
     serviceData,
@@ -28,6 +29,7 @@ function Index() {
     setTypeManual,
     redirectToHome,
     modalPriceTotal,
+    redirectToForm,
   };
 
   return <View {...properties} />;

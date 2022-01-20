@@ -9,6 +9,8 @@ body {
 
 * {
     margin: 0;
+    padding: 0;
+    color: #576373;
 }
 
 .flex {
@@ -27,6 +29,10 @@ h3 {
     color: #6b72fd;
 }
 
+textarea {
+    font-family: "Poppins regular", serif;
+}
+
 .page {
     padding: 33px 123px;
 }
@@ -39,20 +45,33 @@ h3 {
 
 .section-buttons {
     justify-content: space-between;
+}
+.button {
+    padding: 10px 30px;
+    width: fit-content;
+    border-radius: 22px;
+    border: 1px solid #6b72fd;
+    color: #6b72fd;
+    cursor: pointer;
+}
+.button-blue {
+    padding: 10px 30px;
+    width: fit-content;
+    border-radius: 22px;
+    border: 1px solid #36ccd1;
+    background-color: #36ccd1;
+    color: #ffffff;
+    cursor: pointer;
+}
+.button-blue:hover {
+    background-color: #39dbe1;
+    border: 1px solid #39dbe1;
+    color: #ffffff;
+}
 
-    .button {
-        padding: 10px 30px;
-        width: fit-content;
-        border-radius: 22px;
-        border: 1px solid #6b72fd;
-        color: #6b72fd;
-        cursor: pointer;
-    }
-
-    .button:hover {
-        background-color: #6b72fd;
-        color: #ffffff;
-    }
+.button:hover {
+    background-color: #6b72fd;
+    color: #ffffff;
 }
 
 .table-data {
@@ -88,4 +107,41 @@ h3 {
             font-size: 12px;
         }
     }
+}
+
+.text-purple {
+    color: #6f3bff;
+    cursor: pointer;
+}
+
+.input-txt {
+    border-radius: 13px;
+    background-color: #ffffff;
+    border: 1px solid #70707042;
+    padding: 11px 15px;
+}
+
+label {
+    font-size: 16px;
+}
+
+.input-texarea {
+    height: 118px;
+    border: 1px solid #70707042;
+    resize: none;
+    border-radius: 13px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.select {
+    height: 28px;
+    width: 240px;
+    border: 1px solid #70707042;
+    border-radius: 14px;
+    padding: 5px;
+    box-sizing: border-box;
+    background: url("/icons/selec_arrow_down.png") no-repeat right #ffffff;
+    -webkit-appearance: none;
+    background-position-x: 97%;
 }

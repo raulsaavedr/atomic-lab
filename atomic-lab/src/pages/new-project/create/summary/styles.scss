@@ -1,0 +1,127 @@
+.summary-page {
+    .content {
+        .info {
+            margin: 20px 0;
+
+            .title {
+                width: 200px;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+
+                img {
+                    cursor: pointer;
+                }
+            }
+
+            .row {
+                display: flex;
+                border-bottom: 1px solid #70707042;
+                height: 45px;
+                align-items: center;
+                position: relative;
+            }
+
+            .more {
+                position: absolute;
+                right: 0;
+            }
+            .select {
+                height: 28px;
+                width: 240px;
+                border: 1px solid #70707042;
+                border-radius: 14px;
+                padding: 5px;
+                box-sizing: border-box;
+            }
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+            td {
+                height: 45px;
+                padding: 0 30px;
+            }
+
+            td:first-child {
+                padding-left: 0;
+                width: 1%;
+                white-space: nowrap;
+            }
+            td:last-child {
+                padding-right: 0;
+            }
+            td:nth-child(2) {
+                text-align: center;
+                width: max-content;
+            }
+
+            tr {
+                border-bottom: 1px solid #70707042;
+            }
+
+            tr:last-child {
+                border-bottom: none;
+            }
+            tr:last-child td {
+                padding-top: 10px;
+            }
+
+            .credits {
+                gap: 5px;
+            }
+        }
+
+        .liberty {
+            position: relative;
+            margin: 50px 0;
+            p {
+                gap: 10px;
+            }
+            .vote-main {
+                margin-top: -40px;
+
+                .vote {
+                    position: absolute;
+                    right: 0;
+                    gap: 20px;
+                    z-index: 2;
+                    .section {
+                        .circle {
+                            cursor: pointer;
+                            width: 25px;
+                            height: 23px;
+                            border: 1px solid #70707042;
+                            border-radius: 13px;
+                            margin: auto;
+                            background-color: #ffffff;
+                        }
+                        .circle:hover {
+                            border: 1px solid #d6c7ff;
+                            background-color: #d6c7ff;
+                        }
+                        .circle.active {
+                            border: 1px solid #6f3bff;
+                            background-color: #6f3bff;
+                        }
+                    }
+                }
+                .line-back {
+                    width: 155px;
+                    height: 1px;
+                    background-color: #70707042;
+                    position: absolute;
+                    right: 20px;
+                    top: 5px;
+                    z-index: 1;
+                }
+            }
+        }
+    }
+
+    .footer {
+        margin-top: 50px;
+    }
+}

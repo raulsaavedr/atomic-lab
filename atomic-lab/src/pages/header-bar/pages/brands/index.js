@@ -4,14 +4,10 @@ import View from "./view";
 
 function Index() {
   const navigate = useNavigate();
-  const [menuActive, setMenuActive] = useState(false);
 
-  const redirectTo = (item) => {
-    navigate(item);
-    setMenuActive(false);
-  };
+  const redirectToBrandForm = () => navigate("/brands/brands-form");
 
-  const properties = { redirectTo, menuActive, setMenuActive };
+  const properties = { redirectToBrandForm };
 
   return <View {...properties} />;
 }
