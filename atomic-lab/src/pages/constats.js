@@ -5,6 +5,30 @@ export const USER_DATA = {
     { id: "1", name: "Pepsi", value: "pepsi", predeterminate: true },
     { id: "2", name: "Coca Cola", value: "cocacola", predeterminate: false },
   ],
+  team: [
+    {
+      id: 1,
+      name: "Daniel",
+      email: "d@gmail.com",
+      rol: "dueño",
+      projects: "Todos",
+    },
+    {
+      id: 2,
+      name: "Daniel1",
+      email: "d1@gmail.com",
+      rol: "dueño",
+      projects: "Todos",
+    },
+    {
+      id: 3,
+      name: "Daniel2",
+      email: "d2@gmail.com",
+      rol: "dueño",
+      projects: "Todos",
+    },
+  ],
+
   active_projects: [
     {
       id: 123,

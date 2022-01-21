@@ -5,7 +5,15 @@ import { FORM_INPUTS } from "../../../constats";
 import "../styles.scss";
 import "./styles.scss";
 
-function View({ redirectToForm, redirectToSummary }) {
+function View({
+  redirectToForm,
+  redirectToSummary,
+  selectedFile,
+  preview,
+  onSelectFile,
+  textPreview,
+  setTextPreview,
+}) {
   return (
     <div className="selection-page page">
       <div className="step flex">{Icons("step_selection")}</div>
@@ -36,11 +44,17 @@ function View({ redirectToForm, redirectToSummary }) {
                 </div>
                 <div className="icon-menu-h">{Icons("icon_menu_h")}</div>
               </div>
-              <div className="post-content">{Icons("icon_img_post")}</div>
+              <div className="post-content">
+                {selectedFile ? (
+                  <img className="img-user" src={preview} />
+                ) : (
+                  Icons("icon_img_post")
+                )}
+              </div>
               <div className="post-footer">
                 <div className="footer-top">{Icons("icons_post")}</div>
                 <p>Views</p>
-                <p>Descripción #hashtags</p>
+                <p>{textPreview ? textPreview : "Descripción #hashtags"}</p>
               </div>
             </div>
           </div>
@@ -56,6 +70,9 @@ function View({ redirectToForm, redirectToSummary }) {
                   {Icons("clip_white")}
                   Adjuntar
                 </div>
+                <div>
+                  <input type="file" onChange={onSelectFile} />
+                </div>
               </section>
               <textarea {...FORM_INPUTS.image_include} id="image_include" />
             </div>
@@ -69,7 +86,11 @@ function View({ redirectToForm, redirectToSummary }) {
                   Adjuntar
                 </div>
               </section>
-              <textarea {...FORM_INPUTS.text_include} id="text_include" />
+              <textarea
+                {...FORM_INPUTS.text_include}
+                id="text_include"
+                onChange={(e) => setTextPreview(e.target.value)}
+              />
             </div>
           </div>
           <div className="column"></div>

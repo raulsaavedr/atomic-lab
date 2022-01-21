@@ -38,6 +38,10 @@ function View({ page, user, title, price, modalPriceTotal }) {
             </div>
           )}
 
+          {page === "team-page" && (
+            <div className="button-blue">Invitar personas</div>
+          )}
+
           {page !== "home" && (
             <div className="section-header-help flex pointer">
               <div className="icon-help flex">{Icons("help")}</div>
