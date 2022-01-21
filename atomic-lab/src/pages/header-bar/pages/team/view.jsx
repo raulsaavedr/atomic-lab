@@ -3,11 +3,22 @@ import PageTitle from "../../../page-title";
 import "./styles.scss";
 import { Icons } from "../../../icons";
 import { USER_DATA } from "../../../constats";
+import ModalAddMember from "../../../modals/add-member";
 
-function View({}) {
+function View({
+  modalAddMember,
+  setModalAddMember,
+  dataModals,
+  setDataModals,
+}) {
   return (
     <div className="team-page page">
-      <PageTitle page={"team-page"} user={true} title="Mi equipo" />
+      <PageTitle
+        page={"team-page"}
+        user={true}
+        title="Mi equipo"
+        func={setModalAddMember}
+      />
 
       <div className="table-data">
         <table>
@@ -27,7 +38,7 @@ function View({}) {
                 <td>{member.email}</td>
                 <td>{member.rol}</td>
                 <td>{member.projects}</td>
-                <td></td>
+                <td>{Icons("delete_circle")}</td>
               </tr>
             ))}
           </tbody>
@@ -39,6 +50,10 @@ function View({}) {
           <div className="button">Guardar cambios</div>
         </section>
       </section>
+
+      {modalAddMember && (
+        <ModalAddMember close={setModalAddMember} data={dataModals} />
+      )}
     </div>
   );
 }

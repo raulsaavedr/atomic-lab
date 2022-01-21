@@ -1,13 +1,26 @@
 import React from "react";
 import { Icons } from "../icons";
+import ModalHelp from "../modals/help";
 import "./styles.scss";
 
-function View({ page, user, title, price, modalPriceTotal }) {
+function View({
+  page,
+  user,
+  title,
+  price,
+  modalPriceTotal,
+  func,
+  modalHelp,
+  setModalHelp,
+}) {
   return (
     <>
       {page !== "home" && user && <p>Hola Usuario,</p>}
       <div className="page-title flex">
         <div className="title">
+          {page === "attached-page" && Icons("clip_circle")}
+          {page === "team-page" && Icons("team_circle")}
+
           {page === "home" ? <h2>{title}</h2> : <h1>{title}</h1>}
         </div>
 
@@ -39,17 +52,24 @@ function View({ page, user, title, price, modalPriceTotal }) {
           )}
 
           {page === "team-page" && (
-            <div className="button-blue">Invitar personas</div>
+            <div className="button-blue" onClick={() => func(true)}>
+              Invitar personas
+            </div>
           )}
 
           {page !== "home" && (
-            <div className="section-header-help flex pointer">
+            <div
+              className="section-header-help flex pointer"
+              onClick={() => setModalHelp(!modalHelp)}
+            >
               <div className="icon-help flex">{Icons("help")}</div>
               <div className="help-text">Ayuda</div>
             </div>
           )}
         </div>
       </div>
+
+      {modalHelp && <ModalHelp close={setModalHelp} />}
     </>
   );
 }

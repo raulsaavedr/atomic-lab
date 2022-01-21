@@ -28,6 +28,26 @@ export const USER_DATA = {
       projects: "Todos",
     },
   ],
+  attached: [
+    {
+      id: 1,
+      name: "logo.jpg",
+      type: "jpg",
+      size: "100mb",
+    },
+    {
+      id: 2,
+      name: "logo2.jpg",
+      type: "jpg",
+      size: "200mb",
+    },
+    {
+      id: 3,
+      name: "logo3.jpg",
+      type: "jpg",
+      size: "300mb",
+    },
+  ],
 
   active_projects: [
     {

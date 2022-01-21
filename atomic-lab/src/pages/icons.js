@@ -45,6 +45,22 @@ import facebook from "../icons/facebook.png";
 import upload_circle from "../icons/upload_circle.png";
 import download_circle from "../icons/download_circle.png";
 import notification_circle from "../icons/notification_circle.png";
+import clip_circle from "../icons/clip_circle.png";
+import team_circle from "../icons/team_circle.png";
+import delete_circle from "../icons/delete_circle.png";
+import tel from "../icons/tel.png";
+import email from "../icons/email.png";
+import whatsapp from "../icons/whatsapp.png";
+import video_call from "../icons/video_call.png";
+import idea from "../icons/idea.png";
+import blog from "../icons/blog.png";
+import form from "../icons/form.png";
+import chat from "../icons/chat.png";
+import linkedin_black from "../icons/linkedin_black.png";
+import youtube_black from "../icons/youtube_black.png";
+import facebook_black from "../icons/facebook_black.png";
+import twitter_black from "../icons/twitter_black.png";
+import instagram_black from "../icons/instagram_black.png";
 
 export const Icons = (icon) => {
   const listIcons = {
@@ -94,6 +110,22 @@ export const Icons = (icon) => {
     upload_circle: upload_circle,
     download_circle: download_circle,
     notification_circle: notification_circle,
+    clip_circle: clip_circle,
+    team_circle: team_circle,
+    delete_circle: delete_circle,
+    tel: tel,
+    email: email,
+    whatsapp: whatsapp,
+    video_call: video_call,
+    idea: idea,
+    blog: blog,
+    form: form,
+    chat: chat,
+    linkedin_black: linkedin_black,
+    youtube_black: youtube_black,
+    facebook_black: facebook_black,
+    twitter_black: twitter_black,
+    instagram_black: instagram_black,
   };
 
   return <img src={listIcons[icon]} alt={icon} />;

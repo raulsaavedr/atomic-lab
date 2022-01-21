@@ -1,4 +1,6 @@
 .team-page {
+    position: relative;
+
     table {
         thead td {
             color: #6b72fd;
@@ -10,9 +12,13 @@
         }
     }
     .footer {
+        right: 123px;
         margin-top: 4em;
+        position: absolute;
+        bottom: 0;
+
         .section-buttons {
-            justify-content: end;
+            justify-content: space-between;
         }
     }
 }

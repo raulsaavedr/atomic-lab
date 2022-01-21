@@ -7,6 +7,12 @@ body {
     font-family: "Poppins regular", serif;
 }
 
+body,
+html,
+#root {
+    height: 100%;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -35,6 +41,7 @@ textarea {
 
 .page {
     padding: 33px 123px;
+    min-height: 774px;
 }
 
 .pointer {
@@ -60,6 +67,15 @@ textarea {
     border-radius: 22px;
     border: 1px solid #36ccd1;
     background-color: #36ccd1;
+    color: #ffffff;
+    cursor: pointer;
+}
+.button-gray {
+    padding: 10px 30px;
+    width: fit-content;
+    border-radius: 22px;
+    border: 1px solid #dddddd;
+    background-color: #dddddd;
     color: #ffffff;
     cursor: pointer;
 }
@@ -114,6 +130,10 @@ textarea {
     cursor: pointer;
 }
 
+.text-blue {
+    color: #36ccd1;
+}
+
 .input-txt {
     border-radius: 13px;
     background-color: #ffffff;
@@ -144,4 +164,18 @@ label {
     background: url("/icons/selec_arrow_down.png") no-repeat right #ffffff;
     -webkit-appearance: none;
     background-position-x: 97%;
+}
+
+.modal-content {
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.modal {
+    .footer-modal {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
 }
