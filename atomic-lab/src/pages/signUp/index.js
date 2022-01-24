@@ -2,14 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import View from "./view";
 
-function Index({ setIsAuthenticated }) {
+function Index() {
   const navigate = useNavigate();
 
   const redirectTo = (item) => {
     navigate(item);
   };
 
-  const properties = { setIsAuthenticated, redirectTo };
+  const properties = { redirectTo };
 
   return <View {...properties} />;
 }

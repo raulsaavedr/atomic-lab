@@ -1,9 +1,13 @@
 import React from "react";
 import logo from "../icons/logo.png";
 import home from "../icons/home.png";
+import home_purple from "../icons/home_purple.png";
 import add from "../icons/add.png";
+import add_purple from "../icons/add_purple.png";
 import active from "../icons/active.png";
+import active_purple from "../icons/active_purple.png";
 import finish from "../icons/finish.png";
+import finish_purple from "../icons/finish_purple.png";
 import search from "../icons/search.png";
 import notifications from "../icons/notifications.png";
 import credits from "../icons/credits.png";
@@ -61,14 +65,23 @@ import youtube_black from "../icons/youtube_black.png";
 import facebook_black from "../icons/facebook_black.png";
 import twitter_black from "../icons/twitter_black.png";
 import instagram_black from "../icons/instagram_black.png";
+import login_main from "../icons/login_main.png";
+import time_circle from "../icons/time_circle.png";
+import brand_circle from "../icons/brand_circle.png";
+import profile_circle from "../icons/profile_circle.png";
+import close_white from "../icons/close_white.png";
 
 export const Icons = (icon) => {
   const listIcons = {
     logo: logo,
     home: home,
+    home_purple: home_purple,
     add: add,
+    add_purple: add_purple,
     active: active,
+    active_purple: active_purple,
     finish: finish,
+    finish_purple: finish_purple,
     search: search,
     notifications: notifications,
     credits: credits,
@@ -126,6 +139,11 @@ export const Icons = (icon) => {
     facebook_black: facebook_black,
     twitter_black: twitter_black,
     instagram_black: instagram_black,
+    login_main: login_main,
+    time_circle: time_circle,
+    brand_circle: brand_circle,
+    profile_circle: profile_circle,
+    close_white: close_white,
   };
 
   return <img src={listIcons[icon]} alt={icon} />;

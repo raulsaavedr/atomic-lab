@@ -1,6 +1,8 @@
 export const USER_DATA = {
   name: "JArgoty",
   credits: 1000,
+  onboarding: false, //false - NO Mostrar onboarding
+  tour: false, //false - NO Mostrar Tour
   brands: [
     { id: "1", name: "Pepsi", value: "pepsi", predeterminate: true },
     { id: "2", name: "Coca Cola", value: "cocacola", predeterminate: false },
