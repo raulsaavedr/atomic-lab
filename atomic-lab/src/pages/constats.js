@@ -84,6 +84,14 @@ export const USER_DATA = {
           date: "2022-01-18:10:18",
         },
       ],
+      review_data: {
+        version: 1,
+        versions: [
+          { id: "1A", content: "imagen.png" },
+          { id: "1B", content: "imagen2.png" },
+          { id: "1C", content: "imagen3.png" },
+        ],
+      },
     },
     {
       id: 321,

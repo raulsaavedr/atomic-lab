@@ -188,7 +188,10 @@ function View({
 
                 <li
                   className="text-purple"
-                  onClick={() => setIsAuthenticated(false)}
+                  onClick={() => {
+                    setIsAuthenticated(false);
+                    redirectTo("/");
+                  }}
                 >
                   Cerrar sesión
                 </li>

@@ -18,6 +18,7 @@ function View({
   modalReviews,
   setModalReviews,
   redirectToStatusProject,
+  redirectToReviews,
 }) {
   return (
     <div className="page active-projects">
@@ -101,7 +102,12 @@ function View({
                     </td>
 
                     <td>
-                      <div className="pointer">{Icons("review")}</div>
+                      <div
+                        className="pointer"
+                        onClick={() => redirectToReviews(project.id)}
+                      >
+                        {Icons("review")}
+                      </div>
                     </td>
                     <td>
                       <div className="pointer">{Icons("menu_points")}</div>
@@ -112,7 +118,12 @@ function View({
                 {page === "home" && (
                   <>
                     <td>
-                      <div className="pointer">{Icons("retro_review")}</div>
+                      <div
+                        className="pointer"
+                        onClick={() => redirectToReviews(project.id)}
+                      >
+                        {Icons("retro_review")}
+                      </div>
                     </td>
                     <td>
                       <div className="view-more pointer">Ver más...</div>

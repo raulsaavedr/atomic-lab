@@ -36,6 +36,17 @@ function View({ setTourStep, tourStep, setTourActive, title, text }) {
               Siguiente
             </div>
           )}
+          {tourStep == 4 && (
+            <div
+              className="button"
+              onClick={() => {
+                setTourStep(0);
+                setTourActive(false);
+              }}
+            >
+              Finalizar
+            </div>
+          )}
         </div>
       </div>
     </div>

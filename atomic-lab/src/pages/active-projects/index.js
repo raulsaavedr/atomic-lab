@@ -14,6 +14,7 @@ function Index({ page, table }) {
     navigate(`/status-project/${project.id}`, {
       state: { project: project },
     });
+  const redirectToReviews = (id) => navigate(`/reviews/${id}`);
 
   const properties = {
     page,
@@ -27,6 +28,7 @@ function Index({ page, table }) {
     modalReviews,
     setModalReviews,
     redirectToStatusProject,
+    redirectToReviews,
   };
 
   return <View {...properties} />;

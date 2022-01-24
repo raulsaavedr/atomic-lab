@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import { USER_DATA } from "./pages/constats";
 
 import Login from "./pages/login";
@@ -25,17 +25,18 @@ import HelpSupport from "./pages/header-bar/pages/help-support";
 import RecoverPassword from "./pages/recover-password";
 import RecoverPasswordEmail from "./pages/recover-password/send-email";
 import Onboarding from "./pages/onboarding";
+import Reviews from "./pages/reviews";
 
 import "./app.scss";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  console.log("AUTH-", isAuthenticated);
+  console.log("AUTH-3", isAuthenticated);
 
   return (
     <div className="app">
-      <BrowserRouter>
+      <HashRouter>
         {isAuthenticated && !USER_DATA.onboarding && (
           <HeaderBar setIsAuthenticated={setIsAuthenticated} />
         )}
@@ -66,6 +67,7 @@ function App() {
               <Route path="configuration" element={<Configuration />} />
               <Route path="help-support" element={<HelpSupport />} />
               <Route path="onboarding" element={<Onboarding />} />
+              <Route path="reviews/:id" element={<Reviews />} />
             </>
           ) : (
             <>
@@ -83,7 +85,7 @@ function App() {
             </>
           )}
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
