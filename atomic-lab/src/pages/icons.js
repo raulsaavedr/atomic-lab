@@ -144,6 +144,7 @@ export const Icons = (icon) => {
     brand_circle: brand_circle,
     profile_circle: profile_circle,
     close_white: close_white,
+    X: X,
   };
 
   return <img src={listIcons[icon]} alt={icon} />;
