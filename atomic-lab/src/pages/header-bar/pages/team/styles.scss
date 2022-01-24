@@ -1,0 +1,24 @@
+.team-page {
+    position: relative;
+
+    table {
+        thead td {
+            color: #6b72fd;
+            font-weight: 600;
+            height: 50px;
+        }
+        td {
+            text-align: center;
+        }
+    }
+    .footer {
+        right: 123px;
+        margin-top: 4em;
+        position: absolute;
+        bottom: 0;
+
+        .section-buttons {
+            justify-content: space-between;
+        }
+    }
+}

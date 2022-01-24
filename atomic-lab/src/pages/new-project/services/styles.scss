@@ -1,0 +1,18 @@
+@import "src/globals";
+
+.services {
+    .title-content {
+        justify-content: space-between;
+        margin: 3em 0 3em 0;
+
+        .help {
+            gap: 20px;
+        }
+    }
+
+    .service {
+        flex-wrap: wrap;
+        grid-gap: 29px 95px;
+        justify-content: space-between;
+    }
+}

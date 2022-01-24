@@ -1,0 +1,24 @@
+.add-member {
+    .modal-content {
+    }
+
+    h3 {
+        color: #36ccd1;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .input-data {
+        margin-top: 20px;
+        display: inline-grid;
+        gap: 20px;
+    }
+
+    .footer {
+        margin-top: 3em;
+
+        .section-buttons {
+            justify-content: space-between;
+        }
+    }
+}

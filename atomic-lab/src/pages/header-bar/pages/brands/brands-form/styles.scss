@@ -1,0 +1,60 @@
+.brands-form-page {
+    table {
+        width: 100%;
+        margin: 3em 0;
+
+        td {
+            height: 50px;
+        }
+
+        .flex {
+            gap: 5px;
+        }
+    }
+
+    .description {
+        margin-bottom: 30px;
+    }
+    .item-input {
+        margin-bottom: 20px;
+        width: 50%;
+
+        .input-txt {
+            width: 100%;
+        }
+
+        .sub {
+            margin-left: 1.6em;
+            margin-top: 20px;
+        }
+
+        .flex {
+            gap: 10px;
+
+            img {
+                cursor: pointer;
+            }
+        }
+
+        .flex-icon {
+            margin-bottom: 5px;
+        }
+    }
+    .item-input.input-checkbox,
+    .input-checkbox {
+        display: flex;
+    }
+
+    .item-input.input-checkbox {
+        gap: 20px;
+    }
+
+    .checkbox-txt {
+        margin-top: -4px;
+        margin-left: 5px;
+    }
+
+    textarea {
+        width: 100%;
+    }
+}

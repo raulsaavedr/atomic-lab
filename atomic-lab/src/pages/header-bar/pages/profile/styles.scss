@@ -1,0 +1,32 @@
+.profile-page {
+    .description {
+        margin-bottom: 20px;
+    }
+    .item-input {
+        display: grid;
+        margin-bottom: 15px;
+        width: 50%;
+
+        .flex {
+            gap: 10px;
+
+            img {
+                cursor: pointer;
+            }
+        }
+
+        input {
+            width: 100%;
+        }
+    }
+
+    .footer {
+        position: relative;
+
+        .section-buttons {
+            position: absolute;
+            right: 0;
+            padding-bottom: 2em;
+        }
+    }
+}

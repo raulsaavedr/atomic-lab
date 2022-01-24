@@ -1,0 +1,200 @@
+@import "src/globals";
+
+.header-bar {
+    justify-content: space-around;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height: 64px;
+    padding: 0 42px;
+    position: relative;
+
+    .back-white {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background-color: rgba(255, 255, 255, 0.7);
+        top: 0;
+    }
+
+    .tour {
+        top: 4em;
+        left: 0em;
+        background-color: rgba(255, 255, 255, 0.7);
+        height: 100%;
+        width: 100%;
+        z-index: 1000;
+
+        .corner {
+            width: 0px;
+            height: 0px;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 14px solid #6f3bff;
+            position: absolute;
+            top: -0.5em;
+            left: 6em;
+        }
+    }
+
+    .tour-content {
+        width: 409px;
+        background-color: #6f3bff;
+        padding: 20px;
+        box-sizing: border-box;
+        position: absolute;
+        top: 4.5em;
+        color: #ffffff;
+        border-radius: 10px;
+
+        .steps-title {
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        h4,
+        p {
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: end;
+            gap: 10px;
+        }
+        .button {
+            background-color: #a182f6;
+            color: #ffffff;
+        }
+        .button:hover {
+            background-color: #bba5f9;
+        }
+    }
+
+    .tour-0 {
+        position: fixed;
+        top: 0em;
+    }
+
+    .tour-step-0 {
+        left: 35%;
+        top: 35%;
+        height: 200px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .buttons {
+            justify-content: space-between;
+        }
+        h4 {
+            font-size: 20px;
+        }
+    }
+
+    .tour-step-1,
+    .tour-step-2,
+    .tour-step-3,
+    .tour-step-4 {
+        left: -6.3em;
+    }
+
+    .option,
+    .icon-logo,
+    .search,
+    .credits,
+    .account {
+        z-index: 2;
+    }
+
+    .option {
+        cursor: pointer;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+    .option.active {
+        border-bottom: 2px solid #6f3bff;
+    }
+
+    .search {
+        border: 0.3px solid #70707042;
+        background-color: #f2f2f2;
+        border-radius: 8px;
+        width: 294px;
+        height: 39px;
+        gap: 13px;
+        padding: 0 10px;
+        color: #aeb3b3;
+    }
+
+    .credits {
+        border: 0.3px solid #e7e7e8;
+        border-radius: 22.5px;
+        width: 223px;
+        height: 45px;
+        padding: 0 10px;
+        justify-content: space-between;
+
+        .icon-credit {
+            gap: 6px;
+        }
+
+        .credits-buy {
+            background-color: #6461f2;
+            width: 90px;
+            height: 32px;
+            border-radius: 16px;
+            color: #ffffff;
+            justify-content: center;
+            font-size: 14px;
+        }
+    }
+    .icon-arrow-up {
+        position: relative;
+
+        .icon {
+            cursor: pointer;
+        }
+    }
+
+    .menu-account {
+        position: absolute;
+        right: 0;
+        top: 50px;
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 13px;
+        z-index: 100;
+        box-sizing: border-box;
+        width: 11em;
+        li {
+            list-style-type: none;
+            padding: 10px 10px;
+            display: inline-block;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        li:hover {
+            background-color: rgba(111, 59, 255, 0.39);
+            color: #ffffff;
+        }
+
+        li:first-child:hover {
+            border-top-left-radius: 13px;
+            border-top-right-radius: 13px;
+        }
+        li:last-child:hover {
+            border-bottom-left-radius: 13px;
+            border-bottom-right-radius: 13px;
+        }
+
+        hr {
+            border: 1px solid #70707042;
+            margin: 0 10px;
+        }
+    }
+}

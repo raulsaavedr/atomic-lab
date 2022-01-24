@@ -1,0 +1,131 @@
+.service-page {
+    section {
+        margin-bottom: 7vh;
+    }
+    .section-header {
+        justify-content: space-between;
+
+        &-rigth {
+            gap: 50px;
+        }
+    }
+
+    .section-image {
+        width: 100%;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .section-publication-type {
+        .type-check {
+            gap: 30px;
+        }
+
+        .type-cards {
+            gap: 30px;
+            .type-card {
+                width: 150px;
+                height: 200px;
+                background-color: #ffffff;
+                border-radius: 15%;
+                justify-content: center;
+            }
+        }
+    }
+
+    .section-header-credit {
+        border: 1px solid #e3e6ea;
+        border-radius: 20px;
+        padding: 10px;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .section-header-credit:hover {
+        .section-header-credit-modal {
+            display: block;
+        }
+    }
+
+    .section-header-credit-modal {
+        display: none;
+        background-color: rgba(255, 255, 255, 0.54);
+        border-radius: 10px;
+        padding: 10px 20px;
+        position: absolute;
+        top: 3em;
+        right: -4em;
+        width: 250px;
+
+        .price-option {
+            justify-content: space-between;
+            gap: 30px;
+            height: 50px;
+            border-bottom: 1px solid #e3e6ea;
+        }
+
+        .total {
+            justify-content: space-between;
+        }
+    }
+
+    .section-specs {
+        display: flex;
+        flex-wrap: wrap;
+
+        &-spec {
+            flex-grow: 1;
+            flex: 50%;
+        }
+    }
+
+    .section-social-network {
+        .social-network-check {
+            gap: 30px;
+        }
+    }
+
+    .section-cards-manuals {
+        gap: 40px;
+        .card-manual {
+            background-color: #ffffff;
+            border-radius: 20px;
+            height: 47vh;
+            width: 25%;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+            .title-section,
+            .footer-section,
+            .content-section {
+                padding: 20px;
+            }
+
+            .title-section {
+                justify-content: space-between;
+            }
+
+            .content-section {
+                flex-direction: column;
+                align-items: center;
+                height: 31vh;
+                justify-content: center;
+                overflow: scroll;
+                overflow-x: hidden;
+
+                p {
+                    gap: 20px;
+                }
+            }
+
+            .footer-section {
+                background-color: #9999fd;
+                margin-top: auto;
+                border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 20px;
+                justify-content: flex-end;
+            }
+        }
+    }
+}

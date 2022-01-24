@@ -1,0 +1,21 @@
+.reviews {
+    .modal-content {
+        position: relative;
+        h3 {
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            margin-bottom: 20px;
+        }
+
+        .section-buttons {
+            justify-content: center;
+            position: absolute;
+            bottom: 20px;
+            right: 50%;
+            left: 50%;
+        }
+    }
+}
