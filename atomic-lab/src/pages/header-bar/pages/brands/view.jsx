@@ -13,11 +13,16 @@ function View({ redirectToBrandForm }) {
 
       <section className="content flex">
         {USER_DATA.brands.map((brand) => (
-          <div className="brand-card" onClick={() => redirectToBrandForm()}>
+          <div
+            className="brand-card"
+            onClick={() => redirectToBrandForm(brand.id)}
+          >
             <div className="card-content">
               <p>Perfil de la marca</p>
 
-              <p>imagen ?</p>
+              <p>
+                <img src={brand.logo} alt={brand.logo} />
+              </p>
               <p>{brand.name}</p>
             </div>
             <div className="footer">

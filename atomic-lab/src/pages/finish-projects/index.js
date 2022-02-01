@@ -6,9 +6,10 @@ function Index({ page }) {
   const navigate = useNavigate();
 
   const [modalPrivateNotes, setModalPrivateNotes] = useState(false);
-  const [modalLastVersion, setModalLastVersion] = useState(false);
+  const [modalZoomImg, setModalZoomImg] = useState(false);
   const [modalReviews, setModalReviews] = useState(false);
   const [dataModals, setDataModals] = useState([]);
+  const [menuFloat, setMenuFloat] = useState("");
 
   const redirectToStatusProject = (project) =>
     navigate(`/status-project/${project.id}`, {
@@ -22,8 +23,10 @@ function Index({ page }) {
     dataModals,
     setDataModals,
     modalPrivateNotes,
-    modalLastVersion,
-    setModalLastVersion,
+    modalZoomImg,
+    setModalZoomImg,
+    menuFloat,
+    setMenuFloat,
   };
 
   return <View {...properties} />;

@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import AuthContext from "../../auth-context";
 import { USER_DATA } from "../constats";
 import { Icons } from "../icons";
 import "./styles.scss";
 
-function View({ setIsAuthenticated, redirectTo }) {
+function View({ redirectTo }) {
+  const { toggleAuthenticated } = useContext(AuthContext);
+
   return (
     <div className="login">
       <div className="login-content flex">
@@ -32,7 +35,7 @@ function View({ setIsAuthenticated, redirectTo }) {
             <div
               className="button-blue"
               onClick={() => {
-                setIsAuthenticated(true);
+                toggleAuthenticated();
                 redirectTo(USER_DATA.onboarding ? "onboarding" : "/");
               }}
             >

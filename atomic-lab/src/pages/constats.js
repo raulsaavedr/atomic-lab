@@ -1,11 +1,74 @@
 export const USER_DATA = {
-  name: "JArgoty",
+  user: {
+    nickname: "JArgoty",
+    name: "Jhonatan",
+    last_name: "Argoty",
+    email: "jhonatanargoty@gmail.com",
+    email_corporate: "jhonatanargoty@castleberry.com.co",
+    cell_phone: "+573128755944",
+    cell_phone_corporate: "+575555555",
+    id: "10305554444",
+  },
   credits: 1000,
   onboarding: false, //false - NO Mostrar onboarding
   tour: false, //false - NO Mostrar Tour
   brands: [
-    { id: "1", name: "Pepsi", value: "pepsi", predeterminate: true },
-    { id: "2", name: "Coca Cola", value: "cocacola", predeterminate: false },
+    {
+      id: "1",
+      name: "Pepsi",
+      value: "pepsi",
+      predeterminate: true,
+      logo: "https://i.postimg.cc/5yr0XCdG/pepsi.png",
+      name_comercial: "Pepsi",
+      brand: "Pepsi brand",
+      nit: "12345554-0",
+      type: "Gaseosas",
+      industry: "Alimentos",
+      web_page: "https://pepsi.com",
+      employees: 1000,
+      product_services: "Alimentos, bebidas...",
+      clients: "Carulla, Carrefour, Metro...",
+      keywords_brands: "Gaseosas, Cocacola, refrescos, cine",
+      mission: "Misión de Pepsi",
+      view: "Visión de Pepsi",
+      values: "Valores de Pepsi",
+      competitors: "Cocacola, Bigcola, Bavaria",
+      linkedin: "https://linkedin.com/pepsi",
+      youtube: "https://youtube.com/pepsi",
+      twitter: "https://twitter.com/pepsi",
+      instagram: "https://instagram.com/pepsi",
+      facebook: "https://facebook.com/pepsi",
+      otros: "https://x.com/pepsi",
+      offers: "products", //services - products - two
+    },
+    {
+      id: "2",
+      name: "Coca Cola",
+      value: "cocacola",
+      predeterminate: false,
+      logo: "https://i.postimg.cc/cH85qq1n/cocacola.png",
+      name_comercial: "Coca Cola",
+      brand: "Coca Cola co brand",
+      nit: "12345554-0",
+      type: "Gaseosas",
+      industry: "Alimentos",
+      web_page: "https://cocacola.com",
+      employees: 1000,
+      product_services: "Alimentos, bebidas...",
+      clients: "Carulla, Carrefour, Metro...",
+      keywords_brands: "Gaseosas, Cocacola, refrescos, cine",
+      mission: "Misión de cocacola",
+      view: "Visión de cocacola",
+      values: "Valores de cocacola",
+      competitors: "Cocacola, Bigcola, Bavaria",
+      linkedin: "https://linkedin.com/cocacola",
+      youtube: "https://youtube.com/cocacola",
+      twitter: "https://twitter.com/cocacola",
+      instagram: "https://instagram.com/cocacola",
+      facebook: "https://facebook.com/cocacola",
+      otros: "https://x.com/cocacola",
+      offers: "two", //services - products - two
+    },
   ],
   team: [
     {
@@ -50,7 +113,6 @@ export const USER_DATA = {
       size: "300mb",
     },
   ],
-
   active_projects: [
     {
       id: 123,
@@ -58,7 +120,12 @@ export const USER_DATA = {
       status: 1,
       date_next_review: "2021-01-30",
       private_notes: ["nota1", "nota2", "nota3"],
-      view_last_review: "test_review", //imagen sin extension
+      view_last_review: "https://i.postimg.cc/g2GCWRdY/1A.png",
+      delivery_time: "2022-04-05",
+      delivery_format: "PDF + PNG",
+      size: "1GB",
+      editable_files: true,
+      print: false,
       review: 2,
       status_test: [
         {
@@ -87,20 +154,58 @@ export const USER_DATA = {
       review_data: {
         version: 1,
         versions: [
-          { id: "1A", content: "imagen.png" },
-          { id: "1B", content: "imagen2.png" },
-          { id: "1C", content: "imagen3.png" },
+          { id: "1A", content: "https://i.postimg.cc/g2GCWRdY/1A.png" },
+          { id: "1B", content: "https://i.postimg.cc/nr8Ww90f/1B.png" },
+          { id: "1C", content: "https://i.postimg.cc/bYbWSLwy/1C.png" },
         ],
       },
     },
+
     {
       id: 321,
-      name: "Manual de marca #1",
+      name: "Manual de marca #2",
       status: 2,
       date_next_review: "2021-01-30",
       private_notes: ["nota1", "nota2", "nota3"],
-      view_last_review: "img.png", //imagen sin extension
-      review: 3,
+      view_last_review: "https://i.postimg.cc/nr8Ww90f/1B.png",
+      delivery_time: "2022-04-05",
+      delivery_format: "PDF + PNG",
+      size: "1GB",
+      editable_files: true,
+      print: false,
+      review: 2,
+      status_test: [
+        {
+          title: "Tu proyecto ha sido confirmado e iniciado",
+          date: "2022-01-18:10:18",
+        },
+        {
+          title: "Tu proyecto ha sido asignado a un gerente de cuentas",
+          date: "2022-01-18:10:18",
+        },
+        {
+          title:
+            "Tu proyecto ha sido asignado a un diseñador y está en proceso de diseño",
+          date: "2022-01-18:10:18",
+        },
+        {
+          title: "La versión 1 de tu proyecto está lista",
+          date: "2022-01-18:10:18",
+        },
+        { title: "Tu proyecto fue finalizado", date: "2022-01-18:10:18" },
+        {
+          title: "Tu proyecto está listo para ser descargado",
+          date: "2022-01-18:10:18",
+        },
+      ],
+      review_data: {
+        version: 1,
+        versions: [
+          { id: "1A", content: "https://i.postimg.cc/g2GCWRdY/1A.png" },
+          /*    { id: "1B", content: "https://i.postimg.cc/nr8Ww90f/1B.png" },
+          { id: "1C", content: "https://i.postimg.cc/bYbWSLwy/1C.png" }, */
+        ],
+      },
     },
   ],
   finish_projects: [
@@ -110,7 +215,15 @@ export const USER_DATA = {
       status: 3,
       date_finish: "2021-10-10",
       private_notes: ["nota1", "nota2", "nota3"],
-      view_last_review: "img.png", //imagen sin extension
+      view_last_review: "https://i.postimg.cc/nr8Ww90f/1B.png",
+    },
+    {
+      id: 321,
+      name: "Manual de marca #2",
+      status: 3,
+      date_finish: "2021-10-10",
+      private_notes: ["nota1", "nota2", "nota3"],
+      view_last_review: "https://i.postimg.cc/nr8Ww90f/1B.png",
     },
   ],
 };
@@ -231,14 +344,14 @@ export const FORM_INPUTS_BRANDS = [
         className: "checkbox-txt",
       },
       {
-        id: "productos",
+        id: "products",
         type: "checkbox",
         label: "Productos",
         required: false,
         className: "checkbox-txt",
       },
       {
-        id: "ambos",
+        id: "two",
         type: "checkbox",
         label: "Ambos",
         required: false,
@@ -429,6 +542,14 @@ export const FORM_INPUTS = {
     className: "input-texarea",
     maxlength: 280,
   },
+
+  reference_add: {
+    type: "file",
+    label: "Texto a incluir",
+    required: false,
+    className: "input-texarea",
+
+  }
 };
 
 export const FROM_BRAND_TABLES = [

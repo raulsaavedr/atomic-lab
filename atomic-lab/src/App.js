@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import { USER_DATA } from "./pages/constats";
+
+import AuthContext from "./auth-context";
+import CreateFormContext from "./create-form-context";
 
 import Login from "./pages/login";
 import SignUpEmail from "./pages/signUp/signup-email";
@@ -30,9 +33,17 @@ import Reviews from "./pages/reviews";
 import "./app.scss";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
-  console.log("AUTH-3", isAuthenticated);
+
+  const [formData, setFormData] = useState({});
+
+
+  function toggleAuthenticated() {
+    setIsAuthenticated((isAuthenticated) => !isAuthenticated);
+    sessionStorage.setItem("token", 123);
+  }
+
 
   return (
     <div className="app">
@@ -44,23 +55,41 @@ function App() {
           {isAuthenticated ? (
             <>
               <Route path="/" element={<Home />} />
-              <Route path="service/:name" element={<Service />} />
+
               <Route path="active-projects" element={<ActiveProjects />} />
               <Route path="new-project" element={<NewProject />} />
               <Route path="finish-projects" element={<FinishProjects />} />
               <Route path="status-project/:id" element={<StatusProject />} />
-              <Route path="service/create/form" element={<CreateForm />} />
+
+
+
+              <Route path="service/create/form" element={<CreateFormContext.Provider
+                value={[formData, setFormData]}
+              >
+                <CreateForm /></CreateFormContext.Provider>} />
               <Route
                 path="service/create/selection"
-                element={<CreateSelection />}
+                element={<CreateFormContext.Provider value={[formData, setFormData]}
+                >
+                  <CreateSelection /></CreateFormContext.Provider>}
               />
               <Route
                 path="service/create/summary"
-                element={<CreateSummary />}
+                element={<CreateFormContext.Provider
+                  value={[formData, setFormData]}
+                >
+                  <CreateSummary /></CreateFormContext.Provider>}
               />
+              <Route path="service/:name" element={<CreateFormContext.Provider
+                value={[formData, setFormData]}
+              >
+                <Service /></CreateFormContext.Provider>} />
+
+
 
               <Route path="profile" element={<Profile />} />
               <Route path="brands" element={<Brands />} />
+              <Route path="brands/brands-form/:id" element={<BrandsForm />} />
               <Route path="brands/brands-form" element={<BrandsForm />} />
               <Route path="attached" element={<Attached />} />
               <Route path="team" element={<Team />} />
@@ -73,8 +102,15 @@ function App() {
             <>
               <Route
                 path="/"
-                element={<Login setIsAuthenticated={setIsAuthenticated} />}
+                element={
+                  <AuthContext.Provider
+                    value={{ isAuthenticated, toggleAuthenticated }}
+                  >
+                    <Login />
+                  </AuthContext.Provider>
+                }
               />
+
               <Route path="/sing-up/email" element={<SignUpEmail />} />
               <Route path="/sing-up" element={<SignUp />} />
               <Route path="/recover-password" element={<RecoverPassword />} />

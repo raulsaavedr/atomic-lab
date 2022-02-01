@@ -70,6 +70,8 @@ import time_circle from "../icons/time_circle.png";
 import brand_circle from "../icons/brand_circle.png";
 import profile_circle from "../icons/profile_circle.png";
 import close_white from "../icons/close_white.png";
+import add_circle from "../icons/add_circle.png";
+import img_circle from "../icons/img_circle.png";
 
 export const Icons = (icon) => {
   const listIcons = {
@@ -144,6 +146,8 @@ export const Icons = (icon) => {
     brand_circle: brand_circle,
     profile_circle: profile_circle,
     close_white: close_white,
+    add_circle: add_circle,
+    img_circle: img_circle,
   };
 
   return <img src={listIcons[icon]} alt={icon} />;

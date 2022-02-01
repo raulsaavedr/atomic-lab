@@ -1,6 +1,6 @@
 import React from "react";
 import PageTitle from "../../../page-title";
-import { FORM_INPUTS_PROFILE } from "../../../constats";
+import { FORM_INPUTS_PROFILE, USER_DATA } from "../../../constats";
 import { Icons } from "../../../icons";
 
 import "./styles.scss";
@@ -17,7 +17,11 @@ function View() {
           <div className="item-input flex">
             <label for={input.id}>{input.label} </label>
             <div className="flex">
-              <input {...input} id={input.id} />
+              <input
+                {...input}
+                id={input.id}
+                value={USER_DATA.user[input.id]}
+              />
               {Icons("edit")}
             </div>
           </div>

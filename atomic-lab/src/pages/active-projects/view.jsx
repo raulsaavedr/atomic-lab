@@ -2,7 +2,7 @@ import React from "react";
 import { Icons } from "../icons";
 import { USER_DATA, ACTIVE_TABLES } from "../constats";
 import ModalPrivateNotes from "../modals/private-notes";
-import ModalLastVersion from "../modals/last-version";
+import ModalZoomImg from "../modals/zoom-img";
 import ModalReviews from "../modals/reviews";
 import PageTitle from "../page-title";
 import "./styles.scss";
@@ -13,12 +13,14 @@ function View({
   modalPrivateNotes,
   dataModals,
   setDataModals,
-  modalLastVersion,
-  setModalLastVersion,
   modalReviews,
   setModalReviews,
   redirectToStatusProject,
   redirectToReviews,
+  modalZoomImg,
+  setModalZoomImg,
+  menuFloat,
+  setMenuFloat,
 }) {
   return (
     <div className="page active-projects">
@@ -79,7 +81,7 @@ function View({
                       <div
                         className="pointer"
                         onClick={() => {
-                          setModalLastVersion(!modalLastVersion);
+                          setModalZoomImg(!modalZoomImg);
                           setDataModals(project.view_last_review);
                         }}
                       >
@@ -110,7 +112,50 @@ function View({
                       </div>
                     </td>
                     <td>
-                      <div className="pointer">{Icons("menu_points")}</div>
+                      <div className="pointer points-menu">
+                        <div
+                          onClick={() =>
+                            setMenuFloat(
+                              menuFloat === project.id ? "" : project.id
+                            )
+                          }
+                        >
+                          {Icons("menu_points")}
+                        </div>
+
+                        {menuFloat === project.id && (
+                          <div className={`menu-float ${project.id} `}>
+                            <div
+                              className="menu-float-item flex"
+                              onClick={() => setMenuFloat("x")}
+                            >
+                              <p>Más información</p>
+                              {Icons("help_circle")}
+                            </div>
+                            <div
+                              className="menu-float-item flex"
+                              onClick={() => setMenuFloat("x")}
+                            >
+                              <p>Compartir</p>
+                              {Icons("help_circle")}
+                            </div>
+                            <div
+                              className="menu-float-item flex"
+                              onClick={() => setMenuFloat("x")}
+                            >
+                              <p>Invitar personas</p>
+                              {Icons("help_circle")}
+                            </div>
+                            <div
+                              className="menu-float-item flex"
+                              onClick={() => setMenuFloat("x")}
+                            >
+                              <p>Eliminar</p>
+                              {Icons("help_circle")}
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </td>
                   </>
                 )}
@@ -134,17 +179,16 @@ function View({
             ))}
           </tbody>
         </table>
-
-        {modalPrivateNotes && (
-          <ModalPrivateNotes close={setModalPrivateNotes} data={dataModals} />
-        )}
-        {modalLastVersion && (
-          <ModalLastVersion close={setModalLastVersion} data={dataModals} />
-        )}
-        {modalReviews && (
-          <ModalReviews close={setModalReviews} data={dataModals} />
-        )}
       </div>
+      {modalPrivateNotes && (
+        <ModalPrivateNotes close={setModalPrivateNotes} data={dataModals} />
+      )}
+      {modalZoomImg && (
+        <ModalZoomImg close={setModalZoomImg} data={dataModals} />
+      )}
+      {modalReviews && (
+        <ModalReviews close={setModalReviews} data={dataModals} />
+      )}
     </div>
   );
 }

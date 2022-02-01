@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import View from "./view";
 
-function Index({ page, table }) {
+function Index({ page }) {
   const [modalPrivateNotes, setModalPrivateNotes] = useState(false);
-  const [modalLastVersion, setModalLastVersion] = useState(false);
+  const [modalZoomImg, setModalZoomImg] = useState(false);
   const [modalReviews, setModalReviews] = useState(false);
   const [dataModals, setDataModals] = useState([]);
+  const [menuFloat, setMenuFloat] = useState("");
 
   const navigate = useNavigate();
 
@@ -18,17 +19,18 @@ function Index({ page, table }) {
 
   const properties = {
     page,
-    table,
     setModalPrivateNotes,
     modalPrivateNotes,
     dataModals,
     setDataModals,
-    modalLastVersion,
-    setModalLastVersion,
     modalReviews,
     setModalReviews,
     redirectToStatusProject,
     redirectToReviews,
+    modalZoomImg,
+    setModalZoomImg,
+    menuFloat,
+    setMenuFloat,
   };
 
   return <View {...properties} />;

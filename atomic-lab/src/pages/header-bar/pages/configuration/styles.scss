@@ -42,6 +42,10 @@
         }
     }
 
+    .delete-account {
+        gap: 30px;
+    }
+
     .switch.active {
         background-color: #6f3bff;
     }
@@ -51,5 +55,16 @@
 
     .section-buttons {
         justify-content: end;
+    }
+
+    .options-delete {
+        text-align: left;
+
+        &-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
     }
 }

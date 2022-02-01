@@ -8,7 +8,7 @@ import {
 import "./styles.scss";
 import { Icons } from "../../../../icons";
 
-function View({ redirectToBrandForm }) {
+function View({ id }) {
   return (
     <div className="brands-form-page page">
       <PageTitle page={"brands-form-page"} user={true} title="Mis marcas" />
@@ -23,10 +23,28 @@ function View({ redirectToBrandForm }) {
             {input.type && (
               <div className="flex">
                 {input.type !== "textarea" && (
-                  <input {...input} id={input.id} />
+                  <input
+                    {...input}
+                    id={input.id}
+                    placeholder={
+                      id &&
+                      USER_DATA.brands.filter((brand) => brand.id === id)[0][
+                        input.id
+                      ]
+                    }
+                  />
                 )}
                 {input.type === "textarea" && (
-                  <textarea {...input} id={input.id} />
+                  <textarea
+                    {...input}
+                    id={input.id}
+                    placeholder={
+                      id &&
+                      USER_DATA.brands.filter((brand) => brand.id === id)[0][
+                        input.id
+                      ]
+                    }
+                  />
                 )}
                 {Icons("edit")}
               </div>
@@ -39,7 +57,25 @@ function View({ redirectToBrandForm }) {
                   <label for={option.id}>{option.label} </label>
                 </div>
                 <div className="flex">
-                  <input {...option} id={option.id} />
+                  <input
+                    {...option}
+                    id={option.id}
+                    placeholder={
+                      id &&
+                      USER_DATA.brands.filter((brand) => brand.id === id)[0][
+                        option.id
+                      ]
+                    }
+                    checked={
+                      option.type === "checkbox" &&
+                      id &&
+                      USER_DATA.brands.filter((brand) => brand.id === id)[0][
+                        "offers"
+                      ] === option.id &&
+                      true
+                    }
+                  />
+
                   {option.type !== "checkbox" && Icons("edit")}
                 </div>
               </div>

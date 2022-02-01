@@ -7,8 +7,9 @@ function Index() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [projectData, setProjectData] = useState([]);
-
-  console.log(id);
+  const [menuTopView, setMenuTopView] = useState("");
+  const [modalZoomImg, setModalZoomImg] = useState(false);
+  const [modalData, setModalData] = useState({});
 
   useEffect(() => {
     const data = USER_DATA.active_projects.filter(
@@ -20,7 +21,16 @@ function Index() {
 
   const redirectTo = (item) => navigate(item);
 
-  const properties = { projectData, redirectTo };
+  const properties = {
+    projectData,
+    redirectTo,
+    setModalZoomImg,
+    modalZoomImg,
+    menuTopView,
+    setMenuTopView,
+    modalData,
+    setModalData,
+  };
 
   return <View {...properties} />;
 }

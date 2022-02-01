@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { USER_DATA } from "../constats";
 import { Icons } from "../icons";
 import Tour from "./pages/tour";
@@ -29,9 +29,7 @@ function View({
           }
         />
       )}
-
       {tourActive && <div className="back-white"></div>}
-
       <div className="icon-logo">{Icons("logo")}</div>
       <div
         className={`home option ${location.pathname === "/" && "active"}`}
@@ -54,7 +52,9 @@ function View({
 
       <div
         className={`new option ${
-          location.pathname === "/new-project" && "active"
+          (location.pathname === "/new-project" ||
+            location.pathname.includes("/service/")) &&
+          "active"
         }`}
         onClick={() => redirectTo("/new-project")}
       >
@@ -128,10 +128,25 @@ function View({
         <div className="credits-buy flex">Comprar</div>
       </div>
       <div className="account flex">
-        <div className="icon-account">account</div>
+        <div className="icon-account">
+          <img
+            src={
+              USER_DATA.brands.filter(
+                (brand) => brand.predeterminate === true
+              )[0].logo
+            }
+            alt="logo_predeterminate"
+          />
+        </div>
         <div className="account-value">
-          <div>Pepsi</div>
-          <div>Usuario</div>
+          <div>
+            {
+              USER_DATA.brands.filter(
+                (brand) => brand.predeterminate === true
+              )[0].name
+            }
+          </div>
+          <div>{USER_DATA.user.nickname}</div>
         </div>
         <div className="icon-arrow-up">
           <div className="icon" onClick={() => setMenuActive(!menuActive)}>

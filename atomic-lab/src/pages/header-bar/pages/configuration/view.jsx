@@ -1,7 +1,8 @@
 import React from "react";
 import PageTitle from "../../../page-title";
-import "./styles.scss";
 import { Icons } from "../../../icons";
+import ModalMessage from "../../../modals/message";
+import "./styles.scss";
 
 function View({
   uploadVersion,
@@ -12,6 +13,10 @@ function View({
   setComunicationWeek,
   news,
   setNews,
+  modalMessage,
+  setModalMessage,
+  startDelete,
+  setStartDelete,
 }) {
   return (
     <div className="configuration-page page">
@@ -118,6 +123,13 @@ function View({
             </tr>
           </tbody>
         </table>
+
+        <div className="delete-account flex">
+          <p>Eliminar cuenta</p>
+          <div className="button-blue" onClick={() => setModalMessage(true)}>
+            Eliminar
+          </div>
+        </div>
       </section>
 
       <section className="footer">
@@ -125,6 +137,45 @@ function View({
           <div className="button">Guardar cambios</div>
         </section>
       </section>
+
+      {modalMessage && (
+        <ModalMessage
+          next={() =>
+            startDelete ? setModalMessage(false) : setStartDelete(true)
+          }
+          cancel={() => setStartDelete && setModalMessage(false)}
+          cancelVisible={startDelete ? false : true}
+          message={
+            startDelete
+              ? "Tu cuenta ha sido eliminada"
+              : "¿Por qué quieres eliminar tu cuenta?"
+          }
+          subMessage={
+            startDelete ? (
+              "Gracias por utilizar nuestro producto."
+            ) : (
+              <div className="options-delete">
+                <div className="options-delete-item">
+                  <input type="checkbox" name="" id="" />
+                  <span>No la voy a usar más</span>
+                </div>
+                <div className="options-delete-item">
+                  <input type="checkbox" name="" id="" />
+                  <span>Es muy costosa</span>
+                </div>
+                <div className="options-delete-item">
+                  <input type="checkbox" name="" id="" />
+                  <span>Voy a utilizar otro tipo de servicio</span>
+                </div>
+                <div className="options-delete-item">
+                  <input type="checkbox" name="" id="" />
+                  <span>Otra</span>
+                </div>
+              </div>
+            )
+          }
+        />
+      )}
     </div>
   );
 }

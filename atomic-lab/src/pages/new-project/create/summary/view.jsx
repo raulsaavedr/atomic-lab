@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import PageTitle from "../../../page-title";
 import { Icons } from "../../../icons";
-import { FORM_INPUTS, USER_DATA } from "../../../constats";
+import { USER_DATA } from "../../../constats";
+import ModalMessage from "../../../modals/message";
 import "../styles.scss";
 import "./styles.scss";
 
-function View({ redirectToSelection }) {
-  const [libertyLevel, setLibertyLevel] = useState("");
-
+function View({
+  redirectToSelection,
+  modalMessage,
+  setModalMessage,
+  libertyLevel,
+  setLibertyLevel,
+  startProject,
+  setStartproject,
+}) {
   return (
     <div className="summary-page page">
       <div className="step flex">{Icons("step_summary")}</div>
@@ -245,11 +252,31 @@ function View({ redirectToSelection }) {
           <div className="button" onClick={() => redirectToSelection()}>
             Atrás
           </div>
-          <div className="button" /* onClick={() => redirectToSummary()} */>
+          <div className="button" onClick={() => setModalMessage(true)}>
             Iniciar proyecto
           </div>
         </section>
       </section>
+
+      {modalMessage && (
+        <ModalMessage
+          next={() =>
+            startProject ? setModalMessage() : setStartproject(true)
+          }
+          cancel={() => startProject && setModalMessage(false)}
+          cancelVisible={startProject ? false : true}
+          message={
+            startProject
+              ? "¡FELICITACIONES!"
+              : "¿Estas seguro que quieres iniciar el proyecto?"
+          }
+          subMessage={
+            startProject
+              ? "¡Tu proyecto se ha iniciado exitosamente!"
+              : "Una vez iniciado no podrás cambiar la información ni los archivos adjuntos. Sin embargo, podrás comprar más revisiones si lo requieres."
+          }
+        />
+      )}
     </div>
   );
 }

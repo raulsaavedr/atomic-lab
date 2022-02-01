@@ -5,7 +5,8 @@ import View from "./view";
 function Index() {
   const navigate = useNavigate();
 
-  const redirectToBrandForm = () => navigate("/brands/brands-form");
+  const redirectToBrandForm = (id) =>
+    navigate(id ? `/brands/brands-form/${id}` : `/brands/brands-form`);
 
   const properties = { redirectToBrandForm };
 

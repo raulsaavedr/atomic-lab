@@ -11,6 +11,9 @@ function Index() {
   const [typePublication, setTypePublication] = useState("");
   const [typeManual, setTypeManual] = useState("");
   const [modalPriceTotal, setModalPriceTotal] = useState(0);
+  const [modalMessage, setModalMessage] = useState(true);
+  const [selectType, setSelectType] = useState("");
+  const [socialNetwork, setSocialNetwork] = useState("");
 
   useEffect(() => {
     let sum = 0;
@@ -30,6 +33,11 @@ function Index() {
     redirectToHome,
     modalPriceTotal,
     redirectToForm,
+    selectType,
+    setSelectType,
+    modalMessage,
+    setModalMessage,
+    socialNetwork, setSocialNetwork
   };
 
   return <View {...properties} />;

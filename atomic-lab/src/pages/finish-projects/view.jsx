@@ -2,7 +2,7 @@ import React from "react";
 import PageTitle from "../page-title";
 import { FINISH_TABLES, USER_DATA } from "../constats";
 import ModalPrivateNotes from "../modals/private-notes";
-import ModalLastVersion from "../modals/last-version";
+import ModalZoomImg from "../modals/zoom-img";
 import { Icons } from "../icons";
 
 import "./styles.scss";
@@ -14,8 +14,10 @@ function View({
   dataModals,
   setDataModals,
   modalPrivateNotes,
-  modalLastVersion,
-  setModalLastVersion,
+  modalZoomImg,
+  setModalZoomImg,
+  menuFloat,
+  setMenuFloat,
 }) {
   return (
     <div className="page finish-projects">
@@ -73,7 +75,7 @@ function View({
                   <div
                     className="pointer"
                     onClick={() => {
-                      setModalLastVersion(!modalLastVersion);
+                      setModalZoomImg(!modalZoomImg);
                       setDataModals(project.view_last_review);
                     }}
                   >
@@ -111,7 +113,50 @@ function View({
                   </td>
                 ) : (
                   <td>
-                    <div className="pointer">{Icons("menu_points")}</div>
+                    <div className="pointer points-menu">
+                      <div
+                        onClick={() =>
+                          setMenuFloat(
+                            menuFloat === project.id ? "" : project.id
+                          )
+                        }
+                      >
+                        {Icons("menu_points")}
+                      </div>
+
+                      {menuFloat === project.id && (
+                        <div className={`menu-float ${project.id} `}>
+                          <div
+                            className="menu-float-item flex"
+                            onClick={() => setMenuFloat("x")}
+                          >
+                            <p>Más información</p>
+                            {Icons("help_circle")}
+                          </div>
+                          <div
+                            className="menu-float-item flex"
+                            onClick={() => setMenuFloat("x")}
+                          >
+                            <p>Compartir</p>
+                            {Icons("help_circle")}
+                          </div>
+                          <div
+                            className="menu-float-item flex"
+                            onClick={() => setMenuFloat("x")}
+                          >
+                            <p>Invitar personas</p>
+                            {Icons("help_circle")}
+                          </div>
+                          <div
+                            className="menu-float-item flex"
+                            onClick={() => setMenuFloat("x")}
+                          >
+                            <p>Eliminar</p>
+                            {Icons("help_circle")}
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </td>
                 )}
               </tr>
@@ -122,8 +167,8 @@ function View({
         {modalPrivateNotes && (
           <ModalPrivateNotes close={setModalPrivateNotes} data={dataModals} />
         )}
-        {modalLastVersion && (
-          <ModalLastVersion close={setModalLastVersion} data={dataModals} />
+        {modalZoomImg && (
+          <ModalZoomImg close={setModalZoomImg} data={dataModals} />
         )}
         {/* {modalReviews && (
           <ModalReviews close={setModalReviews} data={dataModals} />

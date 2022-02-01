@@ -8,4 +8,19 @@
     .section-page {
         margin-bottom: 8em;
     }
+
+    .add-project {
+        gap: 10px;
+        margin-bottom: 20px;
+        cursor: pointer;
+
+        &-icon {
+            width: 23px;
+            height: 23px;
+        }
+
+        .text-purple {
+            font-weight: 600;
+        }
+    }
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import View from "./view";
 
 function Index() {
@@ -8,42 +8,59 @@ function Index() {
   const redirectToForm = () => navigate(`/service/create/form`);
   const redirectToSummary = () => navigate(`/service/create/summary`);
 
-  const [selectedFile, setSelectedFile] = useState();
+  const [selectedImg, setSelectedImg] = useState();
+  const [selectedImgArray, setSelectedImgArray] = useState([]);
   const [preview, setPreview] = useState();
   const [textPreview, setTextPreview] = useState("Descripción #hashtags");
+  const [idSelect, setIdSelect] = useState("");
 
-  // create a preview as a side effect, whenever selected file is changed
   useEffect(() => {
-    if (!selectedFile) {
+    if (!selectedImg) {
       setPreview(undefined);
       return;
     }
-
-    const objectUrl = URL.createObjectURL(selectedFile);
+    const objectUrl = URL.createObjectURL(selectedImg);
     setPreview(objectUrl);
 
-    // free memory when ever this component is unmounted
-    return () => URL.revokeObjectURL(objectUrl);
-  }, [selectedFile]);
+    setSelectedImgArray(selectedImgArray.filter((item) => item.id !== idSelect));
 
-  const onSelectFile = (e) => {
+    setSelectedImgArray((selectedImgArray) => [
+      ...selectedImgArray,
+      {
+        id: idSelect,
+        object: objectUrl,
+        name: selectedImg.name
+
+      },
+    ]);
+
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedImg, idSelect]);
+
+
+
+  const onSelectFile = (e, id) => {
+
     if (!e.target.files || e.target.files.length === 0) {
-      setSelectedFile(undefined);
+      setSelectedImg(undefined);
       return;
     }
 
-    // I've kept this example simple by using the first image instead of multiple
-    setSelectedFile(e.target.files[0]);
+    setIdSelect(id)
+    setSelectedImg(e.target.files[0]);
   };
+
+
 
   const properties = {
     redirectToForm,
     redirectToSummary,
-    selectedFile,
+    selectedImg,
+    setSelectedImg,
     preview,
     onSelectFile,
     textPreview,
-    setTextPreview,
+    setTextPreview, selectedImgArray
   };
 
   return <View {...properties} />;

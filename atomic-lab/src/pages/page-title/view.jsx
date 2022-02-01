@@ -1,6 +1,7 @@
 import React from "react";
 import { Icons } from "../icons";
 import ModalHelp from "../modals/help";
+import { USER_DATA } from "../constats";
 import "./styles.scss";
 
 function View({
@@ -15,7 +16,7 @@ function View({
 }) {
   return (
     <>
-      {page !== "home" && user && <p>Hola Usuario,</p>}
+      {page !== "home" && user && <p>Hola {USER_DATA.user.nickname},</p>}
       <div className="page-title flex">
         <div className="title">
           {page === "attached-page" && Icons("clip_circle")}
