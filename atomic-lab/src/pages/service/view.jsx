@@ -104,7 +104,7 @@ function View({
             setFormData({ ...formData, brand_select: e.target.value })
           }
         >
-          <option hidden selected>
+          <option disabled selected>
             Selecciona una opción
           </option>
           {USER_DATA.brands.map((brand, index) => (
@@ -210,9 +210,17 @@ function View({
         <div className="button" onClick={() => redirectToHome()}>
           Atrás
         </div>
-        <div className="button" onClick={() => redirectToForm()}>
-          Continuar
-        </div>
+
+        {!data.brand_select ||
+        !data.type_publication ||
+        !data.type_post ||
+        !data.social_network ? (
+          <div className="button-gray">Continuar</div>
+        ) : (
+          <div className="button" onClick={() => redirectToForm()}>
+            Continuar
+          </div>
+        )}
       </section>
 
       {modalMessage && (

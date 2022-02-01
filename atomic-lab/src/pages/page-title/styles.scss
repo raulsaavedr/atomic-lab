@@ -1,22 +1,26 @@
 .page-title {
-    justify-content: space-between;
-    margin-bottom: 43px;
+  justify-content: space-between;
+  margin-bottom: 43px;
 
-    .title {
-        display: flex;
-        gap: 20px;
+  .title {
+    display: flex;
+    gap: 20px;
+  }
+
+  .section-header-credit {
+    gap: 5px;
+  }
+
+  .section-header-help {
+    gap: 5px;
+    color: #36ccd1;
+
+    .help-text {
+      font-weight: 600;
     }
+  }
 
-    .section-header-help {
-        gap: 5px;
-        color: #36ccd1;
-
-        .help-text {
-            font-weight: 600;
-        }
-    }
-
-    .button-blue {
-        margin-right: 40px;
-    }
+  .button-blue {
+    margin-right: 40px;
+  }
 }

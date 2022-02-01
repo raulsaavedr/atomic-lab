@@ -28,7 +28,7 @@ function View({
         <div className="section-header-rigth flex">
           {price && (
             <div className="section-header-credit flex">
-              <div className="icon-credit">icon</div>
+              <div className="icon-credit flex">{Icons("credits")}</div>
               <div className="credit-value">$ {price[0]?.price} monedas</div>
 
               <div className="section-header-credit-modal">
