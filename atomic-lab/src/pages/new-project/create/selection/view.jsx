@@ -7,17 +7,7 @@ import Post from "./post";
 import "../styles.scss";
 import "./styles.scss";
 
-function View({
-  redirectToForm,
-  redirectToSummary,
-  selectedImg,
-  setSelectedImg,
-  preview,
-  onSelectFile,
-  textPreview,
-  setTextPreview,
-  selectedImgArray,
-}) {
+function View({ selectedImg, onSelectFile, setStep, step }) {
   const data = useContext(CreateFormContext);
   const [formData, setFormData] = useContext(CreateFormContext);
 
@@ -69,12 +59,7 @@ function View({
                   post={post}
                   setPost={setPost}
                   selectedImg={selectedImg}
-                  setSelectedImg={setSelectedImg}
-                  preview={preview}
                   onSelectFile={onSelectFile}
-                  textPreview={textPreview}
-                  setTextPreview={setTextPreview}
-                  selectedImgArray={selectedImgArray}
                 />
               )
           )}
@@ -96,18 +81,17 @@ function View({
 
       <section className="footer">
         <section className="section-buttons flex">
-          <div className="button" onClick={() => redirectToForm()}>
+          <div className="button" onClick={() => setStep(step - 1)}>
             Atrás
           </div>
           <div
             className="button"
             onClick={() => {
-              redirectToSummary();
-
+              setStep(step + 1);
               setFormData({
                 ...formData,
                 post: post,
-                img_array: selectedImgArray,
+                /*  img_array: selectedImgArray, */
               });
             }}
           >

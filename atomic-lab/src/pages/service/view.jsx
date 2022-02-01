@@ -108,7 +108,7 @@ function View({
             Selecciona una opción
           </option>
           {USER_DATA.brands.map((brand, index) => (
-            <option key={index} value={brand.value}>
+            <option key={index} value={brand.name}>
               {brand.name}
             </option>
           ))}

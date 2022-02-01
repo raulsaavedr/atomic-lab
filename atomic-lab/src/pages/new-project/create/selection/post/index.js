@@ -6,22 +6,16 @@ function Index({
   post,
   setPost,
   selectedImg,
-  setSelectedImg,
-  preview,
   onSelectFile,
-  textPreview,
-  setTextPreview, selectedImgArray
+
 }) {
   const properties = {
     id,
     post,
     setPost,
     selectedImg,
-    setSelectedImg,
-    preview,
     onSelectFile,
-    textPreview,
-    setTextPreview, selectedImgArray
+
   };
 
   return <View {...properties} />;

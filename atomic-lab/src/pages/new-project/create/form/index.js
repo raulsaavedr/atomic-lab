@@ -2,13 +2,13 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import View from "./view";
 
-function Index() {
+function Index({ setStep, step }) {
   const navigate = useNavigate();
 
   const redirectToService = () => navigate(`/service/redes-sociales`);
-  const redirectToSelection = () => navigate(`/service/create/selection`);
 
-  const properties = { redirectToService, redirectToSelection };
+
+  const properties = { redirectToService, setStep, step };
 
   return <View {...properties} />;
 }

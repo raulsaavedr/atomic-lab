@@ -1,32 +1,22 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Icons } from "../../../../icons";
 import { FORM_INPUTS } from "../../../../constats";
 import CreateFormContext from "../../../../../create-form-context";
 import "./styles.scss";
-import { filter } from "domutils";
 
-function View({
-  id,
-  post,
-  setPost,
-  selectedImg,
-  setSelectedImg,
-  preview,
-  onSelectFile,
-  selectedImgArray,
-}) {
-  const data = useContext(CreateFormContext);
+function View({ id, post, setPost, selectedImg, onSelectFile }) {
+  const data = useContext(CreateFormContext)[0];
 
   const formDataImg = new FormData();
   formDataImg.append("img", selectedImg);
 
   const [objetive, setObjetive] = useState(
     post.filter((item) => item.id === id)[0]?.objetive ||
-      data[0]?.post?.filter((item) => item.id === id)[0]?.objetive
+      data?.post?.filter((item) => item.id === id)[0]?.objetive
   );
   const [textPreview, setTextPreview] = useState(
     post.filter((item) => item.id === id)[0]?.text ||
-      data[0]?.post?.filter((item) => item.id === id)[0]?.text
+      data?.post?.filter((item) => item.id === id)[0]?.text
   );
 
   return (
@@ -40,21 +30,13 @@ function View({
             </div>
             <div className="icon-menu-h">{Icons("icon_menu_h")}</div>
           </div>
-          <div className="post-content">
-            {console.log(
-              data[0].post &&
-                data[0].post.filter((item) => item.id === id)[0].local_img
-            )}
 
-            {selectedImgArray.filter((item) => item.id === id)[0]?.object ||
-            data[0]?.img_array?.filter((item) => item.id === id)[0]?.object ? (
+          <div className="post-content">
+            {data?.img_array?.filter((item) => item.id === id)[0]?.object ? (
               <img
                 className="img-user"
                 src={
-                  selectedImgArray.filter((item) => item.id === id)[0]
-                    ?.object ||
-                  data[0]?.img_array?.filter((item) => item.id === id)[0]
-                    ?.object
+                  data?.img_array?.filter((item) => item.id === id)[0]?.object
                 }
                 alt="preview"
               />
@@ -74,8 +56,9 @@ function View({
         <div>
           <label for={`reference-${id}`} className="button-blue flex">
             {Icons("clip_white")}
-            {selectedImgArray.filter((item) => item.id === id)[0]?.name
-              ? selectedImgArray.filter((item) => item.id === id)[0]?.name
+            {data.img_array &&
+            data?.img_array?.filter((item) => item.id === id)[0]?.name
+              ? data?.img_array?.filter((item) => item.id === id)[0]?.name
               : "Adjuntar"}
           </label>
 
@@ -114,8 +97,8 @@ function View({
               ]);
             }}
           >
-            {data[0]?.post?.filter((item) => item.id === id)[0]?.objetive
-              ? data[0]?.post?.filter((item) => item.id === id)[0].objetive
+            {data?.post?.filter((item) => item.id === id)[0]?.objetive
+              ? data?.post?.filter((item) => item.id === id)[0].objetive
               : ""}
           </textarea>
         </div>
@@ -144,8 +127,8 @@ function View({
               ]);
             }}
           >
-            {data[0]?.post?.filter((item) => item.id === id)[0]?.text
-              ? data[0]?.post?.filter((item) => item.id === id)[0].text
+            {data?.post?.filter((item) => item.id === id)[0]?.text
+              ? data?.post?.filter((item) => item.id === id)[0].text
               : ""}
           </textarea>
         </div>

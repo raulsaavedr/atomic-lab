@@ -1,26 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import CreateFormContext from "../../../../create-form-context";
 import View from "./view";
 
-function Index() {
-  const navigate = useNavigate();
+function Index({ setStep, step }) {
 
-  const redirectToForm = () => navigate(`/service/create/form`);
-  const redirectToSummary = () => navigate(`/service/create/summary`);
+  const data = useContext(CreateFormContext)[0];
+  const [formData, setFormData] = useContext(CreateFormContext);
 
   const [selectedImg, setSelectedImg] = useState();
-  const [selectedImgArray, setSelectedImgArray] = useState([]);
-  const [preview, setPreview] = useState();
-  const [textPreview, setTextPreview] = useState("Descripción #hashtags");
+  const [selectedImgArray, setSelectedImgArray] = useState(data.img_array ? data.img_array : []);
+
   const [idSelect, setIdSelect] = useState("");
 
   useEffect(() => {
     if (!selectedImg) {
-      setPreview(undefined);
+
       return;
     }
     const objectUrl = URL.createObjectURL(selectedImg);
-    setPreview(objectUrl);
 
     setSelectedImgArray(selectedImgArray.filter((item) => item.id !== idSelect));
 
@@ -30,12 +27,24 @@ function Index() {
         id: idSelect,
         object: objectUrl,
         name: selectedImg.name
-
       },
     ]);
 
-    return () => URL.revokeObjectURL(objectUrl);
+
   }, [selectedImg, idSelect]);
+
+
+
+  useEffect(() => {
+
+
+
+    selectedImgArray.length >= 1 && setFormData({ ...formData, img_array: selectedImgArray, });
+
+
+  }, [selectedImgArray]);
+
+
 
 
 
@@ -48,19 +57,19 @@ function Index() {
 
     setIdSelect(id)
     setSelectedImg(e.target.files[0]);
+
+
   };
 
 
 
+
   const properties = {
-    redirectToForm,
-    redirectToSummary,
     selectedImg,
-    setSelectedImg,
-    preview,
     onSelectFile,
-    textPreview,
-    setTextPreview, selectedImgArray
+    setStep,
+    step,
+
   };
 
   return <View {...properties} />;

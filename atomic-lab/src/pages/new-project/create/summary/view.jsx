@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import PageTitle from "../../../page-title";
 import { Icons } from "../../../icons";
 import { USER_DATA } from "../../../constats";
+import CreateFormContext from "../../../../create-form-context";
 import ModalMessage from "../../../modals/message";
 import "../styles.scss";
 import "./styles.scss";
 
 function View({
-  redirectToSelection,
   modalMessage,
   setModalMessage,
   libertyLevel,
   setLibertyLevel,
   startProject,
   setStartproject,
+  setStep,
+  step,
 }) {
+  const data = useContext(CreateFormContext)[0];
+
   return (
     <div className="summary-page page">
       <div className="step flex">{Icons("step_summary")}</div>
@@ -39,22 +43,23 @@ function View({
           <div className="row">
             <div className="title">Marca</div>
             <div className="value">
-              <select name="brand_select" id="brand_select" className="select">
+              {/* <select name="brand_select" id="brand_select" className="select">
                 {USER_DATA.brands.map((brand, index) => (
                   <option key={index} value={brand.value}>
                     {brand.name}
                   </option>
                 ))}
-              </select>
+              </select> */}
+              {data.brand_select}
             </div>
           </div>
           <div className="row">
             <div className="title">Post</div>
-            <div className="value">?</div>
+            <div className="value">{data.type_post}</div>
           </div>
           <div className="row">
             <div className="title">Redes Sociales</div>
-            <div className="value">?</div>
+            <div className="value">{data.social_network}</div>
           </div>
           <div className="row">
             <div className="title">Formulario {Icons("edit")}</div>
@@ -249,7 +254,7 @@ function View({
 
       <section className="footer">
         <section className="section-buttons flex">
-          <div className="button" onClick={() => redirectToSelection()}>
+          <div className="button" onClick={() => setStep(step - 1)}>
             Atrás
           </div>
           <div className="button" onClick={() => setModalMessage(true)}>

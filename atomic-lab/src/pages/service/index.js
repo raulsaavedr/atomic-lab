@@ -22,7 +22,7 @@ function Index() {
   }, []);
 
   const redirectToHome = () => navigate(`/`);
-  const redirectToForm = () => navigate(`/service/create/form`);
+  const redirectToForm = () => navigate(`/service/create`);
 
   const properties = {
     serviceData,

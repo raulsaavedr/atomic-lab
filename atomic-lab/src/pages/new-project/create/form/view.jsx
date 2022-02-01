@@ -6,7 +6,7 @@ import { Icons } from "../../../icons";
 import References from "./references";
 import "./styles.scss";
 
-function View({ redirectToService, redirectToSelection }) {
+function View({ redirectToService, setStep, step }) {
   const data = useContext(CreateFormContext);
   const [formData, setFormData] = useContext(CreateFormContext);
 
@@ -128,7 +128,7 @@ function View({ redirectToService, redirectToSelection }) {
         <div
           className="button"
           onClick={() => {
-            redirectToSelection();
+            setStep(step + 1);
             setFormData({ ...formData, references: references });
           }}
         >

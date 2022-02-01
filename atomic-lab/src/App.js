@@ -15,9 +15,6 @@ import ActiveProjects from "./pages/active-projects";
 import NewProject from "./pages/new-project";
 import FinishProjects from "./pages/finish-projects";
 import StatusProject from "./pages/status-project";
-import CreateForm from "./pages/new-project/create/form";
-import CreateSelection from "./pages/new-project/create/selection";
-import CreateSummary from "./pages/new-project/create/summary";
 import Profile from "./pages/header-bar/pages/profile";
 import Brands from "./pages/header-bar/pages/brands";
 import BrandsForm from "./pages/header-bar/pages/brands/brands-form";
@@ -29,6 +26,8 @@ import RecoverPassword from "./pages/recover-password";
 import RecoverPasswordEmail from "./pages/recover-password/send-email";
 import Onboarding from "./pages/onboarding";
 import Reviews from "./pages/reviews";
+
+import Create from "./pages/new-project/create"
 
 import "./app.scss";
 
@@ -63,23 +62,13 @@ function App() {
 
 
 
-              <Route path="service/create/form" element={<CreateFormContext.Provider
+              <Route path="service/create" element={<CreateFormContext.Provider
                 value={[formData, setFormData]}
               >
-                <CreateForm /></CreateFormContext.Provider>} />
-              <Route
-                path="service/create/selection"
-                element={<CreateFormContext.Provider value={[formData, setFormData]}
-                >
-                  <CreateSelection /></CreateFormContext.Provider>}
-              />
-              <Route
-                path="service/create/summary"
-                element={<CreateFormContext.Provider
-                  value={[formData, setFormData]}
-                >
-                  <CreateSummary /></CreateFormContext.Provider>}
-              />
+                <Create /></CreateFormContext.Provider>} />
+
+
+
               <Route path="service/:name" element={<CreateFormContext.Provider
                 value={[formData, setFormData]}
               >
