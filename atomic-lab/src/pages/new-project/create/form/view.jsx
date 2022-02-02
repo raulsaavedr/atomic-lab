@@ -13,8 +13,6 @@ function View({ redirectToService, setStep, step }) {
   const [references, setReferences] = useState([{ id: 0 }]);
   const [referencesCount, setReferencesCount] = useState(1);
 
-  console.log("DATA", data);
-
   return (
     <div className="form-page page">
       <div className="step flex">{Icons("step_form")}</div>

@@ -1,14 +1,15 @@
 import React from "react";
 import PageTitle from "../../../../page-title";
-import {
-  USER_DATA,
-  FORM_INPUTS_BRANDS,
-  FROM_BRAND_TABLES,
-} from "../../../../constats";
+import { FORM_INPUTS_BRANDS, FROM_BRAND_TABLES } from "../../../../constats";
 import "./styles.scss";
 import { Icons } from "../../../../icons";
 
-function View({ id }) {
+function View({ id, data, redirectTo }) {
+  const dataBrand =
+    data && data.brands
+      ? data.brands.filter((brand) => brand.id === parseInt(id))[0]
+      : [];
+
   return (
     <div className="brands-form-page page">
       <PageTitle page={"brands-form-page"} user={true} title="Mis marcas" />
@@ -26,24 +27,14 @@ function View({ id }) {
                   <input
                     {...input}
                     id={input.id}
-                    placeholder={
-                      id &&
-                      USER_DATA.brands.filter((brand) => brand.id === id)[0][
-                        input.id
-                      ]
-                    }
+                    placeholder={id && dataBrand[input.id]}
                   />
                 )}
                 {input.type === "textarea" && (
                   <textarea
                     {...input}
                     id={input.id}
-                    placeholder={
-                      id &&
-                      USER_DATA.brands.filter((brand) => brand.id === id)[0][
-                        input.id
-                      ]
-                    }
+                    placeholder={id && dataBrand[input.id]}
                   />
                 )}
                 {Icons("edit")}
@@ -60,18 +51,11 @@ function View({ id }) {
                   <input
                     {...option}
                     id={option.id}
-                    placeholder={
-                      id &&
-                      USER_DATA.brands.filter((brand) => brand.id === id)[0][
-                        option.id
-                      ]
-                    }
+                    placeholder={id && dataBrand[option.id]}
                     checked={
                       option.type === "checkbox" &&
                       id &&
-                      USER_DATA.brands.filter((brand) => brand.id === id)[0][
-                        "offers"
-                      ] === option.id &&
+                      dataBrand["offers"] === option.id &&
                       true
                     }
                   />
@@ -104,7 +88,9 @@ function View({ id }) {
 
       <section className="footer">
         <section className="section-buttons flex">
-          <div className="button">Atrás</div>
+          <div className="button" onClick={() => redirectTo("/brands")}>
+            Atrás
+          </div>
           <div className="button">Guardar cambios</div>
         </section>
       </section>

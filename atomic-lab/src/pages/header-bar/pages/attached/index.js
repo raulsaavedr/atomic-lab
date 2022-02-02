@@ -1,7 +1,7 @@
 import Reac, { useState } from "react";
 import View from "./view";
 
-function Index() {
+function Index({ data }) {
   const [modalAddMember, setModalAddMember] = useState(false);
   const [dataModals, setDataModals] = useState([]);
 
@@ -10,6 +10,7 @@ function Index() {
     setModalAddMember,
     dataModals,
     setDataModals,
+    data
   };
 
   return <View {...properties} />;

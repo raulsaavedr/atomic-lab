@@ -1,10 +1,11 @@
 import React from "react";
 import PageTitle from "../../../page-title";
 import "./styles.scss";
-import { USER_DATA } from "../../../constats";
 import { Icons } from "../../../icons";
 
-function View({}) {
+function View({ data }) {
+  const dataAttached = data && data.attached ? data.attached : [];
+
   return (
     <div className="attached-page page">
       <PageTitle page={"attached-page"} user={true} title="Mis adjuntos" />
@@ -20,10 +21,10 @@ function View({}) {
             </tr>
           </thead>
           <tbody>
-            {USER_DATA.attached.map((attached) => (
+            {dataAttached.map((attached) => (
               <tr>
-                <td>{attached.name}</td>
-                <td>{attached.type}</td>
+                <td>{attached.filename}</td>
+                <td>{attached.type_file}</td>
                 <td>{attached.size}</td>
                 <td>{Icons("download")}</td>
                 <td>{Icons("delete_circle")}</td>

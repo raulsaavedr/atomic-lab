@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Routes, Route, HashRouter } from "react-router-dom";
 import { USER_DATA } from "./pages/constats";
 
 import AuthContext from "./auth-context";
 import CreateFormContext from "./create-form-context";
+import DataContext from "./data-context";
 
 import Login from "./pages/login";
 import SignUpEmail from "./pages/signUp/signup-email";
@@ -33,15 +35,23 @@ import "./app.scss";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
-
-
   const [formData, setFormData] = useState({});
-
 
   function toggleAuthenticated() {
     setIsAuthenticated((isAuthenticated) => !isAuthenticated);
     sessionStorage.setItem("token", 123);
   }
+
+
+  const [dataAll, setDataAll] = useState([]);
+  useEffect(() => {
+    axios.get("https://api.ticvzla.xyz/public/api/get_data_user/1").then((response) => {
+      setDataAll(response.data);
+    });
+  }, []);
+
+
+
 
 
   return (
@@ -50,66 +60,69 @@ function App() {
         {isAuthenticated && !USER_DATA.onboarding && (
           <HeaderBar setIsAuthenticated={setIsAuthenticated} />
         )}
-        <Routes>
-          {isAuthenticated ? (
-            <>
-              <Route path="/" element={<Home />} />
-
-              <Route path="active-projects" element={<ActiveProjects />} />
-              <Route path="new-project" element={<NewProject />} />
-              <Route path="finish-projects" element={<FinishProjects />} />
-              <Route path="status-project/:id" element={<StatusProject />} />
+        <DataContext.Provider
+          value={[dataAll, setDataAll]}
+        >
+          <Routes>
+            {isAuthenticated ? (
+              <>
 
 
+                <Route path="/" element={<Home />} />
 
-              <Route path="service/create" element={<CreateFormContext.Provider
-                value={[formData, setFormData]}
-              >
-                <Create /></CreateFormContext.Provider>} />
+                <Route path="active-projects" element={<ActiveProjects data={dataAll} />} />
+                <Route path="new-project" element={<NewProject />} />
+                <Route path="finish-projects" element={<FinishProjects />} />
+                <Route path="status-project/:id" element={<StatusProject />} />
+
+                <Route path="service/create" element={<CreateFormContext.Provider
+                  value={[formData, setFormData]}
+                >
+                  <Create /></CreateFormContext.Provider>} />
+
+                <Route path="service/:name" element={<CreateFormContext.Provider
+                  value={[formData, setFormData]}
+                >
+                  <Service /></CreateFormContext.Provider>} />
 
 
 
-              <Route path="service/:name" element={<CreateFormContext.Provider
-                value={[formData, setFormData]}
-              >
-                <Service /></CreateFormContext.Provider>} />
+                <Route path="profile" element={<Profile data={dataAll} />} />
+                <Route path="brands" element={<Brands data={dataAll} />} />
+                <Route path="brands/brands-form/:id" element={<BrandsForm data={dataAll} />} />
+                <Route path="brands/brands-form" element={<BrandsForm />} />
+                <Route path="attached" element={<Attached data={dataAll} />} />
+                <Route path="team" element={<Team data={dataAll} />} />
+                <Route path="configuration" element={<Configuration />} />
+                <Route path="help-support" element={<HelpSupport />} />
+                <Route path="onboarding" element={<Onboarding />} />
+                <Route path="reviews/:id" element={<Reviews />} />
 
+              </>
+            ) : (
+              <>
+                <Route
+                  path="/"
+                  element={
+                    <AuthContext.Provider
+                      value={{ isAuthenticated, toggleAuthenticated }}
+                    >
+                      <Login />
+                    </AuthContext.Provider>
+                  }
+                />
 
-
-              <Route path="profile" element={<Profile />} />
-              <Route path="brands" element={<Brands />} />
-              <Route path="brands/brands-form/:id" element={<BrandsForm />} />
-              <Route path="brands/brands-form" element={<BrandsForm />} />
-              <Route path="attached" element={<Attached />} />
-              <Route path="team" element={<Team />} />
-              <Route path="configuration" element={<Configuration />} />
-              <Route path="help-support" element={<HelpSupport />} />
-              <Route path="onboarding" element={<Onboarding />} />
-              <Route path="reviews/:id" element={<Reviews />} />
-            </>
-          ) : (
-            <>
-              <Route
-                path="/"
-                element={
-                  <AuthContext.Provider
-                    value={{ isAuthenticated, toggleAuthenticated }}
-                  >
-                    <Login />
-                  </AuthContext.Provider>
-                }
-              />
-
-              <Route path="/sing-up/email" element={<SignUpEmail />} />
-              <Route path="/sing-up" element={<SignUp />} />
-              <Route path="/recover-password" element={<RecoverPassword />} />
-              <Route
-                path="/recover-password/email"
-                element={<RecoverPasswordEmail />}
-              />
-            </>
-          )}
-        </Routes>
+                <Route path="/sing-up/email" element={<SignUpEmail />} />
+                <Route path="/sing-up" element={<SignUp />} />
+                <Route path="/recover-password" element={<RecoverPassword />} />
+                <Route
+                  path="/recover-password/email"
+                  element={<RecoverPasswordEmail />}
+                />
+              </>
+            )}
+          </Routes>
+        </DataContext.Provider>
       </HashRouter>
     </div>
   );

@@ -1,8 +1,8 @@
 import React from "react";
 import View from "./view";
 
-function Index() {
-  const properties = {};
+function Index({ data }) {
+  const properties = { data };
 
   return <View {...properties} />;
 }

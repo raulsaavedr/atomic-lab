@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import View from "./view";
 
-function Index({ page }) {
+function Index({ page, data }) {
   const [modalPrivateNotes, setModalPrivateNotes] = useState(false);
   const [modalZoomImg, setModalZoomImg] = useState(false);
   const [modalReviews, setModalReviews] = useState(false);
@@ -31,6 +31,7 @@ function Index({ page }) {
     setModalZoomImg,
     menuFloat,
     setMenuFloat,
+    data
   };
 
   return <View {...properties} />;

@@ -2,7 +2,6 @@ import React from "react";
 import PageTitle from "../../../page-title";
 import "./styles.scss";
 import { Icons } from "../../../icons";
-import { USER_DATA } from "../../../constats";
 import ModalAddMember from "../../../modals/add-member";
 
 function View({
@@ -10,7 +9,10 @@ function View({
   setModalAddMember,
   dataModals,
   setDataModals,
+  data,
 }) {
+  const dataTeam = data && data.team ? data.team : [];
+
   return (
     <div className="team-page page">
       <PageTitle
@@ -32,7 +34,7 @@ function View({
             </tr>
           </thead>
           <tbody>
-            {USER_DATA.team.map((member) => (
+            {dataTeam.map((member) => (
               <tr>
                 <td>{member.name}</td>
                 <td>{member.email}</td>

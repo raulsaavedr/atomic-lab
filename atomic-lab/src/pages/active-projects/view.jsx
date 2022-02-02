@@ -21,7 +21,16 @@ function View({
   setModalZoomImg,
   menuFloat,
   setMenuFloat,
+  data,
 }) {
+  const dataActiveProjects =
+    data && data.active_projects ? data.active_projects : [];
+
+  /* console.log(dataActiveProjects); */
+  console.log(
+    dataActiveProjects.values.toString() /*  && dataActiveProjects.values.replace(/\\/, "\\\\") */
+  );
+
   return (
     <div className="page active-projects">
       <PageTitle page={page} user={true} title="Proyectos activos" />

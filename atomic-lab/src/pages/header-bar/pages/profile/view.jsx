@@ -1,11 +1,13 @@
 import React from "react";
 import PageTitle from "../../../page-title";
-import { FORM_INPUTS_PROFILE, USER_DATA } from "../../../constats";
+import { FORM_INPUTS_PROFILE } from "../../../constats";
 import { Icons } from "../../../icons";
 
 import "./styles.scss";
 
-function View() {
+function View({ data }) {
+  const dataUser = data && data.user ? data.user[0] : {};
+
   return (
     <div className="profile-page page">
       <PageTitle page={"profile-page"} user={true} title="Mi perfil" />
@@ -17,11 +19,7 @@ function View() {
           <div className="item-input flex">
             <label for={input.id}>{input.label} </label>
             <div className="flex">
-              <input
-                {...input}
-                id={input.id}
-                value={USER_DATA.user[input.id]}
-              />
+              <input {...input} id={input.id} value={dataUser[input.id]} />
               {Icons("edit")}
             </div>
           </div>

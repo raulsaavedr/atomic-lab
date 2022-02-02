@@ -1,10 +1,11 @@
 import React from "react";
 import PageTitle from "../../../page-title";
-import { USER_DATA } from "../../../constats";
 import "./styles.scss";
 import { Icons } from "../../../icons";
 
-function View({ redirectToBrandForm }) {
+function View({ redirectToBrandForm, data }) {
+  const dataBrand = data && data.brands ? data.brands : [];
+
   return (
     <div className="brands-page page">
       <PageTitle page={"brands-page"} user={true} title="Mis marcas" />
@@ -12,7 +13,7 @@ function View({ redirectToBrandForm }) {
       <div className="description">Compañía/organización</div>
 
       <section className="content flex">
-        {USER_DATA.brands.map((brand) => (
+        {dataBrand.map((brand) => (
           <div
             className="brand-card"
             onClick={() => redirectToBrandForm(brand.id)}
@@ -21,7 +22,7 @@ function View({ redirectToBrandForm }) {
               <p>Perfil de la marca</p>
 
               <p>
-                <img src={brand.logo} alt={brand.logo} />
+                <img src={brand.filename_logo} alt={brand.filename_logo} />
               </p>
               <p>{brand.name}</p>
             </div>
