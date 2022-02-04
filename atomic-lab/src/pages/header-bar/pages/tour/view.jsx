@@ -36,7 +36,7 @@ function View({ setTourStep, tourStep, setTourActive, title, text }) {
               Siguiente
             </div>
           )}
-          {tourStep == 4 && (
+          {tourStep === 4 && (
             <div
               className="button"
               onClick={() => {

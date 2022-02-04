@@ -18,8 +18,6 @@ function View({ selectedImg, onSelectFile, setStep, step }) {
     data[0].post ? data[0].post[data[0].post.length - 1].id : 1
   );
 
-  console.log("DATA", data);
-
   return (
     <div className="selection-page page">
       <div className="step flex">{Icons("step_selection")}</div>
@@ -52,9 +50,10 @@ function View({ selectedImg, onSelectFile, setStep, step }) {
         {post
           .sort((a, b) => (a.id > b.id ? 1 : -1))
           .map(
-            (item) =>
+            (item, index) =>
               item.id >= 1 && (
                 <Post
+                  key={index}
                   id={item.id}
                   post={post}
                   setPost={setPost}
@@ -84,19 +83,23 @@ function View({ selectedImg, onSelectFile, setStep, step }) {
           <div className="button" onClick={() => setStep(step - 1)}>
             Atrás
           </div>
-          <div
-            className="button"
-            onClick={() => {
-              setStep(step + 1);
-              setFormData({
-                ...formData,
-                post: post,
-                /*  img_array: selectedImgArray, */
-              });
-            }}
-          >
-            Continuar
-          </div>
+
+          {!formData.idea_post || !post ? (
+            <div className="button-gray">Continuar</div>
+          ) : (
+            <div
+              className="button"
+              onClick={() => {
+                setStep(step + 1);
+                setFormData({
+                  ...formData,
+                  post: post,
+                });
+              }}
+            >
+              Continuar
+            </div>
+          )}
         </section>
       </section>
     </div>

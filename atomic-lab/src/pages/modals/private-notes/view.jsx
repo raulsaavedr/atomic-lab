@@ -9,8 +9,8 @@ function View({ close, data }) {
         <h3>Mis notas privadas</h3>
 
         <div className="content-notes">
-          {data.map((item) => (
-            <div>
+          {data.map((item, index) => (
+            <div key={index}>
               <p>{item}</p>
             </div>
           ))}

@@ -3,7 +3,7 @@ import { Icons } from "../../../../icons";
 import { FORM_INPUTS } from "../../../../constats";
 import "./styles.scss";
 
-function View({ id, references, setReferences }) {
+function View({ data, references, setReferences }) {
   const [referenceFile, setReferenceFile] = useState("");
 
   const formDataFile = new FormData();
@@ -11,14 +11,18 @@ function View({ id, references, setReferences }) {
 
   return (
     <div className="upload-file">
-      <label for={`reference-${id}`} className="button-blue flex">
+      <label for={`reference-${data && data.id}`} className="button-blue flex">
         {Icons("clip_white")}
-        {referenceFile?.name ? referenceFile?.name : "Adjuntar"}
+        {referenceFile?.name
+          ? referenceFile?.name
+          : data.name_file
+          ? data.name_file
+          : "Adjuntar"}
       </label>
 
       <input
         {...FORM_INPUTS.reference_add}
-        id={`reference-${id}`}
+        id={`reference-${data?.id}`}
         onChange={(e) => {
           setReferenceFile(e.target.files[0]);
         }}
@@ -32,17 +36,20 @@ function View({ id, references, setReferences }) {
               {...FORM_INPUTS.reference}
               id="reference"
               onChange={(e) => {
-                setReferences(references.filter((item) => item.id !== id));
+                setReferences(references.filter((ref) => ref.id !== data.id));
                 setReferences((references) => [
                   ...references,
                   {
-                    id: id,
+                    id: data.id,
                     text: e.target.value,
                     content: formDataFile,
+                    name_file: referenceFile?.name,
                   },
                 ]);
               }}
-            />
+            >
+              {data?.text}
+            </textarea>
           </div>
         </div>
         <div className="column"></div>

@@ -10,8 +10,8 @@ function View() {
       <PageTitle title="¿Qué quieres hacer hoy?" />
 
       <div className="service flex">
-        {SERVICES_DATA.map((service) => (
-          <Service service={service}></Service>
+        {SERVICES_DATA.map((service, index) => (
+          <Service key={index} service={service}></Service>
         ))}
       </div>
     </div>

@@ -34,8 +34,8 @@ function View({ data }) {
         <table>
           <thead>
             <tr>
-              {STATUS_TABLES().map((item) => (
-                <th>
+              {STATUS_TABLES().map((item, index) => (
+                <th key={index}>
                   {item.isActive && (
                     <div className="th-flex flex">
                       <p>{item.title}</p>
@@ -47,8 +47,8 @@ function View({ data }) {
             </tr>
           </thead>
           <tbody>
-            {filterProject[0].status_test.map((status) => (
-              <tr>
+            {filterProject[0].status_test.map((status, index) => (
+              <tr key={index}>
                 <td>{status.title}</td>
                 <td>{status.date}</td>
                 <td></td>

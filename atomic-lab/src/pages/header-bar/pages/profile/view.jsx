@@ -15,8 +15,8 @@ function View({ data }) {
       <div className="description">Datos personales</div>
 
       <section className="content">
-        {FORM_INPUTS_PROFILE.map((input) => (
-          <div className="item-input flex">
+        {FORM_INPUTS_PROFILE.map((input, index) => (
+          <div key={index} className="item-input flex">
             <label for={input.id}>{input.label} </label>
             <div className="flex">
               <input {...input} id={input.id} value={dataUser[input.id]} />

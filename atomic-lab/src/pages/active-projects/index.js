@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import DataContext from "../../data-context";
 import { useNavigate } from "react-router-dom";
 import View from "./view";
 
-function Index({ page, data }) {
+function Index({ page }) {
+
+  const { dataAll } = useContext(DataContext);
+
+
   const [modalPrivateNotes, setModalPrivateNotes] = useState(false);
   const [modalZoomImg, setModalZoomImg] = useState(false);
   const [modalReviews, setModalReviews] = useState(false);
   const [dataModals, setDataModals] = useState([]);
   const [menuFloat, setMenuFloat] = useState("");
+
 
   const navigate = useNavigate();
 
@@ -16,6 +22,9 @@ function Index({ page, data }) {
       state: { project: project },
     });
   const redirectToReviews = (id) => navigate(`/reviews/${id}`);
+
+  const dataActiveProjects =
+    dataAll && dataAll.active_projects ? dataAll.active_projects : [];
 
   const properties = {
     page,
@@ -31,7 +40,8 @@ function Index({ page, data }) {
     setModalZoomImg,
     menuFloat,
     setMenuFloat,
-    data
+    navigate,
+    dataActiveProjects
   };
 
   return <View {...properties} />;

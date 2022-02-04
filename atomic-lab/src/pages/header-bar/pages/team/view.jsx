@@ -34,8 +34,8 @@ function View({
             </tr>
           </thead>
           <tbody>
-            {dataTeam.map((member) => (
-              <tr>
+            {dataTeam.map((member, index) => (
+              <tr key={index}>
                 <td>{member.name}</td>
                 <td>{member.email}</td>
                 <td>{member.rol}</td>

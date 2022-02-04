@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import DataContext from "../../data-context";
 import { useNavigate } from "react-router-dom";
 import View from "./view";
 
 function Index({ page }) {
   const navigate = useNavigate();
+  const { dataAll } = useContext(DataContext);
 
   const [modalPrivateNotes, setModalPrivateNotes] = useState(false);
   const [modalZoomImg, setModalZoomImg] = useState(false);
@@ -16,6 +18,10 @@ function Index({ page }) {
       state: { project: project },
     });
 
+
+  const dataFinishProjects =
+    dataAll && dataAll.finish_projects ? dataAll.finish_projects : [];
+
   const properties = {
     page: page ? page : "finish-projects",
     redirectToStatusProject,
@@ -27,6 +33,8 @@ function Index({ page }) {
     setModalZoomImg,
     menuFloat,
     setMenuFloat,
+    navigate,
+    dataFinishProjects,
   };
 
   return <View {...properties} />;

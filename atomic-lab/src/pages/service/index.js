@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import DataContext from "../../data-context";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import View from "./view";
@@ -6,6 +7,8 @@ import View from "./view";
 function Index() {
   let location = useLocation();
   const navigate = useNavigate();
+
+  const { dataAll } = useContext(DataContext);
 
   const [serviceData] = useState(location?.state?.service);
   const [typePublication, setTypePublication] = useState("");
@@ -37,7 +40,9 @@ function Index() {
     setSelectType,
     modalMessage,
     setModalMessage,
-    socialNetwork, setSocialNetwork
+    socialNetwork,
+    setSocialNetwork,
+    dataAll
   };
 
   return <View {...properties} />;

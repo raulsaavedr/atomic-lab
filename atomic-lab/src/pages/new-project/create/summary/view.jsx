@@ -1,24 +1,28 @@
-import React, { useContext } from "react";
+import React from "react";
 import PageTitle from "../../../page-title";
 import { Icons } from "../../../icons";
 import { USER_DATA } from "../../../constats";
-import CreateFormContext from "../../../../create-form-context";
 import ModalMessage from "../../../modals/message";
+
 import "../styles.scss";
 import "./styles.scss";
 
 function View({
-  modalMessage,
-  setModalMessage,
+  modalMessageStart,
+  setModalMessageStart,
+  modalMessageStartStatus,
+  setModalMessageStartStatus,
   libertyLevel,
   setLibertyLevel,
-  startProject,
-  setStartproject,
   setStep,
   step,
+  handleStartProject,
+  data,
+  formData,
+  setFormData,
+  navigate,
+  modalMessageStartData,
 }) {
-  const data = useContext(CreateFormContext)[0];
-
   return (
     <div className="summary-page page">
       <div className="step flex">{Icons("step_summary")}</div>
@@ -87,21 +91,30 @@ function View({
                   className={`circle none ${
                     libertyLevel === "none" && "active"
                   }`}
-                  onClick={() => setLibertyLevel("none")}
+                  onClick={() => {
+                    setLibertyLevel("none");
+                    setFormData({ ...formData, designer_freedom: "none" });
+                  }}
                 ></div>
                 <p>Ninguna</p>
               </div>
               <div className="section">
                 <div
                   className={`circle ${libertyLevel === "medium" && "active"}`}
-                  onClick={() => setLibertyLevel("medium")}
+                  onClick={() => {
+                    setLibertyLevel("medium");
+                    setFormData({ ...formData, designer_freedom: "medium" });
+                  }}
                 ></div>
                 <p>Media</p>
               </div>
               <div className="section">
                 <div
                   className={`circle ${libertyLevel === "high" && "active"}`}
-                  onClick={() => setLibertyLevel("high")}
+                  onClick={() => {
+                    setLibertyLevel("high");
+                    setFormData({ ...formData, designer_freedom: "high" });
+                  }}
                 ></div>
                 <p>Mucha</p>
               </div>
@@ -257,29 +270,36 @@ function View({
           <div className="button" onClick={() => setStep(step - 1)}>
             Atrás
           </div>
-          <div className="button" onClick={() => setModalMessage(true)}>
+          <div className="button" onClick={() => setModalMessageStart(true)}>
             Iniciar proyecto
           </div>
         </section>
       </section>
 
-      {modalMessage && (
+      {modalMessageStart && (
+        <ModalMessage
+          next={() => {
+            handleStartProject();
+            setModalMessageStart(false);
+          }}
+          cancel={() => setModalMessageStart(false)}
+          cancelVisible={true}
+          message={"¿Estas seguro que quieres iniciar el proyecto?"}
+          subMessage={
+            "Una vez iniciado no podrás cambiar la información ni los archivos adjuntos. Sin embargo, podrás comprar más revisiones si lo requieres."
+          }
+        />
+      )}
+      {modalMessageStartStatus && (
         <ModalMessage
           next={() =>
-            startProject ? setModalMessage() : setStartproject(true)
+            modalMessageStartData.type === "ok"
+              ? navigate("/active-projects")
+              : setModalMessageStartStatus(false)
           }
-          cancel={() => startProject && setModalMessage(false)}
-          cancelVisible={startProject ? false : true}
-          message={
-            startProject
-              ? "¡FELICITACIONES!"
-              : "¿Estas seguro que quieres iniciar el proyecto?"
-          }
-          subMessage={
-            startProject
-              ? "¡Tu proyecto se ha iniciado exitosamente!"
-              : "Una vez iniciado no podrás cambiar la información ni los archivos adjuntos. Sin embargo, podrás comprar más revisiones si lo requieres."
-          }
+          cancelVisible={false}
+          message={modalMessageStartData.message}
+          subMessage={modalMessageStartData.subMessage}
         />
       )}
     </div>

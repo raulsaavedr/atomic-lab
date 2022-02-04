@@ -7,10 +7,12 @@ import References from "./references";
 import "./styles.scss";
 
 function View({ redirectToService, setStep, step }) {
-  const data = useContext(CreateFormContext);
+  const data = useContext(CreateFormContext)[0];
   const [formData, setFormData] = useContext(CreateFormContext);
 
-  const [references, setReferences] = useState([{ id: 0 }]);
+  const [references, setReferences] = useState(
+    data.references ? data.references : [{ id: 0 }]
+  );
   const [referencesCount, setReferencesCount] = useState(1);
 
   return (
@@ -94,27 +96,26 @@ function View({ redirectToService, setStep, step }) {
         </p>
         {references
           .sort((a, b) => (a.id > b.id ? 1 : -1))
-          .map((item) => (
+          .map((item, index) => (
             <References
-              id={item.id}
+              key={index}
               references={references}
               setReferences={setReferences}
+              data={item}
             />
           ))}
 
-        <div className="more flex">
-          <div
-            className="icon-add flex"
-            onClick={() => {
-              setReferencesCount(referencesCount + 1);
-              setReferences((references) => [
-                ...references,
-                { id: referencesCount },
-              ]);
-            }}
-          >
-            {Icons("add_white")}
-          </div>
+        <div
+          className="more flex"
+          onClick={() => {
+            setReferencesCount(referencesCount + 1);
+            setReferences((references) => [
+              ...references,
+              { id: referencesCount },
+            ]);
+          }}
+        >
+          <div className="icon-add flex">{Icons("add_white")}</div>
           <p>Adjuntar más archivos/referencias/ejemplos/etc.</p>
         </div>
       </section>
@@ -123,15 +124,22 @@ function View({ redirectToService, setStep, step }) {
         <div className="button" onClick={() => redirectToService()}>
           Atrás
         </div>
-        <div
-          className="button"
-          onClick={() => {
-            setStep(step + 1);
-            setFormData({ ...formData, references: references });
-          }}
-        >
-          Continuar
-        </div>
+
+        {!formData.name_project ||
+        !formData.public_goal ||
+        !formData.palete_colors ? (
+          <div className="button-gray">Continuar</div>
+        ) : (
+          <div
+            className="button"
+            onClick={() => {
+              setStep(step + 1);
+              setFormData({ ...formData, references: references });
+            }}
+          >
+            Continuar
+          </div>
+        )}
       </section>
     </div>
   );

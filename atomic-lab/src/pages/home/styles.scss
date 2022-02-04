@@ -1,26 +1,27 @@
 @import "src/globals";
 .home {
-    .page {
-        padding: 0;
-        min-height: 0;
+  .page {
+    padding: 0;
+    min-height: 0;
+  }
+
+  .section-page {
+    margin-bottom: 8em;
+  }
+
+  .add-project {
+    gap: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    width: fit-content;
+
+    &-icon {
+      width: 23px;
+      height: 23px;
     }
 
-    .section-page {
-        margin-bottom: 8em;
+    .text-purple {
+      font-weight: 600;
     }
-
-    .add-project {
-        gap: 10px;
-        margin-bottom: 20px;
-        cursor: pointer;
-
-        &-icon {
-            width: 23px;
-            height: 23px;
-        }
-
-        .text-purple {
-            font-weight: 600;
-        }
-    }
+  }
 }

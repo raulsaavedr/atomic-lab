@@ -13,8 +13,9 @@ function View({ redirectToBrandForm, data }) {
       <div className="description">Compañía/organización</div>
 
       <section className="content flex">
-        {dataBrand.map((brand) => (
+        {dataBrand.map((brand, index) => (
           <div
+            key={index}
             className="brand-card"
             onClick={() => redirectToBrandForm(brand.id)}
           >

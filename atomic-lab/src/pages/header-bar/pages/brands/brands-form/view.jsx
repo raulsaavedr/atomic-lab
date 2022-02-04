@@ -17,8 +17,11 @@ function View({ id, data, redirectTo }) {
       <div className="description">Datos de la compañia/organización</div>
 
       <section className="content ">
-        {FORM_INPUTS_BRANDS.map((input) => (
-          <div className={`item-input ${input.options && input.className}`}>
+        {FORM_INPUTS_BRANDS.map((input, index) => (
+          <div
+            key={index}
+            className={`item-input ${input.options && input.className}`}
+          >
             <label for={input.id}>{input.label} </label>
 
             {input.type && (
@@ -41,8 +44,8 @@ function View({ id, data, redirectTo }) {
               </div>
             )}
 
-            {input?.options?.map((option) => (
-              <div className={input.className}>
+            {input?.options?.map((option, index) => (
+              <div key={index} className={input.className}>
                 <div className="flex-icon flex">
                   {option.icon && Icons(option.id)}{" "}
                   <label for={option.id}>{option.label} </label>
@@ -69,8 +72,8 @@ function View({ id, data, redirectTo }) {
 
         <table className="table">
           <tbody>
-            {FROM_BRAND_TABLES.map((item) => (
-              <tr>
+            {FROM_BRAND_TABLES.map((item, index) => (
+              <tr key={index}>
                 <td>{item.title}</td>
                 <td>
                   <div className="flex">{Icons("upload_circle")} Cargar</div>

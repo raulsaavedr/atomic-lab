@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import CreateFormContext from "../../create-form-context";
-import { USER_DATA, TYPE_PUBLICATION_DATA } from "../constats";
+import { TYPE_PUBLICATION_DATA } from "../constats";
 import PageTitle from "../page-title";
 import parse from "html-react-parser";
 import ModalMessage from "../modals/message";
@@ -23,6 +23,7 @@ function View({
   setModalMessage,
   socialNetwork,
   setSocialNetwork,
+  dataAll,
 }) {
   const data = useContext(CreateFormContext)[0];
   const [formData, setFormData] = useContext(CreateFormContext);
@@ -46,11 +47,11 @@ function View({
 
       <section className="section-specs">
         {serviceData?.specs?.map((spec, index) => (
-          <div className="section-specs-spec" key={index}>
+          <div key={index} className="section-specs-spec">
             <h3>{spec.title}</h3>
             <ul>
-              {spec.options.map((option) => (
-                <li>{option}</li>
+              {spec.options.map((option, index) => (
+                <li key={index}>{option}</li>
               ))}
             </ul>
           </div>
@@ -76,8 +77,8 @@ function View({
               </div>
 
               <div className="content-section">
-                {type.options.map((option) => (
-                  <p className="flex">
+                {type.options.map((option, index) => (
+                  <p key={index} className="flex">
                     <div className="icon-check-purple">x</div>
                     <div className="option-value">{option}</div>
                   </p>
@@ -107,8 +108,8 @@ function View({
           <option disabled selected>
             Selecciona una opción
           </option>
-          {USER_DATA.brands.map((brand, index) => (
-            <option key={index} value={brand.name}>
+          {dataAll.brands.map((brand, index) => (
+            <option key={index} defaultValue={brand.name}>
               {brand.name}
             </option>
           ))}
@@ -120,7 +121,7 @@ function View({
 
         <div className="type-check flex">
           {serviceData?.publication_type?.options.map((option, index) => (
-            <label className="flex">
+            <label key={index} className="flex">
               <div className="circle-check">
                 <input
                   checked={typePublication === option}
@@ -151,24 +152,27 @@ function View({
               nesecitas
             </p>
             <div className="type-cards flex">
-              {TYPE_PUBLICATION_DATA[typePublication].options.map((option) => (
-                <div
-                  className={`type-card flex ${
-                    selectType === option && "active"
-                  }`}
-                  onClick={() => {
-                    setSelectType(selectType === option ? "" : option);
-                    setFormData({
-                      ...formData,
-                      type_post: option.replaceAll(" ", "-").toLowerCase(),
-                    });
-                  }}
-                >
-                  {option}
+              {TYPE_PUBLICATION_DATA[typePublication].options.map(
+                (option, index) => (
+                  <div
+                    key={index}
+                    className={`type-card flex ${
+                      selectType === option && "active"
+                    }`}
+                    onClick={() => {
+                      setSelectType(selectType === option ? "" : option);
+                      setFormData({
+                        ...formData,
+                        type_post: option.replaceAll(" ", "-").toLowerCase(),
+                      });
+                    }}
+                  >
+                    {option}
 
-                  {Icons("img_circle")}
-                </div>
-              ))}
+                    {Icons("img_circle")}
+                  </div>
+                )
+              )}
             </div>
           </>
         )}
@@ -179,12 +183,11 @@ function View({
 
         <div className="social-network-check flex">
           {serviceData?.social_network?.options.map((option, index) => (
-            <label className="flex">
+            <label className="flex" key={index}>
               <div className="circle-check">
                 <input
                   checked={socialNetwork === option.name}
                   disabled={option.status === "inactive"}
-                  key={index}
                   type="checkbox"
                   id="s_net"
                   value={option.name}
@@ -234,3 +237,37 @@ function View({
 }
 
 export default View;
+
+const x = {
+  user_id: "1",
+  designer_freedom: "high",
+  social_network: "Facebook",
+  brand_select: "Pepsi",
+  type_publication: "post",
+  type_post: "post",
+  name_project: "Mi nuevo proyecto",
+  public_goal: "mi público objetivo",
+  palete_colors: "mi paleta de colores",
+  references: [
+    {
+      id: 0,
+      text: "mi referencia 1",
+      content: {},
+    },
+  ],
+  idea_post: "Mi idea a desarrollar",
+  post: [
+    {
+      id: 1,
+      objetive: "mi objetivo imagen 1",
+      text: "Mi texto a incluir",
+      file_img: {},
+    },
+    {
+      id: 2,
+      text: "texto imagen 2",
+      objetive: "mi objetivo imagen2",
+      file_img: {},
+    },
+  ],
+};

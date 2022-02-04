@@ -86,8 +86,8 @@ function View({
       </p>
 
       <div className="versions-content flex">
-        {projectData?.review_data?.versions?.map((version) => (
-          <div className="version">
+        {projectData?.review_data?.versions?.map((version, index) => (
+          <div key={index} className="version">
             <div className="version-id">{version.id}</div>
             <div
               className="version-img"
@@ -104,8 +104,8 @@ function View({
         <div className="version vote-main">
           <p>De las anteriores propuestas, ¿Cuál te gusta más?</p>
 
-          {projectData?.review_data?.versions?.map((version) => (
-            <div className="version-vote flex">
+          {projectData?.review_data?.versions?.map((version, index) => (
+            <div key={index} className="version-vote flex">
               <div className="version-vote-id">Versión {version.id}</div>
               <div className="version-vote-id">
                 <input type="checkbox" name="" id="" />

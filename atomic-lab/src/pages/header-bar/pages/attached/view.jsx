@@ -21,8 +21,8 @@ function View({ data }) {
             </tr>
           </thead>
           <tbody>
-            {dataAttached.map((attached) => (
-              <tr>
+            {dataAttached.map((attached, index) => (
+              <tr key={index}>
                 <td>{attached.filename}</td>
                 <td>{attached.type_file}</td>
                 <td>{attached.size}</td>

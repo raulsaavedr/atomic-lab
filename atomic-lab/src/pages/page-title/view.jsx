@@ -32,8 +32,8 @@ function View({
               <div className="credit-value">$ {price[0]?.price} monedas</div>
 
               <div className="section-header-credit-modal">
-                {price.map((price) => (
-                  <div className="price-option flex">
+                {price.map((price, index) => (
+                  <div key={index} className="price-option flex">
                     <p>{price.name}</p>
                     <p>{price.price}</p>
                   </div>

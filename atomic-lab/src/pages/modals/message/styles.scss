@@ -1,33 +1,33 @@
 .modal-message {
-    .modal-content {
-        min-height: 250px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+  .modal-content {
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-        .text {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: 150px;
-            gap: 10px;
-            div {
-                width: 100%;
-            }
-        }
+    .text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 150px;
+      gap: 10px;
+      div {
+        width: 100%;
+      }
     }
+  }
 
-    .text-purple {
-        font-weight: 600;
-        cursor: default;
-        text-align: center;
-        font-size: 18px;
-    }
+  .text-purple {
+    font-weight: 600;
+    cursor: default;
+    text-align: center;
+    font-size: 18px;
+  }
 
-    &-buttons.is-justify {
-        justify-content: space-between;
-    }
-    &-buttons.is-center {
-        justify-content: center;
-    }
+  &-buttons.is-justify {
+    justify-content: space-between;
+  }
+  &-buttons.is-center {
+    justify-content: center;
+  }
 }

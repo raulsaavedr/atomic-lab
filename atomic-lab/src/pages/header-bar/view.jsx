@@ -15,10 +15,11 @@ function View({
   setTourStep,
   tourActive,
   setTourActive,
+  dataAll,
 }) {
   return (
     <div className="header-bar flex">
-      {tourActive && tourStep == 0 && (
+      {tourActive && tourStep === 0 && (
         <Tour
           setTourActive={setTourActive}
           tourStep={tourStep}
@@ -35,7 +36,7 @@ function View({
         className={`home option ${location.pathname === "/" && "active"}`}
         onClick={() => redirectTo("/")}
       >
-        {tourActive && tourStep == 1 && (
+        {tourActive && tourStep === 1 && (
           <Tour
             setTourActive={setTourActive}
             tourStep={tourStep}
@@ -58,7 +59,7 @@ function View({
         }`}
         onClick={() => redirectTo("/new-project")}
       >
-        {tourActive && tourStep == 2 && (
+        {tourActive && tourStep === 2 && (
           <Tour
             setTourActive={setTourActive}
             tourStep={tourStep}
@@ -78,7 +79,7 @@ function View({
         }`}
         onClick={() => redirectTo("/active-projects")}
       >
-        {tourActive && tourStep == 3 && (
+        {tourActive && tourStep === 3 && (
           <Tour
             setTourActive={setTourActive}
             tourStep={tourStep}
@@ -100,7 +101,7 @@ function View({
         }`}
         onClick={() => redirectTo("/finish-projects")}
       >
-        {tourActive && tourStep == 4 && (
+        {tourActive && tourStep === 4 && (
           <Tour
             setTourActive={setTourActive}
             tourStep={tourStep}
@@ -123,7 +124,7 @@ function View({
       <div className="icon-notifications option">{Icons("notifications")}</div>
       <div className="credits flex">
         <div className="icon-credit flex">
-          {Icons("credits")} ${USER_DATA.credits}
+          {Icons("credits")} ${dataAll.user && dataAll.user[0].credits}
         </div>
         <div className="credits-buy flex">Comprar</div>
       </div>
@@ -146,7 +147,7 @@ function View({
               )[0].name
             }
           </div>
-          <div>{USER_DATA.user.nickname}</div>
+          <div>{dataAll.user && dataAll.user[0].username}</div>
         </div>
         <div className="icon-arrow-up">
           <div className="icon" onClick={() => setMenuActive(!menuActive)}>
