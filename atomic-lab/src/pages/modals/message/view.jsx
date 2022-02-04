@@ -3,13 +3,13 @@ import ReactiveButton from "reactive-button";
 import "../../modals/styles.scss";
 import "./styles.scss";
 
-function View({ next, cancel, message, subMessage, cancelVisible }) {
+function View({ next, cancel, message, subMessage, cancelVisible, next_type }) {
   const [state, setState] = useState("idle");
 
   const onClickHandler = () => {
     setState("loading");
     setTimeout(() => {
-      setState("success");
+      next();
     }, 2000);
   };
 
@@ -32,17 +32,31 @@ function View({ next, cancel, message, subMessage, cancelVisible }) {
             </div>
           )}
 
-          <ReactiveButton
-            className="button"
-            buttonState={state}
-            onClick={onClickHandler}
-          />
-
-          {next && (
-            <div className="button" onClick={() => next()}>
-              Continuar
-            </div>
-          )}
+          {next &&
+            (next_type === "create" ? (
+              <div className="button-reactive">
+                <ReactiveButton
+                  className="button"
+                  buttonState={state}
+                  onClick={() => onClickHandler()}
+                  shadow={false}
+                  loadingText={"Creando Proyecto..."}
+                  outline={false}
+                  rounded={false}
+                  block={false}
+                  idleText={"Crear"}
+                />
+              </div>
+            ) : (
+              <div
+                className="button"
+                onClick={() => {
+                  next();
+                }}
+              >
+                Continuar
+              </div>
+            ))}
         </div>
       </div>
     </div>

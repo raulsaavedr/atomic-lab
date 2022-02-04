@@ -60,7 +60,7 @@ function View({
 
                 return (
                   <tr key={index}>
-                    <td>{projectValues.name}</td>
+                    <td>{projectValues.name_project}</td>
                     <td>
                       <div>
                         <p>{Icons("status_check_" + project.status)}</p>

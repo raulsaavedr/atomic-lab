@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Routes, Route, HashRouter } from "react-router-dom";
 import { USER_DATA } from "./pages/constats";
+
+import { getDataUser } from "./services"
 
 import AuthContext from "./auth-context";
 import CreateFormContext from "./create-form-context";
@@ -44,11 +45,16 @@ function App() {
 
 
   const [dataAll, setDataAll] = useState([]);
+
+
+
   useEffect(() => {
-    axios.get("https://api.ticvzla.xyz/public/api/get_data_user/1").then((response) => {
-      setDataAll(response.data);
+    getDataUser(1).then(data => {
+      setDataAll(data.data)
     });
   }, []);
+
+
 
 
 

@@ -22,6 +22,7 @@ function View({
   setFormData,
   navigate,
   modalMessageStartData,
+  handleGetDataUser,
 }) {
   return (
     <div className="summary-page page">
@@ -278,9 +279,9 @@ function View({
 
       {modalMessageStart && (
         <ModalMessage
+          next_type="create"
           next={() => {
             handleStartProject();
-            setModalMessageStart(false);
           }}
           cancel={() => setModalMessageStart(false)}
           cancelVisible={true}
@@ -290,13 +291,19 @@ function View({
           }
         />
       )}
+
       {modalMessageStartStatus && (
         <ModalMessage
-          next={() =>
-            modalMessageStartData.type === "ok"
-              ? navigate("/active-projects")
-              : setModalMessageStartStatus(false)
-          }
+          next_type="continue"
+          next={() => {
+            if (modalMessageStartData.type === "ok") {
+              handleGetDataUser();
+              navigate("/active-projects");
+            } else {
+              setModalMessageStartStatus(false);
+              setModalMessageStart(false);
+            }
+          }}
           cancelVisible={false}
           message={modalMessageStartData.message}
           subMessage={modalMessageStartData.subMessage}

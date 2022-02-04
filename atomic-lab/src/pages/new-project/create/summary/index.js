@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import CreateFormContext from "../../../../create-form-context";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../../../../data-context";
+import { getDataUser, postCreateProject } from "../../../../services";
 
-import axios from "axios";
 import View from "./view";
 
 function Index({ setStep, step }) {
@@ -11,24 +11,22 @@ function Index({ setStep, step }) {
   const [formData, setFormData] = useContext(CreateFormContext);
   const navigate = useNavigate();
 
-  const { dataAll } = useContext(DataContext);
+  const { dataAll, setDataAll } = useContext(DataContext);
 
   const [modalMessageStart, setModalMessageStart] = useState(false);
   const [modalMessageStartStatus, setModalMessageStartStatus] = useState(false);
   const [modalMessageStartData, setModalMessageStartData] = useState({});
 
   const [libertyLevel, setLibertyLevel] = useState("");
-  const [startProject, setStartproject] = useState(false);
+
+  const handleGetDataUser = () => {
+    getDataUser(1).then((data) => {
+      setDataAll(data);
+    });
+  };
 
   const handleStartProject = () => {
-    //https://jsonplaceholder.typicode.com/users/
-    //https://api.ticvzla.xyz/public/api/project_values
-
-    axios
-      .post(`https://api.ticvzla.xyz/public/api/project_values`, {
-        ...data,
-        user_id: dataAll.user[0].id,
-      })
+    postCreateProject({ ...data, user_id: dataAll.user[0].id })
       .then((res) => {
         setModalMessageStartStatus(true);
         setModalMessageStartData({
@@ -62,6 +60,7 @@ function Index({ setStep, step }) {
     setFormData,
     navigate,
     modalMessageStartData,
+    handleGetDataUser,
   };
 
   return <View {...properties} />;

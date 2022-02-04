@@ -75,6 +75,9 @@ function View({ id, post, setPost, selectedImg, onSelectFile }) {
                   text: textPreview,
                   objetive: objetive,
                   file_img: formDataImg,
+                  name_img:
+                    data.img_array &&
+                    data?.img_array?.filter((item) => item.id === id)[0]?.name,
                 },
               ]);
             }}
@@ -93,6 +96,9 @@ function View({ id, post, setPost, selectedImg, onSelectFile }) {
                   text: textPreview,
                   objetive: objetive,
                   file_img: formDataImg,
+                  name_img:
+                    data.img_array &&
+                    data?.img_array?.filter((item) => item.id === id)[0]?.name,
                 },
               ]);
             }}
@@ -123,6 +129,9 @@ function View({ id, post, setPost, selectedImg, onSelectFile }) {
                   objetive: objetive,
                   text: e.target.value,
                   file_img: formDataImg,
+                  name_img:
+                    data.img_array &&
+                    data?.img_array?.filter((item) => item.id === id)[0]?.name,
                 },
               ]);
             }}
