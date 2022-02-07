@@ -26,6 +26,11 @@ function Index({ setStep, step }) {
   };
 
   const handleStartProject = () => {
+
+
+
+    console.log(data)
+
     postCreateProject({ ...data, user_id: dataAll.user[0].id })
       .then((res) => {
         setModalMessageStartStatus(true);
