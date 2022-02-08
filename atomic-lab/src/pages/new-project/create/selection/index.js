@@ -26,9 +26,11 @@ function Index({ setStep, step }) {
       {
         id: idSelect,
         object: objectUrl,
-        name: selectedImg.name
+        name: selectedImg.name,
+        formData: selectedImg
       },
     ]);
+
 
 
   }, [selectedImg, idSelect]);
@@ -54,6 +56,10 @@ function Index({ setStep, step }) {
       setSelectedImg(undefined);
       return;
     }
+
+
+
+
 
     setIdSelect(id)
     setSelectedImg(e.target.files[0]);

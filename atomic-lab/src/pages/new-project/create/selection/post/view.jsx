@@ -7,11 +7,6 @@ import "./styles.scss";
 function View({ id, post, setPost, selectedImg, onSelectFile }) {
   const data = useContext(CreateFormContext)[0];
 
-  console.log(selectedImg);
-
-  const formDataImg = new FormData();
-  formDataImg.append("img", selectedImg);
-
   const [objetive, setObjetive] = useState(
     post.filter((item) => item.id === id)[0]?.objetive ||
       data?.post?.filter((item) => item.id === id)[0]?.objetive
@@ -20,8 +15,6 @@ function View({ id, post, setPost, selectedImg, onSelectFile }) {
     post.filter((item) => item.id === id)[0]?.text ||
       data?.post?.filter((item) => item.id === id)[0]?.text
   );
-
-  console.log(formDataImg);
 
   return (
     <div className="columns upload-file">
@@ -78,7 +71,6 @@ function View({ id, post, setPost, selectedImg, onSelectFile }) {
                   id: id,
                   text: textPreview,
                   objetive: objetive,
-                  file_img: formDataImg,
                   name_img:
                     data.img_array &&
                     data?.img_array?.filter((item) => item.id === id)[0]?.name,
@@ -99,7 +91,6 @@ function View({ id, post, setPost, selectedImg, onSelectFile }) {
                   id: id,
                   text: textPreview,
                   objetive: objetive,
-                  file_img: formDataImg,
                   name_img:
                     data.img_array &&
                     data?.img_array?.filter((item) => item.id === id)[0]?.name,
@@ -132,7 +123,6 @@ function View({ id, post, setPost, selectedImg, onSelectFile }) {
                   id: id,
                   objetive: objetive,
                   text: e.target.value,
-                  file_img: formDataImg,
                   name_img:
                     data.img_array &&
                     data?.img_array?.filter((item) => item.id === id)[0]?.name,
