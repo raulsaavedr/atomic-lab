@@ -28,8 +28,6 @@ function View({
   const data = useContext(CreateFormContext)[0];
   const [formData, setFormData] = useContext(CreateFormContext);
 
-  console.log("data", data);
-
   return (
     <div className="page service-page">
       <PageTitle

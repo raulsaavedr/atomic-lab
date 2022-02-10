@@ -9,6 +9,6 @@ const headers = {
     'Content-Type': 'multipart/form-data; boundary=something'
 }
 
-export const postCreateProject = async (formData) => axios.post(`https://api.ticvzla.xyz/public/api/project_valuess`, formData, { headers: headers })
+export const postCreateProject = async (formData) => axios.post(`https://api.ticvzla.xyz/public/api/project_values`, formData, { headers: headers })
 
 /* export const postCreateProjectImg = async (content) => axios.post(`https://api.ticvzla.xyz/public/api/images`, content, { headers: headers }) */

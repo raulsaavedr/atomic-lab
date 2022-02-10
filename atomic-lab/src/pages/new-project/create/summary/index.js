@@ -26,13 +26,6 @@ function Index({ setStep, step }) {
   };
 
   const handleStartProject = () => {
-
-
-
-
-
-
-
     JSON.safeStringify = (obj, indent = 2) => {
       let cache = [];
       const retVal = JSON.stringify(
@@ -49,22 +42,19 @@ function Index({ setStep, step }) {
       return retVal;
     };
 
-
     const formData = new FormData();
 
+    data.img_array &&
+      data.img_array.map((image) =>
+        formData.append(image.name, image.formData)
+      );
+    data.references &&
+      data.references.map((reference) =>
+        formData.append(reference.name_file, reference.file)
+      );
 
-
-    data.img_array.map((image) => formData.append(image.name, image.formData))
-
-
-
-    const dataFin = { ...data, user_id: dataAll.user[0].id }
-    formData.append('jsondataRequest', JSON.safeStringify(dataFin));
-
-
-
-
-
+    const dataFin = { ...data, user_id: dataAll.user[0].id };
+    formData.append("jsondataRequest", JSON.safeStringify(dataFin));
 
     postCreateProject(formData)
       .then((res) => {

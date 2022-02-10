@@ -104,7 +104,7 @@ function View({
                         </td>
                         <td>
                           <div className="review flex">
-                            {projectValues.review} de 4
+                            {project.review} de 4
                             <div
                               className="pointer flex"
                               onClick={() => {
@@ -130,19 +130,15 @@ function View({
                             <div
                               onClick={() =>
                                 setMenuFloat(
-                                  menuFloat === projectValues.id
-                                    ? ""
-                                    : projectValues.id
+                                  menuFloat === project.id ? "" : project.id
                                 )
                               }
                             >
                               {Icons("menu_points")}
                             </div>
 
-                            {menuFloat === projectValues.id && (
-                              <div
-                                className={`menu-float ${projectValues.id} `}
-                              >
+                            {menuFloat === project.id && (
+                              <div className={`menu-float ${project.id} `}>
                                 <div
                                   className="menu-float-item flex"
                                   onClick={() => setMenuFloat("x")}

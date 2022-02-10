@@ -1,7 +1,8 @@
 import React from "react";
 import PageTitle from "../../../page-title";
-import "./styles.scss";
+import { URL_IMG } from "../../../constats";
 import { Icons } from "../../../icons";
+import "./styles.scss";
 
 function View({ data }) {
   const dataAttached = data && data.attached ? data.attached : [];
@@ -23,10 +24,14 @@ function View({ data }) {
           <tbody>
             {dataAttached.map((attached, index) => (
               <tr key={index}>
-                <td>{attached.filename}</td>
+                <td>{attached.comments}</td>
                 <td>{attached.type_file}</td>
                 <td>{attached.size}</td>
-                <td>{Icons("download")}</td>
+                <td>
+                  <a href={URL_IMG + attached.filename} download="filename">
+                    {Icons("download")}
+                  </a>
+                </td>
                 <td>{Icons("delete_circle")}</td>
               </tr>
             ))}

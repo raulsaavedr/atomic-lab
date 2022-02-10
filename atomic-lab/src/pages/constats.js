@@ -1,3 +1,10 @@
+
+
+
+export const URL_IMG = "https://api.ticvzla.xyz/public/images/";
+
+
+
 export const USER_DATA = {
   user: {
     nickname: "JArgoty",

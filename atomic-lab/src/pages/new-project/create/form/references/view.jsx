@@ -3,12 +3,15 @@ import { Icons } from "../../../../icons";
 import { FORM_INPUTS } from "../../../../constats";
 import "./styles.scss";
 
-function View({ data, references, setReferences }) {
-  const [referenceFile, setReferenceFile] = useState("");
-
-  const formDataFile = new FormData();
-  formDataFile.append("data", referenceFile);
-
+function View({
+  data,
+  references,
+  setReferences,
+  referenceFile,
+  setReferenceFile,
+  referenceDescription,
+  setReferenceDescription,
+}) {
   return (
     <div className="upload-file">
       <label for={`reference-${data && data.id}`} className="button-blue flex">
@@ -25,6 +28,16 @@ function View({ data, references, setReferences }) {
         id={`reference-${data?.id}`}
         onChange={(e) => {
           setReferenceFile(e.target.files[0]);
+          setReferences(references.filter((ref) => ref.id !== data.id));
+          setReferences((references) => [
+            ...references,
+            {
+              id: data.id,
+              text: referenceDescription,
+              name_file: referenceFile?.name,
+              file: referenceFile,
+            },
+          ]);
         }}
       />
 
@@ -42,8 +55,8 @@ function View({ data, references, setReferences }) {
                   {
                     id: data.id,
                     text: e.target.value,
-                    content: formDataFile,
                     name_file: referenceFile?.name,
+                    file: referenceFile,
                   },
                 ]);
               }}

@@ -55,8 +55,6 @@ function View({
               {dataFinishProjects.map((project, index) => {
                 const projectValues = JSON.parse(project.values);
 
-                console.log("projectValues---", projectValues);
-
                 return (
                   <tr key={index}>
                     <td>{projectValues.name}</td>
