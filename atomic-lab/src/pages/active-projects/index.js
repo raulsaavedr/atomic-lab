@@ -7,6 +7,8 @@ function Index({ page }) {
 
   const { dataAll } = useContext(DataContext);
 
+  console.log("dataAll", dataAll)
+
 
   const [modalPrivateNotes, setModalPrivateNotes] = useState(false);
   const [modalZoomImg, setModalZoomImg] = useState(false);
@@ -17,9 +19,9 @@ function Index({ page }) {
 
   const navigate = useNavigate();
 
-  const redirectToStatusProject = (project) =>
-    navigate(`/status-project/${project.id}`, {
-      state: { project: project },
+  const redirectToStatusProject = (project_id) =>
+    navigate(`/status-project/${project_id}`, {
+      state: { project_id: project_id },
     });
   const redirectToReviews = (id) => navigate(`/reviews/${id}`);
 

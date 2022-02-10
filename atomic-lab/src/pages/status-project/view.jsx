@@ -1,39 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import PageTitle from "../page-title";
-import { STATUS_TABLES, USER_DATA, STATUS_ID_TABLES } from "../constats";
+import { STATUS_TABLES } from "../constats";
 import { Icons } from "../icons";
 
 import "./styles.scss";
 
-function View({ data }) {
-  const [filterProject] = useState([
-    USER_DATA.active_projects.filter((project) => project.id === data.id)[0],
-  ]);
-
-  var rating = {};
-
-  function rate(value) {
-    rating.starValue = Number(value);
-  }
-
-  function reset() {
-    var elements = document.querySelectorAll(".stars input[name=stars-1]");
-    elements.forEach(function (element) {
-      element.checked = false;
-    });
-
-    rating = {};
-  }
-
+function View({ filterProject, rate, reset }) {
   return (
     <div className="page status-projects">
       <PageTitle page={"status"} user={true} title="Estado detallado" />
 
-      <h3>{data.name}</h3>
+      <h3>
+        {filterProject[0] && JSON.parse(filterProject[0].values).name_project}
+      </h3>
       <div className="table-data">
         <table>
           <thead>
             <tr>
+              <th></th>
               {STATUS_TABLES().map((item, index) => (
                 <th key={index}>
                   {item.isActive && (
@@ -47,13 +31,67 @@ function View({ data }) {
             </tr>
           </thead>
           <tbody>
-            {filterProject[0].status_test.map((status, index) => (
+            <tr>
+              <td>
+                {Icons(
+                  filterProject[0].status >= 1
+                    ? "check_blue"
+                    : "check_blue_none"
+                )}
+                <div className="line-td"></div>
+              </td>
+              <td>Proyecto Iniciado</td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>
+                {Icons(
+                  filterProject[0].status >= 2
+                    ? "check_blue"
+                    : "check_blue_none"
+                )}
+              </td>
+              <td>Proyecto Asignado</td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>
+                {Icons(
+                  filterProject[0].status >= 3
+                    ? "check_blue"
+                    : "check_blue_none"
+                )}
+              </td>
+              <td>Proyecto Cargado</td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>
+                {Icons(
+                  filterProject[0].status >= 4
+                    ? "check_blue"
+                    : "check_blue_none"
+                )}
+              </td>
+              <td>Proyecto Finalizado</td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            {/*  {filterProject.map((status, index) => (
               <tr key={index}>
-                <td>{status.title}</td>
-                <td>{status.date}</td>
-                <td></td>
+                <td>Proyecto Iniciado</td>
+                <td>Proyecto Asignado</td>
+                <td>Proyecto Cargado</td>
+                <td>Proyecto Finalizado</td>
               </tr>
-            ))}
+            ))} */}
           </tbody>
         </table>
       </div>

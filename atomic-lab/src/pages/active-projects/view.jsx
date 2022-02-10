@@ -66,7 +66,7 @@ function View({
                         <p>{Icons("status_check_" + project.status)}</p>
                         <p
                           className="view-more pointer"
-                          onClick={() => redirectToStatusProject(project)}
+                          onClick={() => redirectToStatusProject(project.id)}
                         >
                           Ver más...
                         </p>
@@ -85,7 +85,11 @@ function View({
                             className="pointer"
                             onClick={() => {
                               setModalPrivateNotes(!modalPrivateNotes);
-                              setDataModals(projectValues.private_notes);
+                              setDataModals(
+                                projectValues.private_notes
+                                  ? projectValues.private_notes
+                                  : []
+                              );
                             }}
                           >
                             <p>{Icons("private_notes")}</p>

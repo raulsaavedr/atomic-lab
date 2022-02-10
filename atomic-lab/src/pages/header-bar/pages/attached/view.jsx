@@ -28,7 +28,12 @@ function View({ data }) {
                 <td>{attached.type_file}</td>
                 <td>{attached.size}</td>
                 <td>
-                  <a href={URL_IMG + attached.filename} download="filename">
+                  <a
+                    href={URL_IMG + attached.filename}
+                    download="filename"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     {Icons("download")}
                   </a>
                 </td>

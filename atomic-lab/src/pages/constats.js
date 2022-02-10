@@ -1,6 +1,3 @@
-
-
-
 export const URL_IMG = "https://api.ticvzla.xyz/public/images/";
 
 
