@@ -32,7 +32,7 @@ function View({ selectedImg, onSelectFile, setStep, step }) {
         <div className="columns">
           <div className="column">
             <div className="column-item">
-              <label for="idea">{FORM_INPUTS.idea.label}</label>
+              <label htmlFor="idea">{FORM_INPUTS.idea.label}</label>
               <textarea
                 {...FORM_INPUTS.idea}
                 id="idea"

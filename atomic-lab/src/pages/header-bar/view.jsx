@@ -119,8 +119,9 @@ function View({
       </div>
       <div className="search flex">
         <div className="icon-search flex"> {Icons("search")}</div>
-        <p>Buscar...</p>
+        <input type="text" name="" id="" placeholder="Buscar..." />
       </div>
+
       <div className="icon-notifications option">{Icons("notifications")}</div>
       <div className="credits flex">
         <div className="icon-credit flex">

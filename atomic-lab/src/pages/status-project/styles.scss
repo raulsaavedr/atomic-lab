@@ -3,39 +3,36 @@
     margin-top: 20px;
     table {
       border-collapse: collapse;
-    }
 
-    /*   tr {
-            border-bottom: 1px solid #e7e7e8;
-        } */
-
-    td {
-      border-bottom: 1px solid #e7e7e8;
-    }
-
-    td:first-child {
-      border-bottom: none;
-      width: 10px;
-      position: relative;
-
-      img {
-        margin-top: 3px;
-        z-index: 1;
+      td {
+        text-align: center;
+        border-bottom: 1px solid #e7e7e8;
       }
-    }
 
-    .line-td {
-      background-color: #d8dbfa;
-      width: 4px;
-      height: 214px;
-      position: absolute;
-      top: 49px;
-      left: 21px;
-      z-index: 0;
-    }
+      td:nth-child(2) {
+        text-align: left;
+      }
 
-    table tbody tr td {
-      text-align: left;
+      td:first-child {
+        border-bottom: none;
+        width: 10px;
+        position: relative;
+
+        img {
+          margin-top: 3px;
+          z-index: 1;
+        }
+      }
+
+      .line-td {
+        background-color: #d8dbfa;
+        width: 4px;
+        height: 214px;
+        position: absolute;
+        top: 49px;
+        left: 21px;
+        z-index: 0;
+      }
     }
   }
   .qualify-experience {

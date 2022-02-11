@@ -4,8 +4,8 @@ import "./styles.scss";
 
 function View({ close, data }) {
   return (
-    <div id="myModal" class="modal-zoom-img" onClick={() => close(false)}>
-      <div class="modal-content">
+    <div id="myModal" className="modal-zoom-img" onClick={() => close(false)}>
+      <div className="modal-content">
         <img src={data} alt={data} />
       </div>
     </div>

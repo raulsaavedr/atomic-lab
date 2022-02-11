@@ -22,7 +22,7 @@ function View({ id, data, redirectTo }) {
             key={index}
             className={`item-input ${input.options && input.className}`}
           >
-            <label for={input.id}>{input.label} </label>
+            <label htmlFor={input.id}>{input.label} </label>
 
             {input.type && (
               <div className="flex">
@@ -48,7 +48,7 @@ function View({ id, data, redirectTo }) {
               <div key={index} className={input.className}>
                 <div className="flex-icon flex">
                   {option.icon && Icons(option.id)}{" "}
-                  <label for={option.id}>{option.label} </label>
+                  <label htmlFor={option.id}>{option.label} </label>
                 </div>
                 <div className="flex">
                   <input

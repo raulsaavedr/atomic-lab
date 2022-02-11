@@ -48,7 +48,7 @@ function View({ redirectToService, setStep, step }) {
         <div className="columns">
           <div className="column">
             <div>
-              <label for="name">{FORM_INPUTS.name.label}</label>
+              <label htmlFor="name">{FORM_INPUTS.name.label}</label>
               <input
                 {...FORM_INPUTS.name}
                 id="name"
@@ -64,7 +64,7 @@ function View({ redirectToService, setStep, step }) {
         <div className="columns">
           <div className="column">
             <div>
-              <label for="public">{FORM_INPUTS.public.label}</label>
+              <label htmlFor="public">{FORM_INPUTS.public.label}</label>
               <textarea
                 {...FORM_INPUTS.public}
                 id="public"
@@ -77,7 +77,7 @@ function View({ redirectToService, setStep, step }) {
           </div>
           <div className="column">
             <div>
-              <label for="colors">{FORM_INPUTS.palete_colors.label}</label>
+              <label htmlFor="colors">{FORM_INPUTS.palete_colors.label}</label>
               <textarea
                 {...FORM_INPUTS.palete_colors}
                 id="colors"

@@ -5,8 +5,8 @@ import "./styles.scss";
 
 function View({ close, data }) {
   return (
-    <div id="myModal" class="modal add-member">
-      <div class="modal-content">
+    <div id="myModal" className="modal add-member">
+      <div className="modal-content">
         <h3>Invitar personas</h3>
 
         <p>Añadir personas</p>

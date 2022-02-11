@@ -1,20 +1,34 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import DataContext from "../../data-context";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import View from "./view";
 
 function Index() {
 
+  const { id } = useParams();
+
   const { dataAll } = useContext(DataContext);
+  const [projectData, setProjectData] = useState([]);
 
-  let location = useLocation();
+  const dataActiveProjects = dataAll && dataAll.active_projects ? dataAll.active_projects : [];
+  const filterProject = dataActiveProjects.filter((project) => project.id === parseInt(id))[0]
 
-  const [project_id] = useState(location?.state?.project_id);
+  console.log("id", id)
+  console.log("dataActiveProjects--", dataActiveProjects)
 
 
-  const [filterProject] = useState([
-    dataAll.active_projects.filter((project) => project.id === project_id)[0],
-  ]);
+  useEffect(() => {
+    setProjectData(filterProject && {
+      ...filterProject,
+      flow: JSON.parse(filterProject?.flow),
+      values: JSON.parse(filterProject?.values),
+
+    })
+  }, [filterProject])
+
+
+  console.log(projectData)
+
 
   var rating = {};
 
@@ -31,9 +45,10 @@ function Index() {
   }
 
 
-  const properties = { filterProject, rate, reset };
+  const properties = { projectData, rate, reset };
 
   return <View {...properties} />;
+
 
 }
 

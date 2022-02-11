@@ -574,6 +574,13 @@ export const STATUS_TABLES = (page) => {
   return listContent.filter((item) => item.isActive === true);
 };
 
+export const STATUS_TABLES_FLOW = [
+  { id: 1, text: "Proyecto Iniciado" },
+  { id: 2, text: "Proyecto Asigando" },
+  { id: 3, text: "Proyecto Cargado" },
+  { id: 4, text: "Proyecto Finalizado" }
+]
+
 export const FINISH_TABLES = (page) => {
   const listContent = [
     { title: "Nombre del proyecto", isActive: true },

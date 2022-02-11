@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { USER_DATA } from "../constats";
+import React, { useState, useEffect, useContext } from "react";
+import DataContext from "../../data-context";
 import { useParams, useNavigate } from "react-router-dom";
 import View from "./view";
 
@@ -11,13 +11,22 @@ function Index() {
   const [modalZoomImg, setModalZoomImg] = useState(false);
   const [modalData, setModalData] = useState({});
 
-  useEffect(() => {
-    const data = USER_DATA.active_projects.filter(
-      (project) => project.id === parseInt(id)
-    );
 
-    setProjectData(data[0]);
-  }, [id]);
+
+  const { dataAll } = useContext(DataContext);
+
+  const dataActiveProjects = dataAll && dataAll.active_projects ? dataAll.active_projects : [];
+  const filterProject = dataActiveProjects.filter((project) => project.id === parseInt(id))[0]
+
+
+
+  useEffect(() => {
+    setProjectData(filterProject && {
+      ...filterProject,
+      values: JSON.parse(filterProject?.values),
+    })
+  }, [filterProject])
+
 
   const redirectTo = (item) => navigate(item);
 
@@ -29,7 +38,7 @@ function Index() {
     menuTopView,
     setMenuTopView,
     modalData,
-    setModalData,
+    setModalData
   };
 
   return <View {...properties} />;

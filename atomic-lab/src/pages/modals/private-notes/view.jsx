@@ -4,8 +4,8 @@ import "./styles.scss";
 
 function View({ close, data }) {
   return (
-    <div id="myModal" class="modal private-notes">
-      <div class="modal-content">
+    <div id="myModal" className="modal private-notes">
+      <div className="modal-content">
         <h3>Mis notas privadas</h3>
 
         <div className="content-notes">

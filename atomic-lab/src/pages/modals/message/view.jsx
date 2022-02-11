@@ -14,8 +14,8 @@ function View({ next, cancel, message, subMessage, cancelVisible, next_type }) {
   };
 
   return (
-    <div id="myModal" class="modal modal-message">
-      <div class="modal-content">
+    <div id="myModal" className="modal modal-message">
+      <div className="modal-content">
         <div className="text flex">
           <div className="text-purple">{message}</div>
           {subMessage && <div>{subMessage}</div>}

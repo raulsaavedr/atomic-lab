@@ -113,7 +113,7 @@ function View({
                               className="pointer flex"
                               onClick={() => {
                                 setModalReviews(!modalReviews);
-                                setDataModals(projectValues.review);
+                                setDataModals(project.review);
                               }}
                             >
                               {Icons("add_plus")}
@@ -124,7 +124,7 @@ function View({
                         <td>
                           <div
                             className="pointer"
-                            onClick={() => redirectToReviews(projectValues.id)}
+                            onClick={() => redirectToReviews(project.id)}
                           >
                             {Icons("review")}
                           </div>

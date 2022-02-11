@@ -5,8 +5,8 @@ import "./styles.scss";
 
 function View({ close, data }) {
   return (
-    <div id="myModal" class="modal help" onClick={() => close()}>
-      <div class="modal-content">
+    <div id="myModal" className="modal help" onClick={() => close()}>
+      <div className="modal-content">
         <h3>Ayuda</h3>
 
         <p>

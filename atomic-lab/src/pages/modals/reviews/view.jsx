@@ -1,12 +1,15 @@
 import React from "react";
-import { Icons } from "../../icons";
 import "../../modals/styles.scss";
 import "./styles.scss";
 
 function View({ close, data }) {
   return (
-    <div id="myModal" class="modal modal-reviews" onClick={() => close(false)}>
-      <div class="modal-content">
+    <div
+      id="myModal"
+      className="modal modal-reviews"
+      /* onClick={() => close(false)} */
+    >
+      <div className="modal-content">
         <h3 className="flex text-blue">Revisiones</h3>
         <div className="subtitle">
           Actualmente tienes <span className="text-blue"> {4 - data} </span>

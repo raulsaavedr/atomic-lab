@@ -17,7 +17,7 @@ function View({ data }) {
       <section className="content">
         {FORM_INPUTS_PROFILE.map((input, index) => (
           <div key={index} className="item-input flex">
-            <label for={input.id}>{input.label} </label>
+            <label htmlFor={input.id}>{input.label} </label>
             <div className="flex">
               <input {...input} id={input.id} value={dataUser[input.id]} />
               {Icons("edit")}

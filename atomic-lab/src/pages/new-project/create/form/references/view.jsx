@@ -14,7 +14,10 @@ function View({
 }) {
   return (
     <div className="upload-file">
-      <label for={`reference-${data && data.id}`} className="button-blue flex">
+      <label
+        htmlFor={`reference-${data && data.id}`}
+        className="button-blue flex"
+      >
         {Icons("clip_white")}
         {referenceFile?.name
           ? referenceFile?.name
@@ -44,7 +47,7 @@ function View({
       <div className="columns">
         <div className="column">
           <div>
-            <label for="reference">{FORM_INPUTS.reference.label}</label>
+            <label htmlFor="reference">{FORM_INPUTS.reference.label}</label>
             <textarea
               {...FORM_INPUTS.reference}
               id="reference"

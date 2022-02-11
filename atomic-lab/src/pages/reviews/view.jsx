@@ -16,7 +16,11 @@ function View({
 }) {
   return (
     <div className="page reviews">
-      <PageTitle page={"reviews"} user={true} title={projectData?.name} />
+      <PageTitle
+        page={"reviews"}
+        user={true}
+        title={projectData?.values.name_project}
+      />
 
       <div className="info-drop flex">
         <div className="info-drop-item flex">

@@ -7,9 +7,6 @@ function Index({ page }) {
 
   const { dataAll } = useContext(DataContext);
 
-  console.log("dataAll", dataAll)
-
-
   const [modalPrivateNotes, setModalPrivateNotes] = useState(false);
   const [modalZoomImg, setModalZoomImg] = useState(false);
   const [modalReviews, setModalReviews] = useState(false);
