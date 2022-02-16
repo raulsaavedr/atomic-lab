@@ -1,45 +1,91 @@
 .login {
-    background-color: #6f3bff;
-    width: 100%;
-    height: 100vh;
-    background-image: url(../../icons/background_transparent.png);
-    background-repeat: no-repeat;
-    background-position-y: center;
-    background-position-x: -7em;
+  background-color: #6f3bff;
+  width: 100%;
+  height: 100vh;
+  background-image: url(../../icons/background_transparent.png);
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: -7em;
 
-    .flex {
-        height: 100%;
+  .flex {
+    height: 100%;
+  }
+
+  .logo-main,
+  .inputs-main {
+    flex: 1;
+    text-align: center;
+  }
+
+  .inputs {
+    max-width: 413px;
+    height: 310px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    margin: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .error {
+      border: 1px solid #ff0000;
     }
 
-    .logo-main,
-    .inputs-main {
-        flex: 1;
-        text-align: center;
+    .user-invalid {
+      margin: 0 auto;
     }
 
-    .inputs {
-        max-width: 413px;
-        height: 310px;
-        background-color: rgba(255, 255, 255, 0.8);
-        border-radius: 20px;
-        margin: auto;
-        padding: 20px;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        .recovery {
-            text-align: left;
-        }
-
-        .button-blue {
-            margin: 0 auto;
-        }
-
-        .not-account {
-            display: flex;
-            justify-content: space-between;
-        }
+    .text-error {
+      color: #ff0000;
+      font-size: 10px;
+      width: fit-content;
+      margin-top: -11px;
+      margin-left: 8px;
     }
+
+    .recovery {
+      text-align: left;
+    }
+
+    .button-blue,
+    .button-gray {
+      margin: 0 auto;
+    }
+
+    .not-account {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  input:focus {
+    outline: none;
+  }
+
+  .button-reactive {
+    * {
+      box-shadow: none;
+    }
+
+    .reactive-btn .progress {
+      background-color: #39dbe1;
+      box-shadow: none;
+    }
+
+    .reactive-btn.button-gray.primary {
+      background-color: #dddddd;
+      box-shadow: none;
+    }
+    .reactive-btn.button-gray.primary:hover {
+      background-color: #dddddd;
+      box-shadow: none;
+    }
+    .reactive-btn.button-blue.primary:hover {
+      border: 1px solid #36ccd1;
+      background-color: #36ccd1;
+      color: #ffffff;
+      box-shadow: none;
+    }
+  }
 }

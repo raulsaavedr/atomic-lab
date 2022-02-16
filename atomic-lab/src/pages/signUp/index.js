@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { postCreateAccount } from "../../services";
 import View from "./view";
 
 function Index() {
@@ -9,7 +10,74 @@ function Index() {
     navigate(item);
   };
 
-  const properties = { redirectTo };
+  const [name, setName] = useState(null);
+  const [lastName, setLastName] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [emailValidate, setEmailValidate] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [passwordConfirm, setPasswordConfirm] = useState(null);
+  const [state, setState] = useState("idle");
+
+  function validateEmail(e) {
+    var filter =
+      /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/;
+    return String(e).search(filter) != -1;
+  }
+
+
+
+
+
+  const createAccount = () => {
+    postCreateAccount({
+      name: name,
+      last_name: lastName,
+      email: email,
+      password: password,
+    })
+      .then((res) => {
+
+        redirectTo("/sing-up/email")
+
+      })
+      .catch((error) => {
+
+        setState("idle");
+
+
+      });
+  };
+
+  const onClickHandler = () => {
+    setState("loading");
+
+
+    setTimeout(() => {
+
+      createAccount();
+
+    }, 2000);
+  };
+
+  const properties = {
+    redirectTo,
+    name,
+    setName,
+    lastName,
+    setLastName,
+    setEmail,
+    setPassword,
+    createAccount,
+    passwordConfirm,
+    setPasswordConfirm,
+    password,
+    validateEmail,
+    email,
+    emailValidate,
+    setEmailValidate,
+    state,
+    onClickHandler,
+  };
 
   return <View {...properties} />;
 }

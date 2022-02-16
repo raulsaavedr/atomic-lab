@@ -28,9 +28,6 @@ function View({
       {dataFinishProjects.length === 0 ? (
         <div className="message">
           <h3 className="text-purple">No tienes proyectos terminados</h3>
-          <div className="button" onClick={() => navigate("/new-project")}>
-            Empezar proyecto
-          </div>
         </div>
       ) : (
         <div className="table-data">

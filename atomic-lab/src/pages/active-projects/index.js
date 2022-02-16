@@ -21,6 +21,7 @@ function Index({ page }) {
       state: { project_id: project_id },
     });
   const redirectToReviews = (id) => navigate(`/reviews/${id}`);
+  const redirecToActiveProyects = () => navigate(`/active-projects`);
 
   const dataActiveProjects =
     dataAll && dataAll.active_projects ? dataAll.active_projects : [];
@@ -40,7 +41,8 @@ function Index({ page }) {
     menuFloat,
     setMenuFloat,
     navigate,
-    dataActiveProjects
+    dataActiveProjects,
+    redirecToActiveProyects
   };
 
   return <View {...properties} />;

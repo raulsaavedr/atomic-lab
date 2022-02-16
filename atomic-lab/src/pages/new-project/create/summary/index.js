@@ -20,10 +20,12 @@ function Index({ setStep, step }) {
   const [libertyLevel, setLibertyLevel] = useState("");
 
   const handleGetDataUser = () => {
-    getDataUser(1).then((data) => {
-      setDataAll(data);
+    getDataUser(JSON.parse(sessionStorage.getItem('atomiclab-user')).user_id).then((data) => {
+      setDataAll(data.data);
     });
+    setFormData({});
   };
+
 
   const handleStartProject = () => {
     JSON.safeStringify = (obj, indent = 2) => {

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
 import { USER_DATA } from "./pages/constats";
 
-import { getDataUser } from "./services";
-
 import AuthContext from "./auth-context";
 import CreateFormContext from "./create-form-context";
 import DataContext from "./data-context";
@@ -35,21 +33,23 @@ import Create from "./pages/new-project/create";
 import "./app.scss";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [formData, setFormData] = useState({});
 
   function toggleAuthenticated() {
     setIsAuthenticated((isAuthenticated) => !isAuthenticated);
-    sessionStorage.setItem("token", 123);
   }
 
   const [dataAll, setDataAll] = useState([]);
 
   useEffect(() => {
-    getDataUser(1).then((data) => {
-      setDataAll(data.data);
-    });
+
+    setIsAuthenticated(sessionStorage.getItem('atomiclab-user') ? true : false)
+
   }, []);
+
+
+
 
   return (
     <div className="app">

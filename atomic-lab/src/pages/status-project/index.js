@@ -13,8 +13,7 @@ function Index() {
   const dataActiveProjects = dataAll && dataAll.active_projects ? dataAll.active_projects : [];
   const filterProject = dataActiveProjects.filter((project) => project.id === parseInt(id))[0]
 
-  console.log("id", id)
-  console.log("dataActiveProjects--", dataActiveProjects)
+
 
 
   useEffect(() => {
@@ -27,7 +26,7 @@ function Index() {
   }, [filterProject])
 
 
-  console.log(projectData)
+
 
 
   var rating = {};

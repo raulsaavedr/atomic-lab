@@ -125,7 +125,10 @@ function View({
       <div className="icon-notifications option">{Icons("notifications")}</div>
       <div className="credits flex">
         <div className="icon-credit flex">
-          {Icons("credits")} ${dataAll.user && dataAll.user[0].credits}
+          {Icons("credits")} $
+          {dataAll.user && dataAll.user[0].credits
+            ? dataAll.user[0].credits
+            : 0}
         </div>
         <div className="credits-buy flex">Comprar</div>
       </div>
@@ -148,7 +151,10 @@ function View({
               )[0].name
             }
           </div>
-          <div>{dataAll.user && dataAll.user[0].username}</div>
+          <div>
+            {dataAll.user &&
+              dataAll.user[0].name.charAt(0) + dataAll.user[0].last_name}
+          </div>
         </div>
         <div className="icon-arrow-up">
           <div className="icon" onClick={() => setMenuActive(!menuActive)}>
@@ -206,6 +212,7 @@ function View({
                 <li
                   className="text-purple"
                   onClick={() => {
+                    sessionStorage.removeItem("atomiclab-user");
                     setIsAuthenticated(false);
                     redirectTo("/");
                   }}

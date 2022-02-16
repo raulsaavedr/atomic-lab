@@ -23,6 +23,7 @@ function View({
   setMenuFloat,
   navigate,
   dataActiveProjects,
+  redirecToActiveProyects,
 }) {
   return (
     <div className="page active-projects">
@@ -63,7 +64,9 @@ function View({
                     <td>{projectValues.name_project}</td>
                     <td>
                       <div>
-                        <p>{Icons("status_check_" + project.status)}</p>
+                        <p alt="heart">
+                          {Icons("status_check_" + project.status)}
+                        </p>
                         <p
                           className="view-more pointer"
                           onClick={() => redirectToStatusProject(project.id)}
@@ -183,13 +186,18 @@ function View({
                         <td>
                           <div
                             className="pointer"
-                            onClick={() => redirectToReviews(projectValues.id)}
+                            onClick={() => redirectToReviews(project.id)}
                           >
                             {Icons("retro_review")}
                           </div>
                         </td>
                         <td>
-                          <div className="view-more pointer">Ver más...</div>
+                          <div
+                            className="view-more pointer"
+                            onClick={() => redirecToActiveProyects()}
+                          >
+                            Ver más...
+                          </div>
                         </td>
                       </>
                     )}

@@ -5,7 +5,10 @@ import "./styles.scss";
 
 function View({ service, redirectToServicePage }) {
   return (
-    <div className="card-service" onClick={() => redirectToServicePage()}>
+    <div
+      className="card-service"
+      onClick={() => service.status === "active" && redirectToServicePage()}
+    >
       <>
         <div className="background"></div>
         <div

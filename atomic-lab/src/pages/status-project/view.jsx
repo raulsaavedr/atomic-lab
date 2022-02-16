@@ -47,7 +47,11 @@ function View({ projectData, rate }) {
                     )[0].text
                   }
                 </td>
-                <td>{moment(status.date).format("YY-MM-DD, h:mm:ss a")}</td>
+                <td>
+                  {status.date
+                    ? moment(status.date).format("YY-MM-DD, h:mm:ss a")
+                    : "-"}
+                </td>
                 <td></td>
               </tr>
             ))}

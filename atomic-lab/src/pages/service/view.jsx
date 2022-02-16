@@ -212,16 +212,16 @@ function View({
           Atrás
         </div>
 
-        {!data.brand_select ||
-        !data.type_publication ||
-        !data.type_post ||
-        !data.social_network ? (
-          <div className="button-gray">Continuar</div>
-        ) : (
-          <div className="button" onClick={() => redirectToForm()}>
-            Continuar
-          </div>
-        )}
+        {
+          /* !data.brand_select || */
+          !data.type_publication || !data.type_post || !data.social_network ? (
+            <div className="button-gray">Continuar</div>
+          ) : (
+            <div className="button" onClick={() => redirectToForm()}>
+              Continuar
+            </div>
+          )
+        }
       </section>
 
       {modalMessage && (
