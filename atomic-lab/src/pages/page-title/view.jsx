@@ -13,10 +13,18 @@ function View({
   func,
   modalHelp,
   setModalHelp,
+  dataAll,
 }) {
   return (
     <>
-      {page !== "home" && user && <p>Hola {USER_DATA.user.nickname},</p>}
+      {page !== "home" && user && (
+        <p>
+          Hola{" "}
+          {dataAll.user &&
+            dataAll.user[0].name.charAt(0) + dataAll.user[0].last_name}
+          ,
+        </p>
+      )}
       <div className="page-title flex">
         <div className="title">
           {page === "attached-page" && Icons("clip_circle")}

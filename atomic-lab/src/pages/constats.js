@@ -1,6 +1,21 @@
 export const URL_IMG = "https://api.ticvzla.xyz/public/images/";
 
 
+export const TEAM_ROL = [
+  {
+    id: 5,
+    text: "Puede ver"
+  },
+  {
+    id: 6,
+    text: "Puede editar"
+  },
+  {
+    id: 7,
+    text: "Puede comentar"
+  },
+]
+
 
 export const USER_DATA = {
   user: {
@@ -234,10 +249,10 @@ export const USER_DATA = {
 
 export const FORM_INPUTS_BRANDS = [
   {
-    id: "name_comercial",
+    id: "name",
     type: "text",
     label: "Nombre comercial",
-    required: false,
+    required: true,
     className: "input-txt",
   },
   {
@@ -399,7 +414,7 @@ export const FORM_INPUTS_BRANDS = [
     className: "input-texarea",
   },
   {
-    id: "values",
+    id: "value",
     type: "textarea",
     label: "Valores",
     required: false,

@@ -1,24 +1,28 @@
 .team-page {
-    position: relative;
+  position: relative;
 
-    table {
-        thead td {
-            color: #6b72fd;
-            font-weight: 600;
-            height: 50px;
-        }
-        td {
-            text-align: center;
-        }
+  table {
+    thead td {
+      color: #6b72fd;
+      font-weight: 600;
+      height: 50px;
     }
-    .footer {
-        right: 123px;
-        margin-top: 4em;
-        position: absolute;
-        bottom: 0;
+    td {
+      text-align: center;
+    }
 
-        .section-buttons {
-            justify-content: space-between;
-        }
+    .delete-icon {
+      cursor: pointer;
     }
+  }
+  .footer {
+    right: 123px;
+    margin-top: 4em;
+    position: absolute;
+    bottom: 0;
+
+    .section-buttons {
+      justify-content: space-between;
+    }
+  }
 }

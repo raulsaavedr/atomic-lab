@@ -28,7 +28,7 @@ function View({ redirectToBrandForm, data }) {
               <p>{brand.name}</p>
             </div>
             <div className="footer">
-              {brand.predeterminate && <p>Predeterminada</p>}
+              {brand.predeterminate === 1 && <p>Predeterminada</p>}
             </div>
           </div>
         ))}

@@ -4,100 +4,97 @@ import { FORM_INPUTS_BRANDS, FROM_BRAND_TABLES } from "../../../../constats";
 import "./styles.scss";
 import { Icons } from "../../../../icons";
 
-function View({ id, data, redirectTo }) {
-  const dataBrand =
-    data && data.brands
-      ? data.brands.filter((brand) => brand.id === parseInt(id))[0]
-      : [];
-
+function View({ id, redirectTo, dataBrand, onSubmit, handleSubmit, register }) {
   return (
-    <div className="brands-form-page page">
-      <PageTitle page={"brands-form-page"} user={true} title="Mis marcas" />
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="brands-form-page page">
+        <PageTitle
+          page={"brands-form-page"}
+          user={true}
+          title={id ? "Editar marca" : "Crear marca"}
+        />
 
-      <div className="description">Datos de la compañia/organización</div>
+        <div className="description">Datos de la compañia/organización</div>
 
-      <section className="content ">
-        {FORM_INPUTS_BRANDS.map((input, index) => (
-          <div
-            key={index}
-            className={`item-input ${input.options && input.className}`}
-          >
-            <label htmlFor={input.id}>{input.label} </label>
+        <section className="content ">
+          {FORM_INPUTS_BRANDS.map((input, index) => (
+            <div
+              key={index}
+              className={`item-input ${input.options && input.className}`}
+            >
+              <label htmlFor={input.id}>{input.label} </label>
 
-            {input.type && (
-              <div className="flex">
-                {input.type !== "textarea" && (
-                  <input
-                    {...input}
-                    id={input.id}
-                    placeholder={id && dataBrand[input.id]}
-                  />
-                )}
-                {input.type === "textarea" && (
-                  <textarea
-                    {...input}
-                    id={input.id}
-                    placeholder={id && dataBrand[input.id]}
-                  />
-                )}
-                {Icons("edit")}
-              </div>
-            )}
-
-            {input?.options?.map((option, index) => (
-              <div key={index} className={input.className}>
-                <div className="flex-icon flex">
-                  {option.icon && Icons(option.id)}{" "}
-                  <label htmlFor={option.id}>{option.label} </label>
-                </div>
+              {input.type && (
                 <div className="flex">
-                  <input
-                    {...option}
-                    id={option.id}
-                    placeholder={id && dataBrand[option.id]}
-                    checked={
-                      option.type === "checkbox" &&
-                      id &&
-                      dataBrand["offers"] === option.id &&
-                      true
-                    }
-                  />
-
-                  {option.type !== "checkbox" && Icons("edit")}
+                  {input.type !== "textarea" && (
+                    <input {...input} id={input.id} {...register(input.id)} />
+                  )}
+                  {input.type === "textarea" && (
+                    <textarea
+                      {...input}
+                      id={input.id}
+                      {...register(input.id)}
+                    />
+                  )}
+                  {Icons("edit")}
                 </div>
-              </div>
-            ))}
-          </div>
-        ))}
+              )}
 
-        <table className="table">
-          <tbody>
-            {FROM_BRAND_TABLES.map((item, index) => (
-              <tr key={index}>
-                <td>{item.title}</td>
-                <td>
-                  <div className="flex">{Icons("upload_circle")} Cargar</div>
-                </td>
-                <td>
-                  <div className="flex">
-                    {Icons("download_circle")} Descargar
+              {input?.options?.map((option, index) => (
+                <div key={index} className={input.className}>
+                  <div className="flex-icon flex">
+                    {option.icon && Icons(option.id)}{" "}
+                    <label htmlFor={option.id}>{option.label} </label>
                   </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </section>
+                  <div className="flex">
+                    <input
+                      {...option}
+                      id={option.id}
+                      checked={
+                        option.type === "checkbox" &&
+                        id &&
+                        dataBrand["offers"] === option.id &&
+                        true
+                      }
+                      {...register(option.id)}
+                    />
 
-      <section className="footer">
-        <section className="section-buttons flex">
-          <div className="button" onClick={() => redirectTo("/brands")}>
-            Atrás
-          </div>
-          <div className="button">Guardar cambios</div>
+                    {option.type !== "checkbox" && Icons("edit")}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
+
+          <table className="table">
+            <tbody>
+              {FROM_BRAND_TABLES.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.title}</td>
+                  <td>
+                    <div className="flex">{Icons("upload_circle")} Cargar</div>
+                  </td>
+                  <td>
+                    <div className="flex">
+                      {Icons("download_circle")} Descargar
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </section>
-      </section>
-    </div>
+
+        <section className="footer">
+          <section className="section-buttons flex">
+            <div className="button" onClick={() => redirectTo("/brands")}>
+              Atrás
+            </div>
+            <input className="button" type="submit" value={"Guardar Cambios"} />
+          </section>
+        </section>
+      </div>
+    </form>
   );
 }
 
