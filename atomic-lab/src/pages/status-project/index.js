@@ -1,18 +1,19 @@
 import React, { useState, useContext, useEffect } from "react";
 import DataContext from "../../data-context";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import View from "./view";
 
 function Index() {
-
+  const navigate = useNavigate();
   const { id } = useParams();
 
-  const { dataAll } = useContext(DataContext);
+  const { activeProjects } = useContext(DataContext);
   const [projectData, setProjectData] = useState([]);
 
-  const dataActiveProjects = dataAll && dataAll.active_projects ? dataAll.active_projects : [];
-  const filterProject = dataActiveProjects.filter((project) => project.id === parseInt(id))[0]
 
+  const filterProject = activeProjects.filter((project) => project.id === parseInt(id))[0]
+
+  const redirectTo = (route) => navigate(route);
 
 
 
@@ -44,7 +45,7 @@ function Index() {
   }
 
 
-  const properties = { projectData, rate, reset };
+  const properties = { projectData, rate, redirectTo };
 
   return <View {...properties} />;
 

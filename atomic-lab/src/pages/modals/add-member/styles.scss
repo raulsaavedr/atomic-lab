@@ -2,6 +2,16 @@
   .modal-content {
   }
 
+  .button-reactive {
+    .reactive-btn .progress {
+      box-shadow: none;
+    }
+
+    .reactive-btn.button.primary {
+      box-shadow: none;
+    }
+  }
+
   h3 {
     color: #36ccd1;
     text-align: center;

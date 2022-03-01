@@ -15,7 +15,7 @@ function View({
   setTourStep,
   tourActive,
   setTourActive,
-  dataAll,
+  userData,
 }) {
   return (
     <div className="header-bar flex">
@@ -126,9 +126,7 @@ function View({
       <div className="credits flex">
         <div className="icon-credit flex">
           {Icons("credits")} $
-          {dataAll.user && dataAll.user[0].credits
-            ? dataAll.user[0].credits
-            : 0}
+          {userData && userData.credits ? userData.credits : 0}
         </div>
         <div className="credits-buy flex">Comprar</div>
       </div>
@@ -151,10 +149,7 @@ function View({
               )[0].name
             }
           </div>
-          <div>
-            {dataAll.user &&
-              dataAll.user[0].name.charAt(0) + dataAll.user[0].last_name}
-          </div>
+          <div>{userData?.name.charAt(0) + userData?.last_name}</div>
         </div>
         <div className="icon-arrow-up">
           <div className="icon" onClick={() => setMenuActive(!menuActive)}>

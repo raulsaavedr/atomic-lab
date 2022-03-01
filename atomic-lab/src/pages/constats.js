@@ -170,14 +170,47 @@ export const USER_DATA = {
           date: "2022-01-18:10:18",
         },
       ],
-      review_data: {
+      review_data: [
+        {
+          version: 1,
+          version_data: [
+            { id: "1A", content: "https://i.postimg.cc/g2GCWRdY/1A.png" },
+          ],
+        },
+        {
+          version: 2,
+          version_data: [
+            { id: "1A", content: "https://i.postimg.cc/g2GCWRdY/1A.png" },
+            { id: "1B", content: "https://i.postimg.cc/nr8Ww90f/1B.png" },
+
+          ],
+        },
+        {
+          version: 3,
+          version_data: [
+            { id: "1A", content: "https://i.postimg.cc/g2GCWRdY/1A.png" },
+            { id: "1B", content: "https://i.postimg.cc/nr8Ww90f/1B.png" },
+            { id: "1C", content: "https://i.postimg.cc/bYbWSLwy/1C.png" },
+          ],
+        },
+        {
+          version: 4,
+          version_data: [
+            { id: "1A", content: "https://i.postimg.cc/g2GCWRdY/1A.png" },
+            { id: "1B", content: "https://i.postimg.cc/nr8Ww90f/1B.png" },
+            { id: "1C", content: "https://i.postimg.cc/bYbWSLwy/1C.png" },
+            { id: "1D", content: "https://i.postimg.cc/bYbWSLwy/1C.png" },
+          ],
+        },
+      ],
+      /* review_data: {
         version: 1,
         versions: [
           { id: "1A", content: "https://i.postimg.cc/g2GCWRdY/1A.png" },
           { id: "1B", content: "https://i.postimg.cc/nr8Ww90f/1B.png" },
           { id: "1C", content: "https://i.postimg.cc/bYbWSLwy/1C.png" },
         ],
-      },
+      }, */
     },
 
     {
@@ -428,6 +461,28 @@ export const FORM_INPUTS_BRANDS = [
     className: "input-texarea",
   },
 ];
+
+export const DETAIL_PROJECT_DATA = {
+  "brand_select": "marca",
+  "type_publication": "Tipo de publicación",
+  "type_post": "Tipo de post",
+  "social_network": "Red social",
+  "name_project": "Nombre del proyeto",
+  "public_goal": "Publico objetivo",
+  "palete_colors": "Paleta de colores",
+  "references": "Referencias",
+  "idea_post": "Idea a desarollar",
+  "post": "Post",
+
+
+
+}
+
+
+
+
+
+
 
 export const FORM_INPUTS_PROFILE = [
   {

@@ -8,8 +8,6 @@ function Index() {
   let location = useLocation();
   const navigate = useNavigate();
 
-  const { dataAll } = useContext(DataContext);
-
   const [serviceData] = useState(location?.state?.service);
   const [typePublication, setTypePublication] = useState("");
   const [typeManual, setTypeManual] = useState("");
@@ -17,6 +15,12 @@ function Index() {
   const [modalMessage, setModalMessage] = useState(true);
   const [selectType, setSelectType] = useState("");
   const [socialNetwork, setSocialNetwork] = useState("");
+
+
+  const {
+    dataAll,
+    brands
+  } = useContext(DataContext);
 
   useEffect(() => {
     let sum = 0;
@@ -42,7 +46,8 @@ function Index() {
     setModalMessage,
     socialNetwork,
     setSocialNetwork,
-    dataAll
+    dataAll,
+    brands
   };
 
   return <View {...properties} />;

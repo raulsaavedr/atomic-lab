@@ -6,7 +6,7 @@ import moment from "moment";
 
 import "./styles.scss";
 
-function View({ projectData, rate }) {
+function View({ projectData, rate, redirectTo }) {
   return (
     <div className="page status-projects">
       <PageTitle page={"status"} user={true} title="Estado detallado" />
@@ -122,7 +122,12 @@ function View({ projectData, rate }) {
         </div>
 
         <section className="section-buttons flex">
-          <div className="button">Atrás</div>
+          <div
+            className="button"
+            onClick={() => redirectTo("/active-projects")}
+          >
+            Atrás
+          </div>
         </section>
       </div>
     </div>

@@ -13,6 +13,11 @@ function View({
   setMenuTopView,
   modalData,
   setModalData,
+  reviews,
+  versionSelect,
+  setVersionSelect,
+  versionVote,
+  setVersionVote,
 }) {
   return (
     <div className="page reviews">
@@ -22,11 +27,12 @@ function View({
         title={projectData?.values.name_project}
       />
 
-      {projectData?.review_data?.version ? (
+      {reviews?.version_data?.length >= 1 ||
+      reviews?.review_data?.length >= 1 ? (
         <>
           <div className="info-drop flex">
             <div className="info-drop-item flex">
-              Versión {projectData?.review_data?.version}
+              Versión {versionSelect}
               <div
                 onClick={() =>
                   setMenuTopView(menuTopView === "version" ? "" : "version")
@@ -36,7 +42,21 @@ function View({
               </div>
               {menuTopView === "version" && (
                 <div className="menu-float">
-                  <p>No hay más versiones disponibles</p>
+                  {reviews ? (
+                    reviews.review_data.map((review) => (
+                      <div
+                        className="option-reviews"
+                        onClick={() => {
+                          setVersionSelect(review.version);
+                          setMenuTopView("");
+                        }}
+                      >
+                        Versión {review.version}
+                      </div>
+                    ))
+                  ) : (
+                    <p>No hay más versiones disponibles</p>
+                  )}
                 </div>
               )}
             </div>
@@ -51,17 +71,17 @@ function View({
               </div>
               {menuTopView === "info" && (
                 <div className="menu-float">
-                  <p>Tiempo de entrega</p>
+                  <p className="title">Tiempo de entrega</p>
                   <p className="text-purple">{projectData.delivery_time}</p>
-                  <p>Formato de entrega</p>
+                  <p className="title">Formato de entrega</p>
                   <p className="text-purple">{projectData.delivery_format}</p>
-                  <p>Tamaño</p>
+                  <p className="title">Tamaño</p>
                   <p className="text-purple">{projectData.size}</p>
-                  <p>Archivos editables</p>
+                  <p className="title">Archivos editables</p>
                   <p className="text-purple">
                     {projectData.editable_files ? "Yes" : "No"}
                   </p>
-                  <p>Impresión</p>
+                  <p className="title">Impresión</p>
                   <p className="text-purple">
                     {projectData.print ? "Yes" : "No"}
                   </p>
@@ -79,14 +99,14 @@ function View({
               </div>
               {menuTopView === "review" && (
                 <div className="menu-float">
-                  <p>
+                  <div className="reviews-count">
                     Has realizado
                     <span className="text-purple">
                       {" "}
                       {projectData.review} de 4{" "}
                     </span>
                     revisiones
-                  </p>
+                  </div>
                 </div>
               )}
             </div>
@@ -99,33 +119,53 @@ function View({
           </p>
 
           <div className="versions-content flex">
-            {projectData?.review_data?.versions?.map((version, index) => (
-              <div key={index} className="version">
-                <div className="version-id">{version.id}</div>
-                <div
-                  className="version-img"
-                  onClick={() => {
-                    setModalData(version.content);
-                    setModalZoomImg(!modalZoomImg);
-                  }}
-                >
-                  <img src={version.content} alt={version.id} />
-                </div>
-              </div>
-            ))}
-
-            <div className="version vote-main">
-              <p>De las anteriores propuestas, ¿Cuál te gusta más?</p>
-
-              {projectData?.review_data?.versions?.map((version, index) => (
-                <div key={index} className="version-vote flex">
-                  <div className="version-vote-id">Versión {version.id}</div>
-                  <div className="version-vote-id">
-                    <input type="checkbox" name="" id="" />
+            {reviews.review_data
+              .filter((filter) => filter.version === versionSelect)[0]
+              .version_data?.map((version, index) => (
+                <div key={index} className="version">
+                  <div className="version-id">Opción {version.id}</div>
+                  <div
+                    className={`version-img ${
+                      reviews.review_data.filter(
+                        (filter) => filter.version === versionSelect
+                      )[0].version_data.length >= 2
+                        ? "img-2"
+                        : "img-1"
+                    }`}
+                    onClick={() => {
+                      setModalData(version.content);
+                      setModalZoomImg(!modalZoomImg);
+                    }}
+                  >
+                    <img src={version.content} alt={version.id} />
                   </div>
                 </div>
               ))}
-            </div>
+
+            {reviews.review_data.filter(
+              (filter) => filter.version === versionSelect
+            )[0].version_data?.length >= 2 && (
+              <div className="versio vote-main">
+                <p>De las anteriores propuestas, ¿Cuál te gusta más?</p>
+
+                {reviews.review_data
+                  .filter((filter) => filter.version === versionSelect)[0]
+                  .version_data?.map((version, index) => (
+                    <div key={index} className="version-vote flex">
+                      <div className="version-vote-id">Opción {version.id}</div>
+                      <div className="version-vote-id">
+                        <input
+                          checked={index === versionVote}
+                          type="checkbox"
+                          name=""
+                          id=""
+                          onClick={() => setVersionVote(index)}
+                        />
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            )}
           </div>
 
           <div className="footer">

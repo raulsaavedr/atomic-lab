@@ -3,9 +3,7 @@ import PageTitle from "../../../page-title";
 import "./styles.scss";
 import { Icons } from "../../../icons";
 
-function View({ redirectToBrandForm, data }) {
-  const dataBrand = data && data.brands ? data.brands : [];
-
+function View({ redirectToBrandForm, brands }) {
   return (
     <div className="brands-page page">
       <PageTitle page={"brands-page"} user={true} title="Mis marcas" />
@@ -13,7 +11,7 @@ function View({ redirectToBrandForm, data }) {
       <div className="description">Compañía/organización</div>
 
       <section className="content flex">
-        {dataBrand.map((brand, index) => (
+        {brands.map((brand, index) => (
           <div
             key={index}
             className="brand-card"

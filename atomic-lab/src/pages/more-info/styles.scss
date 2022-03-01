@@ -1,0 +1,30 @@
+.more-info {
+  table {
+    border-collapse: collapse;
+  }
+  .table-data {
+    margin-top: 20px;
+
+    td {
+      text-align: left;
+    }
+
+    tr {
+      border-bottom: 1px solid #70707042;
+    }
+
+    tr:last-child {
+      border-bottom: none;
+    }
+
+    .title {
+      font-weight: bold;
+    }
+  }
+
+  .section-buttons {
+    position: absolute;
+    bottom: 40px;
+    right: 125px;
+  }
+}

@@ -9,11 +9,9 @@ function View({
   modalAddMember,
   setModalAddMember,
   dataModals,
-  data,
+  team,
   deleteMember,
 }) {
-  const dataTeam = data && data.team ? data.team : [];
-
   return (
     <div className="team-page page">
       <PageTitle
@@ -24,7 +22,7 @@ function View({
       />
 
       <div className="table-data">
-        {dataTeam.length >= 1 ? (
+        {team ? (
           <table>
             <thead>
               <tr>
@@ -36,7 +34,7 @@ function View({
               </tr>
             </thead>
             <tbody>
-              {dataTeam.map((member, index) => (
+              {team.map((member, index) => (
                 <tr key={index}>
                   <td>{member.name}</td>
                   <td>{member.email}</td>

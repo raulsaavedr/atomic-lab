@@ -27,6 +27,8 @@ import RecoverPassword from "./pages/recover-password";
 import RecoverPasswordEmail from "./pages/recover-password/send-email";
 import Onboarding from "./pages/onboarding";
 import Reviews from "./pages/reviews";
+import MoreInfo from "./pages/more-info";
+import ProjectDetail from "./pages/project-detail";
 
 import Create from "./pages/new-project/create";
 
@@ -40,20 +42,38 @@ function App() {
     setIsAuthenticated((isAuthenticated) => !isAuthenticated);
   }
 
-  const [dataAll, setDataAll] = useState([]);
+  const [dataAll, setDataAll] = useState(null);
+  const [userData, setUserData] = useState(null);
+  const [brands, setBrands] = useState(null);
+  const [team, setTeam] = useState(null);
+  const [activeProjects, setActiveProjects] = useState(null);
+  const [finishProjects, setFinishProjects] = useState(null);
+  const [attached, setAttached] = useState(null);
 
   useEffect(() => {
-
-    setIsAuthenticated(sessionStorage.getItem('atomiclab-user') ? true : false)
-
+    setIsAuthenticated(sessionStorage.getItem("atomiclab-user") ? true : false);
   }, []);
-
-
-
 
   return (
     <div className="app">
-      <DataContext.Provider value={{ dataAll, setDataAll }}>
+      <DataContext.Provider
+        value={{
+          dataAll,
+          setDataAll,
+          userData,
+          setUserData,
+          brands,
+          setBrands,
+          activeProjects,
+          setActiveProjects,
+          team,
+          setTeam,
+          attached,
+          setAttached,
+          finishProjects,
+          setFinishProjects
+        }}
+      >
         <HashRouter>
           {isAuthenticated && !USER_DATA.onboarding && (
             <HeaderBar setIsAuthenticated={setIsAuthenticated} />
@@ -87,19 +107,18 @@ function App() {
                   }
                 />
 
-                <Route path="profile" element={<Profile data={dataAll} />} />
-                <Route path="brands" element={<Brands data={dataAll} />} />
-                <Route
-                  path="brands/brands-form/:id"
-                  element={<BrandsForm data={dataAll} />}
-                />
+                <Route path="profile" element={<Profile />} />
+                <Route path="brands" element={<Brands />} />
+                <Route path="brands/brands-form/:id" element={<BrandsForm />} />
                 <Route path="brands/brands-form" element={<BrandsForm />} />
-                <Route path="attached" element={<Attached data={dataAll} />} />
-                <Route path="team" element={<Team data={dataAll} />} />
+                <Route path="attached" element={<Attached />} />
+                <Route path="team" element={<Team />} />
                 <Route path="configuration" element={<Configuration />} />
                 <Route path="help-support" element={<HelpSupport />} />
                 <Route path="onboarding" element={<Onboarding />} />
                 <Route path="reviews/:id" element={<Reviews />} />
+                <Route path="more-info/:id" element={<MoreInfo />} />
+                <Route path="project-detail/:id" element={<ProjectDetail />} />
               </>
             ) : (
               <>

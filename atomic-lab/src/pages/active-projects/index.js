@@ -5,7 +5,7 @@ import View from "./view";
 
 function Index({ page }) {
 
-  const { dataAll } = useContext(DataContext);
+  const { activeProjects } = useContext(DataContext);
 
   const [modalPrivateNotes, setModalPrivateNotes] = useState(false);
   const [modalZoomImg, setModalZoomImg] = useState(false);
@@ -22,9 +22,12 @@ function Index({ page }) {
     });
   const redirectToReviews = (id) => navigate(`/reviews/${id}`);
   const redirecToActiveProyects = () => navigate(`/active-projects`);
+  const redirectTo = (route) => navigate(route);
 
-  const dataActiveProjects =
-    dataAll && dataAll.active_projects ? dataAll.active_projects : [];
+
+
+
+
 
   const properties = {
     page,
@@ -41,8 +44,9 @@ function Index({ page }) {
     menuFloat,
     setMenuFloat,
     navigate,
-    dataActiveProjects,
-    redirecToActiveProyects
+    redirecToActiveProyects,
+    activeProjects,
+    redirectTo
   };
 
   return <View {...properties} />;

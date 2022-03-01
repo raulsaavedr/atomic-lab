@@ -4,9 +4,7 @@ import { URL_IMG } from "../../../constats";
 import { Icons } from "../../../icons";
 import "./styles.scss";
 
-function View({ data }) {
-  const dataAttached = data && data.attached ? data.attached : [];
-
+function View({ attached }) {
   return (
     <div className="attached-page page">
       <PageTitle page={"attached-page"} user={true} title="Mis adjuntos" />
@@ -22,7 +20,7 @@ function View({ data }) {
             </tr>
           </thead>
           <tbody>
-            {dataAttached.map((attached, index) => (
+            {attached?.map((attached, index) => (
               <tr key={index}>
                 <td>{attached.comments}</td>
                 <td>{attached.type_file}</td>

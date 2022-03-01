@@ -22,14 +22,15 @@ function View({
   menuFloat,
   setMenuFloat,
   navigate,
-  dataActiveProjects,
   redirecToActiveProyects,
+  activeProjects,
+  redirectTo,
 }) {
   return (
     <div className="page active-projects">
       <PageTitle page={page} user={true} title="Proyectos activos" />
 
-      {dataActiveProjects.length === 0 ? (
+      {activeProjects && activeProjects.length <= 1 ? (
         <div className="message">
           <h3 className="text-purple">No tienes proyectos activos</h3>
           <div className="button" onClick={() => navigate("/new-project")}>
@@ -56,29 +57,46 @@ function View({
               </tr>
             </thead>
             <tbody>
-              {dataActiveProjects.map((project, index) => {
-                const projectValues = JSON.parse(project.values);
+              {activeProjects?.map((project, index) => {
+                const projectValues =
+                  project.values && JSON.parse(project?.values);
 
                 return (
                   <tr key={index}>
-                    <td>{projectValues.name_project}</td>
+                    <td>
+                      <p
+                        className="pointer"
+                        onClick={() =>
+                          redirectTo(`/project-detail/${project?.id}`)
+                        }
+                      >
+                        {projectValues?.name_project}
+                      </p>
+                    </td>
                     <td>
                       <div>
                         <p alt="heart">
-                          {Icons("status_check_" + project.status)}
+                          {Icons("status_check_" + project?.status)}
                         </p>
                         <p
                           className="view-more pointer"
-                          onClick={() => redirectToStatusProject(project.id)}
+                          onClick={() => redirectToStatusProject(project?.id)}
                         >
                           Ver más...
                         </p>
                       </div>
                     </td>
-                    <td>{projectValues.date_next_review}</td>
+                    <td>{projectValues?.date_next_review}</td>
                     {page === "home" && (
                       <td>
-                        <div className="pointer">{Icons("add_plus")}</div>
+                        <div
+                          className="pointer"
+                          onClick={() =>
+                            redirectTo(`/more-info/${project?.id}`)
+                          }
+                        >
+                          {Icons("add_plus")}
+                        </div>
                       </td>
                     )}
                     {page !== "home" && (
@@ -89,8 +107,8 @@ function View({
                             onClick={() => {
                               setModalPrivateNotes(!modalPrivateNotes);
                               setDataModals(
-                                projectValues.private_notes
-                                  ? projectValues.private_notes
+                                projectValues?.private_notes
+                                  ? projectValues?.private_notes
                                   : []
                               );
                             }}
@@ -103,7 +121,7 @@ function View({
                             className="pointer"
                             onClick={() => {
                               setModalZoomImg(!modalZoomImg);
-                              setDataModals(projectValues.view_last_review);
+                              setDataModals(projectValues?.view_last_review);
                             }}
                           >
                             {Icons("last_version")}
@@ -111,12 +129,12 @@ function View({
                         </td>
                         <td>
                           <div className="review flex">
-                            {project.review} de 4
+                            {project?.review} de 4
                             <div
                               className="pointer flex"
                               onClick={() => {
                                 setModalReviews(!modalReviews);
-                                setDataModals(project.review);
+                                setDataModals(project?.review);
                               }}
                             >
                               {Icons("add_plus")}
@@ -127,7 +145,7 @@ function View({
                         <td>
                           <div
                             className="pointer"
-                            onClick={() => redirectToReviews(project.id)}
+                            onClick={() => redirectToReviews(project?.id)}
                           >
                             {Icons("review")}
                           </div>
@@ -137,18 +155,20 @@ function View({
                             <div
                               onClick={() =>
                                 setMenuFloat(
-                                  menuFloat === project.id ? "" : project.id
+                                  menuFloat === project?.id ? "" : project?.id
                                 )
                               }
                             >
                               {Icons("menu_points")}
                             </div>
 
-                            {menuFloat === project.id && (
-                              <div className={`menu-float ${project.id} `}>
+                            {menuFloat === project?.id && (
+                              <div className={`menu-float ${project?.id} `}>
                                 <div
                                   className="menu-float-item flex"
-                                  onClick={() => setMenuFloat("x")}
+                                  onClick={() =>
+                                    redirectTo(`/more-info/${project?.id}`)
+                                  }
                                 >
                                   <p>Más información</p>
                                   {Icons("help_circle")}
@@ -186,7 +206,7 @@ function View({
                         <td>
                           <div
                             className="pointer"
-                            onClick={() => redirectToReviews(project.id)}
+                            onClick={() => redirectToReviews(project?.id)}
                           >
                             {Icons("retro_review")}
                           </div>

@@ -22,7 +22,7 @@ function View({
   setFormData,
   navigate,
   modalMessageStartData,
-  handleGetDataUser,
+  handleGetActiveProjects,
 }) {
   return (
     <div className="summary-page page">
@@ -297,7 +297,7 @@ function View({
           next_type="continue"
           next={() => {
             if (modalMessageStartData.type === "ok") {
-              handleGetDataUser();
+              handleGetActiveProjects();
               navigate("/active-projects");
             } else {
               setModalMessageStartStatus(false);

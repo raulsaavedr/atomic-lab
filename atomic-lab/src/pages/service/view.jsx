@@ -23,7 +23,7 @@ function View({
   setModalMessage,
   socialNetwork,
   setSocialNetwork,
-  dataAll,
+  brands,
 }) {
   const data = useContext(CreateFormContext)[0];
   const [formData, setFormData] = useContext(CreateFormContext);
@@ -106,7 +106,7 @@ function View({
           <option disabled selected>
             Selecciona una opción
           </option>
-          {dataAll.brands.map((brand, index) => (
+          {brands.map((brand, index) => (
             <option key={index} defaultValue={brand.name}>
               {brand.name}
             </option>

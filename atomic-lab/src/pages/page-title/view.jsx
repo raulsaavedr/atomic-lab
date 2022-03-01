@@ -1,7 +1,6 @@
 import React from "react";
 import { Icons } from "../icons";
 import ModalHelp from "../modals/help";
-import { USER_DATA } from "../constats";
 import "./styles.scss";
 
 function View({
@@ -13,17 +12,12 @@ function View({
   func,
   modalHelp,
   setModalHelp,
-  dataAll,
+  userData,
 }) {
   return (
     <>
       {page !== "home" && user && (
-        <p>
-          Hola{" "}
-          {dataAll.user &&
-            dataAll.user[0].name.charAt(0) + dataAll.user[0].last_name}
-          ,
-        </p>
+        <p>Hola {userData?.name.charAt(0) + userData?.last_name},</p>
       )}
       <div className="page-title flex">
         <div className="title">

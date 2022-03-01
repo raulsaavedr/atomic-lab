@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import DataContext from "../../data-context";
 import { useParams, useNavigate } from "react-router-dom";
+import { getReviewsProject } from "../../services";
 import View from "./view";
 
 function Index() {
@@ -13,11 +14,23 @@ function Index() {
 
 
 
-  const { dataAll } = useContext(DataContext);
+  const { activeProjects } = useContext(DataContext);
+  const [reviews, setReviews] = useState(null)
+  const [versionSelect, setVersionSelect] = useState(1)
 
-  const dataActiveProjects = dataAll && dataAll.active_projects ? dataAll.active_projects : [];
-  const filterProject = dataActiveProjects.filter((project) => project.id === parseInt(id))[0]
+  const [versionVote, setVersionVote] = useState(null)
 
+
+
+  const filterProject = activeProjects?.filter((project) => project.id === parseInt(id))[0]
+
+
+  useEffect(() => {
+    getReviewsProject(id).then(({ data }) => {
+      setReviews(data);
+      //setVersionSelect(data?.review_data[0].version)
+    });
+  }, [])
 
 
 
@@ -39,7 +52,12 @@ function Index() {
     menuTopView,
     setMenuTopView,
     modalData,
-    setModalData
+    setModalData,
+    reviews,
+    versionSelect,
+    setVersionSelect,
+    versionVote,
+    setVersionVote
   };
 
   return <View {...properties} />;

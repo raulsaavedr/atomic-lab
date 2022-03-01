@@ -1,0 +1,26 @@
+.project-detail {
+  &-content {
+    margin-top: 40px;
+    flex-wrap: wrap;
+
+    .value {
+      flex: 1 0 48%;
+      border-bottom: 1px solid #70707042;
+      height: 50px;
+
+      p {
+        flex: 1;
+        text-transform: capitalize;
+      }
+      .title {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .section-buttons {
+    position: absolute;
+    bottom: 40px;
+    right: 125px;
+  }
+}

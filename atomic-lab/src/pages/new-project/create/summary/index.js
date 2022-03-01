@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import CreateFormContext from "../../../../create-form-context";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../../../../data-context";
-import { getDataUser, postCreateProject } from "../../../../services";
+import { postCreateProject, getActiveProjects } from "../../../../services";
 
 import View from "./view";
 
@@ -11,7 +11,7 @@ function Index({ setStep, step }) {
   const [formData, setFormData] = useContext(CreateFormContext);
   const navigate = useNavigate();
 
-  const { dataAll, setDataAll } = useContext(DataContext);
+  const { setActiveProjects } = useContext(DataContext);
 
   const [modalMessageStart, setModalMessageStart] = useState(false);
   const [modalMessageStartStatus, setModalMessageStartStatus] = useState(false);
@@ -19,9 +19,13 @@ function Index({ setStep, step }) {
 
   const [libertyLevel, setLibertyLevel] = useState("");
 
-  const handleGetDataUser = () => {
-    getDataUser(JSON.parse(sessionStorage.getItem('atomiclab-user')).user_id).then((data) => {
-      setDataAll(data.data);
+  const user_id = JSON.parse(
+    sessionStorage.getItem("atomiclab-user")
+  ).user_id;
+
+  const handleGetActiveProjects = () => {
+    getActiveProjects(user_id).then(({ data }) => {
+      setActiveProjects(data.active_projects);
     });
     setFormData({});
   };
@@ -55,7 +59,7 @@ function Index({ setStep, step }) {
         formData.append(reference.name_file, reference.file)
       );
 
-    const dataFin = { ...data, user_id: dataAll.user[0].id };
+    const dataFin = { ...data, user_id: user_id };
     formData.append("jsondataRequest", JSON.safeStringify(dataFin));
 
     postCreateProject(formData)
@@ -92,7 +96,7 @@ function Index({ setStep, step }) {
     setFormData,
     navigate,
     modalMessageStartData,
-    handleGetDataUser,
+    handleGetActiveProjects,
   };
 
   return <View {...properties} />;

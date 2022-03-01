@@ -5,9 +5,7 @@ import { Icons } from "../../../icons";
 
 import "./styles.scss";
 
-function View({ data }) {
-  const dataUser = data && data.user ? data.user[0] : {};
-
+function View({ userData }) {
   return (
     <div className="profile-page page">
       <PageTitle page={"profile-page"} user={true} title="Mi perfil" />
@@ -19,7 +17,7 @@ function View({ data }) {
           <div key={index} className="item-input flex">
             <label htmlFor={input.id}>{input.label} </label>
             <div className="flex">
-              <input {...input} id={input.id} value={dataUser[input.id]} />
+              <input {...input} id={input.id} value={userData[input.id]} />
               {Icons("edit")}
             </div>
           </div>

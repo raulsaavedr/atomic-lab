@@ -1,90 +1,132 @@
 .reviews {
+  position: relative;
+
+  .info-drop {
+    gap: 3em;
     position: relative;
 
-    .info-drop {
-        gap: 3em;
-        position: relative;
-
-        &-item {
-            gap: 10px;
-            img {
-                cursor: pointer;
-            }
-        }
-        .menu-float {
-            position: absolute;
-            top: 21px;
-            background-color: #ffffff;
-            padding: 20px;
-            box-sizing: border-box;
-            border-radius: 7px;
-            border: 1px solid #000000;
-            z-index: 1;
-
-            .text-purple {
-                margin-bottom: 20px;
-                cursor: default;
-            }
-        }
+    &-item {
+      gap: 10px;
+      img {
+        cursor: pointer;
+      }
     }
+    .menu-float {
+      position: absolute;
+      top: 21px;
+      background-color: #ffffff;
+      border-radius: 7px;
+      border: 1px solid #cbcbcb;
+      z-index: 1;
 
-    .description {
-        margin: 2em 0;
-    }
+      .text-purple {
+        margin-bottom: 20px;
+        cursor: default;
+      }
 
-    .versions-content {
-        margin: 20px 0;
+      ul {
+        margin-left: 15px;
+      }
+      .reviews-count {
+        padding: 8px 8px;
+        box-sizing: border-box;
+      }
+
+      p {
         display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
+        align-items: center;
+        justify-content: left;
+        padding: 5px 8px 0 8px;
+        box-sizing: border-box;
+      }
 
-        .version {
-            flex: 40%;
-            height: 211px;
-            margin-bottom: 20px;
+      .option-reviews {
+        height: 40px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        padding: 0 8px;
+        box-sizing: border-box;
+      }
+      .option-reviews:hover {
+        background-color: #f2f2f2cb;
+      }
+      .option-reviews:first-child:hover {
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+      }
+    }
+  }
 
-            .version-img {
-                height: 211px;
-                overflow: hidden;
-                position: relative;
-                cursor: pointer;
+  .description {
+    margin: 2em 0;
+  }
 
-                img {
-                    display: block;
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    min-height: 100%;
-                    min-width: 100%;
-                    transform: translate(-50%, -50%);
-                }
-            }
+  .versions-content {
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .version {
+      flex: 40%;
+      /* height: 211px; */
+      margin-bottom: 20px;
+
+      &-id {
+        margin-bottom: 5px;
+      }
+
+      &-img {
+        /* overflow: hidden;
+        position: relative; */
+        cursor: pointer;
+        overflow: hidden;
+        border-radius: 13px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          /* transform: translate(0%, -15%); */
+          object-fit: cover;
         }
-
-        .vote-main {
-            padding: 3em;
-            box-sizing: border-box;
-        }
-
-        .version-vote {
-            justify-content: space-between;
-
-            &-id {
-                margin-top: 20px;
-            }
-        }
+      }
+    }
+    .img-1 {
+      height: 548px;
     }
 
-    .footer {
-        &-desc {
-            margin-bottom: 20px;
-        }
-        position: absolute;
-        bottom: 0;
-        width: 83%;
-
-        .buttons {
-            justify-content: space-between;
-        }
+    .img-2 {
+      height: 211px;
     }
+
+    .vote-main {
+      padding: 3em;
+      box-sizing: border-box;
+      width: 49%;
+    }
+
+    .version-vote {
+      justify-content: space-between;
+
+      &-id {
+        margin-top: 20px;
+      }
+    }
+  }
+
+  .footer {
+    position: absolute;
+    bottom: -70px;
+    width: 83%;
+    padding-bottom: 35px;
+
+    &-desc {
+      margin-bottom: 20px;
+    }
+    .buttons {
+      justify-content: space-between;
+    }
+  }
 }

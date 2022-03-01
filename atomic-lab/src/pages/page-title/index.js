@@ -5,7 +5,7 @@ import View from "./view";
 function Index({ page, user, title, price, modalPriceTotal, func }) {
   const [modalHelp, setModalHelp] = useState(false);
 
-  const { dataAll } = useContext(DataContext);
+  const { userData } = useContext(DataContext);
 
   const properties = {
     page,
@@ -16,7 +16,7 @@ function Index({ page, user, title, price, modalPriceTotal, func }) {
     func,
     modalHelp,
     setModalHelp,
-    dataAll,
+    userData,
   };
 
   return <View {...properties} />;

@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext, } from "react";
+import DataContext from "../../../../data-context";
 import View from "./view";
 
-function Index({ data }) {
-  const properties = { data };
+function Index() {
+
+  const { userData } = useContext(DataContext);
+
+  const properties = { userData };
 
   return <View {...properties} />;
 }

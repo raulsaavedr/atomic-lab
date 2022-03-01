@@ -32,7 +32,6 @@ function Index() {
     postLogin({ email: email, password: password })
       .then((res) => {
 
-        console.log(res)
 
         if (res.data.token) {
           toggleAuthenticated()
