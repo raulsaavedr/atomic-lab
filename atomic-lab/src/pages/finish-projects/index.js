@@ -5,7 +5,8 @@ import View from "./view";
 
 function Index({ page }) {
   const navigate = useNavigate();
-  const { dataAll } = useContext(DataContext);
+  const { dataAll, finishProjects } = useContext(DataContext);
+
 
   const [modalPrivateNotes, setModalPrivateNotes] = useState(false);
   const [modalZoomImg, setModalZoomImg] = useState(false);
@@ -19,8 +20,7 @@ function Index({ page }) {
     });
 
 
-  const dataFinishProjects =
-    dataAll && dataAll.finish_projects ? dataAll.finish_projects : [];
+
 
   const properties = {
     page: page ? page : "finish-projects",
@@ -34,7 +34,7 @@ function Index({ page }) {
     menuFloat,
     setMenuFloat,
     navigate,
-    dataFinishProjects,
+    finishProjects,
   };
 
   return <View {...properties} />;

@@ -6,24 +6,19 @@ import View from "./view";
 
 function Index({ setIsAuthenticated }) {
   const {
-    dataAll,
-    setDataAll,
     userData,
     setUserData,
-    brands,
     setBrands,
-    activeProjects,
     setActiveProjects,
-    team,
     setTeam,
-    attached,
     setAttached,
-    finishProjects,
     setFinishProjects
   } = useContext(DataContext);
 
   const navigate = useNavigate();
   const [menuActive, setMenuActive] = useState(false);
+  const [modalBuyCredits, setModalBuyCredit] = useState(false);
+  const [dataModals, setDataModals] = useState([]);
   const [tourStep, setTourStep] = useState(0);
   const [tourActive, setTourActive] = useState(true);
 
@@ -36,10 +31,11 @@ function Index({ setIsAuthenticated }) {
     }
   };
 
+  const user_id = JSON.parse(
+    sessionStorage.getItem("atomiclab-user")
+  ).user_id;
+
   useEffect(() => {
-    const user_id = JSON.parse(
-      sessionStorage.getItem("atomiclab-user")
-    ).user_id;
 
     getDataUser(user_id).then(({ data }) => {
       setUserData(data.user[0]);
@@ -54,6 +50,7 @@ function Index({ setIsAuthenticated }) {
       setActiveProjects(data.response);
     });
     getFinishProjects(user_id).then(({ data }) => {
+      console.log("aqui-", data)
       setFinishProjects(data.finish_projects);
     });
     getAttached(user_id).then(({ data }) => {
@@ -74,6 +71,7 @@ function Index({ setIsAuthenticated }) {
     tourActive,
     setTourActive,
     userData,
+    modalBuyCredits, setModalBuyCredit, dataModals, setDataModals, user_id
   };
 
   return <View {...properties} />;

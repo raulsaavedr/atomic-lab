@@ -1,21 +1,82 @@
 export const URL_IMG = "https://api.ticvzla.xyz/public/images/";
 
-
 export const TEAM_ROL = [
   {
     id: 5,
-    text: "Puede ver"
+    text: "Puede ver",
   },
   {
     id: 6,
-    text: "Puede editar"
+    text: "Puede editar",
   },
   {
     id: 7,
-    text: "Puede comentar"
+    text: "Puede comentar",
   },
-]
+];
 
+export const METHOD_SELECT = [
+  "Tarjeta de crédito/débito",
+  "PSE",
+  "Paypal",
+  "Mercadopago",
+];
+
+export const MAIN_MENU = [
+  {
+    id: 1,
+    id_text: "home",
+    redirect: "/",
+    active: ["*"],
+    tour_title: "Inicio",
+    tour_text:
+      "Aquí podrás ver tu dashboard o un resumen de tus proyectos activos, tus borradores y tus proyectos terminados con los aspectos más importantes.",
+  },
+  {
+    id: 2,
+    id_text: "add",
+    redirect: "/new-project",
+    active: ["new-project", "service"],
+    tour_title: "Iniciar proyecto",
+    tour_text:
+      "Aquí podrás ver los diferentes productos y solicitar el que más se ajuste a tu requerimiento.",
+  },
+  {
+    id: 3,
+    id_text: "active",
+    redirect: "/active-projects",
+    active: [
+      "active-projects",
+      "status-project",
+      "reviews",
+      "more-info",
+      "project-detail",
+    ],
+    tour_title: "Proyectos activos",
+    tour_text:
+      "Aquí podrás ver tus proyectos que se encuentran activos; ver el estado y hacerle seguimiento, ver la última versión, realizar las anotaciones y mucho más.",
+  },
+  {
+    id: 4,
+    id_text: "finish",
+    redirect: "/finish-projects",
+    active: ["finish-projects"],
+    tour_title: "Proyectos terminados",
+    tour_text:
+      "Aquí podrás ver tus proyectos que han finalizado. Visualiza, comparte y descarga tus proyectos.",
+  },
+];
+
+export const MENU_ACTIVE = {
+  active_projects: [
+    "active-projects",
+    "status-project",
+    "reviews",
+    "more-info",
+    "project-detail",
+  ],
+  add: ["new-project", "service"],
+};
 
 export const USER_DATA = {
   user: {
@@ -182,7 +243,6 @@ export const USER_DATA = {
           version_data: [
             { id: "1A", content: "https://i.postimg.cc/g2GCWRdY/1A.png" },
             { id: "1B", content: "https://i.postimg.cc/nr8Ww90f/1B.png" },
-
           ],
         },
         {
@@ -463,26 +523,17 @@ export const FORM_INPUTS_BRANDS = [
 ];
 
 export const DETAIL_PROJECT_DATA = {
-  "brand_select": "marca",
-  "type_publication": "Tipo de publicación",
-  "type_post": "Tipo de post",
-  "social_network": "Red social",
-  "name_project": "Nombre del proyeto",
-  "public_goal": "Publico objetivo",
-  "palete_colors": "Paleta de colores",
-  "references": "Referencias",
-  "idea_post": "Idea a desarollar",
-  "post": "Post",
-
-
-
-}
-
-
-
-
-
-
+  brand_select: "marca",
+  type_publication: "Tipo de publicación",
+  type_post: "Tipo de post",
+  social_network: "Red social",
+  name_project: "Nombre del proyeto",
+  public_goal: "Publico objetivo",
+  palete_colors: "Paleta de colores",
+  references: "Referencias",
+  idea_post: "Idea a desarollar",
+  post: "Post",
+};
 
 export const FORM_INPUTS_PROFILE = [
   {
@@ -622,8 +673,7 @@ export const FORM_INPUTS = {
     label: "Texto a incluir",
     required: false,
     className: "input-texarea",
-
-  }
+  },
 };
 
 export const FROM_BRAND_TABLES = [
@@ -648,8 +698,8 @@ export const STATUS_TABLES_FLOW = [
   { id: 1, text: "Proyecto Iniciado" },
   { id: 2, text: "Proyecto Asigando" },
   { id: 3, text: "Proyecto Cargado" },
-  { id: 4, text: "Proyecto Finalizado" }
-]
+  { id: 4, text: "Proyecto Finalizado" },
+];
 
 export const FINISH_TABLES = (page) => {
   const listContent = [

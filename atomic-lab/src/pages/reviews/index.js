@@ -57,7 +57,8 @@ function Index() {
     versionSelect,
     setVersionSelect,
     versionVote,
-    setVersionVote
+    setVersionVote,
+    id
   };
 
   return <View {...properties} />;

@@ -19,13 +19,13 @@ function View({
   menuFloat,
   setMenuFloat,
   navigate,
-  dataFinishProjects,
+  finishProjects,
 }) {
   return (
     <div className="page finish-projects">
       <PageTitle page={page} user={true} title="Proyectos terminados" />
 
-      {dataFinishProjects.length === 0 ? (
+      {finishProjects?.length === 0 ? (
         <div className="message">
           <h3 className="text-purple">No tienes proyectos terminados</h3>
         </div>
@@ -49,12 +49,22 @@ function View({
               </tr>
             </thead>
             <tbody>
-              {dataFinishProjects.map((project, index) => {
+              {finishProjects?.map((project, index) => {
                 const projectValues = JSON.parse(project.values);
 
                 return (
                   <tr key={index}>
-                    <td>{projectValues.name}</td>
+                    <td>
+                      {" "}
+                      <p
+                        className="pointer"
+                        onClick={() =>
+                          navigate(`/project-detail/${project?.id}`)
+                        }
+                      >
+                        {projectValues?.name_project}
+                      </p>
+                    </td>
                     <td>
                       <div>
                         <p>{Icons("status_check_" + projectValues.status)}</p>
@@ -119,7 +129,12 @@ function View({
 
                     {page === "home" ? (
                       <td>
-                        <div className="view-more pointer">Ver más...</div>
+                        <div
+                          className="view-more pointer"
+                          onClick={() => navigate("/finish-projects")}
+                        >
+                          Ver más...
+                        </div>
                       </td>
                     ) : (
                       <td>

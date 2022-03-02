@@ -11,11 +11,16 @@ function Index({ setStep, step }) {
   const [formData, setFormData] = useContext(CreateFormContext);
   const navigate = useNavigate();
 
+  console.log("data-", data)
+  console.log("formdata", formData)
+
   const { setActiveProjects } = useContext(DataContext);
 
   const [modalMessageStart, setModalMessageStart] = useState(false);
   const [modalMessageStartStatus, setModalMessageStartStatus] = useState(false);
   const [modalMessageStartData, setModalMessageStartData] = useState({});
+  const [modalBuyCredits, setModalBuyCredit] = useState(false);
+  const [dataModals, setDataModals] = useState([]);
 
   const [libertyLevel, setLibertyLevel] = useState("");
 
@@ -97,6 +102,8 @@ function Index({ setStep, step }) {
     navigate,
     modalMessageStartData,
     handleGetActiveProjects,
+    modalBuyCredits,
+    setModalBuyCredit, dataModals, setDataModals
   };
 
   return <View {...properties} />;

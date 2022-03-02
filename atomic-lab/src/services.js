@@ -34,3 +34,6 @@ export const getAttached = async (user_id) => axios.get(`https://api.ticvzla.xyz
 
 //reviews
 export const getReviewsProject = async (project_id) => axios.get(`https://api.ticvzla.xyz/public/api/update_review_data/${project_id}`)
+
+//annotations
+export const postCreateAnnotation = async (data) => axios.get(`https://api.ticvzla.xyz/public/api/annotations`, data)

@@ -18,6 +18,7 @@ function View({
   setVersionSelect,
   versionVote,
   setVersionVote,
+  id,
 }) {
   return (
     <div className="page reviews">
@@ -133,7 +134,7 @@ function View({
                         : "img-1"
                     }`}
                     onClick={() => {
-                      setModalData(version.content);
+                      setModalData({ id: id, img: version.content });
                       setModalZoomImg(!modalZoomImg);
                     }}
                   >

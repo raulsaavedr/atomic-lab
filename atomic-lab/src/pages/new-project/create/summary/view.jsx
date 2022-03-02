@@ -3,6 +3,7 @@ import PageTitle from "../../../page-title";
 import { Icons } from "../../../icons";
 import { USER_DATA } from "../../../constats";
 import ModalMessage from "../../../modals/message";
+import ModalBuyCredits from "../../../modals/buy-credits";
 
 import "../styles.scss";
 import "./styles.scss";
@@ -23,6 +24,11 @@ function View({
   navigate,
   modalMessageStartData,
   handleGetActiveProjects,
+  modalBuyCredits,
+  setModalBuyCredit,
+  dataModals,
+  setDataModals,
+  redirectTo,
 }) {
   return (
     <div className="summary-page page">
@@ -38,7 +44,7 @@ function View({
         <p>A continuación te mostramos un resumen de tu requerimiento.</p>
         <p>
           Por favor verifica cada punto y cuando estés listo haz click en
-          <span className="text-purple"> Iniciar proyecto</span>, de lo
+          <span className="text-purple-noclick"> Iniciar proyecto</span>, de lo
           contrario realiza los ajustes necesarios.
         </p>
       </section>
@@ -69,12 +75,16 @@ function View({
           <div className="row">
             <div className="title">Formulario {Icons("edit")}</div>
             <div className="value">?</div>
-            <div className="more text-purple">Ver más...</div>
+            <div className="more text-purple" onClick={() => setStep(step - 2)}>
+              Ver más...
+            </div>
           </div>
           <div className="row">
             <div className="title">Selección {Icons("edit")}</div>
             <div className="value">?</div>
-            <div className="more text-purple">Ver más...</div>
+            <div className="more text-purple" onClick={() => setStep(step - 1)}>
+              Ver más...
+            </div>
           </div>
         </div>
 
@@ -170,7 +180,7 @@ function View({
                 </select>
               </td>
               <td>
-                <div className="more text-purple">
+                <div className="more text-purple-noclick">
                   Tiempo de entrega estimado (1ra versión): martes, 28 de Sept.
                   - miércoles 30 de Sept.{Icons("help_circle")}
                 </div>
@@ -250,12 +260,16 @@ function View({
             </tr>
             <tr>
               <td>
-                <div className="more text-purple">Total</div>
+                <div className="more text-purple-noclick">Total</div>
               </td>
               <td className="credits flex">{Icons("credits")} $120 Monedas</td>
               <td>
                 <div
-                  className="button-blue flex" /* onClick={() => redirectToService()} */
+                  className="button-blue flex"
+                  onClick={() => {
+                    setModalBuyCredit(!modalBuyCredits);
+                    setDataModals(/* user_id */);
+                  }}
                 >
                   Comprar
                 </div>
@@ -308,6 +322,10 @@ function View({
           message={modalMessageStartData.message}
           subMessage={modalMessageStartData.subMessage}
         />
+      )}
+
+      {modalBuyCredits && (
+        <ModalBuyCredits close={setModalBuyCredit} data={dataModals} />
       )}
     </div>
   );

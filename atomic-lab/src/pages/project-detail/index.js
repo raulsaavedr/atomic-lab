@@ -9,9 +9,12 @@ function Index() {
 
   const { id } = useParams();
 
-  const { activeProjects, userData } = useContext(DataContext);
+  const { activeProjects, userData, finishProjects } = useContext(DataContext);
 
-  const filterProject = activeProjects.filter(
+  const projectsAll = [...finishProjects, ...activeProjects]
+
+
+  const filterProject = projectsAll.filter(
     (project) => project.id === parseInt(id)
   )[0];
 

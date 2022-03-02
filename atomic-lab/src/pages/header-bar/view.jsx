@@ -2,7 +2,8 @@ import React from "react";
 import { USER_DATA } from "../constats";
 import { Icons } from "../icons";
 import Tour from "./pages/tour";
-
+import ModalBuyCredits from "../modals/buy-credits";
+import { MENU_ACTIVE, MAIN_MENU } from "../constats";
 import "./styles.scss";
 
 function View({
@@ -16,7 +17,17 @@ function View({
   tourActive,
   setTourActive,
   userData,
+  modalBuyCredits,
+  setModalBuyCredit,
+  dataModals,
+  setDataModals,
+  user_id,
 }) {
+  const path = location.pathname.replaceAll(
+    "/",
+    location.pathname.length === 1 ? "*" : ""
+  );
+
   return (
     <div className="header-bar flex">
       {tourActive && tourStep === 0 && (
@@ -32,91 +43,32 @@ function View({
       )}
       {tourActive && <div className="back-white"></div>}
       <div className="icon-logo">{Icons("logo")}</div>
-      <div
-        className={`home option ${location.pathname === "/" && "active"}`}
-        onClick={() => redirectTo("/")}
-      >
-        {tourActive && tourStep === 1 && (
-          <Tour
-            setTourActive={setTourActive}
-            tourStep={tourStep}
-            setTourStep={setTourStep}
-            title={"Inicio"}
-            text={
-              "Aquí podrás ver tu dashboard o un resumen de tus proyectos activos, tus borradores y tus proyectos terminados con los aspectos más importantes."
-            }
-          />
-        )}
 
-        {Icons(location.pathname === "/" ? "home_purple" : "home")}
-      </div>
+      {MAIN_MENU.map((item) => (
+        <div
+          className={`home option ${
+            item.active?.some((el) => path.includes(el)) && "active"
+          }`}
+          onClick={() => redirectTo(item.redirect)}
+        >
+          {tourActive && tourStep === item.id && (
+            <Tour
+              setTourActive={setTourActive}
+              tourStep={tourStep}
+              setTourStep={setTourStep}
+              title={item.tour_title}
+              text={item.tour_text}
+            />
+          )}
 
-      <div
-        className={`new option ${
-          (location.pathname === "/new-project" ||
-            location.pathname.includes("/service/")) &&
-          "active"
-        }`}
-        onClick={() => redirectTo("/new-project")}
-      >
-        {tourActive && tourStep === 2 && (
-          <Tour
-            setTourActive={setTourActive}
-            tourStep={tourStep}
-            setTourStep={setTourStep}
-            title={"Iniciar proyecto"}
-            text={
-              "Aquí podrás ver los diferentes productos y solicitar el que más se ajuste a tu requerimiento."
-            }
-          />
-        )}
+          {Icons(
+            item.active?.some((el) => path.includes(el))
+              ? `${item.id_text}_purple`
+              : item.id_text
+          )}
+        </div>
+      ))}
 
-        {Icons(location.pathname === "/new-project" ? "add_purple" : "add")}
-      </div>
-      <div
-        className={`active-projects option ${
-          location.pathname === "/active-projects" && "active"
-        }`}
-        onClick={() => redirectTo("/active-projects")}
-      >
-        {tourActive && tourStep === 3 && (
-          <Tour
-            setTourActive={setTourActive}
-            tourStep={tourStep}
-            setTourStep={setTourStep}
-            title={"Proyectos activos"}
-            text={
-              "Aquí podrás ver tus proyectos que se encuentran activos; ver el estado y hacerle seguimiento, ver la última versión, realizar las anotaciones y mucho más."
-            }
-          />
-        )}
-
-        {Icons(
-          location.pathname === "/active-projects" ? "active_purple" : "active"
-        )}
-      </div>
-      <div
-        className={`icon-home option ${
-          location.pathname === "/finish-projects" && "active"
-        }`}
-        onClick={() => redirectTo("/finish-projects")}
-      >
-        {tourActive && tourStep === 4 && (
-          <Tour
-            setTourActive={setTourActive}
-            tourStep={tourStep}
-            setTourStep={setTourStep}
-            title={"Proyectos terminados"}
-            text={
-              "Aquí podrás ver tus proyectos que han finalizado. Visualiza, comparte y descarga tus proyectos."
-            }
-          />
-        )}
-
-        {Icons(
-          location.pathname === "/finish-projects" ? "finish_purple" : "finish"
-        )}
-      </div>
       <div className="search flex">
         <div className="icon-search flex"> {Icons("search")}</div>
         <input type="text" name="" id="" placeholder="Buscar..." />
@@ -128,7 +80,15 @@ function View({
           {Icons("credits")} $
           {userData && userData.credits ? userData.credits : 0}
         </div>
-        <div className="credits-buy flex">Comprar</div>
+        <div
+          className="credits-buy flex"
+          onClick={() => {
+            setModalBuyCredit(!modalBuyCredits);
+            setDataModals(user_id);
+          }}
+        >
+          Comprar
+        </div>
       </div>
       <div className="account flex">
         <div className="icon-account">
@@ -219,6 +179,9 @@ function View({
           )}
         </div>
       </div>
+      {modalBuyCredits && (
+        <ModalBuyCredits close={setModalBuyCredit} data={dataModals} />
+      )}
     </div>
   );
 }
