@@ -67,7 +67,7 @@ function View({
                     </td>
                     <td>
                       <div>
-                        <p>{Icons("status_check_" + projectValues.status)}</p>
+                        <p>{Icons("status_check_" + project?.status)}</p>
                         <p
                           className="view-more pointer"
                           onClick={() => redirectToStatusProject(projectValues)}

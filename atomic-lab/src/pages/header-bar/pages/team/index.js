@@ -7,10 +7,10 @@ function Index() {
   const [modalAddMember, setModalAddMember] = useState(false);
   const [dataModals, setDataModals] = useState([]);
 
-  const { team, setTeam } = useContext(DataContext);
+  const { userData, team, setTeam } = useContext(DataContext);
 
   const user_id = JSON.parse(
-    sessionStorage.getItem("atomiclab-user")
+    sessionStorage?.getItem("atomiclab-user")
   ).user_id;
 
 
@@ -40,7 +40,8 @@ function Index() {
     dataModals,
     setDataModals,
     team,
-    deleteMember
+    deleteMember,
+    userData
   };
 
   return <View {...properties} />;

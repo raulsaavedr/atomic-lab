@@ -39,13 +39,13 @@ function Index() {
     const dataBrand = {
       ...data,
       predeterminate: false,
-      user_id: JSON.parse(sessionStorage.getItem("atomiclab-user")).user_id,
+      user_id: JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id,
     };
 
     id ?
       putUpdateBrand({ data: dataBrand, brand_id: id })
         .then((res) => {
-          getBrands(JSON.parse(sessionStorage.getItem('atomiclab-user')).user_id).then(({ data }) => {
+          getBrands(JSON.parse(sessionStorage?.getItem('atomiclab-user')).user_id).then(({ data }) => {
             setBrands(data.brands)
           });
           redirectTo("/brands");
@@ -55,7 +55,7 @@ function Index() {
       :
       postCreateBrand(dataBrand)
         .then((res) => {
-          getBrands(JSON.parse(sessionStorage.getItem('atomiclab-user')).user_id).then(({ data }) => {
+          getBrands(JSON.parse(sessionStorage?.getItem('atomiclab-user')).user_id).then(({ data }) => {
             setBrands(data.brands)
           });
           redirectTo("/brands");

@@ -17,7 +17,18 @@ function View({ userData }) {
           <div key={index} className="item-input flex">
             <label htmlFor={input.id}>{input.label} </label>
             <div className="flex">
-              <input {...input} id={input.id} value={userData[input.id]} />
+              {console.log(input.id.includes("password"))}
+              <input
+                {...input}
+                id={input.id}
+                value={
+                  !input.id.includes("password")
+                    ? userData[input.id]
+                      ? userData[input.id]
+                      : ""
+                    : ""
+                }
+              />
               {Icons("edit")}
             </div>
           </div>

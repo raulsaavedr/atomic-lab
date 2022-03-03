@@ -12,7 +12,7 @@ function Index({ close, data }) {
       email: email,
       rol_id: parseInt(rol),
       project_id: 1,
-      user_id: JSON.parse(sessionStorage.getItem("atomiclab-user")).user_id,
+      user_id: JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id,
     };
 
     postAddTeam(data)

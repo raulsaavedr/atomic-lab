@@ -11,6 +11,7 @@ function View({
   dataModals,
   team,
   deleteMember,
+  userData,
 }) {
   return (
     <div className="team-page page">
@@ -30,7 +31,9 @@ function View({
                 <td>Email</td>
                 <td>Rol</td>
                 <td>Proyectos</td>
-                <td>Eliminar</td>
+                {(userData.rol_id === 8 || userData.rol_id === 1) && (
+                  <td>Eliminar</td>
+                )}
               </tr>
             </thead>
             <tbody>
@@ -39,17 +42,33 @@ function View({
                   <td>{member.name}</td>
                   <td>{member.email}</td>
                   <td>
-                    {TEAM_ROL.filter((rol) => rol.id === member.rol_id)[0].text}
+                    {userData.rol_id === 8 ? (
+                      <select name="rol" id="rol" className="select">
+                        <option value="8" selected={member.rol_id === 8}>
+                          Super-admin
+                        </option>
+                        <option value="1" selected={member.rol_id === 1}>
+                          Admin
+                        </option>
+                        <option value="3" selected={member.rol_id === 3}>
+                          Diseñador
+                        </option>
+                      </select>
+                    ) : (
+                      TEAM_ROL.filter((rol) => rol.id === member.rol_id)[0].text
+                    )}
                   </td>
                   <td></td>
-                  <td>
-                    <div
-                      className="delete-icon"
-                      onClick={() => deleteMember(member.id)}
-                    >
-                      {Icons("delete_circle")}
-                    </div>
-                  </td>
+                  {(userData.rol_id === 8 || userData.rol_id === 1) && (
+                    <td>
+                      <div
+                        className="delete-icon"
+                        onClick={() => deleteMember(member.id)}
+                      >
+                        {Icons("delete_circle")}
+                      </div>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>

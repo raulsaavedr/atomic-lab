@@ -25,7 +25,7 @@ function Index({ setStep, step }) {
   const [libertyLevel, setLibertyLevel] = useState("");
 
   const user_id = JSON.parse(
-    sessionStorage.getItem("atomiclab-user")
+    sessionStorage?.getItem("atomiclab-user")
   ).user_id;
 
   const handleGetActiveProjects = () => {

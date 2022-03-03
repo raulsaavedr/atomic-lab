@@ -3,7 +3,15 @@ import ReactiveButton from "reactive-button";
 import "../../modals/styles.scss";
 import "./styles.scss";
 
-function View({ close, setEmail, setName, setRol, state, onClickHandler }) {
+function View({
+  close,
+  setEmail,
+  setName,
+  setRol,
+  state,
+  onClickHandler,
+  userData,
+}) {
   return (
     <div id="myModal" className="modal add-member">
       <div className="modal-content">
@@ -34,15 +42,26 @@ function View({ close, setEmail, setName, setRol, state, onClickHandler }) {
           </div>
           <div className="input-data-input flex">
             <div className="text">Rol:</div>
+
             <select
               className="select"
               name="level"
               id="level"
               onChange={(e) => setRol(e.target.value)}
             >
-              <option value="5">Puede ver</option>
-              <option value="6">Puede editar</option>
-              <option value="7">Puede comentar</option>
+              {userData === 1 ? (
+                <>
+                  <option value="5">Puede ver</option>
+                  <option value="6">Puede editar</option>
+                  <option value="7">Puede comentar</option>
+                </>
+              ) : (
+                <>
+                  <option value="8">Super-admin</option>
+                  <option value="1">Admin</option>
+                  <option value="3">Diseñador</option>
+                </>
+              )}
             </select>
           </div>
         </div>

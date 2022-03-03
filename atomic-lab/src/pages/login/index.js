@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import AuthContext from "../../auth-context";
 import { useNavigate } from "react-router-dom";
 import { postLogin } from "../../services";
-import { USER_DATA } from "../constats";
 import View from "./view";
 
 function Index() {
@@ -32,10 +31,9 @@ function Index() {
     postLogin({ email: email, password: password })
       .then((res) => {
 
-
         if (res.data.token) {
-          toggleAuthenticated()
           sessionStorage.setItem("atomiclab-user", JSON.stringify(res.data));
+          toggleAuthenticated()
           // redirectTo(USER_DATA.onboarding ? "onboarding" : "/");
         }
         else if (res.data.error) {

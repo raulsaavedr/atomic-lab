@@ -8,10 +8,10 @@ function Index({ close, data }) {
   const [email, setEmail] = useState(null);
   const [rol, setRol] = useState(5);
 
-  const { setTeam } = useContext(DataContext);
+  const { userData, setTeam } = useContext(DataContext);
 
   const user_id = JSON.parse(
-    sessionStorage.getItem("atomiclab-user")
+    sessionStorage?.getItem("atomiclab-user")
   ).user_id;
 
   const onSubmit = () => {
@@ -20,7 +20,7 @@ function Index({ close, data }) {
       email: email,
       rol_id: parseInt(rol),
       project_id: 1,
-      user_id: JSON.parse(sessionStorage.getItem("atomiclab-user")).user_id,
+      user_id: JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id,
     };
 
     postAddTeam(data)
@@ -51,6 +51,7 @@ function Index({ close, data }) {
     setRol,
     state,
     onClickHandler,
+    userData
   };
   return <View {...properties} />;
 }

@@ -3,7 +3,7 @@ import { USER_DATA } from "../constats";
 import { Icons } from "../icons";
 import Tour from "./pages/tour";
 import ModalBuyCredits from "../modals/buy-credits";
-import { MENU_ACTIVE, MAIN_MENU } from "../constats";
+import { MAIN_MENU } from "../constats";
 import "./styles.scss";
 
 function View({
@@ -42,9 +42,10 @@ function View({
         />
       )}
       {tourActive && <div className="back-white"></div>}
+
       <div className="icon-logo">{Icons("logo")}</div>
 
-      {MAIN_MENU.map((item) => (
+      {MAIN_MENU(userData.rol_id).map((item) => (
         <div
           className={`home option ${
             item.active?.some((el) => path.includes(el)) && "active"
@@ -75,21 +76,23 @@ function View({
       </div>
 
       <div className="icon-notifications option">{Icons("notifications")}</div>
-      <div className="credits flex">
-        <div className="icon-credit flex">
-          {Icons("credits")} $
-          {userData && userData.credits ? userData.credits : 0}
+      {userData.rol_id === 1 && (
+        <div className="credits flex">
+          <div className="icon-credit flex">
+            {Icons("credits")} $
+            {userData && userData.credits ? userData.credits : 0}
+          </div>
+          <div
+            className="credits-buy flex"
+            onClick={() => {
+              setModalBuyCredit(!modalBuyCredits);
+              setDataModals(user_id);
+            }}
+          >
+            Comprar
+          </div>
         </div>
-        <div
-          className="credits-buy flex"
-          onClick={() => {
-            setModalBuyCredit(!modalBuyCredits);
-            setDataModals(user_id);
-          }}
-        >
-          Comprar
-        </div>
-      </div>
+      )}
       <div className="account flex">
         <div className="icon-account">
           <img

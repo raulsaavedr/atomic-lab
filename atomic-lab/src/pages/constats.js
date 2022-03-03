@@ -13,6 +13,18 @@ export const TEAM_ROL = [
     id: 7,
     text: "Puede comentar",
   },
+  {
+    id: 8,
+    text: "Super-admin",
+  },
+  {
+    id: 1,
+    text: "Admin",
+  },
+  {
+    id: 3,
+    text: "Diseñador",
+  },
 ];
 
 export const METHOD_SELECT = [
@@ -22,50 +34,59 @@ export const METHOD_SELECT = [
   "Mercadopago",
 ];
 
-export const MAIN_MENU = [
-  {
-    id: 1,
-    id_text: "home",
-    redirect: "/",
-    active: ["*"],
-    tour_title: "Inicio",
-    tour_text:
-      "Aquí podrás ver tu dashboard o un resumen de tus proyectos activos, tus borradores y tus proyectos terminados con los aspectos más importantes.",
-  },
-  {
-    id: 2,
-    id_text: "add",
-    redirect: "/new-project",
-    active: ["new-project", "service"],
-    tour_title: "Iniciar proyecto",
-    tour_text:
-      "Aquí podrás ver los diferentes productos y solicitar el que más se ajuste a tu requerimiento.",
-  },
-  {
-    id: 3,
-    id_text: "active",
-    redirect: "/active-projects",
-    active: [
-      "active-projects",
-      "status-project",
-      "reviews",
-      "more-info",
-      "project-detail",
-    ],
-    tour_title: "Proyectos activos",
-    tour_text:
-      "Aquí podrás ver tus proyectos que se encuentran activos; ver el estado y hacerle seguimiento, ver la última versión, realizar las anotaciones y mucho más.",
-  },
-  {
-    id: 4,
-    id_text: "finish",
-    redirect: "/finish-projects",
-    active: ["finish-projects"],
-    tour_title: "Proyectos terminados",
-    tour_text:
-      "Aquí podrás ver tus proyectos que han finalizado. Visualiza, comparte y descarga tus proyectos.",
-  },
-];
+export const MAIN_MENU = (rol) => {
+
+  const listContent = [
+    {
+      view: true,
+      id: 1,
+      id_text: "home",
+      redirect: "/",
+      active: ["*"],
+      tour_title: "Inicio",
+      tour_text:
+        "Aquí podrás ver tu dashboard o un resumen de tus proyectos activos, tus borradores y tus proyectos terminados con los aspectos más importantes.",
+    },
+    {
+      view: rol === 1 ? true : false,
+      id: 2,
+      id_text: "add",
+      redirect: "/new-project",
+      active: ["new-project", "service"],
+      tour_title: "Iniciar proyecto",
+      tour_text:
+        "Aquí podrás ver los diferentes productos y solicitar el que más se ajuste a tu requerimiento.",
+    },
+    {
+      view: true,
+      id: 3,
+      id_text: "active",
+      redirect: "/active-projects",
+      active: [
+        "active-projects",
+        "status-project",
+        "reviews",
+        "more-info",
+        "project-detail",
+      ],
+      tour_title: "Proyectos activos",
+      tour_text:
+        "Aquí podrás ver tus proyectos que se encuentran activos; ver el estado y hacerle seguimiento, ver la última versión, realizar las anotaciones y mucho más.",
+    },
+    {
+      view: true,
+      id: 4,
+      id_text: "finish",
+      redirect: "/finish-projects",
+      active: ["finish-projects"],
+      tour_title: "Proyectos terminados",
+      tour_text:
+        "Aquí podrás ver tus proyectos que han finalizado. Visualiza, comparte y descarga tus proyectos.",
+    },
+  ]
+
+  return listContent.filter((item) => item.view === true);
+}
 
 export const MENU_ACTIVE = {
   active_projects: [
