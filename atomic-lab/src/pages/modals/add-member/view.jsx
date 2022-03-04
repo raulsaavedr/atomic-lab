@@ -11,6 +11,9 @@ function View({
   state,
   onClickHandler,
   userData,
+  name,
+  email,
+  rol,
 }) {
   return (
     <div id="myModal" className="modal add-member">
@@ -49,6 +52,10 @@ function View({
               id="level"
               onChange={(e) => setRol(e.target.value)}
             >
+              <option disabled selected>
+                Selecciona una opción
+              </option>
+
               {userData === 1 ? (
                 <>
                   <option value="5">Puede ver</option>
@@ -71,19 +78,24 @@ function View({
             <div className="button" onClick={() => close(false)}>
               Cancelar
             </div>
-            <div className="button-reactive">
-              <ReactiveButton
-                className="button"
-                buttonState={state}
-                onClick={() => onClickHandler()}
-                shadow={false}
-                loadingText={"Invitando..."}
-                outline={false}
-                rounded={false}
-                block={false}
-                idleText={"Invitar"}
-              />
-            </div>
+
+            {!name || !email || !rol ? (
+              <div className="button-gray">Invitar</div>
+            ) : (
+              <div className="button-reactive">
+                <ReactiveButton
+                  className="button"
+                  buttonState={state}
+                  onClick={() => onClickHandler()}
+                  shadow={false}
+                  loadingText={"Invitando..."}
+                  outline={false}
+                  rounded={false}
+                  block={false}
+                  idleText={"Invitar"}
+                />
+              </div>
+            )}
           </section>
         </section>
       </div>

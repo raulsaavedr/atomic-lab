@@ -34,8 +34,63 @@ export const METHOD_SELECT = [
   "Mercadopago",
 ];
 
-export const MAIN_MENU = (rol) => {
+export const MAIN_SUBMENU = (rol, redirectTo, setIsAuthenticated) => {
+  const listContent = [
+    {
+      view: true,
+      text: "Mi perfil",
+      redirect: "profile",
+      onClick() { redirectTo("profile") }
+    },
+    {
+      view: rol !== 3 ? true : false,
+      text: "Mis marcas",
+      onClick() { redirectTo("brands") }
+    },
+    {
+      view: true,
+      text: "Mis adjuntos",
+      onClick() { redirectTo("attached") }
+    },
+    {
+      view: true,
+      text: "Mi equipo",
+      onClick() { redirectTo("team") }
+    },
+    {
+      view: true,
+      text: "line"
+    },
+    {
+      view: true,
+      text: "Mi configuración",
+      onClick() { redirectTo("configuration") }
+    },
+    {
+      view: true,
+      text: "Ayuda y soporte",
+      onClick() { redirectTo("help-support") }
+    },
+    {
+      view: true,
+      text: "line"
+    },
+    {
+      view: true,
+      text: "Cerrar sesión",
+      redirect: "/",
+      onClick() {
+        sessionStorage.removeItem("atomiclab-user");
+        setIsAuthenticated(false);
+        redirectTo("/");
+      }
+    }
+  ]
 
+  return listContent.filter((item) => item.view === true);
+}
+
+export const MAIN_MENU = (rol) => {
   const listContent = [
     {
       view: true,
@@ -750,6 +805,7 @@ export const ACTIVE_TABLES = (page) => {
     },
     { title: "Revisión", isActive: page === "home" ? false : true },
     { title: "Retroalimentación revisiones", isActive: true },
+    { title: "Diseñador", isActive: page === "home" ? false : true },
     { title: "", isActive: true },
   ];
   return listContent.filter((item) => item.isActive === true);

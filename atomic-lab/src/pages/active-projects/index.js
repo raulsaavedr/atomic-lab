@@ -5,10 +5,11 @@ import View from "./view";
 
 function Index({ page }) {
 
-  const { activeProjects } = useContext(DataContext);
+  const { userData, activeProjects, team } = useContext(DataContext);
 
   const [modalPrivateNotes, setModalPrivateNotes] = useState(false);
   const [modalZoomImg, setModalZoomImg] = useState(false);
+  const [modalDesignerProject, setModalDesignerProject] = useState(false);
   const [modalReviews, setModalReviews] = useState(false);
   const [dataModals, setDataModals] = useState([]);
   const [menuFloat, setMenuFloat] = useState("");
@@ -23,6 +24,9 @@ function Index({ page }) {
   const redirectToReviews = (id) => navigate(`/reviews/${id}`);
   const redirecToActiveProyects = () => navigate(`/active-projects`);
   const redirectTo = (route) => navigate(route);
+
+
+
 
 
 
@@ -46,7 +50,11 @@ function Index({ page }) {
     navigate,
     redirecToActiveProyects,
     activeProjects,
-    redirectTo
+    redirectTo,
+    userData,
+    team,
+    modalDesignerProject,
+    setModalDesignerProject
   };
 
   return <View {...properties} />;

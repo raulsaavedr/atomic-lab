@@ -11,9 +11,6 @@ function Index({ setStep, step }) {
   const [formData, setFormData] = useContext(CreateFormContext);
   const navigate = useNavigate();
 
-  console.log("data-", data)
-  console.log("formdata", formData)
-
   const { setActiveProjects } = useContext(DataContext);
 
   const [modalMessageStart, setModalMessageStart] = useState(false);

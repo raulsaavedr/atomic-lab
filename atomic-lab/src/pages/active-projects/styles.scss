@@ -1,44 +1,44 @@
 .active-projects {
-    table {
-        tr {
-            td:last-child {
-                min-width: 57px;
-            }
-        }
+  table {
+    tr {
+      td:last-child {
+        min-width: 57px;
+      }
     }
+  }
 
-    .points-menu {
-        position: relative;
+  .points-menu {
+    position: relative;
 
-        .menu-float {
-            z-index: 1;
-            background-color: #ffffff;
-            border-radius: 10px;
-            width: 12em;
-            position: absolute;
-            top: 16px;
-            right: 10px;
+    .menu-float {
+      z-index: 1;
+      background-color: #ffffff;
+      border-radius: 10px;
+      width: 12em;
+      position: absolute;
+      top: 16px;
+      right: 10px;
 
-            &-item:hover {
-                background-color: #9196fc29;
-                color: #ffffff;
-            }
+      &-item:hover {
+        background-color: #9196fc29;
+        color: #ffffff;
+      }
 
-            &-item {
-                border-bottom: 1px solid #70707042;
-                padding: 10px 10px;
-                box-sizing: border-box;
-                justify-content: space-between;
-            }
-            &-item:first-child {
-                border-top-left-radius: 10px;
-                border-top-right-radius: 10px;
-            }
-            &-item:last-child {
-                border-bottom: 0;
-                border-bottom-left-radius: 10px;
-                border-bottom-right-radius: 10px;
-            }
-        }
+      &-item {
+        border-bottom: 1px solid #70707042;
+        padding: 10px 10px;
+        box-sizing: border-box;
+        justify-content: space-between;
+      }
+      &-item:first-child {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+      &-item:last-child {
+        border-bottom: 0;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
     }
+  }
 }

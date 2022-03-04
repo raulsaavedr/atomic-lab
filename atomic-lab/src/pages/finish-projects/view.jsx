@@ -25,7 +25,7 @@ function View({
     <div className="page finish-projects">
       <PageTitle page={page} user={true} title="Proyectos terminados" />
 
-      {finishProjects?.length === 0 ? (
+      {!finishProjects || finishProjects?.length === 0 ? (
         <div className="message">
           <h3 className="text-purple">No tienes proyectos terminados</h3>
         </div>

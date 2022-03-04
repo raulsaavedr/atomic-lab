@@ -5,8 +5,7 @@ import View from "./view";
 
 function Index({ page }) {
   const navigate = useNavigate();
-  const { dataAll, finishProjects } = useContext(DataContext);
-
+  const { finishProjects } = useContext(DataContext);
 
   const [modalPrivateNotes, setModalPrivateNotes] = useState(false);
   const [modalZoomImg, setModalZoomImg] = useState(false);

@@ -3,7 +3,7 @@ import { USER_DATA } from "../constats";
 import { Icons } from "../icons";
 import Tour from "./pages/tour";
 import ModalBuyCredits from "../modals/buy-credits";
-import { MAIN_MENU } from "../constats";
+import { MAIN_MENU, MAIN_SUBMENU } from "../constats";
 import "./styles.scss";
 
 function View({
@@ -45,7 +45,7 @@ function View({
 
       <div className="icon-logo">{Icons("logo")}</div>
 
-      {MAIN_MENU(userData.rol_id).map((item) => (
+      {MAIN_MENU(userData?.rol_id).map((item) => (
         <div
           className={`home option ${
             item.active?.some((el) => path.includes(el)) && "active"
@@ -76,11 +76,10 @@ function View({
       </div>
 
       <div className="icon-notifications option">{Icons("notifications")}</div>
-      {userData.rol_id === 1 && (
+      {userData?.rol_id === 1 && (
         <div className="credits flex">
           <div className="icon-credit flex">
-            {Icons("credits")} $
-            {userData && userData.credits ? userData.credits : 0}
+            {Icons("credits")} ${userData?.credits ? userData.credits : 0}
           </div>
           <div
             className="credits-buy flex"
@@ -112,7 +111,11 @@ function View({
               )[0].name
             }
           </div>
-          <div>{userData?.name.charAt(0) + userData?.last_name}</div>
+          <div>
+            {userData?.name && userData?.last_name
+              ? userData?.name.charAt(0) + userData?.last_name
+              : userData?.name}
+          </div>
         </div>
         <div className="icon-arrow-up">
           <div className="icon" onClick={() => setMenuActive(!menuActive)}>
@@ -122,61 +125,22 @@ function View({
           {menuActive && (
             <div className="menu-account">
               <ul>
-                <li
-                  onClick={() => {
-                    redirectTo("profile");
-                  }}
-                >
-                  Mi perfil
-                </li>
-                <li
-                  onClick={() => {
-                    redirectTo("brands");
-                  }}
-                >
-                  Mis marcas
-                </li>
-                <li
-                  onClick={() => {
-                    redirectTo("attached");
-                  }}
-                >
-                  Mis adjuntos
-                </li>
-                <li
-                  onClick={() => {
-                    redirectTo("team");
-                  }}
-                >
-                  Mi equipo
-                </li>
-                <hr />
-                <li
-                  onClick={() => {
-                    redirectTo("configuration");
-                  }}
-                >
-                  Mi configuración
-                </li>
-                <li
-                  onClick={() => {
-                    redirectTo("help-support");
-                  }}
-                >
-                  Ayuda y soporte
-                </li>
-                <hr />
-
-                <li
-                  className="text-purple"
-                  onClick={() => {
-                    sessionStorage.removeItem("atomiclab-user");
-                    setIsAuthenticated(false);
-                    redirectTo("/");
-                  }}
-                >
-                  Cerrar sesión
-                </li>
+                {MAIN_SUBMENU(
+                  userData?.rol_id,
+                  redirectTo,
+                  setIsAuthenticated
+                ).map((menu) =>
+                  menu.text === "line" ? (
+                    <hr />
+                  ) : (
+                    <li
+                      className={menu.text === "Cerrar sesión" && "text-purple"}
+                      onClick={() => menu.onClick()}
+                    >
+                      {menu.text}
+                    </li>
+                  )
+                )}
               </ul>
             </div>
           )}

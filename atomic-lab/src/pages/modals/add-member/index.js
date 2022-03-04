@@ -6,7 +6,7 @@ import View from "./view";
 function Index({ close, data }) {
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
-  const [rol, setRol] = useState(5);
+  const [rol, setRol] = useState(null);
 
   const { userData, setTeam } = useContext(DataContext);
 
@@ -51,7 +51,10 @@ function Index({ close, data }) {
     setRol,
     state,
     onClickHandler,
-    userData
+    userData,
+    name,
+    email,
+    rol
   };
   return <View {...properties} />;
 }

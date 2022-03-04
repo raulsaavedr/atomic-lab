@@ -4,6 +4,7 @@ import { ACTIVE_TABLES } from "../constats";
 import ModalPrivateNotes from "../modals/private-notes";
 import ModalZoomImg from "../modals/zoom-img";
 import ModalReviews from "../modals/reviews";
+import DesignerProject from "../modals/designers-project";
 import PageTitle from "../page-title";
 import "./styles.scss";
 
@@ -25,6 +26,9 @@ function View({
   redirecToActiveProyects,
   activeProjects,
   redirectTo,
+  userData,
+  setModalDesignerProject,
+  modalDesignerProject,
 }) {
   return (
     <div className="page active-projects">
@@ -33,9 +37,11 @@ function View({
       {activeProjects && activeProjects.length <= 1 ? (
         <div className="message">
           <h3 className="text-purple">No tienes proyectos activos</h3>
-          <div className="button" onClick={() => navigate("/new-project")}>
-            Empezar proyecto
-          </div>
+          {userData.rol_id !== 3 && (
+            <div className="button" onClick={() => navigate("/new-project")}>
+              Empezar proyecto
+            </div>
+          )}
         </div>
       ) : (
         <div className="table-data">
@@ -141,7 +147,6 @@ function View({
                             </div>
                           </div>
                         </td>
-
                         <td>
                           <div
                             className="pointer"
@@ -150,6 +155,17 @@ function View({
                             {Icons("review")}
                           </div>
                         </td>
+                        <td>
+                          <div
+                            onClick={() => {
+                              setModalDesignerProject(!modalDesignerProject);
+                              setDataModals({ project_id: project?.id });
+                            }}
+                          >
+                            Ver
+                          </div>
+                        </td>
+
                         <td>
                           <div className="pointer points-menu">
                             <div
@@ -234,6 +250,12 @@ function View({
           )}
           {modalReviews && (
             <ModalReviews close={setModalReviews} data={dataModals} />
+          )}
+          {modalDesignerProject && (
+            <DesignerProject
+              close={setModalDesignerProject}
+              data={dataModals}
+            />
           )}
         </div>
       )}

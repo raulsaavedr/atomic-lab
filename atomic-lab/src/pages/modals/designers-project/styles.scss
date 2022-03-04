@@ -1,0 +1,60 @@
+.designer-assign {
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .tags {
+      gap: 10px;
+      flex-wrap: wrap;
+
+      .tag {
+        gap: 7px;
+        border: 1px solid #70707042;
+        border-radius: 30px;
+        padding: 5px 15px 5px 8px;
+        cursor: default;
+
+        .delete {
+          color: #00000047;
+        }
+      }
+      .tag:hover {
+        background-color: rgba(111, 59, 255, 0.3);
+      }
+      .delete {
+        cursor: pointer;
+      }
+    }
+  }
+
+  h3 {
+    color: #36ccd1;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .footer {
+    margin-top: 3em;
+    width: 95%;
+    left: 12px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+
+    .button-reactive {
+      .reactive-btn .progress {
+        box-shadow: none;
+      }
+
+      .reactive-btn.button.primary {
+        box-shadow: none;
+      }
+    }
+
+    .section-buttons {
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+  }
+}

@@ -12,7 +12,7 @@ function View({ redirectTo, userData }) {
       <div className="home-content">
         <PageTitle user={true} title="¡Bienvenido!"></PageTitle>
 
-        {userData.rol_id === 1 && (
+        {userData?.rol_id === 1 && (
           <div
             className="add-project flex"
             onClick={() => redirectTo("new-project")}

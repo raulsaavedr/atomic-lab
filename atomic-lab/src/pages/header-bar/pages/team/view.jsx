@@ -31,7 +31,7 @@ function View({
                 <td>Email</td>
                 <td>Rol</td>
                 <td>Proyectos</td>
-                {(userData.rol_id === 8 || userData.rol_id === 1) && (
+                {(userData?.rol_id === 8 || userData?.rol_id === 1) && (
                   <td>Eliminar</td>
                 )}
               </tr>
@@ -42,7 +42,7 @@ function View({
                   <td>{member.name}</td>
                   <td>{member.email}</td>
                   <td>
-                    {userData.rol_id === 8 ? (
+                    {userData?.rol_id === 8 ? (
                       <select name="rol" id="rol" className="select">
                         <option value="8" selected={member.rol_id === 8}>
                           Super-admin
@@ -59,7 +59,7 @@ function View({
                     )}
                   </td>
                   <td></td>
-                  {(userData.rol_id === 8 || userData.rol_id === 1) && (
+                  {(userData?.rol_id === 8 || userData?.rol_id === 1) && (
                     <td>
                       <div
                         className="delete-icon"

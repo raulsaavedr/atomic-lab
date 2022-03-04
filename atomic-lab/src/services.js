@@ -15,6 +15,11 @@ export const getActiveProjects = async (user_id) => axios.get(`https://api.ticvz
 export const getFinishProjects = async (user_id) => axios.get(`https://api.ticvzla.xyz/public/api/get_data_user_finish_projects/${user_id}`)
 export const postCreateProject = async (formData) => axios.post(`https://api.ticvzla.xyz/public/api/project_values`, formData, { headers: headers })
 
+//Designers
+export const postAssignDesignerProject = async (data) => axios.post(`https://api.ticvzla.xyz/public/api/assign_designer`, data)
+export const getAssignDesignerProject = async (id_project) => axios.get(`https://api.ticvzla.xyz/public/api/get_designers_by_prokect/${id_project}`)
+
+
 //login
 export const postLogin = async (data) => axios.post(`https://api.ticvzla.xyz/public/api/login`, data)
 export const postCreateAccount = async (data) => axios.post(`https://api.ticvzla.xyz/public/api/register`, data)

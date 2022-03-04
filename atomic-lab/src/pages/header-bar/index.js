@@ -55,7 +55,6 @@ function Index({ setIsAuthenticated }) {
       setActiveProjects(data.response);
     });
     getFinishProjects(user_id).then(({ data }) => {
-      console.log("aqui-", data);
       setFinishProjects(data.finish_projects);
     });
     getAttached(user_id).then(({ data }) => {

@@ -17,7 +17,13 @@ function View({
   return (
     <>
       {page !== "home" && user && (
-        <p>Hola {userData?.name.charAt(0) + userData?.last_name},</p>
+        <p>
+          Hola{" "}
+          {userData?.name && userData?.last_name
+            ? userData?.name.charAt(0) + userData?.last_name
+            : userData?.name}
+          ,
+        </p>
       )}
       <div className="page-title flex">
         <div className="title">

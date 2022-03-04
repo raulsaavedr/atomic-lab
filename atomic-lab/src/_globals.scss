@@ -19,6 +19,10 @@ html,
   color: #576373;
 }
 
+*:focus {
+  outline: none;
+}
+
 .flex {
   display: flex;
   align-items: center;

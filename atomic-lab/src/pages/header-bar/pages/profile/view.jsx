@@ -17,7 +17,6 @@ function View({ userData }) {
           <div key={index} className="item-input flex">
             <label htmlFor={input.id}>{input.label} </label>
             <div className="flex">
-              {console.log(input.id.includes("password"))}
               <input
                 {...input}
                 id={input.id}
