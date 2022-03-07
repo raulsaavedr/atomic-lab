@@ -1,66 +1,57 @@
 import React, { useState, useContext, useEffect } from "react";
 import DataContext from "../../../data-context";
-import { postAssignDesignerProject, getAssignDesignerProject } from "../../../services";
+import {
+  postAssignDesignerProject,
+  getAssignDesignerProject,
+  deleteAssignDesignerProject
+} from "../../../services";
 import View from "./view";
 
 function Index({ close, data }) {
-  const { team } = useContext(DataContext);
+  const { userData, team } = useContext(DataContext);
 
-  const [listDesigner, setListDesigner] = useState([])
-  const [teamFilter, setTeamFilter] = useState([])
+  const [listDesigner, setListDesigner] = useState([]);
+  const [teamFilter, setTeamFilter] = useState([]);
 
   useEffect(() => {
     getAssignDesignerProject(data.project_id)
       .then((res) => {
-        setListDesigner(res.data.data)
+        res.data.data.length && setListDesigner(res.data.data);
       })
-      .catch((error) => {
-      });
+      .catch((error) => { });
+
+    setTeamFilter(team?.filter((user) => user.rol_id === 3));
+  }, [data]);
+
+  const deleteDesigner = (designer_id, union_id) => {
+    setListDesigner(
+      listDesigner.filter((user) => user.id !== parseInt(designer_id))
+    );
 
 
-    setTeamFilter(team.filter((user) => user.rol_id === 3))
 
-
-  }, [])
-
-  const deleteDesigner = (designer_id) => {
-
-    setListDesigner(listDesigner.filter((user) => user.id !== parseInt(designer_id)))
-
-    //setListDesigner(oldArray => [...oldArray, team.filter((user) => user.id === parseInt(designer_id))[0]]);
-
-    const dataBody = {
-      project_id: data.project_id,
-      designer_id: designer_id,
-    };
-
-    /* postAssignDesignerProject(dataBody)
+    deleteAssignDesignerProject(union_id)
       .then((res) => {
 
       })
       .catch((error) => {
 
-      }); */
+      });
   };
 
   const assignDesigner = (designer_id) => {
-
-    setListDesigner(oldArray => [...oldArray, teamFilter.filter((user) => user.id === parseInt(designer_id))[0]]);
+    setListDesigner((oldArray) => [
+      ...oldArray,
+      teamFilter.filter((user) => user.id === parseInt(designer_id))[0],
+    ]);
 
     const dataBody = {
       project_id: data.project_id,
       designer_id: designer_id,
     };
 
-    /* postAssignDesignerProject(dataBody)
-      .then((res) => {
-
-      })
-      .catch((error) => {
-
-      }); */
+    postAssignDesignerProject(dataBody);
   };
-
 
   const [state, setState] = useState("idle");
 
@@ -71,9 +62,14 @@ function Index({ close, data }) {
     }, 2000);
   };
 
-
   const properties = {
-    close, team, assignDesigner, listDesigner, teamFilter, deleteDesigner
+    close,
+    team,
+    assignDesigner,
+    listDesigner,
+    teamFilter,
+    deleteDesigner,
+    userData
   };
   return <View {...properties} />;
 }

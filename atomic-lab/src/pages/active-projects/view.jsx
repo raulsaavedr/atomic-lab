@@ -161,6 +161,7 @@ function View({
                               setModalDesignerProject(!modalDesignerProject);
                               setDataModals({ project_id: project?.id });
                             }}
+                            className="pointer"
                           >
                             Ver
                           </div>

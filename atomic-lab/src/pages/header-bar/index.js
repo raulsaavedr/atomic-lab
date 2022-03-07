@@ -51,16 +51,18 @@ function Index({ setIsAuthenticated }) {
     getTeam(user_id).then(({ data }) => {
       setTeam(data.team);
     });
-    getActiveProjects(user_id).then(({ data }) => {
-      setActiveProjects(data.response);
-    });
     getFinishProjects(user_id).then(({ data }) => {
       setFinishProjects(data.finish_projects);
     });
     getAttached(user_id).then(({ data }) => {
       setAttached(data.attached);
     });
+    getActiveProjects(user_id).then(({ data }) => {
+      setActiveProjects(data.response);
+    });
   }, []);
+
+
 
   const properties = {
     redirectTo,

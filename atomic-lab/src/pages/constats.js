@@ -53,7 +53,7 @@ export const MAIN_SUBMENU = (rol, redirectTo, setIsAuthenticated) => {
       onClick() { redirectTo("attached") }
     },
     {
-      view: true,
+      view: rol !== 3 ? true : false,
       text: "Mi equipo",
       onClick() { redirectTo("team") }
     },

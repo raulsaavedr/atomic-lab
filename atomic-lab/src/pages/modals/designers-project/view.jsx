@@ -9,45 +9,52 @@ function View({
   listDesigner,
   teamFilter,
   deleteDesigner,
+  userData,
 }) {
   return (
     <div id="myModal" className="modal designer-assign">
       <div className="modal-content">
         <h3>Diseñadores asignados</h3>
 
-        <select
-          className="select"
-          name="level"
-          id="level"
-          onChange={(e) => assignDesigner(e.target.value)}
-        >
-          <option disabled selected>
-            Asigna un diseñador
-          </option>
+        {userData.rol_id !== 3 && (
+          <select
+            className="select"
+            name="level"
+            id="level"
+            onChange={(e) => assignDesigner(e.target.value)}
+          >
+            <option disabled selected>
+              Asigna un diseñador
+            </option>
 
-          {teamFilter
-            .filter(
-              (user) =>
-                !listDesigner.some((user_list) => user_list.id === user.id)
-            )
-            .map((user_data) => (
-              <option value={user_data.id}>
-                {user_data?.last_name !== null
-                  ? user_data?.name + " " + user_data?.last_name
-                  : user_data?.name}
-              </option>
-            ))}
-        </select>
+            {teamFilter
+              .filter(
+                (user) =>
+                  !listDesigner?.some((user_list) => user_list.id === user.id)
+              )
+              .map((user_data) => (
+                <option value={user_data.id}>
+                  {user_data?.last_name !== null
+                    ? user_data?.name + " " + user_data?.last_name
+                    : user_data?.name}
+                </option>
+              ))}
+          </select>
+        )}
 
         <div className="tags flex">
-          {listDesigner.map((user_data) => (
+          {listDesigner?.map((user_data) => (
             <div className="tag flex">
-              <div
-                className="delete"
-                onClick={() => deleteDesigner(user_data.id)}
-              >
-                x
-              </div>
+              {userData.rol_id !== 3 && (
+                <div
+                  className="delete"
+                  onClick={() =>
+                    deleteDesigner(user_data.id, user_data.union_id)
+                  }
+                >
+                  x
+                </div>
+              )}
               <p>
                 {user_data?.last_name !== null
                   ? user_data?.name + " " + user_data?.last_name

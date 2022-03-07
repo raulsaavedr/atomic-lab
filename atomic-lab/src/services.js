@@ -18,6 +18,7 @@ export const postCreateProject = async (formData) => axios.post(`https://api.tic
 //Designers
 export const postAssignDesignerProject = async (data) => axios.post(`https://api.ticvzla.xyz/public/api/assign_designer`, data)
 export const getAssignDesignerProject = async (id_project) => axios.get(`https://api.ticvzla.xyz/public/api/get_designers_by_prokect/${id_project}`)
+export const deleteAssignDesignerProject = async (union_id) => axios.delete(`https://api.ticvzla.xyz/public/api/project_designers/${union_id}`)
 
 
 //login

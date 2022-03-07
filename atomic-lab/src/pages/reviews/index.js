@@ -14,7 +14,7 @@ function Index() {
 
 
 
-  const { activeProjects } = useContext(DataContext);
+  const { userData, activeProjects } = useContext(DataContext);
   const [reviews, setReviews] = useState(null)
   const [versionSelect, setVersionSelect] = useState(1)
 
@@ -58,7 +58,8 @@ function Index() {
     setVersionSelect,
     versionVote,
     setVersionVote,
-    id
+    id,
+    userData
   };
 
   return <View {...properties} />;
