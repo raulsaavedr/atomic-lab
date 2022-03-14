@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import CreateFormContext from "../../create-form-context";
 import DataContext from "../../data-context";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -22,7 +23,16 @@ function Index() {
     brands
   } = useContext(DataContext);
 
+  const data = useContext(CreateFormContext)[0];
+  const [formData, setFormData] = useContext(CreateFormContext);
+
+
+
   useEffect(() => {
+
+    setFormData({ ...formData, project_price: serviceData?.price?.basic[0].price, project_type: serviceData.title })
+
+
     let sum = 0;
     serviceData?.price?.basic.map((price) => (sum = price.price + sum));
     setModalPriceTotal(sum);
@@ -47,7 +57,10 @@ function Index() {
     socialNetwork,
     setSocialNetwork,
     dataAll,
-    brands
+    brands,
+    data,
+    formData,
+    setFormData
   };
 
   return <View {...properties} />;

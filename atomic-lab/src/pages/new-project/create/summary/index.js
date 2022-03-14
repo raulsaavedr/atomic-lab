@@ -2,7 +2,12 @@ import React, { useState, useContext } from "react";
 import CreateFormContext from "../../../../create-form-context";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../../../../data-context";
-import { postCreateProject, getActiveProjects } from "../../../../services";
+import {
+  postCreateProject,
+  getActiveProjects,
+  updateCreditsUser,
+  getDataUser,
+} from "../../../../services";
 
 import View from "./view";
 
@@ -11,27 +16,39 @@ function Index({ setStep, step }) {
   const [formData, setFormData] = useContext(CreateFormContext);
   const navigate = useNavigate();
 
-  const { setActiveProjects } = useContext(DataContext);
+  const { userData, setActiveProjects, setUserData } = useContext(DataContext);
 
   const [modalMessageStart, setModalMessageStart] = useState(false);
   const [modalMessageStartStatus, setModalMessageStartStatus] = useState(false);
   const [modalMessageStartData, setModalMessageStartData] = useState({});
   const [modalBuyCredits, setModalBuyCredit] = useState(false);
   const [dataModals, setDataModals] = useState([]);
+  const [timePrice, setTimePrice] = useState(0);
+  const [formatPrice, setFormatPrice] = useState(0);
+  const [reviewPrice, setReviewPrice] = useState(0);
+  const [sizePrice, setSizePrice] = useState(0);
+  const [editPrice, setEditPrice] = useState(0);
+
+  const getTotalProject = () => {
+    return (
+      parseInt(data.project_price) +
+      parseInt(timePrice) +
+      parseInt(formatPrice) +
+      parseInt(reviewPrice) +
+      parseInt(sizePrice) +
+      parseInt(editPrice)
+    );
+  };
 
   const [libertyLevel, setLibertyLevel] = useState("");
 
-  const user_id = JSON.parse(
-    sessionStorage?.getItem("atomiclab-user")
-  ).user_id;
+  const user_id = JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id;
 
   const handleGetActiveProjects = () => {
-    getActiveProjects(user_id).then(({ data }) => {
-      setActiveProjects(data.active_projects);
-    });
     setFormData({});
-  };
 
+    navigate("/active-projects");
+  };
 
   const handleStartProject = () => {
     JSON.safeStringify = (obj, indent = 2) => {
@@ -61,11 +78,27 @@ function Index({ setStep, step }) {
         formData.append(reference.name_file, reference.file)
       );
 
-    const dataFin = { ...data, user_id: user_id };
+    const dataFin = {
+      ...data,
+      user_id: user_id,
+    };
     formData.append("jsondataRequest", JSON.safeStringify(dataFin));
 
     postCreateProject(formData)
       .then((res) => {
+        updateCreditsUser({
+          user_id: user_id,
+          value: parseInt(userData.credits) - getTotalProject(),
+        }).then((res) => {
+          getDataUser(user_id).then(({ data }) => {
+            setUserData(data.user[0]);
+          });
+        });
+
+        getActiveProjects(user_id).then(({ data }) => {
+          setActiveProjects(data.response);
+        });
+
         setModalMessageStartStatus(true);
         setModalMessageStartData({
           type: "ok",
@@ -100,7 +133,21 @@ function Index({ setStep, step }) {
     modalMessageStartData,
     handleGetActiveProjects,
     modalBuyCredits,
-    setModalBuyCredit, dataModals, setDataModals
+    setModalBuyCredit,
+    dataModals,
+    setDataModals,
+    timePrice,
+    setTimePrice,
+    formatPrice,
+    setFormatPrice,
+    reviewPrice,
+    setReviewPrice,
+    sizePrice,
+    setSizePrice,
+    editPrice,
+    setEditPrice,
+    getTotalProject,
+    userData
   };
 
   return <View {...properties} />;

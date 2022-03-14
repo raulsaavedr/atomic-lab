@@ -3,11 +3,15 @@ import DataContext from "../../../data-context";
 import {
   postAssignDesignerProject,
   getAssignDesignerProject,
-  deleteAssignDesignerProject
+  deleteAssignDesignerProject,
+  updateFlow
 } from "../../../services";
 import View from "./view";
 
 function Index({ close, data }) {
+
+
+
   const { userData, team } = useContext(DataContext);
 
   const [listDesigner, setListDesigner] = useState([]);
@@ -50,7 +54,16 @@ function Index({ close, data }) {
       designer_id: designer_id,
     };
 
-    postAssignDesignerProject(dataBody);
+    postAssignDesignerProject(dataBody).then((res) => {
+
+
+      updateFlow({ project_id: data.project_id, id_flow: 2 })
+
+    })
+
+
+
+
   };
 
   const [state, setState] = useState("idle");

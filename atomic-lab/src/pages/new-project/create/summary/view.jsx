@@ -1,7 +1,7 @@
 import React from "react";
 import PageTitle from "../../../page-title";
 import { Icons } from "../../../icons";
-import { USER_DATA } from "../../../constats";
+import { SUMMARY_OPTIONS } from "../../../constats";
 import ModalMessage from "../../../modals/message";
 import ModalBuyCredits from "../../../modals/buy-credits";
 
@@ -21,14 +21,24 @@ function View({
   data,
   formData,
   setFormData,
-  navigate,
   modalMessageStartData,
   handleGetActiveProjects,
   modalBuyCredits,
   setModalBuyCredit,
   dataModals,
   setDataModals,
-  redirectTo,
+  timePrice,
+  setTimePrice,
+  formatPrice,
+  setFormatPrice,
+  reviewPrice,
+  setReviewPrice,
+  sizePrice,
+  setSizePrice,
+  editPrice,
+  setEditPrice,
+  getTotalProject,
+  userData,
 }) {
   return (
     <div className="summary-page page">
@@ -135,46 +145,45 @@ function View({
         </div>
 
         <table>
-          {/* <thead>
-            <tr>
-        
-                <th>
-                 
-                </th>
-       
-            </tr>
-          </thead> */}
           <tbody>
             <tr>
               <td>Costo base del proyecto</td>
-              <td>$120</td>
               <td>
-                <select
-                  name="brand_select"
-                  id="brand_select"
-                  className="select"
-                >
-                  {USER_DATA.brands.map((brand, index) => (
-                    <option key={index} value={brand.value}>
-                      {brand.name}
-                    </option>
-                  ))}
-                </select>
+                <div className="flex price">
+                  <div>$</div>
+                  <div>{formData.project_price}</div>
+                </div>
+              </td>
+              <td>
+                <input
+                  className="select-disabled"
+                  type="text"
+                  name="post"
+                  id="post"
+                  value={formData.project_type}
+                  disabled
+                />
               </td>
               <td></td>
             </tr>
             <tr>
               <td>Tiempo de entrega</td>
-              <td>$120</td>
+              <td>
+                <div className="flex price">
+                  <div>$</div>
+                  <div>{timePrice}</div>
+                </div>
+              </td>
               <td>
                 <select
                   name="brand_select"
                   id="brand_select"
                   className="select"
+                  onChange={(e) => setTimePrice(e.target.value)}
                 >
-                  {USER_DATA.brands.map((brand, index) => (
-                    <option key={index} value={brand.value}>
-                      {brand.name}
+                  {SUMMARY_OPTIONS["tiempo"].options.map((option, index) => (
+                    <option key={index} value={option.price}>
+                      {option.text}
                     </option>
                   ))}
                 </select>
@@ -188,16 +197,22 @@ function View({
             </tr>
             <tr>
               <td>Formato de entrega</td>
-              <td>$120</td>
+              <td>
+                <div className="flex price">
+                  <div>$</div>
+                  <div>{formatPrice}</div>
+                </div>
+              </td>
               <td>
                 <select
                   name="brand_select"
                   id="brand_select"
                   className="select"
+                  onChange={(e) => setFormatPrice(e.target.value)}
                 >
-                  {USER_DATA.brands.map((brand, index) => (
-                    <option key={index} value={brand.value}>
-                      {brand.name}
+                  {SUMMARY_OPTIONS["formato"].options.map((option, index) => (
+                    <option key={index} value={option.price}>
+                      {option.text}
                     </option>
                   ))}
                 </select>
@@ -206,34 +221,48 @@ function View({
             </tr>
             <tr>
               <td>Revisiones</td>
-              <td>$120</td>
+              <td>
+                <div className="flex price">
+                  <div>$</div>
+                  <div>{reviewPrice}</div>
+                </div>
+              </td>
               <td>
                 <select
                   name="brand_select"
                   id="brand_select"
                   className="select"
+                  onChange={(e) => setReviewPrice(e.target.value)}
                 >
-                  {USER_DATA.brands.map((brand, index) => (
-                    <option key={index} value={brand.value}>
-                      {brand.name}
-                    </option>
-                  ))}
+                  {SUMMARY_OPTIONS["revisiones"].options.map(
+                    (option, index) => (
+                      <option key={index} value={option.price}>
+                        {option.text}
+                      </option>
+                    )
+                  )}
                 </select>
               </td>
               <td></td>
             </tr>
             <tr>
               <td>Tamaño</td>
-              <td>$120</td>
+              <td>
+                <div className="flex price">
+                  <div>$</div>
+                  <div>{sizePrice}</div>
+                </div>
+              </td>
               <td>
                 <select
                   name="brand_select"
                   id="brand_select"
                   className="select"
+                  onChange={(e) => setSizePrice(e.target.value)}
                 >
-                  {USER_DATA.brands.map((brand, index) => (
-                    <option key={index} value={brand.value}>
-                      {brand.name}
+                  {SUMMARY_OPTIONS["tamaño"].options.map((option, index) => (
+                    <option key={index} value={option.price}>
+                      {option.text}
                     </option>
                   ))}
                 </select>
@@ -242,16 +271,22 @@ function View({
             </tr>
             <tr>
               <td>Archivos editables</td>
-              <td>$120</td>
+              <td>
+                <div className="flex price">
+                  <div>$</div>
+                  <div>{editPrice}</div>
+                </div>
+              </td>
               <td>
                 <select
                   name="brand_select"
                   id="brand_select"
                   className="select"
+                  onChange={(e) => setEditPrice(e.target.value)}
                 >
-                  {USER_DATA.brands.map((brand, index) => (
-                    <option key={index} value={brand.value}>
-                      {brand.name}
+                  {SUMMARY_OPTIONS["editables"].options.map((option, index) => (
+                    <option key={index} value={option.price}>
+                      {option.text}
                     </option>
                   ))}
                 </select>
@@ -262,7 +297,9 @@ function View({
               <td>
                 <div className="more text-purple-noclick">Total</div>
               </td>
-              <td className="credits flex">{Icons("credits")} $120 Monedas</td>
+              <td className="credits flex">
+                {Icons("credits")} ${getTotalProject()} Monedas
+              </td>
               <td>
                 <div
                   className="button-blue flex"
@@ -285,7 +322,14 @@ function View({
           <div className="button" onClick={() => setStep(step - 1)}>
             Atrás
           </div>
-          <div className="button" onClick={() => setModalMessageStart(true)}>
+          <div
+            className="button"
+            onClick={() =>
+              getTotalProject() > userData.credits
+                ? setModalBuyCredit(!modalBuyCredits)
+                : setModalMessageStart(true)
+            }
+          >
             Iniciar proyecto
           </div>
         </section>
@@ -312,7 +356,6 @@ function View({
           next={() => {
             if (modalMessageStartData.type === "ok") {
               handleGetActiveProjects();
-              navigate("/active-projects");
             } else {
               setModalMessageStartStatus(false);
               setModalMessageStart(false);

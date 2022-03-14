@@ -178,6 +178,39 @@ label {
   -webkit-appearance: none;
   background-position-x: 97%;
 }
+.select-date {
+  height: 28px;
+  width: 240px;
+  border: 1px solid #70707042;
+  border-radius: 14px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  background-position-x: 97%;
+  cursor: pointer;
+}
+.select {
+  height: 28px;
+  width: 240px;
+  border: 1px solid #70707042;
+  border-radius: 14px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  background: url("/icons/selec_arrow_down.png") no-repeat right #ffffff;
+  -webkit-appearance: none;
+  background-position-x: 97%;
+}
+.select-disabled {
+  height: 28px;
+  width: 240px;
+  border: 1px solid #c9c9c942;
+  border-radius: 14px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  background-position-x: 97%;
+  background-color: #c9c9c942;
+}
 
 .modal-content {
   padding: 20px;

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Icons } from "../icons";
 import PageTitle from "../page-title";
 import ModalZoomImg from "../modals/zoom-img";
+import ReactiveButton from "reactive-button";
 import "./styles.scss";
 
 function View({
@@ -20,39 +21,16 @@ function View({
   setVersionVote,
   id,
   userData,
+  optionsImg,
+  selectedImgArray,
+  optionsCount,
+  onSelectFile,
+  setOptionsImg,
+  setOptionsCount,
+  state,
+  onClickHandler,
+  finishProject,
 }) {
-  const [selectedImg, setSelectedImg] = useState();
-
-  useEffect(() => {
-    if (!selectedImg) {
-      return;
-    }
-    const objectUrl = URL.createObjectURL(selectedImg);
-
-    /* setSelectedImgArray(
-      selectedImgArray.filter((item) => item.id !== idSelect)
-    );
-
-    setSelectedImgArray((selectedImgArray) => [
-      ...selectedImgArray,
-      {
-        id: idSelect,
-        object: objectUrl,
-        name: selectedImg.name,
-        formData: selectedImg,
-      },
-    ]); */
-  }, [selectedImg /* , idSelect */]);
-
-  const onSelectFile = (e, id) => {
-    if (!e.target.files || e.target.files.length === 0) {
-      setSelectedImg(undefined);
-      return;
-    }
-
-    setSelectedImg(e.target.files[0]);
-  };
-
   return (
     <div className="page reviews">
       <PageTitle
@@ -60,9 +38,6 @@ function View({
         user={true}
         title={projectData?.values.name_project}
       />
-
-      {/*  {reviews?.version_data?.length >= 1 ||
-      reviews?.review_data?.length >= 1 ? ( */}
       <>
         <div className="info-drop flex">
           <div className="info-drop-item flex">
@@ -74,25 +49,49 @@ function View({
             >
               {Icons(menuTopView === "version" ? "arrow_up" : "arrow_down")}
             </div>
-            {/* {menuTopView === "version" && (
+            {menuTopView === "version" && (
               <div className="menu-float">
-                {reviews ? (
-                  reviews.review_data.map((review) => (
-                    <div
-                      className="option-reviews"
-                      onClick={() => {
-                        setVersionSelect(review.version);
-                        setMenuTopView("");
-                      }}
-                    >
-                      Versión {review.version}
-                    </div>
-                  ))
-                ) : (
+                {reviews?.review_data?.length >= 1 ? (
+                  <>
+                    {reviews?.review_data?.map((review, index) => (
+                      <div
+                        key={index}
+                        className="option-reviews"
+                        onClick={() => {
+                          setVersionSelect(review.version);
+                          setMenuTopView("");
+                        }}
+                      >
+                        Versión {review.version}
+                      </div>
+                    ))}
+                    {userData?.rol_id === 3 && (
+                      <div
+                        className="option-reviews"
+                        onClick={() => {
+                          setVersionSelect(reviews?.review_data?.length + 1);
+                          setMenuTopView("");
+                        }}
+                      >
+                        Versión {reviews?.review_data?.length + 1}
+                      </div>
+                    )}
+                  </>
+                ) : userData?.rol_id !== 3 ? (
                   <p>No hay más versiones disponibles</p>
+                ) : (
+                  <div
+                    className="option-reviews"
+                    onClick={() => {
+                      setVersionSelect(1);
+                      setMenuTopView("");
+                    }}
+                  >
+                    Versión 1
+                  </div>
                 )}
               </div>
-            )} */}
+            )}
           </div>
           <div className="info-drop-item flex">
             Información del proyecto
@@ -145,9 +144,11 @@ function View({
             )}
           </div>
         </div>
-
-        {reviews?.version_data?.length >= 1 ||
-        reviews?.review_data?.length >= 1 ? (
+        {reviews?.versions?.length >= 1 ||
+        (reviews?.review_data?.length >= 1 &&
+          reviews?.review_data?.filter(
+            (filter) => filter.version === versionSelect
+          )[0] !== undefined) ? (
           <>
             <p className="description">
               Haz click sobre la(s) imagen(es) para agrandar, luego arrastra
@@ -156,55 +157,67 @@ function View({
             </p>
 
             <div className="versions-content flex">
-              {reviews.review_data
-                .filter((filter) => filter.version === versionSelect)[0]
-                .version_data?.map((version, index) => (
-                  <div key={index} className="version">
-                    <div className="version-id">Opción {version.id}</div>
-                    <div
-                      className={`version-img ${
-                        reviews.review_data.filter(
-                          (filter) => filter.version === versionSelect
-                        )[0].version_data.length >= 2
-                          ? "img-2"
-                          : "img-1"
-                      }`}
-                      onClick={() => {
-                        setModalData({ id: id, img: version.content });
-                        setModalZoomImg(!modalZoomImg);
-                      }}
-                    >
-                      <img src={version.content} alt={version.id} />
-                    </div>
-                  </div>
-                ))}
-
-              {reviews.review_data.filter(
+              {reviews?.review_data?.filter(
                 (filter) => filter.version === versionSelect
-              )[0].version_data?.length >= 2 && (
-                <div className="versio vote-main">
-                  <p>De las anteriores propuestas, ¿Cuál te gusta más?</p>
-
-                  {reviews.review_data
-                    .filter((filter) => filter.version === versionSelect)[0]
-                    .version_data?.map((version, index) => (
-                      <div key={index} className="version-vote flex">
-                        <div className="version-vote-id">
-                          Opción {version.id}
-                        </div>
-                        <div className="version-vote-id">
-                          <input
-                            checked={index === versionVote}
-                            type="checkbox"
-                            name=""
-                            id=""
-                            onClick={() => setVersionVote(index)}
-                          />
-                        </div>
+              )[0] &&
+                reviews?.review_data
+                  ?.filter((filter) => filter.version === versionSelect)[0]
+                  .versions?.map((version, index) => (
+                    <div key={index} className="version">
+                      <div className="version-id">Opción {version.id}</div>
+                      <div
+                        className={`version-img ${
+                          reviews?.review_data?.filter(
+                            (filter) => filter.version === versionSelect
+                          )[0].versions.length >= 2
+                            ? "img-2"
+                            : "img-1"
+                        }`}
+                        onClick={() => {
+                          setModalData({
+                            id: version.id,
+                            img: version.content,
+                            version_id: versionSelect,
+                            project_id: id,
+                          });
+                          setModalZoomImg(!modalZoomImg);
+                        }}
+                      >
+                        <img
+                          className="img-load"
+                          src={version.content}
+                          alt={version.id}
+                        />
                       </div>
-                    ))}
-                </div>
-              )}
+                    </div>
+                  ))}
+              {userData?.rol_id !== 3 &&
+                reviews?.review_data?.filter(
+                  (filter) => filter.version === versionSelect
+                )[0].versions?.length >= 2 && (
+                  <div className="versio vote-main">
+                    <p>De las anteriores propuestas, ¿Cuál te gusta más?</p>
+
+                    {reviews?.review_data
+                      ?.filter((filter) => filter.version === versionSelect)[0]
+                      .versions?.map((version, index) => (
+                        <div key={index} className="version-vote flex">
+                          <div className="version-vote-id">
+                            Opción {version.id}
+                          </div>
+                          <div className="version-vote-id">
+                            <input
+                              checked={index === versionVote}
+                              type="checkbox"
+                              name=""
+                              id=""
+                              onClick={() => setVersionVote(index)}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                  </div>
+                )}
             </div>
           </>
         ) : userData?.rol_id !== 3 ? (
@@ -212,49 +225,124 @@ function View({
             <h3 className="text-purple">No hay revisiones disponibles</h3>
           </div>
         ) : (
-          <div className="add-options">
-            <label htmlFor={`reference-${id}`} className="button-blue flex">
-              {Icons("clip_white")}
-              {"Adjuntar"}
-            </label>
-            <input
-              type="file"
-              label="Texto a incluir"
-              required={false}
-              className="input-texarea"
-              id={`reference-${id}`}
-              onChange={(e) => {
-                onSelectFile(e, id);
-              }}
-            />
-            + Agregar
-          </div>
+          <>
+            <p className="description">
+              Adjunta las(s) imágen(es) para subirlas en la version seleccionada
+            </p>
+            <div className="versions-content flex">
+              {optionsImg.map((item, index) => (
+                <div key={index} className="version lines flex">
+                  {selectedImgArray?.filter(
+                    (itemImg) => itemImg.id === item.id
+                  )[0]?.object && (
+                    <div className="lines-img">
+                      <img
+                        className="img-load"
+                        src={
+                          selectedImgArray?.filter(
+                            (itemImg) => itemImg.id === item.id
+                          )[0]?.object
+                        }
+                        alt="preview"
+                      />
+                    </div>
+                  )}
+
+                  {!selectedImgArray?.filter(
+                    (itemImg) => itemImg.id === item.id
+                  )[0]?.object && (
+                    <>
+                      <label
+                        htmlFor={`reference-${item.id}`}
+                        className="button-blue flex"
+                      >
+                        {Icons("clip_white")}
+                        {selectedImgArray?.filter((img) => img.id === item.id)
+                          .length >= 1
+                          ? selectedImgArray?.filter(
+                              (img) => img.id === item.id
+                            )[0].name
+                          : "Adjuntar"}
+                      </label>
+                      <input
+                        type="file"
+                        label="Texto a incluir"
+                        required={false}
+                        className="input-add-option"
+                        id={`reference-${item.id}`}
+                        onChange={(e) => {
+                          onSelectFile(e, item.id);
+                        }}
+                      />
+                    </>
+                  )}
+                </div>
+              ))}
+              {optionsCount <= 3 && (
+                <div
+                  className="version add flex"
+                  onClick={() => {
+                    setOptionsImg((post) => [
+                      ...post,
+                      { id: optionsCount + 1 },
+                    ]);
+                    setOptionsCount(optionsCount + 1);
+                  }}
+                >
+                  {Icons("add_plus")}{" "}
+                  <span className="text-purple">Agregar</span>
+                </div>
+              )}
+            </div>
+          </>
         )}
 
         {modalZoomImg && (
           <ModalZoomImg close={setModalZoomImg} data={modalData} />
         )}
         <div className="footer">
-          <p className="footer-desc">
-            Si ya realizaste todos tus comentarios, haz click en
-            <span className="text-purple"> finalizar revisión </span>
-            para notificarle al diseñador.
-          </p>
+          {userData?.rol_id !== 3 ? (
+            <p className="footer-desc">
+              Si ya realizaste todos tus comentarios, haz click en
+              <span className="text-purple"> finalizar revisión </span>
+              para notificarle al diseñador.
+            </p>
+          ) : (
+            <p className="footer-desc">
+              Si ya subiste todas las opciones a revisar, haz click en
+              <span className="text-purple"> Guardar opciones </span>
+              para notificarle al administrador del proyecto.
+            </p>
+          )}
           <div className="buttons flex">
             <div className="button" onClick={() => redirectTo("/")}>
               Atrás
             </div>
-            <div className="button" onClick={() => redirectTo("/")}>
-              Finalizar revisión
-            </div>
+            {userData?.rol_id !== 3 &&
+            versionSelect === reviews?.review_data?.length ? (
+              <div className="button" onClick={() => finishProject()}>
+                Finalizar revisión
+              </div>
+            ) : (
+              selectedImgArray.length >= 1 && (
+                <div className="button-reactive">
+                  <ReactiveButton
+                    className="button"
+                    buttonState={state}
+                    onClick={() => onClickHandler()}
+                    shadow={false}
+                    loadingText={"Guardando..."}
+                    outline={false}
+                    rounded={false}
+                    block={false}
+                    idleText={"Guardar Opciones"}
+                  />
+                </div>
+              )
+            )}
           </div>
         </div>
       </>
-      {/*  ) : (
-        <div className="message">
-          <h3 className="text-purple">No hay revisiones disponibles</h3>
-        </div>
-      )} */}
     </div>
   );
 }

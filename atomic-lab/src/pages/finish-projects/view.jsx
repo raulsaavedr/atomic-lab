@@ -52,6 +52,14 @@ function View({
               {finishProjects?.map((project, index) => {
                 const projectValues = JSON.parse(project.values);
 
+                const flows = project.flow && JSON.parse(project?.flow);
+                const flow_active =
+                  "status_check_" +
+                  parseInt(
+                    Array.isArray(flows) &&
+                      flows.filter((flow) => flow.status === "active")[0].id
+                  );
+
                 return (
                   <tr key={index}>
                     <td>
@@ -67,10 +75,10 @@ function View({
                     </td>
                     <td>
                       <div>
-                        <p>{Icons("status_check_" + project?.status)}</p>
+                        <p alt="heart">{Icons(flow_active)}</p>
                         <p
                           className="view-more pointer"
-                          onClick={() => redirectToStatusProject(projectValues)}
+                          onClick={() => redirectToStatusProject(project?.id)}
                         >
                           Ver más...
                         </p>

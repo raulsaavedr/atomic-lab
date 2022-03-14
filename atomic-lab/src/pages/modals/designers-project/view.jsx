@@ -16,7 +16,7 @@ function View({
       <div className="modal-content">
         <h3>Diseñadores asignados</h3>
 
-        {userData.rol_id !== 3 && (
+        {userData.rol_id === 8 && (
           <select
             className="select"
             name="level"
@@ -32,8 +32,8 @@ function View({
                 (user) =>
                   !listDesigner?.some((user_list) => user_list.id === user.id)
               )
-              .map((user_data) => (
-                <option value={user_data.id}>
+              .map((user_data, index) => (
+                <option key={index} value={user_data.id}>
                   {user_data?.last_name !== null
                     ? user_data?.name + " " + user_data?.last_name
                     : user_data?.name}
@@ -43,8 +43,8 @@ function View({
         )}
 
         <div className="tags flex">
-          {listDesigner?.map((user_data) => (
-            <div className="tag flex">
+          {listDesigner?.map((user_data, index) => (
+            <div key={index} className="tag flex">
               {userData.rol_id !== 3 && (
                 <div
                   className="delete"

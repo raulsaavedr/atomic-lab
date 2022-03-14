@@ -1,9 +1,19 @@
 .modal-zoom-img {
+  .modal-content {
+    width: 80%;
+  }
+
   .zoom-footer {
     margin-top: 20px;
   }
 
+  .image-zoom {
+    width: 100%;
+    margin: auto;
+  }
+
   .button {
-    background-color: #ffffff;
+    background-color: #6b72fd;
+    color: #ffffff;
   }
 }

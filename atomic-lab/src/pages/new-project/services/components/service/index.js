@@ -6,9 +6,10 @@ import View from "./view";
 function Index({ service }) {
   const navigate = useNavigate();
 
+
   const redirectToServicePage = () =>
     navigate(`/service/${service.title.replaceAll(" ", "-").toLowerCase()}`, {
-      state: { service: service },
+      state: { service: service, },
     });
 
   const properties = {

@@ -26,7 +26,28 @@ function Index({ page }) {
   const redirectTo = (route) => navigate(route);
 
 
+  const getLastVersion = (project) => {
 
+
+
+
+
+    let img = ""
+
+
+
+    if (Array.isArray(project.review_data) || project.review_data.length >= 1) {
+      const countReviews = project?.review_data?.length - 1
+      img = project?.review_data[countReviews]?.versions[project?.review_data[countReviews]?.versions?.length - 1]?.content
+    }
+
+
+
+
+
+
+    return img
+  }
 
 
 
@@ -54,7 +75,8 @@ function Index({ page }) {
     userData,
     team,
     modalDesignerProject,
-    setModalDesignerProject
+    setModalDesignerProject,
+    getLastVersion
   };
 
   return <View {...properties} />;

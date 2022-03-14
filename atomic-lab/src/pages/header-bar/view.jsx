@@ -45,8 +45,9 @@ function View({
 
       <div className="icon-logo">{Icons("logo")}</div>
 
-      {MAIN_MENU(userData?.rol_id).map((item) => (
+      {MAIN_MENU(userData?.rol_id).map((item, index) => (
         <div
+          key={index}
           className={`home option ${
             item.active?.some((el) => path.includes(el)) && "active"
           }`}
@@ -129,11 +130,12 @@ function View({
                   userData?.rol_id,
                   redirectTo,
                   setIsAuthenticated
-                ).map((menu) =>
+                ).map((menu, index) =>
                   menu.text === "line" ? (
-                    <hr />
+                    <hr key={index} />
                   ) : (
                     <li
+                      key={index}
                       className={menu.text === "Cerrar sesión" && "text-purple"}
                       onClick={() => menu.onClick()}
                     >

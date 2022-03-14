@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import CreateFormContext from "../../create-form-context";
+import React from "react";
+
 import { TYPE_PUBLICATION_DATA } from "../constats";
 import PageTitle from "../page-title";
 import parse from "html-react-parser";
@@ -24,10 +24,10 @@ function View({
   socialNetwork,
   setSocialNetwork,
   brands,
+  data,
+  formData,
+  setFormData,
 }) {
-  const data = useContext(CreateFormContext)[0];
-  const [formData, setFormData] = useContext(CreateFormContext);
-
   return (
     <div className="page service-page">
       <PageTitle

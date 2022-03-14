@@ -777,6 +777,15 @@ export const STATUS_TABLES_FLOW = [
   { id: 4, text: "Proyecto Finalizado" },
 ];
 
+export const SUMMARY_OPTIONS = {
+  tiempo: { options: [{ text: "Estándar", price: 0 }, { text: "Express", price: 15 }] },
+  formato: { options: [{ text: "Recomendado", price: 0 }, { text: "Personalizado", price: 0 }] },
+  revisiones: { options: [{ text: "Hasta 3", price: 0 }, { text: "Ilimitado", price: 25 }] },
+  tamaño: { options: [{ text: "Recomendado", price: 0 }, { text: "Personalizado", price: 0 }] },
+  editables: { options: [{ text: "No", price: 0 }, { text: "Si", price: 0 }] },
+
+};
+
 export const FINISH_TABLES = (page) => {
   const listContent = [
     { title: "Nombre del proyecto", isActive: true },

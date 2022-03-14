@@ -1,6 +1,16 @@
 .reviews {
   position: relative;
 
+  .input-add-option {
+    display: none;
+  }
+
+  .add-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
   .info-drop {
     gap: 3em;
     position: relative;
@@ -71,13 +81,35 @@
 
     .version {
       flex: 40%;
-      /* height: 211px; */
       margin-bottom: 20px;
 
       &-id {
         margin-bottom: 5px;
       }
+    }
 
+    .add {
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .lines {
+      border: 1px dashed #cbcbcb;
+      height: 211px;
+      border-radius: 13px;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+
+      .button-blue {
+        gap: 5px;
+      }
+    }
+
+    .version,
+    .lines {
       &-img {
         /* overflow: hidden;
         position: relative; */
@@ -93,6 +125,7 @@
         }
       }
     }
+
     .img-1 {
       height: 548px;
     }
@@ -127,6 +160,16 @@
     }
     .buttons {
       justify-content: space-between;
+    }
+  }
+
+  .button-reactive {
+    .reactive-btn .progress {
+      box-shadow: none;
+    }
+
+    .reactive-btn.button.primary {
+      box-shadow: none;
     }
   }
 }

@@ -29,6 +29,7 @@ function View({
   userData,
   setModalDesignerProject,
   modalDesignerProject,
+  getLastVersion,
 }) {
   return (
     <div className="page active-projects">
@@ -67,6 +68,14 @@ function View({
                 const projectValues =
                   project.values && JSON.parse(project?.values);
 
+                const flows = project.flow && JSON.parse(project?.flow);
+                const flow_active =
+                  "status_check_" +
+                  parseInt(
+                    Array.isArray(flows) &&
+                      flows.filter((flow) => flow.status === "active")[0].id
+                  );
+
                 return (
                   <tr key={index}>
                     <td>
@@ -81,9 +90,7 @@ function View({
                     </td>
                     <td>
                       <div>
-                        <p alt="heart">
-                          {Icons("status_check_" + project?.status)}
-                        </p>
+                        <p alt="heart">{Icons(flow_active)}</p>
                         <p
                           className="view-more pointer"
                           onClick={() => redirectToStatusProject(project?.id)}
@@ -92,7 +99,14 @@ function View({
                         </p>
                       </div>
                     </td>
-                    <td>{projectValues?.date_next_review}</td>
+                    <td>
+                      <input
+                        className="select-date"
+                        type="date"
+                        name=""
+                        id=""
+                      />
+                    </td>
                     {page === "home" && (
                       <td>
                         <div
@@ -112,26 +126,30 @@ function View({
                             className="pointer"
                             onClick={() => {
                               setModalPrivateNotes(!modalPrivateNotes);
-                              setDataModals(
-                                projectValues?.private_notes
-                                  ? projectValues?.private_notes
-                                  : []
-                              );
+                              setDataModals({
+                                project_id: project.id,
+                                notes: project?.notes,
+                              });
                             }}
                           >
                             <p>{Icons("private_notes")}</p>
                           </div>
                         </td>
                         <td>
-                          <div
-                            className="pointer"
-                            onClick={() => {
-                              setModalZoomImg(!modalZoomImg);
-                              setDataModals(projectValues?.view_last_review);
-                            }}
-                          >
-                            {Icons("last_version")}
-                          </div>
+                          {getLastVersion(project) && (
+                            <div
+                              className="pointer"
+                              onClick={() => {
+                                setModalZoomImg(!modalZoomImg);
+                                setDataModals({
+                                  type: "normal",
+                                  img: getLastVersion(project),
+                                });
+                              }}
+                            >
+                              {Icons("last_version")}
+                            </div>
+                          )}
                         </td>
                         <td>
                           <div className="review flex">

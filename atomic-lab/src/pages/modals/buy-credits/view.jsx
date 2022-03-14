@@ -13,8 +13,9 @@ function View({ close, state, onClickHandler, methodSelect, setMethodSelect }) {
         <h3>Selecciona un método de pago</h3>
 
         <div className="options">
-          {METHOD_SELECT.map((method) => (
+          {METHOD_SELECT.map((method, index) => (
             <div
+              key={index}
               className="checkbox flex"
               onClick={() => setMethodSelect(method)}
             >
