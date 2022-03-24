@@ -320,8 +320,18 @@ function View({
             </div>
             {userData?.rol_id !== 3 &&
             versionSelect === reviews?.review_data?.length ? (
-              <div className="button" onClick={() => finishProject()}>
-                Finalizar revisión
+              <div className="button-reactive">
+                <ReactiveButton
+                  className="button"
+                  buttonState={state}
+                  onClick={() => onClickHandler("finish")}
+                  shadow={false}
+                  loadingText={"Finalizando..."}
+                  outline={false}
+                  rounded={false}
+                  block={false}
+                  idleText={"Finalizar revisión"}
+                />
               </div>
             ) : (
               selectedImgArray.length >= 1 && (
@@ -329,7 +339,7 @@ function View({
                   <ReactiveButton
                     className="button"
                     buttonState={state}
-                    onClick={() => onClickHandler()}
+                    onClick={() => onClickHandler("save")}
                     shadow={false}
                     loadingText={"Guardando..."}
                     outline={false}

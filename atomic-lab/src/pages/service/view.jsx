@@ -106,9 +106,9 @@ function View({
           <option disabled selected>
             Selecciona una opción
           </option>
-          {brands.map((brand, index) => (
+          {brands?.map((brand, index) => (
             <option key={index} defaultValue={brand.name}>
-              {brand.name}
+              {brand?.name}
             </option>
           ))}
         </select>

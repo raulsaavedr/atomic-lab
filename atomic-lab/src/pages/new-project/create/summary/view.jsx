@@ -63,16 +63,7 @@ function View({
         <div className="info">
           <div className="row">
             <div className="title">Marca</div>
-            <div className="value">
-              {/* <select name="brand_select" id="brand_select" className="select">
-                {USER_DATA.brands.map((brand, index) => (
-                  <option key={index} value={brand.value}>
-                    {brand.name}
-                  </option>
-                ))}
-              </select> */}
-              {data.brand_select}
-            </div>
+            <div className="value">{data.brand_select}</div>
           </div>
           <div className="row">
             <div className="title">Post</div>
@@ -305,7 +296,7 @@ function View({
                   className="button-blue flex"
                   onClick={() => {
                     setModalBuyCredit(!modalBuyCredits);
-                    setDataModals(/* user_id */);
+                    setDataModals();
                   }}
                 >
                   Comprar
@@ -325,9 +316,9 @@ function View({
           <div
             className="button"
             onClick={() =>
-              getTotalProject() > userData.credits
+              /* getTotalProject() > userData.credits
                 ? setModalBuyCredit(!modalBuyCredits)
-                : setModalMessageStart(true)
+                : */ setModalMessageStart(true)
             }
           >
             Iniciar proyecto

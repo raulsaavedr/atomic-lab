@@ -47,7 +47,7 @@ function Index({ setStep, step }) {
   const handleGetActiveProjects = () => {
     setFormData({});
 
-    navigate("/active-projects");
+    navigate("/projects-active");
   };
 
   const handleStartProject = () => {

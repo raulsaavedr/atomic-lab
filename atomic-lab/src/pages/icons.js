@@ -74,6 +74,9 @@ import add_circle from "../icons/add_circle.png";
 import img_circle from "../icons/img_circle.png";
 import check_blue from "../icons/check_blue.png";
 import check_blue_none from "../icons/check_blue_none.png";
+import comments_blue from "../icons/comments_blue.png";
+import hidde_eye from "../icons/hidde_eye.png";
+import eye from "../icons/eye.png";
 
 export const Icons = (icon) => {
   const listIcons = {
@@ -151,7 +154,10 @@ export const Icons = (icon) => {
     add_circle: add_circle,
     img_circle: img_circle,
     check_blue: check_blue,
-    check_blue_none: check_blue_none
+    check_blue_none: check_blue_none,
+    comments_blue: comments_blue,
+    hidde_eye: hidde_eye,
+    eye: eye
   };
 
   return <img src={listIcons[icon]} alt={icon} />;

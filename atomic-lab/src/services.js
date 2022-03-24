@@ -10,14 +10,22 @@ const headers = {
 //user
 export const getDataUser = async (user_id) => axios.get(`https://api.ticvzla.xyz/public/api/get_data_user/${user_id}`);
 export const updateCreditsUser = async ({ user_id, value }) => axios.put(`https://api.ticvzla.xyz/public/api/update_credits/${user_id}`, { value: value });
+export const updateTourView = async ({ user_id, value }) => axios.put(`https://api.ticvzla.xyz/public/api/update_tour/${user_id}`, { value: value });
+export const updateOnboardingView = async ({ user_id, value }) => axios.put(`https://api.ticvzla.xyz/public/api/update_onboarding/${user_id}`, { value: value });
+export const updateOnboardingData = async ({ user_id, data }) => axios.put(`https://api.ticvzla.xyz/public/api/update_onboarding_data/${user_id}`, data);
+export const updateConfigurations = async ({ user_id, data }) => axios.put(`https://api.ticvzla.xyz/public/api/update_configurations/${user_id}`, data);
+
 
 //projects
+export const getAllProjects = async (user_id) => axios.get(`https://api.ticvzla.xyz/public/api/get_data_user_projects/${user_id}`)
 export const getActiveProjects = async (user_id) => axios.get(`https://api.ticvzla.xyz/public/api/get_data_user_active_projects/${user_id}`)
 export const getFinishProjects = async (user_id) => axios.get(`https://api.ticvzla.xyz/public/api/get_data_user_finish_projects/${user_id}`)
 export const postCreateProject = async (formData) => axios.post(`https://api.ticvzla.xyz/public/api/project_values`, formData, { headers: headers })
 export const addReviews = async (formData) => axios.post(`https://api.ticvzla.xyz/public/api/load_versions`, formData, { headers: headers })
 export const updateFlow = async ({ project_id, id_flow }) => axios.put(`https://api.ticvzla.xyz/public/api/update_flow_project/${project_id}`, { id_flow: id_flow })
 export const updateNotes = async ({ project_id, notes }) => axios.put(`https://api.ticvzla.xyz/public/api/update_notes_project/${project_id}`, { notes: notes })
+export const updateDateReview = async ({ project_id, date }) => axios.put(`https://api.ticvzla.xyz/public/api/update_review/${project_id}`, { date: date })
+
 
 //Designers
 export const postAssignDesignerProject = async (data) => axios.post(`https://api.ticvzla.xyz/public/api/assign_designer`, data)

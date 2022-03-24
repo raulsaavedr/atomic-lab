@@ -67,7 +67,7 @@ function View({
         <section className="footer">
           <section className="section-buttons flex">
             <div className="button" onClick={() => close(false)}>
-              Cancelar
+              Cerrar
             </div>
 
             {/*  {!name || !email || !rol ? (

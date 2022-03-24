@@ -34,46 +34,59 @@ export const METHOD_SELECT = [
   "Mercadopago",
 ];
 
-export const MAIN_SUBMENU = (rol, redirectTo, setIsAuthenticated) => {
+export const MAIN_SUBMENU = (rol, redirectTo, setIsAuthenticated, setModalHelp,
+  modalHelp) => {
   const listContent = [
     {
       view: true,
       text: "Mi perfil",
       redirect: "profile",
-      onClick() { redirectTo("profile") }
+      onClick() {
+        redirectTo("profile");
+      },
     },
     {
       view: rol !== 3 ? true : false,
       text: "Mis marcas",
-      onClick() { redirectTo("brands") }
+      onClick() {
+        redirectTo("brands");
+      },
     },
     {
       view: true,
       text: "Mis adjuntos",
-      onClick() { redirectTo("attached") }
+      onClick() {
+        redirectTo("attached");
+      },
     },
     {
       view: rol !== 3 ? true : false,
       text: "Mi equipo",
-      onClick() { redirectTo("team") }
+      onClick() {
+        redirectTo("team");
+      },
     },
     {
       view: true,
-      text: "line"
+      text: "line",
     },
     {
       view: true,
       text: "Mi configuración",
-      onClick() { redirectTo("configuration") }
+      onClick() {
+        redirectTo("configuration");
+      },
     },
     {
       view: true,
       text: "Ayuda y soporte",
-      onClick() { redirectTo("help-support") }
+      onClick() {
+        setModalHelp(!modalHelp)
+      },
     },
     {
       view: true,
-      text: "line"
+      text: "line",
     },
     {
       view: true,
@@ -83,12 +96,12 @@ export const MAIN_SUBMENU = (rol, redirectTo, setIsAuthenticated) => {
         sessionStorage.removeItem("atomiclab-user");
         setIsAuthenticated(false);
         redirectTo("/");
-      }
-    }
-  ]
+      },
+    },
+  ];
 
   return listContent.filter((item) => item.view === true);
-}
+};
 
 export const MAIN_MENU = (rol) => {
   const listContent = [
@@ -116,9 +129,9 @@ export const MAIN_MENU = (rol) => {
       view: true,
       id: 3,
       id_text: "active",
-      redirect: "/active-projects",
+      redirect: "/projects-active",
       active: [
-        "active-projects",
+        "projects-active",
         "status-project",
         "reviews",
         "more-info",
@@ -132,20 +145,20 @@ export const MAIN_MENU = (rol) => {
       view: true,
       id: 4,
       id_text: "finish",
-      redirect: "/finish-projects",
-      active: ["finish-projects"],
+      redirect: "/projects-inactive",
+      active: ["projects-inactive"],
       tour_title: "Proyectos terminados",
       tour_text:
         "Aquí podrás ver tus proyectos que han finalizado. Visualiza, comparte y descarga tus proyectos.",
     },
-  ]
+  ];
 
   return listContent.filter((item) => item.view === true);
-}
+};
 
 export const MENU_ACTIVE = {
   active_projects: [
-    "active-projects",
+    "projects-active",
     "status-project",
     "reviews",
     "more-info",
@@ -419,6 +432,13 @@ export const USER_DATA = {
 export const FORM_INPUTS_BRANDS = [
   {
     id: "name",
+    type: "file",
+    label: "Icono",
+    required: true,
+    className: "input-txt",
+  },
+  {
+    id: "name",
     type: "text",
     label: "Nombre comercial",
     required: true,
@@ -615,7 +635,7 @@ export const FORM_INPUTS_PROFILE = [
   {
     id: "name",
     type: "text",
-    label: "Nombres(s)",
+    label: "Nombre(s)",
     placeholder: "",
     required: false,
     className: "input-txt",
@@ -717,7 +737,7 @@ export const FORM_INPUTS = {
       "Ej. Preferencias de estilos, muestras, referencias, ejemplos, bosquejos/borradores, URLs, etc.",
     required: false,
     className: "input-texarea",
-    maxlength: 280,
+    maxLength: 280,
   },
   idea: {
     type: "text",
@@ -725,7 +745,7 @@ export const FORM_INPUTS = {
     placeholder: "",
     required: false,
     className: "input-texarea",
-    maxlength: 280,
+    maxLength: 280,
   },
   image_include: {
     type: "text",
@@ -733,7 +753,7 @@ export const FORM_INPUTS = {
     placeholder: "Ej. Objetivo de la imagen, etc.",
     required: false,
     className: "input-texarea",
-    maxlength: 280,
+    maxLength: 280,
   },
   text_include: {
     type: "text",
@@ -741,7 +761,7 @@ export const FORM_INPUTS = {
     placeholder: "Escribe el texto tal cual como lo quieres o adjúntalo. ",
     required: false,
     className: "input-texarea",
-    maxlength: 280,
+    maxLength: 280,
   },
 
   reference_add: {
@@ -778,12 +798,36 @@ export const STATUS_TABLES_FLOW = [
 ];
 
 export const SUMMARY_OPTIONS = {
-  tiempo: { options: [{ text: "Estándar", price: 0 }, { text: "Express", price: 15 }] },
-  formato: { options: [{ text: "Recomendado", price: 0 }, { text: "Personalizado", price: 0 }] },
-  revisiones: { options: [{ text: "Hasta 3", price: 0 }, { text: "Ilimitado", price: 25 }] },
-  tamaño: { options: [{ text: "Recomendado", price: 0 }, { text: "Personalizado", price: 0 }] },
-  editables: { options: [{ text: "No", price: 0 }, { text: "Si", price: 0 }] },
-
+  tiempo: {
+    options: [
+      { text: "Estándar", price: 0 },
+      { text: "Express", price: 15 },
+    ],
+  },
+  formato: {
+    options: [
+      { text: "Recomendado", price: 0 },
+      { text: "Personalizado", price: 0 },
+    ],
+  },
+  revisiones: {
+    options: [
+      { text: "Hasta 3", price: 0 },
+      { text: "Ilimitado", price: 25 },
+    ],
+  },
+  tamaño: {
+    options: [
+      { text: "Recomendado", price: 0 },
+      { text: "Personalizado", price: 0 },
+    ],
+  },
+  editables: {
+    options: [
+      { text: "No", price: 0 },
+      { text: "Si", price: 0 },
+    ],
+  },
 };
 
 export const FINISH_TABLES = (page) => {
@@ -820,6 +864,204 @@ export const ACTIVE_TABLES = (page) => {
   return listContent.filter((item) => item.isActive === true);
 };
 
+export const PROJECTS = (
+  page,
+  typeFin,
+  navigate,
+  project,
+  modalDesignerProject,
+  setModalDesignerProject,
+  setDataModals,
+  modalZoomImg,
+  setModalZoomImg,
+  getLastVersion,
+  setModalPrivateNotes,
+  modalPrivateNotes,
+  setMenuFloat,
+  menuFloat,
+  flow_active,
+  rol_id
+) => {
+  const listContent = [
+    {
+      title: "Nombre del proyecto",
+      isActive: true,
+      field: "name_project",
+      icon: null,
+      onClick() {
+        navigate(`/project-detail/${project?.id}`);
+      },
+    },
+
+    {
+      title: "Fecha Inicio",
+      isActive: page === "home" && typeFin === "inactive" ? true : false,
+      field: "created_at",
+      icon: null,
+    },
+
+    {
+      title: "Fecha Finalización",
+      isActive: typeFin === "inactive" ? true : false,
+      field: "finish_at",
+      icon: null,
+    },
+
+    {
+      title: "Estado",
+      isActive: page === "home" ? typeFin === "active" ? true : false : true,
+      field: "status",
+      icon: flow_active,
+      subtitle: {
+        text: "Ver más...",
+        onClick() {
+          navigate(`/status-project/${project?.id}`, {
+            state: { project_id: project?.id },
+          });
+        },
+      },
+    },
+    {
+      title: "Fecha estimada próx. revisión",
+      isActive: typeFin === "active" ? true : false,
+      field: "review_date",
+      icon: null,
+      type: rol_id === 3 || rol_id === 8 ? "date" : null,
+    },
+    {
+      title: "Mis notas privadas",
+      isActive: page === "home" ? false : true,
+      field: "review_date",
+      icon: "private_notes",
+      onClick() {
+        setModalPrivateNotes(!modalPrivateNotes);
+        setDataModals({
+          project_id: project.id,
+          notes: project?.notes,
+        });
+      },
+    },
+
+    {
+      title: "Visualizar diseño final",
+      isActive: typeFin === "inactive" ? true : false,
+      field: "review_date",
+      icon: "last_version",
+      onClick() {
+        setModalZoomImg(!modalZoomImg);
+        setDataModals({
+          type: "normal",
+          img: getLastVersion(project),
+        });
+      },
+    },
+
+    {
+      title: "Comentarios finales",
+      isActive: page !== "home" && typeFin === "inactive" ? true : false,
+      field: "review_date",
+      icon: "comments_blue",
+    },
+
+    {
+      title: "Descargar",
+      isActive: typeFin === "inactive" ? true : false,
+      field: "review_date",
+      icon: "download",
+      type: "download"
+    },
+
+
+
+
+    {
+      title: "Más Información",
+      isActive: page === "home" && typeFin === "active" ? true : false,
+      icon: "add_plus",
+      onClick() {
+        navigate(`/more-info/${project.id}`);
+      },
+    },
+
+    {
+      title: "Visualizar última versión",
+      isActive: page !== "home" && typeFin === "active" ? true : false,
+      field: "review_date",
+      icon: "last_version",
+      onClick() {
+        setModalZoomImg(!modalZoomImg);
+        setDataModals({
+          type: "normal",
+          img: getLastVersion(project),
+        });
+      },
+    },
+    {
+      title: "Revisión",
+      isActive: page !== "home" && typeFin === "active" ? true : false,
+      field: "review_date",
+      icon: "add_plus",
+    },
+    {
+      title: "Retroalimentación revisiones",
+      isActive: typeFin === "active" ? true : false,
+      field: "review_date",
+      icon: "review",
+      onClick() {
+        navigate(`/reviews/${project?.id}`);
+      },
+    },
+    {
+      title: "Diseñador",
+      isActive: page !== "home" && typeFin === "active" ? true : false,
+      field: "review_date",
+      icon: "review",
+      onClick() {
+        setModalDesignerProject(!modalDesignerProject);
+        setDataModals({ project_id: project?.id });
+      },
+    },
+    {
+      title: "",
+      isActive: page === "home" ? false : true,
+      isMenu: [
+        {
+          title: "Más información",
+          onClick() {
+            navigate(`/more-info/${project?.id}`);
+          },
+        },
+        {
+          title: "Compartir",
+        },
+        {
+          title: "Invitar personas",
+        },
+        {
+          title: "Eliminar",
+        },
+      ],
+
+      field: "points-menu",
+      onClick() {
+        setMenuFloat(menuFloat === project?.id ? "" : project?.id);
+      },
+    },
+    {
+      title: "",
+      isActive: page === "home" ? true : false,
+      field: "points-menu",
+      subtitle: {
+        text: "Ver más...",
+        onClick() {
+          navigate(`/projects-${typeFin}`);
+        },
+      },
+    },
+  ];
+  return listContent.filter((item) => item.isActive === true);
+};
+
 export const TYPE_PUBLICATION_DATA = {
   Post: {
     options: ["Post", "Carrusel"],
@@ -834,6 +1076,7 @@ export const SERVICES_DATA = [
   {
     status: "active",
     title: "Redes sociales",
+    title_id: "redes-sociales",
     description: "Contenido compartido en las redes sociales",
     price: {
       basic: [
@@ -944,6 +1187,7 @@ export const SERVICES_DATA = [
   {
     status: "coming-soon",
     title: "Impresion",
+    title_id: "impresion",
     description: "Contenido compartido en las redes sociales",
     price: {
       basic: "$100",
@@ -953,6 +1197,7 @@ export const SERVICES_DATA = [
   {
     status: "coming-soon",
     title: "Papeleria",
+    title_id: "papeleria",
     description: "Contenido compartido en las redes sociales",
     price: {
       basic: "$100",
@@ -962,6 +1207,7 @@ export const SERVICES_DATA = [
   {
     status: "coming-soon",
     title: "Diseño web",
+    title_id: "diseño-web",
     description: "Contenido compartido en las redes sociales",
     price: {
       basic: "$100",
@@ -971,6 +1217,7 @@ export const SERVICES_DATA = [
   {
     status: "coming-soon",
     title: "Infografias",
+    title_id: "infografias",
     description: "Contenido compartido en las redes sociales",
     price: {
       basic: "$100",
@@ -980,6 +1227,7 @@ export const SERVICES_DATA = [
   {
     status: "coming-soon",
     title: "Presentaciones",
+    title_id: "presentaciones",
     description: "Contenido compartido en las redes sociales",
     price: {
       basic: "$100",
@@ -990,6 +1238,7 @@ export const SERVICES_DATA = [
   {
     status: "coming-soon",
     title: "Manual de marca",
+    title_id: "manual-de-marca",
     description: "Contenido compartido en las redes sociales",
     description_page:
       "<p>Un manual de marca (o de identidad) es un documento que recoge los principales elementos gráficos de la marca y explica cómo deben aplicarse visualmente. Tanto online como offline</p><p>Revisa las especificaciones y elige que clase de publicación necesitas</p><p>Los siguientes parámetros aplican para ambos manuales de marca</p> ",
@@ -1093,6 +1342,7 @@ export const SERVICES_DATA = [
   {
     status: "coming-soon",
     title: "Logotipo",
+    title_id: "logotipo",
     description: "Contenido compartido en las redes sociales",
     price: {
       basic: "$100",
@@ -1102,6 +1352,7 @@ export const SERVICES_DATA = [
   {
     status: "coming-soon",
     title: "Otros",
+    title_id: "otros",
     description: "Contenido compartido en las redes sociales",
     price: {
       basic: "$100",

@@ -63,6 +63,25 @@
     outline: none;
   }
 
+  .pass {
+    position: relative;
+    height: fit-content;
+
+    input {
+      width: 100%;
+    }
+    .view-pass {
+      width: 30px;
+      position: absolute;
+      right: 10px;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
   .button-reactive {
     * {
       box-shadow: none;

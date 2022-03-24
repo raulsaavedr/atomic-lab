@@ -1,7 +1,7 @@
 import React from "react";
 import PageTitle from "../page-title";
-import ActiveProjects from "../active-projects/";
-import FinishProjects from "../finish-projects/";
+import Projects from "../projects";
+
 import { Icons } from "../icons";
 
 import "./styles.scss";
@@ -23,11 +23,11 @@ function View({ redirectTo, userData }) {
         )}
 
         <div className="section-page">
-          <ActiveProjects page="home" />
+          <Projects type_home="active" page="home" />
         </div>
 
         <div className="section-page">
-          <FinishProjects page="home" />
+          <Projects type_home="inactive" page="home" />
         </div>
       </div>
     </div>

@@ -2,7 +2,17 @@ import React, { useState } from "react";
 import { Icons } from "../icons";
 import "./styles.scss";
 
-function View({ setIsAuthenticated, redirectTo }) {
+function View({
+  redirectTo,
+  setOnboarding,
+  nameOrganization,
+  setNameOrganization,
+  urlOrganization,
+  setUrlOrganization,
+  movil,
+  setMovil,
+  updateDataOnboarding,
+}) {
   const [step, setStep] = useState(0);
 
   return (
@@ -46,7 +56,10 @@ function View({ setIsAuthenticated, redirectTo }) {
                 <div className="buttons">
                   <div
                     className="button-gray"
-                    onClick={() => setIsAuthenticated(true)}
+                    onClick={() => {
+                      setOnboarding(false);
+                      redirectTo("/");
+                    }}
                   >
                     Configurar déspues
                   </div>
@@ -70,10 +83,17 @@ function View({ setIsAuthenticated, redirectTo }) {
                   id=""
                   placeholder="Escribe aquí tu respuesta"
                   className="input-txt-onboarding"
+                  onChange={(e) => setNameOrganization(e.target.value)}
                 />
-                <div className="button-blue" onClick={() => setStep(step + 1)}>
-                  Continuar
-                </div>
+
+                {nameOrganization && (
+                  <div
+                    className="button-blue"
+                    onClick={() => setStep(step + 1)}
+                  >
+                    Continuar
+                  </div>
+                )}
               </>
             )}
             {step === 2 && (
@@ -90,10 +110,16 @@ function View({ setIsAuthenticated, redirectTo }) {
                   id=""
                   placeholder="https://"
                   className="input-txt-onboarding"
+                  onChange={(e) => setUrlOrganization(e.target.value)}
                 />
-                <div className="button-blue" onClick={() => setStep(step + 1)}>
-                  Continuar
-                </div>
+                {urlOrganization && (
+                  <div
+                    className="button-blue"
+                    onClick={() => setStep(step + 1)}
+                  >
+                    Continuar
+                  </div>
+                )}
               </>
             )}
             {step === 3 && (
@@ -117,11 +143,17 @@ function View({ setIsAuthenticated, redirectTo }) {
                   id=""
                   placeholder="Escribe aquí tu respuesta"
                   className="input-txt-onboarding"
+                  onChange={(e) => setMovil(e.target.value)}
                 />
                 {/*  <p>Pulsa Shift + Enter para añadir otro párrafo</p> */}
-                <div className="button-blue" onClick={() => redirectTo("/")}>
-                  Aceptar
-                </div>
+                {movil && (
+                  <div
+                    className="button-blue"
+                    onClick={() => updateDataOnboarding()}
+                  >
+                    Aceptar
+                  </div>
+                )}
               </>
             )}
           </div>
@@ -133,7 +165,10 @@ function View({ setIsAuthenticated, redirectTo }) {
               <div className="buttons">
                 <div
                   className="button-gray"
-                  onClick={() => setIsAuthenticated(true)}
+                  onClick={() => {
+                    setOnboarding(false);
+                    redirectTo("/");
+                  }}
                 >
                   Configurar déspues
                 </div>

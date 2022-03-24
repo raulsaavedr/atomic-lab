@@ -1,0 +1,200 @@
+import React from "react";
+import { Icons } from "../icons";
+import { PROJECTS } from "../constats";
+import ModalPrivateNotes from "../modals/private-notes";
+import ModalZoomImg from "../modals/zoom-img";
+import ModalReviews from "../modals/reviews";
+import DesignerProject from "../modals/designers-project";
+import PageTitle from "../page-title";
+import moment from "moment";
+import "./styles.scss";
+
+function View({
+  page,
+  setModalPrivateNotes,
+  modalPrivateNotes,
+  dataModals,
+  setDataModals,
+  modalReviews,
+  setModalReviews,
+  modalZoomImg,
+  setModalZoomImg,
+  menuFloat,
+  setMenuFloat,
+  navigate,
+  userData,
+  setModalDesignerProject,
+  modalDesignerProject,
+  getLastVersion,
+  updateDateNextReview,
+  projectsFilter,
+  typeFin,
+}) {
+  return (
+    <div className="page active-projects">
+      <PageTitle
+        page={page}
+        user={true}
+        title={`Proyectos ${typeFin === "active" ? "activos" : "finalizados"}`}
+      />
+
+      {projectsFilter && projectsFilter.length <= 1 ? (
+        <div className="message">
+          <h3 className="text-purple">No tienes proyectos activos</h3>
+          {userData?.rol_id !== 3 && (
+            <div className="button" onClick={() => navigate("/new-project")}>
+              Empezar proyecto
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="table-data">
+          <table>
+            <thead>
+              <tr>
+                {PROJECTS(page, typeFin).map((item, index) => (
+                  <th key={index}>
+                    <div className="th-flex flex">
+                      <p>{item.title}</p>
+                      {item.title !== "" && (
+                        <p className="flex">{Icons("help_circle")}</p>
+                      )}
+                    </div>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+
+            <tbody>
+              {projectsFilter?.map((project, index) => {
+                const projectValues =
+                  project.values && JSON.parse(project?.values);
+
+                const flows = project.flow && JSON.parse(project?.flow);
+                const flow_active =
+                  "status_check_" +
+                  parseInt(
+                    Array.isArray(flows) &&
+                      flows.filter((flow) => flow.status === "active")[0].id
+                  );
+
+                return (
+                  <tr key={index}>
+                    {PROJECTS(
+                      page,
+                      typeFin,
+                      navigate,
+                      project,
+                      modalDesignerProject,
+                      setModalDesignerProject,
+                      setDataModals,
+                      modalZoomImg,
+                      setModalZoomImg,
+                      getLastVersion,
+                      setModalPrivateNotes,
+                      modalPrivateNotes,
+                      setMenuFloat,
+                      menuFloat,
+                      flow_active,
+                      userData?.rol_id
+                    ).map((project_field) => (
+                      <td>
+                        <div
+                          onClick={project_field?.onClick}
+                          className={
+                            project_field?.onClick
+                              ? project_field.field + " pointer"
+                              : project_field.field
+                          }
+                        >
+                          {project_field.type === "date" ? (
+                            <input
+                              className="select-date"
+                              type="date"
+                              name=""
+                              id=""
+                              value={project.review_date}
+                              onChange={(e) =>
+                                updateDateNextReview(
+                                  project.id,
+                                  moment(e.target.value).format("YYYY-MM-DD")
+                                )
+                              }
+                            />
+                          ) : project_field.type === "download" ? (
+                            <a
+                              download="custom-filename.jpg"
+                              target="_blank"
+                              href={
+                                "http://api.ticvzla.xyz/public/versions-images/8/8869911647031424.jpeg"
+                              }
+                              title="ImageName"
+                            >
+                              {Icons(project_field.icon)}
+                            </a>
+                          ) : project_field.icon ? (
+                            Icons(project_field.icon)
+                          ) : (
+                            projectValues[project_field.field] ||
+                            project[project_field.field]
+                          )}
+
+                          {project_field.subtitle && (
+                            <p
+                              className={`view-more ${
+                                project_field.subtitle?.onClick && "pointer"
+                              }`}
+                              onClick={project_field.subtitle?.onClick}
+                            >
+                              {project_field.subtitle.text}
+                            </p>
+                          )}
+
+                          {project_field.isMenu && (
+                            <>
+                              {Icons("menu_points")}
+                              {menuFloat === project?.id && (
+                                <div className={`menu-float ${project?.id} `}>
+                                  {project_field.isMenu.map((item_menu) => (
+                                    <div
+                                      className="menu-float-item flex"
+                                      onClick={item_menu?.onClick}
+                                    >
+                                      <p>{item_menu.title}</p>
+                                      {Icons("help_circle")}
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          {modalPrivateNotes && (
+            <ModalPrivateNotes close={setModalPrivateNotes} data={dataModals} />
+          )}
+          {modalZoomImg && (
+            <ModalZoomImg close={setModalZoomImg} data={dataModals} />
+          )}
+          {modalReviews && (
+            <ModalReviews close={setModalReviews} data={dataModals} />
+          )}
+          {modalDesignerProject && (
+            <DesignerProject
+              close={setModalDesignerProject}
+              data={dataModals}
+            />
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default View;

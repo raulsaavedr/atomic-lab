@@ -124,7 +124,7 @@ function View({ projectData, rate, redirectTo }) {
         <section className="section-buttons flex">
           <div
             className="button"
-            onClick={() => redirectTo("/active-projects")}
+            onClick={() => redirectTo("/projects-active")}
           >
             Atrás
           </div>

@@ -4,10 +4,12 @@ import Selection from "./selection";
 import Summary from "./summary";
 import "./styles.scss";
 
-function View({ step, setStep }) {
+function View({ step, setStep, serviceData }) {
   return (
     <div>
-      {step === 1 && <Form setStep={setStep} step={step} />}
+      {step === 1 && (
+        <Form setStep={setStep} step={step} serviceData={serviceData} />
+      )}
       {step === 2 && <Selection setStep={setStep} step={step} />}
       {step === 3 && <Summary setStep={setStep} step={step} />}
     </div>

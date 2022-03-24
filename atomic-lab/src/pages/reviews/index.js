@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import DataContext from "../../data-context";
 import { useParams, useNavigate } from "react-router-dom";
-import { getReviewsProject, addReviews, updateFlow, getActiveProjects } from "../../services";
+import { getReviewsProject, addReviews, updateFlow, getActiveProjects, getFinishProjects } from "../../services";
 import View from "./view";
 
 function Index() {
@@ -14,7 +14,7 @@ function Index() {
   const [modalZoomImg, setModalZoomImg] = useState(false);
   const [modalData, setModalData] = useState({});
 
-  const { userData, activeProjects, setActiveProjects } = useContext(DataContext);
+  const { userData, activeProjects, setActiveProjects, setFinishProjects } = useContext(DataContext);
   const [reviews, setReviews] = useState(null);
   const [versionSelect, setVersionSelect] = useState(1);
 
@@ -133,10 +133,12 @@ function Index() {
   }
 
 
-  const onClickHandler = () => {
+  const onClickHandler = (type) => {
     setState("loading");
     setTimeout(() => {
-      handleCreateReview();
+
+      type === "save" && handleCreateReview();
+      type === "finish" && finishProject();
     }, 2000);
   };
 
@@ -146,7 +148,17 @@ function Index() {
 
 
 
-    updateFlow({ project_id: id, id_flow: 4 })
+    updateFlow({ project_id: id, id_flow: 4 }).then((res) => {
+      setState("idle")
+
+      getFinishProjects(userData.id).then(({ data }) => {
+        setFinishProjects(data.finish_projects);
+      });
+
+      navigate("/finish-projects")
+
+
+    })
 
 
 

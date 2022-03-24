@@ -9,7 +9,7 @@ function Index({ service }) {
 
   const redirectToServicePage = () =>
     navigate(`/service/${service.title.replaceAll(" ", "-").toLowerCase()}`, {
-      state: { service: service, },
+      state: { service: service.title.replaceAll(" ", "-").toLowerCase(), },
     });
 
   const properties = {

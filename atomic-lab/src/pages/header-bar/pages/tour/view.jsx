@@ -1,8 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Icons } from "../../../icons";
 import "./styles.scss";
 
-function View({ setTourStep, tourStep, setTourActive, title, text }) {
+function View({
+  setTourStep,
+  tourStep,
+  setTourActive,
+  title,
+  text,
+  updateTour,
+}) {
+  const navigate = useNavigate();
   return (
     <div className={`tour tour-${tourStep}`}>
       <div className={`tour-content tour-step-${tourStep}`}>
@@ -22,7 +31,14 @@ function View({ setTourStep, tourStep, setTourActive, title, text }) {
 
         <div className="buttons">
           {tourStep === 0 ? (
-            <div className="button" onClick={() => setTourActive(false)}>
+            <div
+              className="button"
+              onClick={() => {
+                setTourActive(false);
+                navigate("/new-project");
+                updateTour();
+              }}
+            >
               Cancelar tour
             </div>
           ) : (
@@ -42,6 +58,8 @@ function View({ setTourStep, tourStep, setTourActive, title, text }) {
               onClick={() => {
                 setTourStep(0);
                 setTourActive(false);
+                navigate("/new-project");
+                updateTour();
               }}
             >
               Finalizar

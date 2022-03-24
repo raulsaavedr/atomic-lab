@@ -14,6 +14,8 @@ function View({
   onClickHandler,
   messageValidation,
   handleKeyPress,
+  viewPassword,
+  setViewPassword,
 }) {
   return (
     <div className="login">
@@ -25,7 +27,7 @@ function View({
         <div className="inputs-main">
           <div className="inputs">
             <p className="text-purple">
-              <h2>Iniciar sesión</h2>
+              <h2>Inicia sesión</h2>
             </p>
             <input
               type="email"
@@ -37,13 +39,21 @@ function View({
             {passwordValidation && (
               <p className="text-error">* Email invalido</p>
             )}
-            <input
-              type="password"
-              className="input-txt"
-              placeholder="Contraseña"
-              onChange={(e) => setPassword(e.target.value)}
-              onKeyPress={(e) => handleKeyPress(e)}
-            />
+            <div className="pass flex">
+              <input
+                type={viewPassword ? "text" : "password"}
+                className="input-txt"
+                placeholder="Contraseña"
+                onChange={(e) => setPassword(e.target.value)}
+                onKeyPress={(e) => handleKeyPress(e)}
+              />
+              <div
+                className="view-pass"
+                onClick={() => setViewPassword(!viewPassword)}
+              >
+                {Icons(viewPassword ? "hidde_eye" : "eye")}
+              </div>
+            </div>
 
             {messageValidation && (
               <div className="user-invalid">
@@ -72,7 +82,7 @@ function View({
                 outline={false}
                 rounded={false}
                 block={false}
-                idleText={"Iniciar sesión"}
+                idleText={"Inicia sesión"}
               />
             </div>
 
@@ -92,7 +102,7 @@ function View({
                 className="text-purple"
                 onClick={() => redirectTo("sing-up")}
               >
-                Crear una cuenta
+                Crea una cuenta
               </div>
             </p>
           </div>

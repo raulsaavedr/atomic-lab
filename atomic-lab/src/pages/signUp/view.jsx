@@ -31,12 +31,12 @@ function View({
         <div className="inputs-main">
           <div className="inputs">
             <p className="text-purple">
-              <h2>Crear una cuenta</h2>
+              <h2>Crea una cuenta</h2>
             </p>
             <input
               type="text"
               className="input-txt"
-              placeholder="Nombres(s)"
+              placeholder="Nombre(s)"
               onChange={(e) => setName(e.target.value)}
             />
             <input
@@ -124,7 +124,7 @@ function View({
             <div className="not-account">
               <p>¿Ya tienes una cuenta? </p>
               <span className="text-purple" onClick={() => redirectTo("/")}>
-                Iniciar sesión{" "}
+                Inicia sesión{" "}
               </span>
             </div>
           </div>

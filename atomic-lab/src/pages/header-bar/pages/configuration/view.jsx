@@ -2,6 +2,7 @@ import React from "react";
 import PageTitle from "../../../page-title";
 import { Icons } from "../../../icons";
 import ModalMessage from "../../../modals/message";
+
 import "./styles.scss";
 
 function View({
@@ -17,6 +18,9 @@ function View({
   setModalMessage,
   startDelete,
   setStartDelete,
+  languaje,
+  setLanguaje,
+  updateDataConfigurations,
 }) {
   return (
     <div className="configuration-page page">
@@ -33,9 +37,14 @@ function View({
             name="languaje_select"
             id="languaje_select"
             className="select"
+            onChange={(e) => setLanguaje(e.target.value)}
           >
-            <option value="español">Español</option>
-            <option value="ingles">Ingles</option>
+            <option value="español" selected={languaje === "español"}>
+              Español
+            </option>
+            <option value="ingles" selected={languaje === "ingles"}>
+              Ingles
+            </option>
           </select>
         </div>
 
@@ -134,7 +143,9 @@ function View({
 
       <section className="footer">
         <section className="section-buttons flex">
-          <div className="button">Guardar cambios</div>
+          <div className="button" onClick={() => updateDataConfigurations()}>
+            Guardar cambios
+          </div>
         </section>
       </section>
 

@@ -12,6 +12,19 @@
     color: #ffffff;
   }
 
+  .icon-logo {
+    input {
+      display: none;
+    }
+    .icon-img {
+      width: 82px;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
   table {
     width: 100%;
     margin: 3em 0;

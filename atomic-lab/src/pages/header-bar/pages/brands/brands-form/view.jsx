@@ -1,10 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PageTitle from "../../../../page-title";
 import { FORM_INPUTS_BRANDS, FROM_BRAND_TABLES } from "../../../../constats";
 import "./styles.scss";
 import { Icons } from "../../../../icons";
 
 function View({ id, redirectTo, dataBrand, onSubmit, handleSubmit, register }) {
+  const [selectedImg, setSelectedImg] = useState();
+  const [selectedImgArray, setSelectedImgArray] = useState([]);
+
+  const onSelectFile = (e, id) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedImg(undefined);
+      return;
+    }
+
+    /*     setIdSelect(id); */
+    setSelectedImg(e.target.files[0]);
+  };
+
+  useEffect(() => {
+    if (!selectedImg) {
+      return;
+    }
+    const objectUrl = URL.createObjectURL(selectedImg);
+
+    /*    setSelectedImgArray(
+      selectedImgArray.filter((item) => item.id !== idSelect)
+    ); */
+
+    setSelectedImgArray({
+      /*  id: idSelect, */
+      object: objectUrl,
+      name: selectedImg.name,
+      formData: selectedImg,
+    });
+  }, [selectedImg]);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="brands-form-page page">
@@ -26,7 +57,7 @@ function View({ id, redirectTo, dataBrand, onSubmit, handleSubmit, register }) {
 
               {input.type && (
                 <div className="flex">
-                  {input.type !== "textarea" && (
+                  {input.type !== "textarea" && input.type !== "file" && (
                     <input {...input} id={input.id} {...register(input.id)} />
                   )}
                   {input.type === "textarea" && (
@@ -35,6 +66,31 @@ function View({ id, redirectTo, dataBrand, onSubmit, handleSubmit, register }) {
                       id={input.id}
                       {...register(input.id)}
                     />
+                  )}
+                  {input.type === "file" && (
+                    <div className="icon-logo flex">
+                      <div className="icon-img">
+                        {selectedImgArray?.object ? (
+                          <img src={selectedImgArray?.object} alt="" />
+                        ) : (
+                          Icons("icon_img_post")
+                        )}
+                      </div>
+                      <label
+                        htmlFor={`reference-${id}`}
+                        className="button-blue flex"
+                      >
+                        {Icons("clip_white")}
+                        {selectedImgArray?.name || "Adjuntar"}
+                      </label>
+                      <input
+                        {...input}
+                        id={`reference-${id}`}
+                        onChange={(e) => {
+                          onSelectFile(e, id);
+                        }}
+                      />
+                    </div>
                   )}
                   {Icons("edit")}
                 </div>

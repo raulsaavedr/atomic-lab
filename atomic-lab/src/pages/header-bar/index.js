@@ -2,24 +2,26 @@ import React, { useEffect, useContext, useState } from "react";
 import DataContext from "../../data-context";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
-  getDataUser,
   getBrands,
   getActiveProjects,
   getTeam,
   getAttached,
   getFinishProjects,
+  getAllProjects,
+  updateTourView
 } from "../../services";
 import View from "./view";
 
 function Index({ setIsAuthenticated }) {
   const {
     userData,
-    setUserData,
     setBrands,
     setActiveProjects,
     setTeam,
     setAttached,
     setFinishProjects,
+    setAllProjects,
+    tourActive, setTourActive
   } = useContext(DataContext);
 
   const navigate = useNavigate();
@@ -27,8 +29,9 @@ function Index({ setIsAuthenticated }) {
   const [modalBuyCredits, setModalBuyCredit] = useState(false);
   const [dataModals, setDataModals] = useState([]);
   const [tourStep, setTourStep] = useState(0);
-  const [tourActive, setTourActive] = useState(true);
 
+
+  const [modalHelp, setModalHelp,] = useState(false)
 
   let location = useLocation();
 
@@ -42,9 +45,7 @@ function Index({ setIsAuthenticated }) {
   const user_id = JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id;
 
   useEffect(() => {
-    getDataUser(user_id).then(({ data }) => {
-      setUserData(data.user[0]);
-    });
+
     getBrands(user_id).then(({ data }) => {
       setBrands(data.brands);
     });
@@ -60,7 +61,15 @@ function Index({ setIsAuthenticated }) {
     getActiveProjects(user_id).then(({ data }) => {
       setActiveProjects(data.response);
     });
+    getAllProjects(user_id).then(({ data }) => {
+      setAllProjects(data.response);
+    });
   }, []);
+
+
+  const updateTour = () => {
+    updateTourView({ user_id: user_id, value: 0 })
+  }
 
 
 
@@ -79,7 +88,9 @@ function Index({ setIsAuthenticated }) {
     setModalBuyCredit,
     dataModals,
     setDataModals,
-    user_id,
+    user_id, modalHelp,
+    setModalHelp,
+    updateTour
   };
 
   return <View {...properties} />;

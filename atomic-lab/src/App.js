@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
-import { USER_DATA } from "./pages/constats";
+import { useNavigate } from "react-router-dom";
+import {
+  getDataUser,
+
+} from "./services";
 
 import AuthContext from "./auth-context";
 import CreateFormContext from "./create-form-context";
@@ -12,9 +16,7 @@ import SignUp from "./pages/signUp";
 import HeaderBar from "./pages/header-bar";
 import Home from "./pages/home";
 import Service from "./pages/service";
-import ActiveProjects from "./pages/active-projects";
 import NewProject from "./pages/new-project";
-import FinishProjects from "./pages/finish-projects";
 import StatusProject from "./pages/status-project";
 import Profile from "./pages/header-bar/pages/profile";
 import Brands from "./pages/header-bar/pages/brands";
@@ -30,11 +32,14 @@ import Reviews from "./pages/reviews";
 import MoreInfo from "./pages/more-info";
 import ProjectDetail from "./pages/project-detail";
 
+import Projects from "./pages/projects"
+
 import Create from "./pages/new-project/create";
 
 import "./app.scss";
 
 function App() {
+  /*   const navigate = useNavigate(); */
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [formData, setFormData] = useState({});
 
@@ -49,10 +54,26 @@ function App() {
   const [activeProjects, setActiveProjects] = useState(null);
   const [finishProjects, setFinishProjects] = useState(null);
   const [attached, setAttached] = useState(null);
+  const [allProjects, setAllProjects] = useState(null);
+  const [onboarding, setOnboarding] = useState(undefined)
+  const [tourActive, setTourActive] = useState(false);
+
+
+  const user_id = JSON.parse(sessionStorage?.getItem("atomiclab-user"))?.user_id;
 
   useEffect(() => {
     setIsAuthenticated(sessionStorage.getItem("atomiclab-user") ? true : false);
-  }, []);
+
+
+    user_id && getDataUser(user_id).then(({ data }) => {
+      setUserData(data.user[0]);
+      setTourActive(data.user[0].tour === 1 ? true : false)
+      setOnboarding(data.user[0].onboarding === 1 ? true : false)
+    });
+
+  }, [user_id]);
+
+
 
   return (
     <div className="app">
@@ -71,22 +92,36 @@ function App() {
           attached,
           setAttached,
           finishProjects,
-          setFinishProjects
+          setFinishProjects,
+          allProjects,
+          setAllProjects,
+          onboarding,
+          setOnboarding,
+          tourActive, setTourActive
         }}
       >
         <HashRouter>
-          {isAuthenticated && !USER_DATA.onboarding && (
+          {isAuthenticated && !onboarding && (
             <HeaderBar setIsAuthenticated={setIsAuthenticated} />
           )}
 
           <Routes>
-            {isAuthenticated ? (
+            {isAuthenticated && onboarding &&
+
+
+              <Route path="/" element={<Onboarding />} />
+
+
+            }
+
+
+
+
+            {isAuthenticated && !onboarding ? (
               <>
                 <Route path="/" element={<Home />} />
 
-                <Route path="active-projects" element={<ActiveProjects />} />
                 <Route path="new-project" element={<NewProject />} />
-                <Route path="finish-projects" element={<FinishProjects />} />
                 <Route path="status-project/:id" element={<StatusProject />} />
 
                 <Route
@@ -115,10 +150,12 @@ function App() {
                 <Route path="team" element={<Team />} />
                 <Route path="configuration" element={<Configuration />} />
                 <Route path="help-support" element={<HelpSupport />} />
-                <Route path="onboarding" element={<Onboarding />} />
+                {/* <Route path="onboarding" element={<Onboarding />} /> */}
                 <Route path="reviews/:id" element={<Reviews />} />
                 <Route path="more-info/:id" element={<MoreInfo />} />
                 <Route path="project-detail/:id" element={<ProjectDetail />} />
+                <Route path="projects-active" element={<Projects />} />
+                <Route path="projects-inactive" element={<Projects />} />
               </>
             ) : (
               <>

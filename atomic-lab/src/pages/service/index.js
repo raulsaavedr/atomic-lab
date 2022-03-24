@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import CreateFormContext from "../../create-form-context";
 import DataContext from "../../data-context";
 import { useLocation, useNavigate } from "react-router-dom";
+import { SERVICES_DATA } from "../constats";
 
 import View from "./view";
 
@@ -9,13 +10,15 @@ function Index() {
   let location = useLocation();
   const navigate = useNavigate();
 
-  const [serviceData] = useState(location?.state?.service);
+  const [serviceData] = useState(SERVICES_DATA.filter((service) => service.title_id === location?.state?.service)[0]);
   const [typePublication, setTypePublication] = useState("");
   const [typeManual, setTypeManual] = useState("");
   const [modalPriceTotal, setModalPriceTotal] = useState(0);
   const [modalMessage, setModalMessage] = useState(true);
   const [selectType, setSelectType] = useState("");
   const [socialNetwork, setSocialNetwork] = useState("");
+
+
 
 
   const {
@@ -38,8 +41,10 @@ function Index() {
     setModalPriceTotal(sum);
   }, []);
 
-  const redirectToHome = () => navigate(`/`);
-  const redirectToForm = () => navigate(`/service/create`);
+  const redirectToHome = () => navigate(`/new-project`);
+  const redirectToForm = () => navigate(`/service/create`, {
+    state: { service: location?.state?.service },
+  });
 
   const properties = {
     serviceData,

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import AuthContext from "../../auth-context";
+
 import { useNavigate } from "react-router-dom";
 import { postLogin } from "../../services";
 import View from "./view";
@@ -8,15 +9,21 @@ function Index() {
   const navigate = useNavigate();
   const { toggleAuthenticated } = useContext(AuthContext);
 
+
   const redirectTo = (item) => {
     navigate(item);
   };
+
+
+
+
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordValidation, setPasswordValidation] = useState(false);
   const [state, setState] = useState("idle");
   const [messageValidation, setMessageValidation] = useState(false);
+  const [viewPassword, setViewPassword] = useState(false);
 
 
   function validateEmail(e) {
@@ -34,7 +41,6 @@ function Index() {
         if (res.data.token) {
           sessionStorage.setItem("atomiclab-user", JSON.stringify(res.data));
           toggleAuthenticated()
-          // redirectTo(USER_DATA.onboarding ? "onboarding" : "/");
         }
         else if (res.data.error) {
           setMessageValidation(true)
@@ -82,7 +88,8 @@ function Index() {
     state,
     onClickHandler,
     messageValidation,
-    handleKeyPress
+    handleKeyPress,
+    viewPassword, setViewPassword
   };
 
   return <View {...properties} />;
