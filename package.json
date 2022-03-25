@@ -1,6 +1,5 @@
 {
   "name": "atomic-lab",
-  "homepage": "https://castleberrymedia.github.io/atomic-lab/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
