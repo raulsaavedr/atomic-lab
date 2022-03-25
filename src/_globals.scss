@@ -55,8 +55,10 @@ textarea {
 }
 
 .button-reactive {
-  box-shadow: none;
-  border-radius: 10px;
+  .reactive-btn {
+    box-shadow: none;
+    border-radius: 10px;
+  }
 }
 
 .section-buttons {
