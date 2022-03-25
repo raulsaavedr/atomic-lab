@@ -1,7 +1,11 @@
-import React, { useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import DataContext from "../../../../../data-context";
 import { useParams, useNavigate } from "react-router-dom";
-import { postCreateBrand, putUpdateBrand, getBrands } from "../../../../../services";
+import {
+  postCreateBrand,
+  putUpdateBrand,
+  getBrands,
+} from "../../../../../services";
 import { useForm } from "react-hook-form";
 import View from "./view";
 
@@ -26,14 +30,37 @@ function Index() {
     formState: { errors },
   } = useForm();
 
-
-
   useEffect(() => {
     id && reset(dataBrand);
-  }, [])
+  }, []);
 
+  const [selectedImg, setSelectedImg] = useState();
+  const [selectedImgArray, setSelectedImgArray] = useState([]);
 
+  const onSelectFile = (e, id) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedImg(undefined);
+      return;
+    }
 
+    /*     setIdSelect(id); */
+    setSelectedImg(e.target.files[0]);
+  };
+
+  useEffect(() => {
+    if (!selectedImg) {
+      return;
+    }
+    const objectUrl = URL.createObjectURL(selectedImg);
+
+    setSelectedImgArray({
+      object: objectUrl,
+      name: selectedImg.name,
+      formData: selectedImg,
+    });
+  }, [selectedImg]);
+
+  console.log(selectedImgArray);
 
   const onSubmit = (data) => {
     const dataBrand = {
@@ -42,29 +69,49 @@ function Index() {
       user_id: JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id,
     };
 
-    id ?
-      putUpdateBrand({ data: dataBrand, brand_id: id })
+    JSON.safeStringify = (obj, indent = 2) => {
+      let cache = [];
+      const retVal = JSON.stringify(
+        obj,
+        (key, value) =>
+          typeof value === "object" && value !== null
+            ? cache.includes(value)
+              ? undefined // Duplicate reference found, discard key
+              : cache.push(value) && value // Store value in our collection
+            : value,
+        indent
+      );
+      cache = null;
+      return retVal;
+    };
+
+    const formData = new FormData();
+
+    formData.append(selectedImgArray.name, selectedImgArray.formData);
+
+    formData.append("jsondataRequest", JSON.safeStringify(dataBrand));
+
+    id
+      ? putUpdateBrand({ data: dataBrand, brand_id: id })
         .then((res) => {
-          getBrands(JSON.parse(sessionStorage?.getItem('atomiclab-user')).user_id).then(({ data }) => {
-            setBrands(data.brands)
+          getBrands(
+            JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id
+          ).then(({ data }) => {
+            setBrands(data.brands);
           });
           redirectTo("/brands");
-
         })
         .catch((error) => { })
-      :
-      postCreateBrand(dataBrand)
+      : postCreateBrand(formData)
         .then((res) => {
-          getBrands(JSON.parse(sessionStorage?.getItem('atomiclab-user')).user_id).then(({ data }) => {
-            setBrands(data.brands)
+          getBrands(
+            JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id
+          ).then(({ data }) => {
+            setBrands(data.brands);
           });
           redirectTo("/brands");
         })
         .catch((error) => { });
-
-
-
-
   };
 
   const properties = {
@@ -74,6 +121,8 @@ function Index() {
     onSubmit,
     handleSubmit,
     register,
+    selectedImgArray,
+    onSelectFile,
   };
 
   return <View {...properties} />;

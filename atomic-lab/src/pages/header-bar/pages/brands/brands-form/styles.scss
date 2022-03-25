@@ -18,9 +18,14 @@
     }
     .icon-img {
       width: 82px;
+      height: 82px;
+      background-color: red;
+      overflow: hidden;
 
-      img {
-        width: 100%;
+      .icon-icon {
+        object-fit: contain;
+        height: inherit;
+        cursor: default;
       }
     }
   }
