@@ -54,6 +54,11 @@ textarea {
   margin: auto;
 }
 
+.button-reactive * {
+  box-shadow: none;
+  border-radius: 10px;
+}
+
 .section-buttons {
   justify-content: space-between;
 }
