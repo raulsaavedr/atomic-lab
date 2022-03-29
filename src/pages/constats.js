@@ -709,7 +709,7 @@ export const FORM_INPUTS_PROFILE = [
 export const FORM_INPUTS = {
   name: {
     type: "text",
-    label: "¿Qué nombre le quieres dar al proyecto? *",
+    label: "¿Qué nombre le quieres dar al proyecto?",
     placeholder:
       "Tip: Incluye el tipo de diseño en el nombre (logo, post, etc.)",
     required: true,
@@ -726,7 +726,7 @@ export const FORM_INPUTS = {
   palete_colors: {
     type: "text",
     label: "¿Tienes preferencia de colores o una paleta de colores?",
-    placeholder: "Ej",
+    placeholder: "Agrega más detalles sobre tus colores, estilos y fuentes preferidas",
     required: false,
     className: "input-texarea",
   },
@@ -734,7 +734,7 @@ export const FORM_INPUTS = {
     type: "text",
     label: "De éste ejemplo/referencia, ¿Qué fue lo que te gustó y por qué?",
     placeholder:
-      "Ej. Preferencias de estilos, muestras, referencias, ejemplos, bosquejos/borradores, URLs, etc.",
+      "Adjunta preferencias de estilos, muestras, referencias, ejemplos, bosquejos/borradores, páginas web, URLs, etc.",
     required: false,
     className: "input-texarea",
     maxLength: 280,
@@ -750,7 +750,7 @@ export const FORM_INPUTS = {
   image_include: {
     type: "text",
     label: "Imagen a incluir",
-    placeholder: "Ej. Objetivo de la imagen, etc.",
+    placeholder: "¿Tienes algún comentario sobre la imagen que quieres incluir?",
     required: false,
     className: "input-texarea",
     maxLength: 280,
@@ -758,7 +758,7 @@ export const FORM_INPUTS = {
   text_include: {
     type: "text",
     label: "Texto a incluir",
-    placeholder: "Escribe el texto tal cual como lo quieres o adjúntalo. ",
+    placeholder: "Escribe el texto tal cual como lo quieres. En caso que lo tengas en un archivo, adjúntalo",
     required: false,
     className: "input-texarea",
     maxLength: 280,
@@ -792,7 +792,7 @@ export const STATUS_TABLES = (page) => {
 
 export const STATUS_TABLES_FLOW = [
   { id: 1, text: "Proyecto Iniciado" },
-  { id: 2, text: "Proyecto Asigando" },
+  { id: 2, text: "Proyecto Asignado" },
   { id: 3, text: "Proyecto Cargado" },
   { id: 4, text: "Proyecto Finalizado" },
 ];

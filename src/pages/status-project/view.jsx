@@ -60,76 +60,77 @@ function View({ projectData, rate, redirectTo }) {
         </table>
       </div>
 
-      <div className="qualify-experience">
-        <div className="qualify-experience-title flex">
-          <h3>Califica tu experiencia</h3>
-          <p className="flex">{Icons("help_circle")}</p>
+      {projectData?.flow && projectData?.flow[3].status === "active" && (
+        <div className="qualify-experience">
+          <>
+            <div className="qualify-experience-title flex">
+              <h3>Califica tu experiencia</h3>
+              <p className="flex">{Icons("help_circle")}</p>
 
-          <div className="stars">
-            <input
-              type="radio"
-              name="stars-1"
-              id="stars-1-0"
-              value="5"
-              onClick={() => rate(this.value)}
-            />
-            <label htmlFor="stars-1-0"></label>
-            <input
-              type="radio"
-              name="stars-1"
-              id="stars-1-1"
-              value="4"
-              onClick={() => rate(this.value)}
-            />
-            <label htmlFor="stars-1-1"></label>
-            <input
-              type="radio"
-              name="stars-1"
-              id="stars-1-2"
-              value="3"
-              onClick={() => rate(this.value)}
-            />
-            <label htmlFor="stars-1-2"></label>
-            <input
-              type="radio"
-              name="stars-1"
-              id="stars-1-3"
-              value="2"
-              onClick={() => rate(this.value)}
-            />
-            <label htmlFor="stars-1-3"></label>
-            <input
-              type="radio"
-              name="stars-1"
-              id="stars-1-4"
-              value="1"
-              onClick={() => rate(this.value)}
-            />
-            <label htmlFor="stars-1-4"></label>
-          </div>
+              <div className="stars">
+                <input
+                  type="radio"
+                  name="stars-1"
+                  id="stars-1-0"
+                  value="5"
+                  onClick={() => rate(this.value)}
+                />
+                <label htmlFor="stars-1-0"></label>
+                <input
+                  type="radio"
+                  name="stars-1"
+                  id="stars-1-1"
+                  value="4"
+                  onClick={() => rate(this.value)}
+                />
+                <label htmlFor="stars-1-1"></label>
+                <input
+                  type="radio"
+                  name="stars-1"
+                  id="stars-1-2"
+                  value="3"
+                  onClick={() => rate(this.value)}
+                />
+                <label htmlFor="stars-1-2"></label>
+                <input
+                  type="radio"
+                  name="stars-1"
+                  id="stars-1-3"
+                  value="2"
+                  onClick={() => rate(this.value)}
+                />
+                <label htmlFor="stars-1-3"></label>
+                <input
+                  type="radio"
+                  name="stars-1"
+                  id="stars-1-4"
+                  value="1"
+                  onClick={() => rate(this.value)}
+                />
+                <label htmlFor="stars-1-4"></label>
+              </div>
+            </div>
+            <div className="comments">
+              <p>Escribe tu comentario</p>
+              <textarea
+                className="comments-textarea"
+                name="textarea"
+                rows="10"
+                cols="50"
+              ></textarea>
+              <section className="section-buttons flex">
+                <div className="button">Enviar</div>
+              </section>
+            </div>
+          </>
         </div>
-        <div className="comments">
-          <p>Escribe tu comentario</p>
-          <textarea
-            className="comments-textarea"
-            name="textarea"
-            rows="10"
-            cols="50"
-          ></textarea>
-          <section className="section-buttons flex">
-            <div className="button">Enviar</div>
-          </section>
-        </div>
+      )}
 
-        <section className="section-buttons flex">
-          <div
-            className="button"
-            onClick={() => redirectTo("/projects-active")}
-          >
-            Atrás
-          </div>
-        </section>
-      </div>
+      <section className="section-buttons flex back">
+        <div className="button" onClick={() => redirectTo("/projects-active")}>
+          Atrás
+        </div>
+      </section>
     </div>
   );
 }

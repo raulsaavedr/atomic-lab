@@ -25,8 +25,10 @@ function Index({ setStep, step }) {
   const [dataModals, setDataModals] = useState([]);
   const [timePrice, setTimePrice] = useState(0);
   const [formatPrice, setFormatPrice] = useState(0);
+  const [formatText, setFormatText] = useState(null);
   const [reviewPrice, setReviewPrice] = useState(0);
   const [sizePrice, setSizePrice] = useState(0);
+  const [sizeText, setSizeText] = useState(null);
   const [editPrice, setEditPrice] = useState(0);
 
   const getTotalProject = () => {
@@ -147,7 +149,8 @@ function Index({ setStep, step }) {
     editPrice,
     setEditPrice,
     getTotalProject,
-    userData
+    userData,
+    formatText, setFormatText, sizeText, setSizeText
   };
 
   return <View {...properties} />;

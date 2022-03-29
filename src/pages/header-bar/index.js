@@ -3,10 +3,8 @@ import DataContext from "../../data-context";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   getBrands,
-  getActiveProjects,
   getTeam,
   getAttached,
-  getFinishProjects,
   getAllProjects,
   updateTourView
 } from "../../services";
@@ -16,10 +14,8 @@ function Index({ setIsAuthenticated }) {
   const {
     userData,
     setBrands,
-    setActiveProjects,
     setTeam,
     setAttached,
-    setFinishProjects,
     setAllProjects,
     tourActive, setTourActive
   } = useContext(DataContext);
@@ -52,14 +48,8 @@ function Index({ setIsAuthenticated }) {
     getTeam(user_id).then(({ data }) => {
       setTeam(data.team);
     });
-    getFinishProjects(user_id).then(({ data }) => {
-      setFinishProjects(data.finish_projects);
-    });
     getAttached(user_id).then(({ data }) => {
       setAttached(data.attached);
-    });
-    getActiveProjects(user_id).then(({ data }) => {
-      setActiveProjects(data.response);
     });
     getAllProjects(user_id).then(({ data }) => {
       setAllProjects(data.response);

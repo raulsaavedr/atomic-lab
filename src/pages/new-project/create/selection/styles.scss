@@ -1,99 +1,102 @@
 .selection-page {
-    .section-buttons {
-        width: fit-content;
+  .subtitle {
+    margin-bottom: 20px;
+  }
+  .section-buttons {
+    width: fit-content;
+  }
+  .button-blue {
+    padding: 3px 20px;
+    display: flex;
+    gap: 5px;
+    margin: 5px 0;
+  }
+
+  .column {
+    flex: auto;
+    justify-content: space-between;
+    display: flex;
+    flex-flow: column;
+    div {
+      margin-bottom: 10px;
     }
-    .button-blue {
-        padding: 3px 20px;
-        display: flex;
+  }
+
+  .add {
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  textarea {
+    height: 83px;
+    min-width: 470px;
+  }
+
+  .post-example {
+    div {
+      margin: 0;
+    }
+
+    width: 284px;
+    min-width: 284px;
+
+    background-color: #ffffff;
+    height: 26em;
+    border-radius: 6px;
+    border: 1px solid #70707042;
+
+    .circle {
+      background-color: #9999ff;
+      width: 25px;
+      height: 25px;
+      border-radius: 20px;
+    }
+
+    .post-header {
+      box-sizing: border-box;
+      padding: 20px;
+      justify-content: space-between;
+      .title {
         gap: 5px;
-        margin: 5px 0;
+      }
     }
 
-    .column {
-        flex: auto;
-        justify-content: space-between;
-        display: flex;
-        flex-flow: column;
-        div {
-            margin-bottom: 10px;
-        }
+    .post-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(153, 153, 255, 0.3);
+      height: 15em;
+      overflow: hidden;
+
+      .img-user {
+        height: 15em;
+      }
     }
 
-    .add {
-        gap: 10px;
-        cursor: pointer;
+    .post-footer {
+      padding: 20px;
+      box-sizing: border-box;
+      .footer-top {
+        width: 100%;
+
+        img {
+          width: 100%;
+        }
+      }
+      p {
+        word-wrap: break-word;
+        height: 27px;
+        overflow: hidden;
+        text-transform: capitalize;
+      }
     }
+  }
 
-    textarea {
-        height: 83px;
-        min-width: 470px;
+  .footer {
+    .section-buttons {
+      margin-top: 60px;
+      width: 100%;
     }
-
-    .post-example {
-        div {
-            margin: 0;
-        }
-
-        width: 284px;
-        min-width: 284px;
-
-        background-color: #ffffff;
-        height: 26em;
-        border-radius: 6px;
-        border: 1px solid #70707042;
-
-        .circle {
-            background-color: #9999ff;
-            width: 25px;
-            height: 25px;
-            border-radius: 20px;
-        }
-
-        .post-header {
-            box-sizing: border-box;
-            padding: 20px;
-            justify-content: space-between;
-            .title {
-                gap: 5px;
-            }
-        }
-
-        .post-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: rgba(153, 153, 255, 0.3);
-            height: 15em;
-            overflow: hidden;
-
-            .img-user {
-                height: 15em;
-            }
-        }
-
-        .post-footer {
-            padding: 20px;
-            box-sizing: border-box;
-            .footer-top {
-                width: 100%;
-
-                img {
-                    width: 100%;
-                }
-            }
-            p {
-                word-wrap: break-word;
-                height: 27px;
-                overflow: hidden;
-                text-transform: capitalize;
-            }
-        }
-    }
-
-    .footer {
-        .section-buttons {
-            margin-top: 60px;
-            width: 100%;
-        }
-    }
+  }
 }

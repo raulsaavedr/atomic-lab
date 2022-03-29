@@ -65,7 +65,8 @@ function Index() {
     brands,
     data,
     formData,
-    setFormData
+    setFormData,
+    navigate
   };
 
   return <View {...properties} />;

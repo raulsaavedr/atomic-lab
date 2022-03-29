@@ -7,13 +7,14 @@ function Index() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { activeProjects } = useContext(DataContext);
+  const { allProjects } = useContext(DataContext);
   const [projectData, setProjectData] = useState([]);
 
 
-  const filterProject = activeProjects.filter((project) => project.id === parseInt(id))[0]
+  const filterProject = allProjects?.filter((project) => project.id === parseInt(id))[0]
 
   const redirectTo = (route) => navigate(route);
+
 
 
 

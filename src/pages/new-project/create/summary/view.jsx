@@ -38,17 +38,16 @@ function View({
   editPrice,
   setEditPrice,
   getTotalProject,
-  userData,
+  formatText,
+  setFormatText,
+  sizeText,
+  setSizeText,
 }) {
   return (
     <div className="summary-page page">
       <div className="step flex">{Icons("step_summary")}</div>
 
-      <PageTitle
-        title={"Revisión del resumen"}
-        /* price={serviceData?.price?.basic}
-    modalPriceTotal={modalPriceTotal} */
-      />
+      <PageTitle title={"Revisión del resumen"} />
 
       <section className="description">
         <p>A continuación te mostramos un resumen de tu requerimiento.</p>
@@ -75,14 +74,14 @@ function View({
           </div>
           <div className="row">
             <div className="title">Formulario {Icons("edit")}</div>
-            <div className="value">?</div>
+            <div className="value">Completo</div>
             <div className="more text-purple" onClick={() => setStep(step - 2)}>
               Ver más...
             </div>
           </div>
           <div className="row">
             <div className="title">Selección {Icons("edit")}</div>
-            <div className="value">?</div>
+            <div className="value">Completo</div>
             <div className="more text-purple" onClick={() => setStep(step - 1)}>
               Ver más...
             </div>
@@ -195,18 +194,32 @@ function View({
                 </div>
               </td>
               <td>
-                <select
-                  name="brand_select"
-                  id="brand_select"
-                  className="select"
-                  onChange={(e) => setFormatPrice(e.target.value)}
-                >
-                  {SUMMARY_OPTIONS["formato"].options.map((option, index) => (
-                    <option key={index} value={option.price}>
-                      {option.text}
-                    </option>
-                  ))}
-                </select>
+                <div className="flex addtext">
+                  <select
+                    name="brand_select"
+                    id="brand_select"
+                    className="select"
+                    onChange={(e) => {
+                      const value = e.target.value;
+
+                      setFormatPrice(
+                        SUMMARY_OPTIONS["formato"].options.filter(
+                          (f) => f.text === value
+                        )[0].price
+                      );
+                      setFormatText(value);
+                    }}
+                  >
+                    {SUMMARY_OPTIONS["formato"].options.map((option, index) => (
+                      <option key={index} value={option.text}>
+                        {option.text}
+                      </option>
+                    ))}
+                  </select>
+                  {formatText === "Personalizado" && (
+                    <input className="input-txt-2" type="text" name="" id="" />
+                  )}
+                </div>
               </td>
               <td></td>
             </tr>
@@ -245,18 +258,32 @@ function View({
                 </div>
               </td>
               <td>
-                <select
-                  name="brand_select"
-                  id="brand_select"
-                  className="select"
-                  onChange={(e) => setSizePrice(e.target.value)}
-                >
-                  {SUMMARY_OPTIONS["tamaño"].options.map((option, index) => (
-                    <option key={index} value={option.price}>
-                      {option.text}
-                    </option>
-                  ))}
-                </select>
+                <div className="flex addtext">
+                  <select
+                    name="brand_select"
+                    id="brand_select"
+                    className="select"
+                    onChange={(e) => {
+                      const value = e.target.value;
+
+                      setSizePrice(
+                        SUMMARY_OPTIONS["tamaño"].options.filter(
+                          (f) => f.text === value
+                        )[0].price
+                      );
+                      setSizeText(value);
+                    }}
+                  >
+                    {SUMMARY_OPTIONS["tamaño"].options.map((option, index) => (
+                      <option key={index} value={option.text}>
+                        {option.text}
+                      </option>
+                    ))}
+                  </select>
+                  {sizeText === "Personalizado" && (
+                    <input className="input-txt-2" type="text" name="" id="" />
+                  )}
+                </div>
               </td>
               <td></td>
             </tr>

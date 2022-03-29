@@ -22,11 +22,14 @@ function View({ selectedImg, onSelectFile, setStep, step }) {
     <div className="selection-page page">
       <div className="step flex">{Icons("step_selection")}</div>
 
-      <PageTitle
-        title={"Selección"}
-        /* price={serviceData?.price?.basic}
-        modalPriceTotal={modalPriceTotal} */
-      />
+      <PageTitle title={"Selección"} />
+
+      <section className="subtitle">
+        <p>
+          Ingresa la información que tengas para cada una de las publicaciones a
+          diseñar
+        </p>
+      </section>
 
       <section className="content">
         <div className="columns">

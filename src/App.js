@@ -39,15 +39,12 @@ import Create from "./pages/new-project/create";
 import "./app.scss";
 
 function App() {
-  /*   const navigate = useNavigate(); */
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [formData, setFormData] = useState({});
 
   function toggleAuthenticated() {
     setIsAuthenticated((isAuthenticated) => !isAuthenticated);
   }
-
-  const [dataAll, setDataAll] = useState(null);
   const [userData, setUserData] = useState(null);
   const [brands, setBrands] = useState(null);
   const [team, setTeam] = useState(null);
@@ -79,8 +76,6 @@ function App() {
     <div className="app">
       <DataContext.Provider
         value={{
-          dataAll,
-          setDataAll,
           userData,
           setUserData,
           brands,

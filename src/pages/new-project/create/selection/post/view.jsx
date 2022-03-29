@@ -51,6 +51,10 @@ function View({ id, post, setPost, selectedImg, onSelectFile }) {
       </div>
       <div className="column">
         <div>
+          <label htmlFor="text_include" className="title-include flex">
+            {FORM_INPUTS.image_include.label}
+            {Icons("help_circle")}
+          </label>
           <label htmlFor={`reference-${id}`} className="button-blue flex">
             {Icons("clip_white")}
             {data.img_array &&
@@ -104,7 +108,10 @@ function View({ id, post, setPost, selectedImg, onSelectFile }) {
           </textarea>
         </div>
         <div>
-          <label htmlFor="text_include">{FORM_INPUTS.text_include.label}</label>
+          <label htmlFor="text_include" className="title-include flex">
+            {FORM_INPUTS.text_include.label}
+            {Icons("help_circle")}
+          </label>
           <section className="section-buttons flex">
             <div className="button-blue flex">
               {Icons("clip_white")}

@@ -27,6 +27,7 @@ function View({
   data,
   formData,
   setFormData,
+  navigate,
 }) {
   return (
     <div className="page service-page">
@@ -95,23 +96,33 @@ function View({
       <section className="section-brand">
         <h3>1. ¿Cuál marca vas a utilizar?</h3>
 
-        <select
-          name="brand_select"
-          id="brand_select"
-          className="select"
-          onChange={(e) =>
-            setFormData({ ...formData, brand_select: e.target.value })
-          }
-        >
-          <option disabled selected>
-            Selecciona una opción
-          </option>
-          {brands?.map((brand, index) => (
-            <option key={index} defaultValue={brand.name}>
-              {brand?.name}
+        <div className="o-brands flex">
+          <select
+            name="brand_select"
+            id="brand_select"
+            className="select"
+            onChange={(e) =>
+              setFormData({ ...formData, brand_select: e.target.value })
+            }
+          >
+            <option disabled selected>
+              Selecciona una opción
             </option>
-          ))}
-        </select>
+            {brands?.map((brand, index) => (
+              <option key={index} defaultValue={brand.name}>
+                {brand?.name}
+              </option>
+            ))}
+          </select>
+
+          <div
+            className="add-brand flex"
+            onClick={() => navigate("/brands/brands-form")}
+          >
+            {Icons("add_circle")}{" "}
+            <span className="text-purple">Agregar nueva marca</span>
+          </div>
+        </div>
       </section>
 
       <section className="section-publication-type">

@@ -29,8 +29,8 @@ function View({ redirectToService, setStep, step }) {
         <p>
           Contesta las siguientes preguntas por medio de
           <span className="text-purple"> texto</span>,
-          <span className="text-purple"> voz</span>, y/o un video. También
-          puedes
+          <span className="text-purple"> voz</span>, y/o un
+          <span className="text-purple"> video</span>. También puedes
           <span className="text-purple"> adjuntar</span> un archivo si lo
           deseas.
         </p>
@@ -48,7 +48,12 @@ function View({ redirectToService, setStep, step }) {
         <div className="columns">
           <div className="column">
             <div>
-              <label htmlFor="name">{FORM_INPUTS.name.label}</label>
+              <label htmlFor="name">
+                {FORM_INPUTS.name.label}{" "}
+                <span className="required">
+                  {FORM_INPUTS.name.required && "(Required)"}
+                </span>
+              </label>
               <input
                 {...FORM_INPUTS.name}
                 id="name"
@@ -90,7 +95,7 @@ function View({ redirectToService, setStep, step }) {
           </div>
         </div>
         <p>
-          Adjunta los archivos y
+          Adjunta los <span className="text-purple"> archivos</span> y
           <span className="text-purple"> referencias/ejemplos</span> que creas
           que nos pueden ayudar a diseñar tu requerimiento.
         </p>
