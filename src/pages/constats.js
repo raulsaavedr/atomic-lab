@@ -431,7 +431,7 @@ export const USER_DATA = {
 
 export const FORM_INPUTS_BRANDS = [
   {
-    id: "name",
+    id: "url_image",
     type: "file",
     label: "Icono",
     required: true,

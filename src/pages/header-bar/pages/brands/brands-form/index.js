@@ -60,9 +60,10 @@ function Index() {
     });
   }, [selectedImg]);
 
-  console.log(selectedImgArray);
 
   const onSubmit = (data) => {
+
+
     const dataBrand = {
       ...data,
       predeterminate: false,
@@ -92,7 +93,7 @@ function Index() {
     formData.append("jsondataRequest", JSON.safeStringify(dataBrand));
 
     id
-      ? putUpdateBrand({ data: dataBrand, brand_id: id })
+      ? putUpdateBrand({ data: formData, brand_id: id })
         .then((res) => {
           getBrands(
             JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id

@@ -21,7 +21,11 @@ function View({ redirectToBrandForm, brands }) {
               <p>Perfil de la marca</p>
 
               <p>
-                <img src={brand.filename_logo} alt={brand.filename_logo} />
+                {brand.url_image ? (
+                  <img src={brand.url_image} alt={brand.url_image} />
+                ) : (
+                  Icons("icon_img_post")
+                )}
               </p>
               <p>{brand.name}</p>
             </div>

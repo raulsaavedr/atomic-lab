@@ -57,7 +57,10 @@ textarea {
 .button-reactive {
   .reactive-btn {
     box-shadow: none;
-    border-radius: 10px;
+    border-radius: 22px;
+  }
+  .reactive-btn:not(.no-animation):hover:not(:disabled):not(.disabled) {
+    box-shadow: none;
   }
 }
 

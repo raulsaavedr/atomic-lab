@@ -44,7 +44,7 @@ function View({ next, cancel, message, subMessage, cancelVisible, next_type }) {
                   outline={false}
                   rounded={false}
                   block={false}
-                  idleText={"Crear"}
+                  idleText={"Continuar"}
                 />
               </div>
             ) : (
