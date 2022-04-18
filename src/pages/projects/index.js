@@ -10,6 +10,8 @@ function Index({ type_home, page }) {
 
   let location = useLocation();
 
+  const [newProject] = useState(location?.state?.new_project);
+
   const typeFin = location.pathname.split('-')[1] ? location.pathname.split('-')[1] : type_home && type_home
 
 
@@ -17,6 +19,7 @@ function Index({ type_home, page }) {
   const { userData, setActiveProjects, activeProjects, team, allProjects } =
     useContext(DataContext);
 
+  const [modalMessage, setModalMessage] = useState(newProject);
   const [modalPrivateNotes, setModalPrivateNotes] = useState(false);
   const [modalZoomImg, setModalZoomImg] = useState(false);
   const [modalDesignerProject, setModalDesignerProject] = useState(false);
@@ -61,13 +64,7 @@ function Index({ type_home, page }) {
   const [projectsFilter, setProjectsFilter] = useState([])
 
   useEffect(() => {
-
-
-
     setProjectsFilter(allProjects?.filter((p) => JSON.parse(p?.flow)[3].status !== typeFin))
-
-
-
   }, [typeFin, allProjects])
 
 
@@ -100,7 +97,7 @@ function Index({ type_home, page }) {
     allProjects,
     projectsFilter,
     typeFin,
-    type_home
+    type_home, modalMessage, setModalMessage
   };
 
   return <View {...properties} />;

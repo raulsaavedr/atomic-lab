@@ -12,9 +12,9 @@ function View({ close, data }) {
       <div className="modal-content">
         <h3 className="flex text-blue">Revisiones</h3>
         <div className="subtitle">
-          Actualmente tienes <span className="text-blue"> {4 - data} </span>
+          Actualmente tienes <span className="text-blue"> {3 - data} </span>
           revisiones disponibles de un total de{" "}
-          <span className="text-blue"> 4</span>.
+          <span className="text-blue"> 3</span>.
         </div>
         <div className="buy"></div>
 

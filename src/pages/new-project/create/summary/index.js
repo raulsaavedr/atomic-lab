@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import DataContext from "../../../../data-context";
 import {
   postCreateProject,
-  getActiveProjects,
   updateCreditsUser,
   getDataUser,
+  getAllProjects
 } from "../../../../services";
 
 import View from "./view";
@@ -16,7 +16,7 @@ function Index({ setStep, step }) {
   const [formData, setFormData] = useContext(CreateFormContext);
   const navigate = useNavigate();
 
-  const { userData, setActiveProjects, setUserData } = useContext(DataContext);
+  const { userData, setUserData, setAllProjects } = useContext(DataContext);
 
   const [modalMessageStart, setModalMessageStart] = useState(false);
   const [modalMessageStartStatus, setModalMessageStartStatus] = useState(false);
@@ -49,7 +49,9 @@ function Index({ setStep, step }) {
   const handleGetActiveProjects = () => {
     setFormData({});
 
-    navigate("/projects-active");
+    navigate("/projects-active", {
+      state: { new_project: true },
+    });
   };
 
   const handleStartProject = () => {
@@ -97,8 +99,8 @@ function Index({ setStep, step }) {
           });
         });
 
-        getActiveProjects(user_id).then(({ data }) => {
-          setActiveProjects(data.response);
+        getAllProjects(user_id).then(({ data }) => {
+          setAllProjects(data.response);
         });
 
         setModalMessageStartStatus(true);

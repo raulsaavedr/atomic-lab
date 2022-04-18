@@ -880,8 +880,10 @@ export const PROJECTS = (
   setMenuFloat,
   menuFloat,
   flow_active,
-  rol_id
+  rol_id,
+  setModalReviews
 ) => {
+
   const listContent = [
     {
       title: "Nombre del proyecto",
@@ -970,10 +972,6 @@ export const PROJECTS = (
       icon: "download",
       type: "download"
     },
-
-
-
-
     {
       title: "Más Información",
       isActive: page === "home" && typeFin === "active" ? true : false,
@@ -982,7 +980,6 @@ export const PROJECTS = (
         navigate(`/more-info/${project.id}`);
       },
     },
-
     {
       title: "Visualizar última versión",
       isActive: page !== "home" && typeFin === "active" ? true : false,
@@ -999,8 +996,14 @@ export const PROJECTS = (
     {
       title: "Revisión",
       isActive: page !== "home" && typeFin === "active" ? true : false,
-      field: "review_date",
+      field: "review",
       icon: "add_plus",
+      type: "review",
+      onClick() {
+        setModalReviews(!modalDesignerProject);
+        setDataModals(project?.review);
+      },
+
     },
     {
       title: "Retroalimentación revisiones",

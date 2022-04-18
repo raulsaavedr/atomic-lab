@@ -5,6 +5,7 @@ import ModalPrivateNotes from "../modals/private-notes";
 import ModalZoomImg from "../modals/zoom-img";
 import ModalReviews from "../modals/reviews";
 import DesignerProject from "../modals/designers-project";
+import ModalMessage from "../modals/message";
 import PageTitle from "../page-title";
 import moment from "moment";
 import "./styles.scss";
@@ -29,6 +30,8 @@ function View({
   updateDateNextReview,
   projectsFilter,
   typeFin,
+  modalMessage,
+  setModalMessage,
 }) {
   return (
     <div className="page active-projects">
@@ -96,7 +99,8 @@ function View({
                       setMenuFloat,
                       menuFloat,
                       flow_active,
-                      userData?.rol_id
+                      userData?.rol_id,
+                      setModalReviews
                     ).map((project_field) => (
                       <td>
                         <div
@@ -132,6 +136,12 @@ function View({
                             >
                               {Icons(project_field.icon)}
                             </a>
+                          ) : project_field.type === "review" ? (
+                            <div className="flex review">
+                              {console.log(project_field.field)}
+                              <p>{project[project_field.field]} de 3</p>{" "}
+                              {Icons(project_field.icon)}
+                            </div>
                           ) : project_field.icon ? (
                             Icons(project_field.icon)
                           ) : (
@@ -189,6 +199,35 @@ function View({
             <DesignerProject
               close={setModalDesignerProject}
               data={dataModals}
+            />
+          )}
+          {modalMessage && (
+            <ModalMessage
+              next_type="continuar"
+              next={() => {
+                setModalMessage(false);
+              }}
+              message={"Ahora espera a que tu proyecto sea asignado"}
+              subMessage={
+                <>
+                  <p>Aquí en Proyectos Activos vas a poder:</p>
+                  <ul>
+                    <li>
+                      {Icons("check_circle")} Ver el estado (y hacerle
+                      seguimiento).
+                    </li>
+                    <li>{Icons("check_circle")} Ver la información.</li>
+                    <li>
+                      {Icons("check_circle")} Invitar a tu equipo y compartirlo.
+                    </li>
+                    <li>
+                      {Icons("check_circle")} Realizar las anotaciones del
+                      diseño cuando el diseñador suba las diferentes versiones.
+                    </li>
+                    <li>{Icons("check_circle")} Y mucho más …</li>
+                  </ul>
+                </>
+              }
             />
           )}
         </div>

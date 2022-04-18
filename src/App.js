@@ -48,8 +48,6 @@ function App() {
   const [userData, setUserData] = useState(null);
   const [brands, setBrands] = useState(null);
   const [team, setTeam] = useState(null);
-  const [activeProjects, setActiveProjects] = useState(null);
-  const [finishProjects, setFinishProjects] = useState(null);
   const [attached, setAttached] = useState(null);
   const [allProjects, setAllProjects] = useState(null);
   const [onboarding, setOnboarding] = useState(undefined)
@@ -80,14 +78,10 @@ function App() {
           setUserData,
           brands,
           setBrands,
-          activeProjects,
-          setActiveProjects,
           team,
           setTeam,
           attached,
           setAttached,
-          finishProjects,
-          setFinishProjects,
           allProjects,
           setAllProjects,
           onboarding,
