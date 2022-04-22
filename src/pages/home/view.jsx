@@ -18,7 +18,7 @@ function View({ redirectTo, userData }) {
             onClick={() => redirectTo("new-project")}
           >
             <div className="add-project-icon">{Icons("add_circle")}</div>
-            <p className="text-purple">Iniciar un nuevo proyecto</p>
+            <p className="text-purple">Inicia un nuevo proyecto</p>
           </div>
         )}
 

@@ -75,6 +75,15 @@ textarea {
   color: #6b72fd;
   cursor: pointer;
 }
+.button-purple {
+  padding: 10px 30px;
+  width: fit-content;
+  border-radius: 22px;
+  background-color: #6b72fd;
+  border: 1px solid #6b72fd;
+  color: #ffffff;
+  cursor: pointer;
+}
 .button-blue {
   padding: 10px 30px;
   width: fit-content;
@@ -93,6 +102,15 @@ textarea {
   color: #ffffff;
   cursor: pointer;
 }
+.button-yellow {
+  padding: 10px 30px;
+  width: fit-content;
+  border-radius: 22px;
+  border: 1px solid #ffb03b;
+  background-color: #ffb03b;
+  color: #ffffff;
+  cursor: pointer;
+}
 .button-blue:hover {
   background-color: #39dbe1;
   border: 1px solid #39dbe1;
@@ -101,6 +119,15 @@ textarea {
 
 .button:hover {
   background-color: #6b72fd;
+  color: #ffffff;
+}
+.button-yellow:hover {
+  background-color: #f8be67;
+  color: #ffffff;
+  padding: 10px 30px !important;
+}
+.button-purple:hover {
+  background-color: #545cf9;
   color: #ffffff;
 }
 
@@ -149,6 +176,9 @@ textarea {
 
 .text-blue {
   color: #36ccd1;
+}
+.text-yellow {
+  color: #f8be67;
 }
 
 .input-txt {

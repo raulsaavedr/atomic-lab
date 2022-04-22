@@ -1,7 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import DataContext from "../../data-context";
 import { useParams, useNavigate } from "react-router-dom";
-import { getReviewsProject, addReviews, updateFlow, getAllProjects } from "../../services";
+import {
+  getReviewsProject,
+  addReviews,
+  updateFlow,
+  getAllProjects,
+  putFinishReview,
+} from "../../services";
 import View from "./view";
 
 function Index() {
@@ -14,25 +20,25 @@ function Index() {
   const [modalZoomImg, setModalZoomImg] = useState(false);
   const [modalData, setModalData] = useState({});
 
-  const { userData, activeProjects, setAllProjects } = useContext(DataContext);
+  const { userData, allProjects, setAllProjects } = useContext(DataContext);
   const [reviews, setReviews] = useState(null);
   const [versionSelect, setVersionSelect] = useState(1);
 
   const [versionVote, setVersionVote] = useState(null);
 
-  const filterProject = activeProjects?.filter(
+  const filterProject = allProjects?.filter(
     (project) => project.id === parseInt(id)
   )[0];
 
   const getAllReviews = () => {
     getReviewsProject(id).then(({ data }) => {
       setReviews(data);
-      //setVersionSelect(data?.review_data[0].version)
+      setVersionSelect(data?.review_data[data?.review_data.length - 1].version);
     });
-  }
+  };
 
   useEffect(() => {
-    getAllReviews()
+    getAllReviews();
   }, []);
 
   useEffect(() => {
@@ -82,6 +88,7 @@ function Index() {
   };
 
   const [state, setState] = useState("idle");
+  const [stateFinishReview, setStateFinishReview] = useState("idle");
 
   const handleCreateReview = () => {
     JSON.safeStringify = (obj, indent = 2) => {
@@ -115,61 +122,56 @@ function Index() {
     formData.append("jsondataRequest", JSON.safeStringify(dataFin));
 
     createReview(formData).then((res) => {
-      setState("idle")
-
-
-
+      setState("idle");
 
       getAllProjects(userData.id).then(({ data }) => {
         setAllProjects(data.response);
       });
-
-
-
-    })
-
+    });
   };
 
-
   async function createReview(formData) {
-    await addReviews(formData)
-    await getAllReviews()
-
+    await addReviews(formData);
+    await getAllReviews();
   }
-
 
   const onClickHandler = (type) => {
     setState("loading");
     setTimeout(() => {
-
       type === "save" && handleCreateReview();
       type === "finish" && finishProject();
     }, 2000);
   };
 
+  const onClickHandlerFinishReview = () => {
+    setStateFinishReview("loading");
+    setTimeout(() => {
+      finishReview();
+    }, 2000);
+  };
 
-
-  const finishProject = () => {
-
-
-
-    updateFlow({ project_id: id, id_flow: 4 }).then((res) => {
-      setState("idle")
+  const finishReview = () => {
+    putFinishReview({ project_id: id, img_id: versionVote }).then((res) => {
+      setStateFinishReview("idle");
 
       getAllProjects(userData.id).then(({ data }) => {
         setAllProjects(data.response);
       });
 
-      navigate("/projects-inactive")
+      /* navigate("/projects-inactive"); */
+    });
+  };
 
+  const finishProject = () => {
+    updateFlow({ project_id: id, id_flow: 4 }).then((res) => {
+      setState("idle");
 
-    })
+      getAllProjects(userData.id).then(({ data }) => {
+        setAllProjects(data.response);
+      });
 
-
-
-
-
-
+      navigate("/projects-inactive");
+    });
   };
 
   const properties = {
@@ -197,7 +199,9 @@ function Index() {
     handleCreateReview,
     state,
     onClickHandler,
-    finishProject
+    finishProject,
+    onClickHandlerFinishReview,
+    stateFinishReview,
   };
 
   return <View {...properties} />;

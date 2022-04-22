@@ -38,10 +38,6 @@ function View({
   editPrice,
   setEditPrice,
   getTotalProject,
-  formatText,
-  setFormatText,
-  sizeText,
-  setSizeText,
 }) {
   return (
     <div className="summary-page page">
@@ -161,7 +157,7 @@ function View({
               <td>
                 <div className="flex price">
                   <div>$</div>
-                  <div>{timePrice}</div>
+                  <div>{timePrice.price}</div>
                 </div>
               </td>
               <td>
@@ -169,10 +165,17 @@ function View({
                   name="brand_select"
                   id="brand_select"
                   className="select"
-                  onChange={(e) => setTimePrice(e.target.value)}
+                  onChange={(e) => {
+                    setTimePrice({
+                      price: SUMMARY_OPTIONS["tiempo"]?.options.filter(
+                        (option) => option.text === e.target.value
+                      )[0]?.price,
+                      text: e.target.value,
+                    });
+                  }}
                 >
                   {SUMMARY_OPTIONS["tiempo"].options.map((option, index) => (
-                    <option key={index} value={option.price}>
+                    <option key={index} value={option.text}>
                       {option.text}
                     </option>
                   ))}
@@ -190,7 +193,7 @@ function View({
               <td>
                 <div className="flex price">
                   <div>$</div>
-                  <div>{formatPrice}</div>
+                  <div>{formatPrice.price}</div>
                 </div>
               </td>
               <td>
@@ -200,14 +203,12 @@ function View({
                     id="brand_select"
                     className="select"
                     onChange={(e) => {
-                      const value = e.target.value;
-
-                      setFormatPrice(
-                        SUMMARY_OPTIONS["formato"].options.filter(
-                          (f) => f.text === value
-                        )[0].price
-                      );
-                      setFormatText(value);
+                      setFormatPrice({
+                        price: SUMMARY_OPTIONS["formato"]?.options.filter(
+                          (option) => option.text === e.target.value
+                        )[0]?.price,
+                        text: e.target.value,
+                      });
                     }}
                   >
                     {SUMMARY_OPTIONS["formato"].options.map((option, index) => (
@@ -216,7 +217,7 @@ function View({
                       </option>
                     ))}
                   </select>
-                  {formatText === "Personalizado" && (
+                  {formatPrice.text === "Personalizado" && (
                     <input className="input-txt-2" type="text" name="" id="" />
                   )}
                 </div>
@@ -228,7 +229,7 @@ function View({
               <td>
                 <div className="flex price">
                   <div>$</div>
-                  <div>{reviewPrice}</div>
+                  <div>{reviewPrice.price}</div>
                 </div>
               </td>
               <td>
@@ -236,11 +237,18 @@ function View({
                   name="brand_select"
                   id="brand_select"
                   className="select"
-                  onChange={(e) => setReviewPrice(e.target.value)}
+                  onChange={(e) => {
+                    setReviewPrice({
+                      price: SUMMARY_OPTIONS["revisiones"]?.options.filter(
+                        (option) => option.text === e.target.value
+                      )[0]?.price,
+                      text: e.target.value,
+                    });
+                  }}
                 >
                   {SUMMARY_OPTIONS["revisiones"].options.map(
                     (option, index) => (
-                      <option key={index} value={option.price}>
+                      <option key={index} value={option.text}>
                         {option.text}
                       </option>
                     )
@@ -254,7 +262,7 @@ function View({
               <td>
                 <div className="flex price">
                   <div>$</div>
-                  <div>{sizePrice}</div>
+                  <div>{sizePrice.price}</div>
                 </div>
               </td>
               <td>
@@ -264,14 +272,12 @@ function View({
                     id="brand_select"
                     className="select"
                     onChange={(e) => {
-                      const value = e.target.value;
-
-                      setSizePrice(
-                        SUMMARY_OPTIONS["tamaño"].options.filter(
-                          (f) => f.text === value
-                        )[0].price
-                      );
-                      setSizeText(value);
+                      setSizePrice({
+                        price: SUMMARY_OPTIONS["tamaño"]?.options.filter(
+                          (option) => option.text === e.target.value
+                        )[0]?.price,
+                        text: e.target.value,
+                      });
                     }}
                   >
                     {SUMMARY_OPTIONS["tamaño"].options.map((option, index) => (
@@ -280,7 +286,7 @@ function View({
                       </option>
                     ))}
                   </select>
-                  {sizeText === "Personalizado" && (
+                  {sizePrice.text === "Personalizado" && (
                     <input className="input-txt-2" type="text" name="" id="" />
                   )}
                 </div>
@@ -292,7 +298,7 @@ function View({
               <td>
                 <div className="flex price">
                   <div>$</div>
-                  <div>{editPrice}</div>
+                  <div>{editPrice.price}</div>
                 </div>
               </td>
               <td>
@@ -300,10 +306,17 @@ function View({
                   name="brand_select"
                   id="brand_select"
                   className="select"
-                  onChange={(e) => setEditPrice(e.target.value)}
+                  onChange={(e) => {
+                    setEditPrice({
+                      price: SUMMARY_OPTIONS["editables"]?.options.filter(
+                        (option) => option.text === e.target.value
+                      )[0]?.price,
+                      text: e.target.value,
+                    });
+                  }}
                 >
                   {SUMMARY_OPTIONS["editables"].options.map((option, index) => (
-                    <option key={index} value={option.price}>
+                    <option key={index} value={option.text}>
                       {option.text}
                     </option>
                   ))}

@@ -4,7 +4,7 @@ import { FORM_INPUTS } from "../../../../constats";
 import CreateFormContext from "../../../../../create-form-context";
 import "./styles.scss";
 
-function View({ id, post, setPost, selectedImg, onSelectFile }) {
+function View({ id, post, setPost, selectedImg, onSelectFile, onSelectText }) {
   const data = useContext(CreateFormContext)[0];
 
   const [objetive, setObjetive] = useState(
@@ -45,7 +45,7 @@ function View({ id, post, setPost, selectedImg, onSelectFile }) {
             <div className="footer-top">{Icons("icons_post")}</div>
             <p>Views</p>
 
-            <p>{textPreview ? textPreview : "Descripción #hashtags"}</p>
+            <p>{"Descripción #hashtags"}</p>
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@ function View({ id, post, setPost, selectedImg, onSelectFile }) {
             {...FORM_INPUTS.reference_add}
             id={`reference-${id}`}
             onChange={(e) => {
-              onSelectFile(e, id);
+              onSelectFile(e, id, "image");
               setPost(post.filter((item) => item.id !== id));
               setPost((post) => [
                 ...post,
@@ -113,10 +113,37 @@ function View({ id, post, setPost, selectedImg, onSelectFile }) {
             {Icons("help_circle")}
           </label>
           <section className="section-buttons flex">
-            <div className="button-blue flex">
+            <label
+              htmlFor={`reference-text-${id}`}
+              className="button-blue flex"
+            >
               {Icons("clip_white")}
-              Adjuntar
-            </div>
+              {data.text_array &&
+              data?.text_array?.filter((item) => item.id === id)[0]?.name
+                ? data?.text_array?.filter((item) => item.id === id)[0]?.name
+                : "Adjuntar"}
+            </label>
+            <input
+              {...FORM_INPUTS.reference_add}
+              id={`reference-text-${id}`}
+              onChange={(e) => {
+                onSelectText(e, id);
+                /*  setPost(post.filter((item) => item.id !== id));
+                setPost((post) => [
+                  ...post,
+                  {
+                    id: id,
+                    text: textPreview,
+                    objetive: objetive,
+                    name_img:
+                      data.img_array &&
+                      data?.img_array?.filter((item) => item.id === id)[0]
+                        ?.name,
+                        
+                  },
+                ]); */
+              }}
+            />
           </section>
           <textarea
             {...FORM_INPUTS.text_include}

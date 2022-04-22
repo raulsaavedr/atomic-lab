@@ -34,8 +34,13 @@ export const METHOD_SELECT = [
   "Mercadopago",
 ];
 
-export const MAIN_SUBMENU = (rol, redirectTo, setIsAuthenticated, setModalHelp,
-  modalHelp) => {
+export const MAIN_SUBMENU = (
+  rol,
+  redirectTo,
+  setIsAuthenticated,
+  setModalHelp,
+  modalHelp
+) => {
   const listContent = [
     {
       view: true,
@@ -81,7 +86,7 @@ export const MAIN_SUBMENU = (rol, redirectTo, setIsAuthenticated, setModalHelp,
       view: true,
       text: "Ayuda y soporte",
       onClick() {
-        setModalHelp(!modalHelp)
+        setModalHelp(!modalHelp);
       },
     },
     {
@@ -726,7 +731,8 @@ export const FORM_INPUTS = {
   palete_colors: {
     type: "text",
     label: "¿Tienes preferencia de colores o una paleta de colores?",
-    placeholder: "Agrega más detalles sobre tus colores, estilos y fuentes preferidas",
+    placeholder:
+      "Agrega más detalles sobre tus colores, estilos y fuentes preferidas",
     required: false,
     className: "input-texarea",
   },
@@ -743,14 +749,15 @@ export const FORM_INPUTS = {
     type: "text",
     label: "¿Cuál es la idea que quieres desarrollar?",
     placeholder: "",
-    required: false,
+    required: true,
     className: "input-texarea",
     maxLength: 280,
   },
   image_include: {
     type: "text",
     label: "Imagen a incluir",
-    placeholder: "¿Tienes algún comentario sobre la imagen que quieres incluir?",
+    placeholder:
+      "¿Tienes algún comentario sobre la imagen que quieres incluir?",
     required: false,
     className: "input-texarea",
     maxLength: 280,
@@ -758,7 +765,8 @@ export const FORM_INPUTS = {
   text_include: {
     type: "text",
     label: "Texto a incluir",
-    placeholder: "Escribe el texto tal cual como lo quieres. En caso que lo tengas en un archivo, adjúntalo",
+    placeholder:
+      "Escribe el texto tal cual como lo quieres. En caso que lo tengas en un archivo, adjúntalo",
     required: false,
     className: "input-texarea",
     maxLength: 280,
@@ -883,7 +891,6 @@ export const PROJECTS = (
   rol_id,
   setModalReviews
 ) => {
-
   const listContent = [
     {
       title: "Nombre del proyecto",
@@ -911,7 +918,7 @@ export const PROJECTS = (
 
     {
       title: "Estado",
-      isActive: page === "home" ? typeFin === "active" ? true : false : true,
+      isActive: page === "home" ? (typeFin === "active" ? true : false) : true,
       field: "status",
       icon: flow_active,
       subtitle: {
@@ -970,7 +977,7 @@ export const PROJECTS = (
       isActive: typeFin === "inactive" ? true : false,
       field: "review_date",
       icon: "download",
-      type: "download"
+      type: "download",
     },
     {
       title: "Más Información",
@@ -1003,7 +1010,6 @@ export const PROJECTS = (
         setModalReviews(!modalDesignerProject);
         setDataModals(project?.review);
       },
-
     },
     {
       title: "Retroalimentación revisiones",

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import DataContext from "../../data-context";
 import { useLocation, useNavigate } from "react-router-dom";
-import { updateDateReview, getActiveProjects } from "../../services";
+import { updateDateReview, getAllProjects } from "../../services";
 import View from "./view";
 
 function Index({ type_home, page }) {
@@ -16,7 +16,7 @@ function Index({ type_home, page }) {
 
 
 
-  const { userData, setActiveProjects, activeProjects, team, allProjects } =
+  const { userData, team, allProjects, setAllProjects } =
     useContext(DataContext);
 
   const [modalMessage, setModalMessage] = useState(newProject);
@@ -54,8 +54,8 @@ function Index({ type_home, page }) {
   const updateDateNextReview = (project_id, date) => {
     updateDateReview({ project_id: project_id, date: date })
       .then((res) => {
-        getActiveProjects(userData.id).then(({ data }) => {
-          setActiveProjects(data.response);
+        getAllProjects(userData.id).then(({ data }) => {
+          setAllProjects(data.response);
         });
       })
       .catch((error) => { });
@@ -86,7 +86,6 @@ function Index({ type_home, page }) {
     setMenuFloat,
     navigate,
     redirecToActiveProyects,
-    activeProjects,
     redirectTo,
     userData,
     team,

@@ -38,12 +38,14 @@ function View({
       <PageTitle
         page={page}
         user={true}
-        title={`Proyectos ${typeFin === "active" ? "activos" : "finalizados"}`}
+        title={`Proyectos ${typeFin === "active" ? "activos" : "terminados"}`}
       />
 
       {projectsFilter && projectsFilter.length <= 1 ? (
         <div className="message">
-          <h3 className="text-purple">No tienes proyectos activos</h3>
+          <h3 className="text-purple">{`No tienes proyectos ${
+            typeFin === "active" ? "activos" : "terminados"
+          }`}</h3>
           {userData?.rol_id !== 3 && (
             <div className="button" onClick={() => navigate("/new-project")}>
               Empezar proyecto
@@ -138,9 +140,17 @@ function View({
                             </a>
                           ) : project_field.type === "review" ? (
                             <div className="flex review">
-                              {console.log(project_field.field)}
-                              <p>{project[project_field.field]} de 3</p>{" "}
-                              {Icons(project_field.icon)}
+                              <p>
+                                {project[project_field.field]} de{" "}
+                                {projectValues?.revisiones?.includes("Hasta")
+                                  ? projectValues?.revisiones?.replace(
+                                      "Hasta ",
+                                      ""
+                                    )
+                                  : "∞"}
+                              </p>
+                              {projectValues?.revisiones?.includes("Hasta") &&
+                                Icons(project_field.icon)}
                             </div>
                           ) : project_field.icon ? (
                             Icons(project_field.icon)

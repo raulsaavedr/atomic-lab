@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
 import DataContext from "../../../data-context";
-import { updateNotes, getActiveProjects } from "../../../services";
+import { updateNotes, getAllProjects } from "../../../services";
 import View from "./view";
 
 function Index({ close, data }) {
   const [notes, setNotes] = useState(data.notes);
-  const { setActiveProjects, userData } = useContext(DataContext);
+  const { setAllProjects, userData } = useContext(DataContext);
 
   const [state, setState] = useState("idle");
 
@@ -20,8 +20,8 @@ function Index({ close, data }) {
     updateNotes({ project_id: data.project_id, notes: notes })
       .then((res) => {
 
-        getActiveProjects(userData.id).then(({ data }) => {
-          setActiveProjects(data.response);
+        getAllProjects(userData.id).then(({ data }) => {
+          setAllProjects(data.response);
         });
 
 

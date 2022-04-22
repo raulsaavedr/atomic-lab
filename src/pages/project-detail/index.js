@@ -9,12 +9,9 @@ function Index() {
 
   const { id } = useParams();
 
-  const { activeProjects, userData, finishProjects } = useContext(DataContext);
+  const { userData, allProjects } = useContext(DataContext);
 
-  const projectsAll = [...finishProjects, ...activeProjects]
-
-
-  const filterProject = projectsAll.filter(
+  const filterProject = allProjects.filter(
     (project) => project.id === parseInt(id)
   )[0];
 
@@ -31,11 +28,11 @@ function Index() {
           <p>
             {typeof value === "object"
               ? key === "post" &&
-              value.map((item, index) => (
-                <div className="post_img" key={index}>
-                  <img src={URL_IMG + item.name_img} alt={index} />
-                </div>
-              ))
+                value.map((item, index) => (
+                  <div className="post_img" key={index}>
+                    <img src={URL_IMG + item.name_img} alt={index} />
+                  </div>
+                ))
               : value}
           </p>
         </div>

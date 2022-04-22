@@ -6,8 +6,9 @@ import {
   postCreateProject,
   updateCreditsUser,
   getDataUser,
-  getAllProjects
+  getAllProjects,
 } from "../../../../services";
+import { SUMMARY_OPTIONS } from "../../../constats";
 
 import View from "./view";
 
@@ -23,22 +24,35 @@ function Index({ setStep, step }) {
   const [modalMessageStartData, setModalMessageStartData] = useState({});
   const [modalBuyCredits, setModalBuyCredit] = useState(false);
   const [dataModals, setDataModals] = useState([]);
-  const [timePrice, setTimePrice] = useState(0);
-  const [formatPrice, setFormatPrice] = useState(0);
-  const [formatText, setFormatText] = useState(null);
-  const [reviewPrice, setReviewPrice] = useState(0);
-  const [sizePrice, setSizePrice] = useState(0);
-  const [sizeText, setSizeText] = useState(null);
-  const [editPrice, setEditPrice] = useState(0);
+  const [timePrice, setTimePrice] = useState({
+    price: SUMMARY_OPTIONS["tiempo"].options[0].price,
+    text: SUMMARY_OPTIONS["tiempo"].options[0].text,
+  });
+  const [formatPrice, setFormatPrice] = useState({
+    price: SUMMARY_OPTIONS["formato"].options[0].price,
+    text: SUMMARY_OPTIONS["formato"].options[0].text,
+  });
+  const [reviewPrice, setReviewPrice] = useState({
+    price: SUMMARY_OPTIONS["revisiones"].options[0].price,
+    text: SUMMARY_OPTIONS["revisiones"].options[0].text,
+  });
+  const [sizePrice, setSizePrice] = useState({
+    price: SUMMARY_OPTIONS["tamaño"].options[0].price,
+    text: SUMMARY_OPTIONS["tamaño"].options[0].text,
+  });
+  const [editPrice, setEditPrice] = useState({
+    price: SUMMARY_OPTIONS["editables"].options[0].price,
+    text: SUMMARY_OPTIONS["editables"].options[0].text,
+  });
 
   const getTotalProject = () => {
     return (
-      parseInt(data.project_price) +
-      parseInt(timePrice) +
-      parseInt(formatPrice) +
-      parseInt(reviewPrice) +
-      parseInt(sizePrice) +
-      parseInt(editPrice)
+      parseInt(formData.project_price) +
+      parseInt(timePrice.price) +
+      parseInt(formatPrice.price) +
+      parseInt(reviewPrice.price) +
+      parseInt(sizePrice.price) +
+      parseInt(editPrice.price)
     );
   };
 
@@ -85,6 +99,12 @@ function Index({ setStep, step }) {
     const dataFin = {
       ...data,
       user_id: user_id,
+      costo_base: getTotalProject(),
+      tiempo_entrega: timePrice.text,
+      formato_entrega: formatPrice.text,
+      revisiones: reviewPrice.text,
+      tamaño: sizePrice.text,
+      archivos_editables: editPrice.text,
     };
     formData.append("jsondataRequest", JSON.safeStringify(dataFin));
 
@@ -133,7 +153,6 @@ function Index({ setStep, step }) {
     data,
     formData,
     setFormData,
-    navigate,
     modalMessageStartData,
     handleGetActiveProjects,
     modalBuyCredits,
@@ -151,8 +170,6 @@ function Index({ setStep, step }) {
     editPrice,
     setEditPrice,
     getTotalProject,
-    userData,
-    formatText, setFormatText, sizeText, setSizeText
   };
 
   return <View {...properties} />;

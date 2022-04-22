@@ -7,7 +7,7 @@ import Post from "./post";
 import "../styles.scss";
 import "./styles.scss";
 
-function View({ selectedImg, onSelectFile, setStep, step }) {
+function View({ selectedImg, onSelectFile, setStep, step, onSelectText }) {
   const data = useContext(CreateFormContext);
   const [formData, setFormData] = useContext(CreateFormContext);
 
@@ -35,7 +35,10 @@ function View({ selectedImg, onSelectFile, setStep, step }) {
         <div className="columns">
           <div className="column">
             <div className="column-item">
-              <label htmlFor="idea">{FORM_INPUTS.idea.label}</label>
+              <label htmlFor="idea">
+                {FORM_INPUTS.idea.label}{" "}
+                {FORM_INPUTS.idea.required && "(Requerido)"}
+              </label>
               <textarea
                 {...FORM_INPUTS.idea}
                 id="idea"
@@ -62,6 +65,7 @@ function View({ selectedImg, onSelectFile, setStep, step }) {
                   setPost={setPost}
                   selectedImg={selectedImg}
                   onSelectFile={onSelectFile}
+                  onSelectText={onSelectText}
                 />
               )
           )}

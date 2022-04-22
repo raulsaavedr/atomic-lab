@@ -29,7 +29,8 @@ function View({
   setOptionsCount,
   state,
   onClickHandler,
-  finishProject,
+  onClickHandlerFinishReview,
+  stateFinishReview,
 }) {
   return (
     <div className="page reviews">
@@ -207,11 +208,11 @@ function View({
                           </div>
                           <div className="version-vote-id">
                             <input
-                              checked={index === versionVote}
+                              checked={version.id === versionVote}
                               type="checkbox"
                               name=""
                               id=""
-                              onClick={() => setVersionVote(index)}
+                              onClick={() => setVersionVote(version.id)}
                             />
                           </div>
                         </div>
@@ -245,6 +246,38 @@ function View({
                         }
                         alt="preview"
                       />
+                      <div className="buttons-action flex">
+                        <>
+                          <label
+                            htmlFor={`reference-${item.id}`}
+                            className="button-purple flex"
+                          >
+                            Modificar
+                          </label>
+                          <input
+                            type="file"
+                            label="Texto a incluir"
+                            required={false}
+                            className="input-add-option"
+                            id={`reference-${item.id}`}
+                            onChange={(e) => {
+                              onSelectFile(e, item.id);
+                            }}
+                          />
+                        </>
+                        <div
+                          className="button-purple"
+                          onClick={() =>
+                            setOptionsImg(
+                              optionsImg.filter(
+                                (option) => option.id !== item.id
+                              )
+                            )
+                          }
+                        >
+                          Eliminar
+                        </div>
+                      </div>
                     </div>
                   )}
 
@@ -319,19 +352,44 @@ function View({
               Atrás
             </div>
             {userData?.rol_id !== 3 &&
-            versionSelect === reviews?.review_data?.length ? (
-              <div className="button-reactive">
-                <ReactiveButton
-                  className="button"
-                  buttonState={state}
-                  onClick={() => onClickHandler("finish")}
-                  shadow={false}
-                  loadingText={"Finalizando..."}
-                  outline={false}
-                  rounded={false}
-                  block={false}
-                  idleText={"Finalizar revisión"}
-                />
+            versionSelect === reviews?.review_data?.length - 1 ? (
+              <div className="buttons-approve flex">
+                <div className="button-reactive">
+                  <div className="globe-text">
+                    Si estas satisfecho con el diseño, haz click en
+                    <div className="text-yellow">aprobar proyecto</div> para
+                    darlo por terminado.
+                  </div>
+                  <ReactiveButton
+                    className="button-yellow"
+                    buttonState={state}
+                    onClick={() => onClickHandler("finish")}
+                    shadow={false}
+                    loadingText={"Aprobando..."}
+                    outline={false}
+                    rounded={false}
+                    block={false}
+                    idleText={"Aprobar proyecto"}
+                  />
+                </div>
+                <div className="button-reactive">
+                  <div className="globe-text">
+                    Si ya realizaste todos tus comentarios, haz click en
+                    <div className="text-purple">finalizar revisión</div> para
+                    notificarle al diseñador.
+                  </div>
+                  <ReactiveButton
+                    className="button"
+                    buttonState={stateFinishReview}
+                    onClick={() => onClickHandlerFinishReview("")}
+                    shadow={false}
+                    loadingText={"Finalizando..."}
+                    outline={false}
+                    rounded={false}
+                    block={false}
+                    idleText={"Finalizar revisión"}
+                  />
+                </div>
               </div>
             ) : (
               selectedImgArray.length >= 1 && (

@@ -117,6 +117,14 @@ function View({
                       {Icons("download_circle")} Descargar
                     </div>
                   </td>
+                  <td>
+                    <div className="flex input-manuals">
+                      <input type="text" className="input-txt" />
+                    </div>
+                  </td>
+                  <td>
+                    <div className="flex">{Icons("delete_circle")}</div>
+                  </td>
                 </tr>
               ))}
             </tbody>

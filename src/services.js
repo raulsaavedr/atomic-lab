@@ -18,8 +18,6 @@ export const updateConfigurations = async ({ user_id, data }) => axios.put(`http
 
 //projects
 export const getAllProjects = async (user_id) => axios.get(`https://api.ticvzla.xyz/public/api/get_data_user_projects/${user_id}`)
-export const getActiveProjects = async (user_id) => axios.get(`https://api.ticvzla.xyz/public/api/get_data_user_active_projects/${user_id}`)
-export const getFinishProjects = async (user_id) => axios.get(`https://api.ticvzla.xyz/public/api/get_data_user_finish_projects/${user_id}`)
 export const postCreateProject = async (formData) => axios.post(`https://api.ticvzla.xyz/public/api/project_values`, formData, { headers: headers })
 export const addReviews = async (formData) => axios.post(`https://api.ticvzla.xyz/public/api/load_versions`, formData, { headers: headers })
 export const updateFlow = async ({ project_id, id_flow }) => axios.put(`https://api.ticvzla.xyz/public/api/update_flow_project/${project_id}`, { id_flow: id_flow })
@@ -52,6 +50,7 @@ export const getAttached = async (user_id) => axios.get(`https://api.ticvzla.xyz
 
 //reviews
 export const getReviewsProject = async (project_id) => axios.get(`https://api.ticvzla.xyz/public/api/update_review_data/${project_id}`)
+export const putFinishReview = async ({ project_id, img_id }) => axios.put(`https://api.ticvzla.xyz/public/api/finish_revision/${project_id}`, { img_id: img_id });
 
 //annotations
 export const postCreateAnnotation = async (data) => axios.post(`https://api.ticvzla.xyz/public/api/annotations`, data)
