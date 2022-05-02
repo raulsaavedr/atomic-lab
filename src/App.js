@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import {
-  getDataUser,
-
-} from "./services";
+import { getDataUser } from "./services";
 
 import AuthContext from "./auth-context";
 import CreateFormContext from "./create-form-context";
@@ -32,7 +29,7 @@ import Reviews from "./pages/reviews";
 import MoreInfo from "./pages/more-info";
 import ProjectDetail from "./pages/project-detail";
 
-import Projects from "./pages/projects"
+import Projects from "./pages/projects";
 
 import Create from "./pages/new-project/create";
 
@@ -45,35 +42,36 @@ function App() {
   function toggleAuthenticated() {
     setIsAuthenticated((isAuthenticated) => !isAuthenticated);
   }
+  const [notifications, setNotifications] = useState(null);
   const [userData, setUserData] = useState(null);
   const [brands, setBrands] = useState(null);
   const [team, setTeam] = useState(null);
   const [attached, setAttached] = useState(null);
   const [allProjects, setAllProjects] = useState(null);
-  const [onboarding, setOnboarding] = useState(undefined)
+  const [onboarding, setOnboarding] = useState(undefined);
   const [tourActive, setTourActive] = useState(false);
 
-
-  const user_id = JSON.parse(sessionStorage?.getItem("atomiclab-user"))?.user_id;
+  const user_id = JSON.parse(
+    sessionStorage?.getItem("atomiclab-user")
+  )?.user_id;
 
   useEffect(() => {
     setIsAuthenticated(sessionStorage.getItem("atomiclab-user") ? true : false);
 
-
-    user_id && getDataUser(user_id).then(({ data }) => {
-      setUserData(data.user[0]);
-      setTourActive(data.user[0].tour === 1 ? true : false)
-      setOnboarding(data.user[0].onboarding === 1 ? true : false)
-    });
-
+    user_id &&
+      getDataUser(user_id).then(({ data }) => {
+        setUserData(data.user[0]);
+        setTourActive(data.user[0].tour === 1 ? true : false);
+        setOnboarding(data.user[0].onboarding === 1 ? true : false);
+      });
   }, [user_id]);
-
-
 
   return (
     <div className="app">
       <DataContext.Provider
         value={{
+          notifications,
+          setNotifications,
           userData,
           setUserData,
           brands,
@@ -86,7 +84,8 @@ function App() {
           setAllProjects,
           onboarding,
           setOnboarding,
-          tourActive, setTourActive
+          tourActive,
+          setTourActive,
         }}
       >
         <HashRouter>
@@ -95,16 +94,9 @@ function App() {
           )}
 
           <Routes>
-            {isAuthenticated && onboarding &&
-
-
+            {isAuthenticated && onboarding && (
               <Route path="/" element={<Onboarding />} />
-
-
-            }
-
-
-
+            )}
 
             {isAuthenticated && !onboarding ? (
               <>

@@ -1,5 +1,7 @@
 .reviews {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   .input-add-option {
     display: none;
@@ -82,7 +84,7 @@
     .version {
       flex: 40%;
       margin-bottom: 20px;
-      position: relative;
+      /*  position: relative; */
 
       &-id {
         margin-bottom: 5px;
@@ -163,10 +165,9 @@
   }
 
   .footer {
-    position: absolute;
-    width: 83%;
-    padding-bottom: 35px;
-
+    /* position: absolute;
+    bottom: 0;
+ */
     &-desc {
       margin-bottom: 20px;
     }

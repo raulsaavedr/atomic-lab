@@ -279,4 +279,34 @@
       margin: 0 10px;
     }
   }
+
+  .notificaciones {
+    position: relative;
+
+    .image {
+      position: relative;
+      .count {
+        position: absolute;
+        top: 0px;
+        right: -6px;
+        background-color: #cb0000;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+        font-size: 10px;
+      }
+    }
+  }
+
+  .float-notifications {
+    position: absolute;
+    top: 70px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+  }
 }

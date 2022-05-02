@@ -26,6 +26,9 @@ function View({
   modalHelp,
   setModalHelp,
   updateTour,
+  notifications,
+  notificationsView,
+  setNotificationsView,
 }) {
   const path = location.pathname.replaceAll(
     "/",
@@ -89,14 +92,33 @@ function View({
         <div className="icon-search flex"> {Icons("search")}</div>
         <input type="text" name="" id="" placeholder="Buscar..." />
       </div>
-
+      {notificationsView}
       <div className="icon-notifications option notificaciones">
-        {Icons("notifications")}
+        <div className="image">
+          <div onClick={() => setNotificationsView(!notificationsView)}>
+            {Icons("notifications")}
+          </div>
+
+          {notifications?.length >= 1 && (
+            <div className="count">{notifications?.length}</div>
+          )}
+        </div>
 
         <div className={`tooltip tooltip-notificaciones`}>
           <div className="corner"></div>
           Notificaciones
         </div>
+
+        {notificationsView && (
+          <div className="float-notifications">
+            Notificaciones
+            <ul>
+              {notifications?.map((noti) => (
+                <li>{noti.value}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
       {/* {userData?.rol_id === 1 && (
         <div className="credits flex">

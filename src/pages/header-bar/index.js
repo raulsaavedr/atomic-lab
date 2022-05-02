@@ -6,18 +6,22 @@ import {
   getTeam,
   getAttached,
   getAllProjects,
-  updateTourView
+  updateTourView,
+  getNotifications,
 } from "../../services";
 import View from "./view";
 
 function Index({ setIsAuthenticated }) {
   const {
+    notifications,
+    setNotifications,
     userData,
     setBrands,
     setTeam,
     setAttached,
     setAllProjects,
-    tourActive, setTourActive
+    tourActive,
+    setTourActive,
   } = useContext(DataContext);
 
   const navigate = useNavigate();
@@ -25,9 +29,9 @@ function Index({ setIsAuthenticated }) {
   const [modalBuyCredits, setModalBuyCredit] = useState(false);
   const [dataModals, setDataModals] = useState([]);
   const [tourStep, setTourStep] = useState(0);
+  const [notificationsView, setNotificationsView] = useState(false);
 
-
-  const [modalHelp, setModalHelp,] = useState(false)
+  const [modalHelp, setModalHelp] = useState(false);
 
   let location = useLocation();
 
@@ -38,10 +42,14 @@ function Index({ setIsAuthenticated }) {
     }
   };
 
+  console.log("notifications", notifications);
+
   const user_id = JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id;
 
   useEffect(() => {
-
+    getNotifications(user_id).then(({ data }) => {
+      setNotifications(data.response);
+    });
     getBrands(user_id).then(({ data }) => {
       setBrands(data.brands);
     });
@@ -56,12 +64,9 @@ function Index({ setIsAuthenticated }) {
     });
   }, []);
 
-
   const updateTour = () => {
-    updateTourView({ user_id: user_id, value: 0 })
-  }
-
-
+    updateTourView({ user_id: user_id, value: 0 });
+  };
 
   const properties = {
     redirectTo,
@@ -78,9 +83,13 @@ function Index({ setIsAuthenticated }) {
     setModalBuyCredit,
     dataModals,
     setDataModals,
-    user_id, modalHelp,
+    user_id,
+    modalHelp,
     setModalHelp,
-    updateTour
+    updateTour,
+    notifications,
+    notificationsView,
+    setNotificationsView,
   };
 
   return <View {...properties} />;
