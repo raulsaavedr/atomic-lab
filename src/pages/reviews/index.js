@@ -150,8 +150,16 @@ function Index() {
     }, 2000);
   };
 
+  console.log(reviews);
+
   const finishReview = () => {
-    putFinishReview({ project_id: id, img_id: versionVote }).then((res) => {
+    putFinishReview({
+      project_id: id,
+      img_id:
+        reviews?.review_data[versionSelect - 1]?.versions.length === 1
+          ? reviews?.review_data[versionSelect - 1].versions[0].id
+          : versionVote,
+    }).then((res) => {
       setStateFinishReview("idle");
 
       getAllProjects(userData.id).then(({ data }) => {

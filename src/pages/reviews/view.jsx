@@ -382,7 +382,7 @@ function View({
                 <ReactiveButton
                   className="button"
                   buttonState={stateFinishReview}
-                  onClick={() => onClickHandlerFinishReview("")}
+                  onClick={() => onClickHandlerFinishReview()}
                   shadow={false}
                   loadingText={"Finalizando..."}
                   outline={false}

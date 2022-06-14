@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PageTitle from "../../../../page-title";
 import { FORM_INPUTS_BRANDS, FROM_BRAND_TABLES } from "../../../../constats";
 import "./styles.scss";
@@ -13,6 +13,8 @@ function View({
   register,
   selectedImgArray,
   onSelectFile,
+  filesBrands,
+  setFilesBrands,
 }) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -110,7 +112,32 @@ function View({
                 <tr key={index}>
                   <td>{item.title}</td>
                   <td>
-                    <div className="flex">{Icons("upload_circle")} Cargar</div>
+                    <label
+                      htmlFor={`filebrands-${item.id}`}
+                      className="flex input-icon"
+                    >
+                      {Icons("upload_circle")}
+                      Cargar
+                    </label>
+
+                    <input
+                      className="input-file"
+                      type="file"
+                      id={`filebrands-${item.id}`}
+                      onChange={(e) => {
+                        setFilesBrands(
+                          filesBrands.filter((file) => file.id !== item.id)
+                        );
+                        setFilesBrands((oldArray) => [
+                          ...oldArray,
+                          {
+                            id: item.id,
+                            name: item.title.replaceAll(" ", "").toLowerCase(),
+                            file: e.target.files[0],
+                          },
+                        ]);
+                      }}
+                    />
                   </td>
                   <td>
                     <div className="flex">
@@ -119,7 +146,14 @@ function View({
                   </td>
                   <td>
                     <div className="flex input-manuals">
-                      <input type="text" className="input-txt" />
+                      <input
+                        type="text"
+                        className="input-txt"
+                        value={
+                          filesBrands.filter((file) => file.id === item.id)[0]
+                            ?.file.name || ""
+                        }
+                      />
                     </div>
                   </td>
                   <td>

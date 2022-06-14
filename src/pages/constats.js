@@ -439,7 +439,7 @@ export const FORM_INPUTS_BRANDS = [
     id: "url_image",
     type: "file",
     label: "Icono",
-    required: true,
+    required: false,
     className: "input-txt",
   },
   {
@@ -781,12 +781,12 @@ export const FORM_INPUTS = {
 };
 
 export const FROM_BRAND_TABLES = [
-  { title: "Manual de marca" },
-  { title: "Logo (en formato editable)" },
-  { title: "Paleta de colores" },
-  { title: "Tipografía" },
-  { title: "Brandboard (guía de estilo)" },
-  { title: "Otros" },
+  { id: 1, title: "Manual de marca" },
+  { id: 2, title: "Logo (en formato editable)" },
+  { id: 3, title: "Paleta de colores" },
+  { id: 4, title: "Tipografía" },
+  { id: 5, title: "Brandboard (guía de estilo)" },
+  { id: 6, title: "Otros" },
 ];
 
 export const STATUS_TABLES = (page) => {
