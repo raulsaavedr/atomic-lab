@@ -633,7 +633,13 @@ export const DETAIL_PROJECT_DATA = {
   palete_colors: "Paleta de colores",
   references: "Referencias",
   idea_post: "Idea a desarollar",
-  post: "Post",
+  designer_freedom: "Libertad diseñador",
+  costo_base: "Costo base",
+  tiempo_entrega: "Tiempo de entrega",
+  formato_entrega: "Formato de entrega",
+  revisiones: "Revisiones",
+  archivos_editables: "Archivos editables",
+  /*   post: "Post", */
 };
 
 export const FORM_INPUTS_PROFILE = [
@@ -938,6 +944,15 @@ export const PROJECTS = (
       type: rol_id === 3 || rol_id === 8 ? "date" : null,
     },
     {
+      title: "Retroalimentación revisiones",
+      isActive: typeFin === "active" ? true : false,
+      field: "review_date",
+      icon: "review",
+      onClick() {
+        navigate(`/reviews/${project?.id}`);
+      },
+    },
+    {
       title: "Mis notas privadas",
       isActive: page === "home" ? false : true,
       field: "review_date",
@@ -1011,15 +1026,7 @@ export const PROJECTS = (
         setDataModals(project?.review);
       },
     },
-    {
-      title: "Retroalimentación revisiones",
-      isActive: typeFin === "active" ? true : false,
-      field: "review_date",
-      icon: "review",
-      onClick() {
-        navigate(`/reviews/${project?.id}`);
-      },
-    },
+
     {
       title: "Diseñador",
       isActive: page !== "home" && typeFin === "active" ? true : false,

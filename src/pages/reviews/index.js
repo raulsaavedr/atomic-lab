@@ -37,6 +37,8 @@ function Index() {
     });
   };
 
+  const projectExtraData = JSON.parse(filterProject.extra_data);
+
   useEffect(() => {
     getAllReviews();
   }, []);
@@ -150,8 +152,6 @@ function Index() {
     }, 2000);
   };
 
-  console.log(reviews);
-
   const finishReview = () => {
     putFinishReview({
       project_id: id,
@@ -170,6 +170,9 @@ function Index() {
     });
   };
 
+  const [modalMessageFinish1, setModalMessageFinish1] = useState(false);
+  const [modalMessageFinish2, setModalMessageFinish2] = useState(false);
+
   const finishProject = () => {
     updateFlow({ project_id: id, id_flow: 4 }).then((res) => {
       setState("idle");
@@ -178,7 +181,9 @@ function Index() {
         setAllProjects(data.response);
       });
 
-      navigate("/projects-inactive");
+      navigate("/projects-inactive", {
+        state: { finish_project: true },
+      });
     });
   };
 
@@ -210,6 +215,11 @@ function Index() {
     finishProject,
     onClickHandlerFinishReview,
     stateFinishReview,
+    modalMessageFinish1,
+    setModalMessageFinish1,
+    modalMessageFinish2,
+    setModalMessageFinish2,
+    projectExtraData,
   };
 
   return <View {...properties} />;

@@ -2,6 +2,7 @@ import React from "react";
 import { Icons } from "../icons";
 import PageTitle from "../page-title";
 import ModalZoomImg from "../modals/zoom-img";
+import Message from "../modals/message";
 import ReactiveButton from "reactive-button";
 import "./styles.scss";
 
@@ -29,8 +30,14 @@ function View({
   setOptionsCount,
   state,
   onClickHandler,
+  finishProject,
   onClickHandlerFinishReview,
   stateFinishReview,
+  modalMessageFinish1,
+  setModalMessageFinish1,
+  modalMessageFinish2,
+  setModalMessageFinish2,
+  projectExtraData,
 }) {
   return (
     <div className="page reviews">
@@ -106,22 +113,23 @@ function View({
             >
               {Icons(menuTopView === "info" ? "arrow_up" : "arrow_down")}
             </div>
+            {console.log(projectData)}
             {menuTopView === "info" && (
               <div className="menu-float">
                 <p className="title">Tiempo de entrega</p>
-                <p className="text-purple">{projectData.delivery_time}</p>
+                <p className="text-purple">{projectExtraData.tiempo_entrega}</p>
                 <p className="title">Formato de entrega</p>
-                <p className="text-purple">{projectData.delivery_format}</p>
+                <p className="text-purple">
+                  {projectExtraData.formato_entrega}
+                </p>
                 <p className="title">Tamaño</p>
-                <p className="text-purple">{projectData.size}</p>
+                <p className="text-purple">{projectExtraData.tamaño}</p>
                 <p className="title">Archivos editables</p>
                 <p className="text-purple">
-                  {projectData.editable_files ? "Yes" : "No"}
+                  {projectData.values.archivos_editables}
                 </p>
                 <p className="title">Impresión</p>
-                <p className="text-purple">
-                  {projectData.print ? "Yes" : "No"}
-                </p>
+                <p className="text-purple">????</p>
               </div>
             )}
           </div>
@@ -140,7 +148,10 @@ function View({
                   Has realizado
                   <span className="text-purple">
                     {" "}
-                    {projectData.review} de 4{" "}
+                    {projectData.review} de{" "}
+                    {projectData.values.revisiones === "Ilimitado"
+                      ? "∞"
+                      : projectData.values.revisiones}{" "}
                   </span>
                   revisiones
                 </div>
@@ -157,8 +168,9 @@ function View({
         <>
           <p className="description">
             Haz click sobre la(s) imagen(es) para agrandar, luego arrastra para
-            dejar un comentario. Una vez guardas un comentario, éste se guardará
-            automáticamente en la plataforma.
+            dejar un comentario. Una vez termines de hacer todos los comentarios
+            en la imagen, haz click en guardar. Ten en cuenta que luego de
+            guardar no podrás realizar más comentarios
           </p>
 
           <div className="versions-content flex">
@@ -327,7 +339,6 @@ function View({
           </div>
         </>
       )}
-
       {modalZoomImg && (
         <ModalZoomImg close={setModalZoomImg} data={modalData} />
       )}
@@ -336,8 +347,10 @@ function View({
           reviews?.review_data?.length >= 1 && (
             <p className="footer-desc">
               Si ya realizaste todos tus comentarios, haz click en
-              <span className="text-purple"> finalizar revisión </span>
-              para notificarle al diseñador.
+              <span className="text-purple"> Finalizar revisión </span>para
+              notificarle a tu diseñador. De lo contrario haz click en
+              <span className="text-purple"> Aprobar proyecto </span>para
+              terminar tu proyecto
             </p>
           )
         ) : (
@@ -358,10 +371,16 @@ function View({
               <div className="button-reactive">
                 <div className="globe-text">
                   Si estas satisfecho con el diseño, haz click en
-                  <div className="text-yellow">aprobar proyecto</div> para darlo
+                  <div className="text-red">aprobar proyecto</div> para darlo
                   por terminado.
                 </div>
-                <ReactiveButton
+                <div
+                  className="button"
+                  onClick={() => setModalMessageFinish1(true)}
+                >
+                  Aprobar proyecto
+                </div>
+                {/* <ReactiveButton
                   className="button-yellow"
                   buttonState={state}
                   onClick={() => onClickHandler("finish")}
@@ -371,7 +390,7 @@ function View({
                   rounded={false}
                   block={false}
                   idleText={"Aprobar proyecto"}
-                />
+                /> */}
               </div>
               <div className="button-reactive">
                 <div className="globe-text">
@@ -411,6 +430,29 @@ function View({
           )}
         </div>
       </div>
+      {modalMessageFinish1 && (
+        <Message
+          message="¿Estas seguro que quieres dar por terminado el proyecto?"
+          subMessage="Después de dar continuar no podrás realizar ninguna modificación"
+          cancel={() => setModalMessageFinish1(false)}
+          cancelVisible={true}
+          next_type="finish"
+          next={() => {
+            setModalMessageFinish1(false);
+            setModalMessageFinish2(true);
+            onClickHandler("finish");
+          }}
+        />
+      )}
+      {modalMessageFinish2 && (
+        <Message
+          message="!Felicitaciones¡ Tu proyecto ha finalizado"
+          subMessage="Espera a que el diseñador suba los archivos para que los puedas descargar. Mientras tanto, puedes visualizar el diseño final"
+          next={() => {
+            setModalMessageFinish2(false)();
+          }}
+        />
+      )}
     </div>
   );
 }
