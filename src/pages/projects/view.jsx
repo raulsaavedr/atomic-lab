@@ -32,6 +32,8 @@ function View({
   typeFin,
   modalMessage,
   setModalMessage,
+  modalMessageFinish,
+  setModalMessageFinish,
 }) {
   return (
     <div className="page active-projects">
@@ -235,6 +237,40 @@ function View({
                       diseño cuando el diseñador suba las diferentes versiones.
                     </li>
                     <li>{Icons("check_circle")} Y mucho más …</li>
+                  </ul>
+                </>
+              }
+            />
+          )}
+          {modalMessageFinish && (
+            <ModalMessage
+              next_type="continuar"
+              next={() => {
+                setModalMessageFinish(false);
+              }}
+              message={"Ahora espera a que tu diseñador suba los archivos"}
+              subMessage={
+                <>
+                  <p>
+                    Mientras tanto, aquí en proyectos terminados vas a poder:
+                  </p>
+                  <ul>
+                    <li>
+                      {Icons("check_circle")} Ver el estado (y hacerle
+                      seguimiento).
+                    </li>
+                    <li>{Icons("check_circle")} Ver la información.</li>
+                    <li>{Icons("check_circle")} Compartirlo.</li>
+                    <li>
+                      {Icons("check_circle")} Realizar tus propias notas
+                      privadas
+                    </li>
+                    <li>{Icons("check_circle")} Visualizarlo</li>
+                    <li>
+                      {Icons("check_circle")} Calificar el diseño final y tu
+                      experiencia en general
+                    </li>
+                    <br />
                   </ul>
                 </>
               }

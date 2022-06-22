@@ -5,21 +5,20 @@ import { updateDateReview, getAllProjects } from "../../services";
 import View from "./view";
 
 function Index({ type_home, page }) {
-
-
-
   let location = useLocation();
 
   const [newProject] = useState(location?.state?.new_project);
+  const [finishProject] = useState(location?.state?.finish_project);
 
-  const typeFin = location.pathname.split('-')[1] ? location.pathname.split('-')[1] : type_home && type_home
-
-
+  const typeFin = location.pathname.split("-")[1]
+    ? location.pathname.split("-")[1]
+    : type_home && type_home;
 
   const { userData, team, allProjects, setAllProjects } =
     useContext(DataContext);
 
   const [modalMessage, setModalMessage] = useState(newProject);
+  const [modalMessageFinish, setModalMessageFinish] = useState(finishProject);
   const [modalPrivateNotes, setModalPrivateNotes] = useState(false);
   const [modalZoomImg, setModalZoomImg] = useState(false);
   const [modalDesignerProject, setModalDesignerProject] = useState(false);
@@ -58,17 +57,16 @@ function Index({ type_home, page }) {
           setAllProjects(data.response);
         });
       })
-      .catch((error) => { });
+      .catch((error) => {});
   };
 
-  const [projectsFilter, setProjectsFilter] = useState([])
+  const [projectsFilter, setProjectsFilter] = useState([]);
 
   useEffect(() => {
-    setProjectsFilter(allProjects?.filter((p) => JSON.parse(p?.flow)[3].status !== typeFin))
-  }, [typeFin, allProjects])
-
-
-
+    setProjectsFilter(
+      allProjects?.filter((p) => JSON.parse(p?.flow)[3].status !== typeFin)
+    );
+  }, [typeFin, allProjects]);
 
   const properties = {
     page,
@@ -96,7 +94,11 @@ function Index({ type_home, page }) {
     allProjects,
     projectsFilter,
     typeFin,
-    type_home, modalMessage, setModalMessage
+    type_home,
+    modalMessage,
+    setModalMessage,
+    modalMessageFinish,
+    setModalMessageFinish,
   };
 
   return <View {...properties} />;

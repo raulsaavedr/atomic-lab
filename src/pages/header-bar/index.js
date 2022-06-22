@@ -42,8 +42,6 @@ function Index({ setIsAuthenticated }) {
     }
   };
 
-  console.log("notifications", notifications);
-
   const user_id = JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id;
 
   useEffect(() => {

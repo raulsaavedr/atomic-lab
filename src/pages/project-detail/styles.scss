@@ -1,12 +1,13 @@
 .project-detail {
   &-content {
-    margin-top: 40px;
+    margin-top: 30px;
     flex-wrap: wrap;
 
     .value {
       flex: 1 0 48%;
       border-bottom: 1px solid #70707042;
-      height: 50px;
+      min-height: 50px;
+      padding: 10px 10px 10px 0;
 
       p {
         flex: 1;
@@ -14,6 +15,17 @@
       }
       .title {
         font-weight: bold;
+      }
+    }
+
+    .post-dat-all {
+      border: none;
+      .post-data {
+        flex: 2;
+
+        p {
+          margin: 10px 0;
+        }
       }
     }
   }

@@ -11,6 +11,7 @@ import View from "./view";
 
 function Index() {
   const { brands, setBrands } = useContext(DataContext);
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -36,6 +37,7 @@ function Index() {
 
   const [selectedImg, setSelectedImg] = useState();
   const [selectedImgArray, setSelectedImgArray] = useState([]);
+  const [filesBrands, setFilesBrands] = useState([]);
 
   const onSelectFile = (e, id) => {
     if (!e.target.files || e.target.files.length === 0) {
@@ -60,10 +62,7 @@ function Index() {
     });
   }, [selectedImg]);
 
-
   const onSubmit = (data) => {
-
-
     const dataBrand = {
       ...data,
       predeterminate: false,
@@ -90,29 +89,34 @@ function Index() {
 
     formData.append(selectedImgArray.name, selectedImgArray.formData);
 
-    formData.append("jsondataRequest", JSON.safeStringify(dataBrand));
+    console.log("selectedImgArray", selectedImgArray);
+    console.log("filesBrands", filesBrands);
 
+    filesBrands.map((file) => formData.append(file.name, file.file));
+
+    formData.append("jsondataRequest", JSON.safeStringify(dataBrand));
+    console.log("formData-", ...formData);
     id
       ? putUpdateBrand({ data: formData, brand_id: id })
-        .then((res) => {
-          getBrands(
-            JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id
-          ).then(({ data }) => {
-            setBrands(data.brands);
-          });
-          redirectTo("/brands");
-        })
-        .catch((error) => { })
+          .then((res) => {
+            getBrands(
+              JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id
+            ).then(({ data }) => {
+              setBrands(data.brands);
+            });
+            redirectTo("/brands");
+          })
+          .catch((error) => {})
       : postCreateBrand(formData)
-        .then((res) => {
-          getBrands(
-            JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id
-          ).then(({ data }) => {
-            setBrands(data.brands);
-          });
-          redirectTo("/brands");
-        })
-        .catch((error) => { });
+          .then((res) => {
+            getBrands(
+              JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id
+            ).then(({ data }) => {
+              setBrands(data.brands);
+            });
+            redirectTo("/brands");
+          })
+          .catch((error) => {});
   };
 
   const properties = {
@@ -124,6 +128,8 @@ function Index() {
     register,
     selectedImgArray,
     onSelectFile,
+    filesBrands,
+    setFilesBrands,
   };
 
   return <View {...properties} />;

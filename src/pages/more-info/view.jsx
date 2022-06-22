@@ -15,7 +15,7 @@ function View({
       <PageTitle user={true} title="Más información" />
 
       <h2>{projectValues.name_project}</h2>
-
+      {console.log(projectValues)}
       <div className="table-data">
         <table>
           <tbody>
@@ -52,52 +52,24 @@ function View({
               <td className="title">Resumen del Proyecto</td>
               <td>
                 <div className="resume flex">
-                  <div>Nombre: </div>
-                  <div>{projectValues?.name_project || "-"}</div>
+                  <div>Costo base del proyecto: </div>
+                  <div>{projectValues?.costo_base || "-"}</div>
                 </div>
                 <div className="resume flex">
-                  <div>Marca: </div>
-                  <div>{projectValues?.brand_select || "-"}</div>
+                  <div>Tiempo de entrega: </div>
+                  <div>{projectValues?.tiempo_entrega || "-"}</div>
                 </div>
                 <div className="resume flex">
-                  <div>Formato: </div>
+                  <div>Formato de entrega: </div>
                   <div>{projectValues?.formato_entrega || "-"}</div>
                 </div>
                 <div className="resume flex">
-                  <div>Idea del post: </div>
-                  <div>{projectValues?.idea_post || "-"}</div>
-                </div>
-                <div className="resume flex">
-                  <div>Paleta de colores: </div>
-                  <div>{projectValues?.palete_colors || "-"}</div>
-                </div>
-                <div className="resume flex">
-                  <div>Paleta de colores: </div>
-                  <div>{projectValues?.palete_colors || "-"}</div>
-                </div>
-                <div className="resume flex">
-                  <div>Tipo de proyecto: </div>
-                  <div>{projectValues?.project_type || "-"}</div>
-                </div>
-                <div className="resume flex">
-                  <div>Público objetivo: </div>
-                  <div>{projectValues?.public_goal || "-"}</div>
-                </div>
-                <div className="resume flex">
-                  <div>Red social: </div>
-                  <div>{projectValues?.social_network || "-"}</div>
+                  <div>Revisiones: </div>
+                  <div>{projectValues?.revisiones || "-"}</div>
                 </div>
                 <div className="resume flex">
                   <div>Tamaño: </div>
                   <div>{projectValues?.tamaño || "-"}</div>
-                </div>
-                <div className="resume flex">
-                  <div>Tipo de post: </div>
-                  <div>{projectValues?.type_post || "-"}</div>
-                </div>
-                <div className="resume flex">
-                  <div>Tipo de publicación: </div>
-                  <div>{projectValues?.type_publication || "-"}</div>
                 </div>
                 <div className="resume flex">
                   <div>Archivos editables: </div>

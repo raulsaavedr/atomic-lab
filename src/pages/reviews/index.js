@@ -37,6 +37,8 @@ function Index() {
     });
   };
 
+  const projectExtraData = JSON.parse(filterProject.extra_data);
+
   useEffect(() => {
     getAllReviews();
   }, []);
@@ -151,7 +153,13 @@ function Index() {
   };
 
   const finishReview = () => {
-    putFinishReview({ project_id: id, img_id: versionVote }).then((res) => {
+    putFinishReview({
+      project_id: id,
+      img_id:
+        reviews?.review_data[versionSelect - 1]?.versions.length === 1
+          ? reviews?.review_data[versionSelect - 1].versions[0].id
+          : versionVote,
+    }).then((res) => {
       setStateFinishReview("idle");
 
       getAllProjects(userData.id).then(({ data }) => {
@@ -162,6 +170,9 @@ function Index() {
     });
   };
 
+  const [modalMessageFinish1, setModalMessageFinish1] = useState(false);
+  const [modalMessageFinish2, setModalMessageFinish2] = useState(false);
+
   const finishProject = () => {
     updateFlow({ project_id: id, id_flow: 4 }).then((res) => {
       setState("idle");
@@ -170,7 +181,9 @@ function Index() {
         setAllProjects(data.response);
       });
 
-      navigate("/projects-inactive");
+      navigate("/projects-inactive", {
+        state: { finish_project: true },
+      });
     });
   };
 
@@ -202,6 +215,11 @@ function Index() {
     finishProject,
     onClickHandlerFinishReview,
     stateFinishReview,
+    modalMessageFinish1,
+    setModalMessageFinish1,
+    modalMessageFinish2,
+    setModalMessageFinish2,
+    projectExtraData,
   };
 
   return <View {...properties} />;
