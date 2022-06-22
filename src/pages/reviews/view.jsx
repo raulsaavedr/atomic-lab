@@ -403,7 +403,7 @@ function View({
                   buttonState={stateFinishReview}
                   onClick={() => onClickHandlerFinishReview()}
                   shadow={false}
-                  loadingText={"Finalizando..."}
+                  loadingText={"Finalizando...."}
                   outline={false}
                   rounded={false}
                   block={false}
