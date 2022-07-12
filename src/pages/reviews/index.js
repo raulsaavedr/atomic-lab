@@ -33,11 +33,15 @@ function Index() {
   const getAllReviews = () => {
     getReviewsProject(id).then(({ data }) => {
       setReviews(data);
-      setVersionSelect(data?.review_data[data?.review_data.length - 1].version);
+      setVersionSelect(
+        data?.review_data[data?.review_data.length - 1]?.version
+      );
     });
   };
 
-  const projectExtraData = JSON.parse(filterProject.extra_data);
+  console.log(filterProject);
+
+  const projectExtraData = JSON.parse(filterProject?.extra_data);
 
   useEffect(() => {
     getAllReviews();
@@ -47,7 +51,7 @@ function Index() {
     setProjectData(
       filterProject && {
         ...filterProject,
-        values: JSON.parse(filterProject?.values),
+        values: filterProject?.values,
       }
     );
   }, [filterProject]);

@@ -140,20 +140,52 @@ function View({
                     />
                   </td>
                   <td>
-                    <div className="flex">
-                      {Icons("download_circle")} Descargar
-                    </div>
+                    {dataBrand?.materiales ? (
+                      <a
+                        rel="noreferrer"
+                        target={"_blank"}
+                        href={
+                          dataBrand.materiales.filter(
+                            (material) =>
+                              material.type ===
+                              item.title.replaceAll(" ", "").toLowerCase()
+                          )[0]?.url_image
+                        }
+                      >
+                        <div className="flex">
+                          {Icons("download_circle")} Descargar
+                        </div>
+                      </a>
+                    ) : (
+                      <div className="flex">
+                        {Icons("download_circle")} Descargar
+                      </div>
+                    )}
                   </td>
                   <td>
                     <div className="flex input-manuals">
-                      <input
-                        type="text"
-                        className="input-txt"
-                        value={
-                          filesBrands.filter((file) => file.id === item.id)[0]
-                            ?.file.name || ""
-                        }
-                      />
+                      {dataBrand?.materiales ? (
+                        <input
+                          type="text"
+                          className="input-txt"
+                          value={
+                            dataBrand.materiales.filter(
+                              (material) =>
+                                material.type ===
+                                item.title.replaceAll(" ", "").toLowerCase()
+                            )[0]?.type
+                          }
+                        />
+                      ) : (
+                        <input
+                          type="text"
+                          className="input-txt"
+                          value={
+                            filesBrands.filter((file) => file.id === item.id)[0]
+                              ?.file.name || ""
+                          }
+                        />
+                      )}
                     </div>
                   </td>
                   <td>

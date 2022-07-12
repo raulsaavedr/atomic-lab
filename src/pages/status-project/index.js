@@ -10,26 +10,21 @@ function Index() {
   const { allProjects } = useContext(DataContext);
   const [projectData, setProjectData] = useState([]);
 
-
-  const filterProject = allProjects?.filter((project) => project.id === parseInt(id))[0]
+  const filterProject = allProjects?.filter(
+    (project) => project.id === parseInt(id)
+  )[0];
 
   const redirectTo = (route) => navigate(route);
 
-
-
-
   useEffect(() => {
-    setProjectData(filterProject && {
-      ...filterProject,
-      flow: JSON.parse(filterProject?.flow),
-      values: JSON.parse(filterProject?.values),
-
-    })
-  }, [filterProject])
-
-
-
-
+    setProjectData(
+      filterProject && {
+        ...filterProject,
+        flow: JSON.parse(filterProject?.flow),
+        values: filterProject?.values,
+      }
+    );
+  }, [filterProject]);
 
   var rating = {};
 
@@ -45,12 +40,9 @@ function Index() {
     rating = {};
   }
 
-
   const properties = { projectData, rate, redirectTo };
 
   return <View {...properties} />;
-
-
 }
 
 export default Index;

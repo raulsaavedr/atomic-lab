@@ -1,8 +1,17 @@
 import React from "react";
 import PageTitle from "../page-title";
+import ModalZoomImg from "../modals/zoom-img";
 import "./styles.scss";
 
-function View({ projectValues, navigate, options, options_post }) {
+function View({
+  projectValues,
+  navigate,
+  options,
+  options_post,
+  modalZoomImg,
+  setModalZoomImg,
+  dataModals,
+}) {
   return (
     <div className="page project-detail">
       <PageTitle user={true} title={projectValues[0]?.name_project} />
@@ -17,6 +26,10 @@ function View({ projectValues, navigate, options, options_post }) {
           Atrás
         </div>
       </section>
+
+      {modalZoomImg && (
+        <ModalZoomImg close={setModalZoomImg} data={dataModals} />
+      )}
     </div>
   );
 }

@@ -12,11 +12,13 @@ function Index() {
   const { allProjects, userData } = useContext(DataContext);
   const [designers, setDesigners] = useState([]);
 
-  const filterProject = allProjects.filter(
+  const filterProject = allProjects?.filter(
     (project) => project.id === parseInt(id)
   )[0];
-  const projectValues = JSON.parse(filterProject.values);
-  const projectExtraData = JSON.parse(filterProject.extra_data);
+  const projectValues = filterProject?.values[0];
+  const projectExtraData = JSON.parse(filterProject?.extra_data);
+
+  console.log(projectValues);
 
   const redirectTo = (route) => navigate(route);
 

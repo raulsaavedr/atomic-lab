@@ -113,7 +113,6 @@ function View({
             >
               {Icons(menuTopView === "info" ? "arrow_up" : "arrow_down")}
             </div>
-            {console.log(projectData)}
             {menuTopView === "info" && (
               <div className="menu-float">
                 <p className="title">Tiempo de entrega</p>

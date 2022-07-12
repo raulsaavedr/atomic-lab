@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import DataContext from "../../data-context";
 import { useParams, useNavigate } from "react-router-dom";
 import { DETAIL_PROJECT_DATA, URL_IMG } from "../constats";
@@ -11,13 +11,13 @@ function Index() {
 
   const { userData, allProjects } = useContext(DataContext);
 
+  console.log("alll-", allProjects);
+
   const filterProject = allProjects.filter(
     (project) => project.id === parseInt(id)
   )[0];
 
-  const projectValues = [JSON.parse(filterProject.values)];
-
-  console.log(projectValues[0].post);
+  const projectValues = filterProject.values;
 
   const redirectTo = (route) => navigate(route);
 
@@ -30,8 +30,8 @@ function Index() {
         <div className="value flex">
           <p className="title">{DETAIL_PROJECT_DATA[key]}</p>
           <p>
-            {typeof value === "object"
-              ? key === "post" &&
+            {typeof value !== "object" &&
+              /* ? key === "post" &&
                 value.map((item, index) => (
                   <div className="post_img" key={index}>
                     <p>Post #{index + 1}</p>
@@ -40,35 +40,51 @@ function Index() {
                     <img src={URL_IMG + item.name_img} alt={index} />
                   </div>
                 ))
-              : value}
+              : */ value}
           </p>
         </div>
       );
   }
 
+  const [modalZoomImg, setModalZoomImg] = useState(false);
+  const [dataModals, setDataModals] = useState(false);
+
   options_post.push(
     <div className="value post-dat-all flex">
       <p className="title">Post</p>
 
-      {projectValues[0]?.post?.map((item, index) => (
-        <div className="post-data" key={item.id}>
-          <p>Post #{item.id}</p>
-          <p>Objetive: {item.objetive}</p>
-          <p>Text: {item.text}</p>
-          <img src={URL_IMG + item.name_img} alt={index} />
-        </div>
-      ))}
+      <div className="post-container">
+        {projectValues[0]?.post?.map((item, index) => (
+          <div
+            className="post-data"
+            key={item.id}
+            onClick={() => {
+              setModalZoomImg(!modalZoomImg);
+              setDataModals({
+                type: "normal",
+                img: item.name_img,
+              });
+            }}
+          >
+            <p>Objetive: {item.objetive}</p>
+            <p>Text: {item.text}</p>
+            <div className="img-container">
+              <img src={item.name_img} alt={index} />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 
   const properties = {
-    filterProject,
     projectValues,
-    userData,
-    redirectTo,
     navigate,
     options,
     options_post,
+    modalZoomImg,
+    setModalZoomImg,
+    dataModals,
   };
 
   return <View {...properties} />;

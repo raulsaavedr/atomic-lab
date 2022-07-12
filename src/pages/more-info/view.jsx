@@ -15,7 +15,6 @@ function View({
       <PageTitle user={true} title="Más información" />
 
       <h2>{projectValues.name_project}</h2>
-      {console.log(projectValues)}
       <div className="table-data">
         <table>
           <tbody>
@@ -33,9 +32,9 @@ function View({
             </tr>
             <tr>
               <td className="title">Fecha de inicio</td>
-              <td>{filterProject.updated_at}</td>
+              <td>{filterProject?.updated_at}</td>
               <td className="title">Fecha estimada próxima versión</td>
-              <td>{filterProject.review_date || "No programada"}</td>
+              <td>{filterProject?.review_date || "No programada"}</td>
             </tr>
             <tr>
               <td className="title">Valor</td>
@@ -44,8 +43,8 @@ function View({
             <tr>
               <td className="title">Revisión</td>
               <td>
-                {filterProject.review} de{" "}
-                {projectValues?.revisiones.replace("Hasta ", "")}
+                {filterProject?.review} de{" "}
+                {projectValues?.revisiones?.replace("Hasta ", "")}
               </td>
             </tr>
             <tr>
@@ -74,6 +73,10 @@ function View({
                 <div className="resume flex">
                   <div>Archivos editables: </div>
                   <div>{projectValues?.archivos_editables || "-"}</div>
+                </div>
+                <div className="resume flex">
+                  <div>Paleta de colores: </div>
+                  <div>{projectValues?.palete_colors || "-"}</div>
                 </div>
               </td>
             </tr>

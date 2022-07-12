@@ -89,13 +89,12 @@ function Index() {
 
     formData.append(selectedImgArray.name, selectedImgArray.formData);
 
-    console.log("selectedImgArray", selectedImgArray);
-    console.log("filesBrands", filesBrands);
-
     filesBrands.map((file) => formData.append(file.name, file.file));
 
     formData.append("jsondataRequest", JSON.safeStringify(dataBrand));
-    console.log("formData-", ...formData);
+
+    console.log(formData);
+
     id
       ? putUpdateBrand({ data: formData, brand_id: id })
           .then((res) => {

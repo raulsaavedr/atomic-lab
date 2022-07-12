@@ -43,7 +43,7 @@ function View({
         title={`Proyectos ${typeFin === "active" ? "activos" : "terminados"}`}
       />
 
-      {projectsFilter && projectsFilter.length <= 1 ? (
+      {projectsFilter && projectsFilter.length <= 0 ? (
         <div className="message">
           <h3 className="text-purple">{`No tienes proyectos ${
             typeFin === "active" ? "activos" : "terminados"
@@ -74,8 +74,7 @@ function View({
 
             <tbody>
               {projectsFilter?.map((project, index) => {
-                const projectValues =
-                  project.values && JSON.parse(project?.values);
+                const projectValues = project?.values[0] || [];
 
                 const flows = project.flow && JSON.parse(project?.flow);
                 const flow_active =
@@ -115,7 +114,7 @@ function View({
                               : project_field.field
                           }
                         >
-                          {project_field.type === "date" ? (
+                          {project_field?.type === "date" ? (
                             <input
                               className="select-date"
                               type="date"
@@ -129,8 +128,9 @@ function View({
                                 )
                               }
                             />
-                          ) : project_field.type === "download" ? (
+                          ) : project_field?.type === "download" ? (
                             <a
+                              rel="noreferrer"
                               download="custom-filename.jpg"
                               target="_blank"
                               href={
@@ -138,12 +138,12 @@ function View({
                               }
                               title="ImageName"
                             >
-                              {Icons(project_field.icon)}
+                              {Icons(project_field?.icon)}
                             </a>
-                          ) : project_field.type === "review" ? (
+                          ) : project_field?.type === "review" ? (
                             <div className="flex review">
                               <p>
-                                {project[project_field.field]} de{" "}
+                                {project[project_field?.field]} de{" "}
                                 {projectValues?.revisiones?.includes("Hasta")
                                   ? projectValues?.revisiones?.replace(
                                       "Hasta ",
@@ -152,23 +152,23 @@ function View({
                                   : "∞"}
                               </p>
                               {projectValues?.revisiones?.includes("Hasta") &&
-                                Icons(project_field.icon)}
+                                Icons(project_field?.icon)}
                             </div>
-                          ) : project_field.icon ? (
-                            Icons(project_field.icon)
+                          ) : project_field?.icon ? (
+                            Icons(project_field?.icon)
                           ) : (
-                            projectValues[project_field.field] ||
-                            project[project_field.field]
+                            projectValues[project_field?.field] ||
+                            project[project_field?.field]
                           )}
 
-                          {project_field.subtitle && (
+                          {project_field?.subtitle && (
                             <p
                               className={`view-more ${
-                                project_field.subtitle?.onClick && "pointer"
+                                project_field?.subtitle?.onClick && "pointer"
                               }`}
-                              onClick={project_field.subtitle?.onClick}
+                              onClick={project_field?.subtitle?.onClick}
                             >
-                              {project_field.subtitle.text}
+                              {project_field?.subtitle.text}
                             </p>
                           )}
 
