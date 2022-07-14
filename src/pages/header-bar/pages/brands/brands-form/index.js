@@ -93,8 +93,6 @@ function Index() {
 
     formData.append("jsondataRequest", JSON.safeStringify(dataBrand));
 
-    console.log(formData);
-
     id
       ? putUpdateBrand({ data: formData, brand_id: id })
           .then((res) => {

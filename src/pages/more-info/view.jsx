@@ -39,6 +39,8 @@ function View({
             <tr>
               <td className="title">Valor</td>
               <td>$ {projectValues?.costo_base}</td>
+              <td className="title">Libertad diseñador</td>
+              <td>{projectValues?.designer_freedom}</td>
             </tr>
             <tr>
               <td className="title">Revisión</td>
@@ -60,7 +62,12 @@ function View({
                 </div>
                 <div className="resume flex">
                   <div>Formato de entrega: </div>
-                  <div>{projectValues?.formato_entrega || "-"}</div>
+                  <div>
+                    {projectValues?.formato_entrega || "-"}
+                    {projectValues?.f_custom && (
+                      <p>{" - " + projectValues?.f_custom}</p>
+                    )}
+                  </div>
                 </div>
                 <div className="resume flex">
                   <div>Revisiones: </div>
@@ -68,7 +75,12 @@ function View({
                 </div>
                 <div className="resume flex">
                   <div>Tamaño: </div>
-                  <div>{projectValues?.tamaño || "-"}</div>
+                  <div>
+                    {projectValues?.tamaño || "-"}
+                    {projectValues?.t_custom && (
+                      <p>{" - " + projectValues?.t_custom}</p>
+                    )}
+                  </div>
                 </div>
                 <div className="resume flex">
                   <div>Archivos editables: </div>

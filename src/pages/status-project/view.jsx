@@ -29,6 +29,7 @@ function View({ projectData, rate, redirectTo }) {
               ))}
             </tr>
           </thead>
+          {console.log(projectData?.flow)}
           <tbody>
             {projectData?.flow?.map((status, index) => (
               <tr key={index}>

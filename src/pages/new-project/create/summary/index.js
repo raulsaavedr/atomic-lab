@@ -24,6 +24,8 @@ function Index({ setStep, step }) {
   const [modalMessageStartData, setModalMessageStartData] = useState({});
   const [modalBuyCredits, setModalBuyCredit] = useState(false);
   const [dataModals, setDataModals] = useState([]);
+  const [fCustom, setFCustom] = useState(null);
+  const [tCustom, setTCustom] = useState(null);
   const [timePrice, setTimePrice] = useState({
     price: SUMMARY_OPTIONS["tiempo"].options[0].price,
     text: SUMMARY_OPTIONS["tiempo"].options[0].text,
@@ -105,6 +107,8 @@ function Index({ setStep, step }) {
       revisiones: reviewPrice.text,
       tamaño: sizePrice.text,
       archivos_editables: editPrice.text,
+      ...(fCustom && { f_custom: fCustom }),
+      ...(tCustom && { t_custom: tCustom }),
     };
     formData.append("jsondataRequest", JSON.safeStringify(dataFin));
 
@@ -170,6 +174,8 @@ function Index({ setStep, step }) {
     editPrice,
     setEditPrice,
     getTotalProject,
+    setFCustom,
+    setTCustom,
   };
 
   return <View {...properties} />;

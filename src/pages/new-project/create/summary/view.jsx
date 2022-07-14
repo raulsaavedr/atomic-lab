@@ -38,6 +38,8 @@ function View({
   editPrice,
   setEditPrice,
   getTotalProject,
+  setFCustom,
+  setTCustom,
 }) {
   return (
     <div className="summary-page page">
@@ -209,6 +211,7 @@ function View({
                         )[0]?.price,
                         text: e.target.value,
                       });
+                      setFCustom(null);
                     }}
                   >
                     {SUMMARY_OPTIONS["formato"].options.map((option, index) => (
@@ -217,8 +220,15 @@ function View({
                       </option>
                     ))}
                   </select>
+
                   {formatPrice.text === "Personalizado" && (
-                    <input className="input-txt-2" type="text" name="" id="" />
+                    <input
+                      className="input-txt-2"
+                      type="text"
+                      name=""
+                      id=""
+                      onChange={(e) => setFCustom(e.target.value)}
+                    />
                   )}
                 </div>
               </td>
@@ -278,6 +288,7 @@ function View({
                         )[0]?.price,
                         text: e.target.value,
                       });
+                      setTCustom(null);
                     }}
                   >
                     {SUMMARY_OPTIONS["tamaño"].options.map((option, index) => (
@@ -287,7 +298,13 @@ function View({
                     ))}
                   </select>
                   {sizePrice.text === "Personalizado" && (
-                    <input className="input-txt-2" type="text" name="" id="" />
+                    <input
+                      className="input-txt-2"
+                      type="text"
+                      name=""
+                      id=""
+                      onChange={(e) => setTCustom(e.target.value)}
+                    />
                   )}
                 </div>
               </td>

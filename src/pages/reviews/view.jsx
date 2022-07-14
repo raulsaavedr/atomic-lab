@@ -39,6 +39,7 @@ function View({
   setModalMessageFinish2,
   projectExtraData,
 }) {
+  console.log("reviews", reviews);
   return (
     <div className="page reviews">
       <div>
@@ -188,6 +189,10 @@ function View({
                         )[0].versions.length >= 2
                           ? "img-2"
                           : "img-1"
+                      } ${
+                        reviews.last_selection_id === version.id
+                          ? "img-select"
+                          : "img-no-select"
                       }`}
                       onClick={() => {
                         setModalData({

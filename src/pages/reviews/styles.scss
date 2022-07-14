@@ -150,6 +150,20 @@
       height: 211px;
     }
 
+    .img-select {
+      border: 3px solid green;
+      padding-bottom: 18px;
+      box-sizing: border-box;
+      background-color: green;
+    }
+    .img-select::after {
+      content: "Seleccion del usuario";
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      font-size: 11px;
+    }
+
     .vote-main {
       padding: 3em;
       box-sizing: border-box;

@@ -39,8 +39,6 @@ function Index() {
     });
   };
 
-  console.log(filterProject);
-
   const projectExtraData = JSON.parse(filterProject?.extra_data);
 
   useEffect(() => {
@@ -122,7 +120,7 @@ function Index() {
     const dataFin = {
       id_project: id,
       user_id: userData.id,
-      version: versionSelect,
+      version: versionSelect || 1,
     };
 
     formData.append("jsondataRequest", JSON.safeStringify(dataFin));

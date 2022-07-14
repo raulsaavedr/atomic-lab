@@ -11,8 +11,6 @@ function Index() {
 
   const { userData, allProjects } = useContext(DataContext);
 
-  console.log("alll-", allProjects);
-
   const filterProject = allProjects.filter(
     (project) => project.id === parseInt(id)
   )[0];
