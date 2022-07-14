@@ -162,6 +162,7 @@ function Index() {
           ? reviews?.review_data[versionSelect - 1].versions[0].id
           : versionVote,
     }).then((res) => {
+      setModalMessageFinish3(true);
       setStateFinishReview("idle");
 
       getAllProjects(userData.id).then(({ data }) => {
@@ -174,6 +175,7 @@ function Index() {
 
   const [modalMessageFinish1, setModalMessageFinish1] = useState(false);
   const [modalMessageFinish2, setModalMessageFinish2] = useState(false);
+  const [modalMessageFinish3, setModalMessageFinish3] = useState(true);
 
   const finishProject = () => {
     updateFlow({ project_id: id, id_flow: 4 }).then((res) => {
@@ -222,6 +224,8 @@ function Index() {
     modalMessageFinish2,
     setModalMessageFinish2,
     projectExtraData,
+    modalMessageFinish3,
+    setModalMessageFinish3,
   };
 
   return <View {...properties} />;

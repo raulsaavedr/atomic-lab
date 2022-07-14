@@ -1,20 +1,24 @@
 .modal-message {
   .modal-content {
     min-height: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
     .text {
       display: flex;
       flex-direction: column;
-      justify-content: center;
       gap: 10px;
+
+      height: 180px;
 
       div {
         text-align: center;
         width: 100%;
       }
+    }
+    .text.is-justify {
+      justify-content: space-evenly;
+    }
+    .text.is-center {
+      justify-content: center;
     }
   }
 
@@ -34,6 +38,13 @@
     cursor: default;
     text-align: center;
     font-size: 18px;
+  }
+
+  &-buttons {
+    position: absolute;
+    bottom: 10px;
+    width: 90%;
+    justify-content: space-between;
   }
 
   &-buttons.is-justify {

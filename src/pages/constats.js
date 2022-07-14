@@ -41,6 +41,7 @@ export const MAIN_SUBMENU = (
   setModalHelp,
   modalHelp
 ) => {
+  console.log(rol);
   const listContent = [
     {
       view: true,
@@ -51,7 +52,7 @@ export const MAIN_SUBMENU = (
       },
     },
     {
-      view: rol !== 3 ? true : false,
+      view: true,
       text: "Mis marcas",
       onClick() {
         redirectTo("brands");

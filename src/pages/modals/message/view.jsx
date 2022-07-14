@@ -16,7 +16,11 @@ function View({ next, cancel, message, subMessage, cancelVisible, next_type }) {
   return (
     <div id="myModal" className="modal modal-message">
       <div className="modal-content">
-        <div className="text flex">
+        <div
+          className={`text ${
+            message && subMessage ? "is-justify" : "is-center"
+          }`}
+        >
           <div className="text-purple">{message}</div>
           {subMessage && <div>{subMessage}</div>}
         </div>

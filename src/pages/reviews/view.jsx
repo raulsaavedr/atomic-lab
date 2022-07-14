@@ -38,6 +38,8 @@ function View({
   modalMessageFinish2,
   setModalMessageFinish2,
   projectExtraData,
+  modalMessageFinish3,
+  setModalMessageFinish3,
 }) {
   console.log("reviews", reviews);
   return (
@@ -384,17 +386,6 @@ function View({
                 >
                   Aprobar proyecto
                 </div>
-                {/* <ReactiveButton
-                  className="button-yellow"
-                  buttonState={state}
-                  onClick={() => onClickHandler("finish")}
-                  shadow={false}
-                  loadingText={"Aprobando..."}
-                  outline={false}
-                  rounded={false}
-                  block={false}
-                  idleText={"Aprobar proyecto"}
-                /> */}
               </div>
               <div className="button-reactive">
                 <div className="globe-text">
@@ -454,6 +445,14 @@ function View({
           subMessage="Espera a que el diseñador suba los archivos para que los puedas descargar. Mientras tanto, puedes visualizar el diseño final"
           next={() => {
             setModalMessageFinish2(false)();
+          }}
+        />
+      )}
+      {modalMessageFinish3 && (
+        <Message
+          message="Tus comentarios han sido recibidos"
+          next={() => {
+            setModalMessageFinish3(false)();
           }}
         />
       )}
