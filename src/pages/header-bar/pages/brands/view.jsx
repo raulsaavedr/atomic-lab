@@ -7,8 +7,10 @@ function View({ redirectToBrandForm, brands }) {
   return (
     <div className="brands-page page">
       <PageTitle page={"brands-page"} user={true} title="Mis marcas" />
-
-      <div className="description">Compañía/organización</div>
+      <div className="description">
+        Agrega la información de tu empresa y de la marca. Si tienes otras
+        marcas, las puedes agregar aqui.
+      </div>
 
       <section className="content flex">
         {brands?.map((brand, index) => (

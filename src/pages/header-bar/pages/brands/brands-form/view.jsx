@@ -15,6 +15,7 @@ function View({
   onSelectFile,
   filesBrands,
   setFilesBrands,
+  rol,
 }) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -25,8 +26,10 @@ function View({
           title={id ? "Editar marca" : "Crear marca"}
         />
 
-        <div className="description">Datos de la compañia/organización</div>
-
+        <div className="description">
+          Ingresa los datos de tu compañía y de la marca. Si tienes más marcas
+          las puedas agregar en la pantalla anterior.
+        </div>
         <section className="content ">
           {FORM_INPUTS_BRANDS.map((input, index) => (
             <div
@@ -38,21 +41,29 @@ function View({
               {input.type && (
                 <div className="flex">
                   {input.type !== "textarea" && input.type !== "file" && (
-                    <input {...input} id={input.id} {...register(input.id)} />
+                    <input
+                      {...input}
+                      id={input.id}
+                      {...register(input.id)}
+                      disabled={rol === 3}
+                    />
                   )}
                   {input.type === "textarea" && (
                     <textarea
                       {...input}
                       id={input.id}
                       {...register(input.id)}
+                      disabled={rol === 3}
                     />
                   )}
                   {input.type === "file" && (
                     <div className="icon-logo flex">
                       <div className="icon-img">
-                        {selectedImgArray?.object ? (
+                        {selectedImgArray?.object || dataBrand?.url_image ? (
                           <img
-                            src={selectedImgArray?.object}
+                            src={
+                              selectedImgArray?.object || dataBrand?.url_image
+                            }
                             alt=""
                             className="icon-icon"
                           />
@@ -60,23 +71,27 @@ function View({
                           Icons("icon_img_post")
                         )}
                       </div>
-                      <label
-                        htmlFor={`reference-${id}`}
-                        className="button-blue flex"
-                      >
-                        {Icons("clip_white")}
-                        {selectedImgArray?.name || "Adjuntar"}
-                      </label>
+
+                      {rol !== 3 && (
+                        <label
+                          htmlFor={`reference-${id}`}
+                          className="button-blue flex"
+                        >
+                          {Icons("clip_white")}
+                          {selectedImgArray?.name || "Adjuntar"}
+                        </label>
+                      )}
                       <input
                         {...input}
                         id={`reference-${id}`}
                         onChange={(e) => {
                           onSelectFile(e, id);
                         }}
+                        disabled={rol === 3}
                       />
                     </div>
                   )}
-                  {Icons("edit")}
+                  {rol !== 3 && Icons("edit")}
                 </div>
               )}
 
@@ -97,6 +112,7 @@ function View({
                         true
                       }
                       {...register(option.id)}
+                      disabled={rol === 3}
                     />
 
                     {option.type !== "checkbox" && Icons("edit")}
@@ -137,6 +153,7 @@ function View({
                           },
                         ]);
                       }}
+                      disabled={rol === 3}
                     />
                   </td>
                   <td>
@@ -175,6 +192,7 @@ function View({
                                 item.title.replaceAll(" ", "").toLowerCase()
                             )[0]?.type
                           }
+                          disabled={rol === 3}
                         />
                       ) : (
                         <input
@@ -184,6 +202,7 @@ function View({
                             filesBrands.filter((file) => file.id === item.id)[0]
                               ?.file.name || ""
                           }
+                          disabled={rol === 3}
                         />
                       )}
                     </div>
@@ -196,13 +215,18 @@ function View({
             </tbody>
           </table>
         </section>
-
         <section className="footer">
           <section className="section-buttons flex">
             <div className="button" onClick={() => redirectTo("/brands")}>
               Atrás
             </div>
-            <input className="button" type="submit" value={"Guardar Cambios"} />
+            {rol !== 3 && (
+              <input
+                className="button"
+                type="submit"
+                value={"Guardar Cambios"}
+              />
+            )}
           </section>
         </section>
       </div>

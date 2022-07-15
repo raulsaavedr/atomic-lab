@@ -10,7 +10,9 @@ import { useForm } from "react-hook-form";
 import View from "./view";
 
 function Index() {
-  const { brands, setBrands } = useContext(DataContext);
+  const { brands, setBrands, userData } = useContext(DataContext);
+
+  console.log(userData);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -127,6 +129,7 @@ function Index() {
     onSelectFile,
     filesBrands,
     setFilesBrands,
+    rol: userData?.rol_id,
   };
 
   return <View {...properties} />;

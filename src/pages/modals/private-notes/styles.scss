@@ -1,6 +1,11 @@
 .private-notes {
   .modal-content {
     position: relative;
+    height: 28em;
+
+    .content-desc {
+      margin: 10px 0;
+    }
 
     .content-notes {
       margin-top: 6px;

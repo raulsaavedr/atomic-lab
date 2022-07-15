@@ -439,14 +439,14 @@ export const FORM_INPUTS_BRANDS = [
   {
     id: "url_image",
     type: "file",
-    label: "Icono",
+    label: "Avatar",
     required: false,
     className: "input-txt",
   },
   {
     id: "name",
     type: "text",
-    label: "Nombre comercial",
+    label: "Nombre comercial de la empresa",
     required: true,
     className: "input-txt",
   },
@@ -917,13 +917,6 @@ export const PROJECTS = (
     },
 
     {
-      title: "Fecha Finalización",
-      isActive: typeFin === "inactive" ? true : false,
-      field: "finish_at",
-      icon: null,
-    },
-
-    {
       title: "Estado",
       isActive: page === "home" ? (typeFin === "active" ? true : false) : true,
       field: "status",
@@ -937,6 +930,14 @@ export const PROJECTS = (
         },
       },
     },
+
+    {
+      title: "Fecha Finalización",
+      isActive: typeFin === "inactive" ? true : false,
+      field: "finish_at",
+      icon: null,
+    },
+
     {
       title: "Fecha estimada próx. revisión",
       isActive: typeFin === "active" ? true : false,

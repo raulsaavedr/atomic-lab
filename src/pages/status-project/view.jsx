@@ -7,6 +7,9 @@ import moment from "moment";
 import "./styles.scss";
 
 function View({ projectData, rate, redirectTo }) {
+  const flowActive =
+    projectData?.flow?.filter((item) => item.status === "active")[0]?.id - 1;
+
   return (
     <div className="page status-projects">
       <PageTitle page={"status"} user={true} title="Estado detallado" />
@@ -34,9 +37,7 @@ function View({ projectData, rate, redirectTo }) {
               <tr key={index}>
                 <td>
                   {Icons(
-                    status.status === "active"
-                      ? "check_blue"
-                      : "check_blue_none"
+                    flowActive >= index ? "check_blue" : "check_blue_none"
                   )}
                   {index === 0 && <div className="line-td"></div>}
                 </td>

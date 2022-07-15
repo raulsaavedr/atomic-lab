@@ -73,129 +73,133 @@ function View({
             </thead>
 
             <tbody>
-              {projectsFilter?.map((project, index) => {
-                const projectValues = project?.values[0] || [];
+              {projectsFilter
+                ?.filter((item, idx) =>
+                  page === "home" ? idx < 5 : idx < 1000
+                )
+                .map((project, index) => {
+                  const projectValues = project?.values[0] || [];
 
-                const flows = project.flow && JSON.parse(project?.flow);
-                const flow_active =
-                  "status_check_" +
-                  parseInt(
-                    Array.isArray(flows) &&
-                      flows.filter((flow) => flow.status === "active")[0].id
-                  );
+                  const flows = project.flow && JSON.parse(project?.flow);
+                  const flow_active =
+                    "status_check_" +
+                    parseInt(
+                      Array.isArray(flows) &&
+                        flows.filter((flow) => flow.status === "active")[0].id
+                    );
 
-                return (
-                  <tr key={index}>
-                    {PROJECTS(
-                      page,
-                      typeFin,
-                      navigate,
-                      project,
-                      modalDesignerProject,
-                      setModalDesignerProject,
-                      setDataModals,
-                      modalZoomImg,
-                      setModalZoomImg,
-                      getLastVersion,
-                      setModalPrivateNotes,
-                      modalPrivateNotes,
-                      setMenuFloat,
-                      menuFloat,
-                      flow_active,
-                      userData?.rol_id,
-                      setModalReviews
-                    ).map((project_field) => (
-                      <td>
-                        <div
-                          onClick={project_field?.onClick}
-                          className={
-                            project_field?.onClick
-                              ? project_field.field + " pointer"
-                              : project_field.field
-                          }
-                        >
-                          {project_field?.type === "date" ? (
-                            <input
-                              className="select-date"
-                              type="date"
-                              name=""
-                              id=""
-                              value={project.review_date}
-                              onChange={(e) =>
-                                updateDateNextReview(
-                                  project.id,
-                                  moment(e.target.value).format("YYYY-MM-DD")
-                                )
-                              }
-                            />
-                          ) : project_field?.type === "download" ? (
-                            <a
-                              rel="noreferrer"
-                              download="custom-filename.jpg"
-                              target="_blank"
-                              href={
-                                "http://api.ticvzla.xyz/public/versions-images/8/8869911647031424.jpeg"
-                              }
-                              title="ImageName"
-                            >
-                              {Icons(project_field?.icon)}
-                            </a>
-                          ) : project_field?.type === "review" ? (
-                            <div className="flex review">
-                              <p>
-                                {project[project_field?.field]} de{" "}
-                                {projectValues?.revisiones?.includes("Hasta")
-                                  ? projectValues?.revisiones?.replace(
-                                      "Hasta ",
-                                      ""
-                                    )
-                                  : "∞"}
+                  return (
+                    <tr key={index}>
+                      {PROJECTS(
+                        page,
+                        typeFin,
+                        navigate,
+                        project,
+                        modalDesignerProject,
+                        setModalDesignerProject,
+                        setDataModals,
+                        modalZoomImg,
+                        setModalZoomImg,
+                        getLastVersion,
+                        setModalPrivateNotes,
+                        modalPrivateNotes,
+                        setMenuFloat,
+                        menuFloat,
+                        flow_active,
+                        userData?.rol_id,
+                        setModalReviews
+                      ).map((project_field) => (
+                        <td>
+                          <div
+                            onClick={project_field?.onClick}
+                            className={
+                              project_field?.onClick
+                                ? project_field.field + " pointer"
+                                : project_field.field
+                            }
+                          >
+                            {project_field?.type === "date" ? (
+                              <input
+                                className="select-date"
+                                type="date"
+                                name=""
+                                id=""
+                                value={project.review_date}
+                                onChange={(e) =>
+                                  updateDateNextReview(
+                                    project.id,
+                                    moment(e.target.value).format("YYYY-MM-DD")
+                                  )
+                                }
+                              />
+                            ) : project_field?.type === "download" ? (
+                              <a
+                                rel="noreferrer"
+                                download="custom-filename.jpg"
+                                target="_blank"
+                                href={
+                                  "http://api.ticvzla.xyz/public/versions-images/8/8869911647031424.jpeg"
+                                }
+                                title="ImageName"
+                              >
+                                {Icons(project_field?.icon)}
+                              </a>
+                            ) : project_field?.type === "review" ? (
+                              <div className="flex review">
+                                <p>
+                                  {project[project_field?.field]} de{" "}
+                                  {projectValues?.revisiones?.includes("Hasta")
+                                    ? projectValues?.revisiones?.replace(
+                                        "Hasta ",
+                                        ""
+                                      )
+                                    : "∞"}
+                                </p>
+                                {projectValues?.revisiones?.includes("Hasta") &&
+                                  Icons(project_field?.icon)}
+                              </div>
+                            ) : project_field?.icon ? (
+                              Icons(project_field?.icon)
+                            ) : (
+                              projectValues[project_field?.field] ||
+                              project[project_field?.field]
+                            )}
+
+                            {project_field?.subtitle && (
+                              <p
+                                className={`view-more ${
+                                  project_field?.subtitle?.onClick && "pointer"
+                                }`}
+                                onClick={project_field?.subtitle?.onClick}
+                              >
+                                {project_field?.subtitle.text}
                               </p>
-                              {projectValues?.revisiones?.includes("Hasta") &&
-                                Icons(project_field?.icon)}
-                            </div>
-                          ) : project_field?.icon ? (
-                            Icons(project_field?.icon)
-                          ) : (
-                            projectValues[project_field?.field] ||
-                            project[project_field?.field]
-                          )}
+                            )}
 
-                          {project_field?.subtitle && (
-                            <p
-                              className={`view-more ${
-                                project_field?.subtitle?.onClick && "pointer"
-                              }`}
-                              onClick={project_field?.subtitle?.onClick}
-                            >
-                              {project_field?.subtitle.text}
-                            </p>
-                          )}
-
-                          {project_field.isMenu && (
-                            <>
-                              {Icons("menu_points")}
-                              {menuFloat === project?.id && (
-                                <div className={`menu-float ${project?.id} `}>
-                                  {project_field.isMenu.map((item_menu) => (
-                                    <div
-                                      className="menu-float-item flex"
-                                      onClick={item_menu?.onClick}
-                                    >
-                                      <p>{item_menu.title}</p>
-                                      {Icons("help_circle")}
-                                    </div>
-                                  ))}
-                                </div>
-                              )}
-                            </>
-                          )}
-                        </div>
-                      </td>
-                    ))}
-                  </tr>
-                );
-              })}
+                            {project_field.isMenu && (
+                              <>
+                                {Icons("menu_points")}
+                                {menuFloat === project?.id && (
+                                  <div className={`menu-float ${project?.id} `}>
+                                    {project_field.isMenu.map((item_menu) => (
+                                      <div
+                                        className="menu-float-item flex"
+                                        onClick={item_menu?.onClick}
+                                      >
+                                        <p>{item_menu.title}</p>
+                                        {Icons("help_circle")}
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                              </>
+                            )}
+                          </div>
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
           {modalPrivateNotes && (

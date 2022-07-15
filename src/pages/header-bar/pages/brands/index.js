@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import View from "./view";
 
 function Index() {
-
   const { brands } = useContext(DataContext);
   const navigate = useNavigate();
 

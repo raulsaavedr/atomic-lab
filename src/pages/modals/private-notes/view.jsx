@@ -9,6 +9,12 @@ function View({ close, notes, setNotes, state, onClickHandler }) {
       <div className="modal-content">
         <h3>Mis notas privadas</h3>
 
+        <div className="content-desc">
+          Ingresa aquí cualquier anotación que desees del respectivo proyecto.
+          Ten en cuenta que éstas notas son privadas para ti. Ningún otro
+          usuario o diseñador las podrá ver.
+        </div>
+
         <div className="content-notes">
           <textarea
             className="input-texarea"
