@@ -815,8 +815,8 @@ export const STATUS_TABLES_FLOW = [
 export const SUMMARY_OPTIONS = {
   tiempo: {
     options: [
-      { text: "Estándar", price: 0 },
-      { text: "Express", price: 15 },
+      { text: "Estándar", extra_text: "(2-4 días hábiles)", price: 0 },
+      { text: "Express", extra_text: "(1-2 días hábiles)", price: 15 },
     ],
   },
   formato: {

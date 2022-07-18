@@ -22,7 +22,7 @@ function View({ selectedImg, onSelectFile, setStep, step, onSelectText }) {
     <div className="selection-page page">
       <div className="step flex">{Icons("step_selection")}</div>
 
-      <PageTitle title={"Selección"} />
+      <PageTitle title={"Contenido"} />
 
       <section className="subtitle">
         <p>

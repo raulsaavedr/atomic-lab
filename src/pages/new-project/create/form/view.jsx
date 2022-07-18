@@ -51,7 +51,7 @@ function View({ redirectToService, setStep, step }) {
               <label htmlFor="name">
                 {FORM_INPUTS.name.label}{" "}
                 <span className="required">
-                  {FORM_INPUTS.name.required && "(Required)"}
+                  {FORM_INPUTS.name.required && "(Requerido)"}
                 </span>
               </label>
               <input
@@ -130,9 +130,7 @@ function View({ redirectToService, setStep, step }) {
           Atrás
         </div>
 
-        {!formData.name_project ||
-        !formData.public_goal ||
-        !formData.palete_colors ? (
+        {!formData.name_project ? (
           <div className="button-gray">Continuar</div>
         ) : (
           <div

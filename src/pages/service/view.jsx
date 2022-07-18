@@ -110,7 +110,7 @@ function View({
             </option>
             {brands?.map((brand, index) => (
               <option key={index} defaultValue={brand.name}>
-                {brand?.name}
+                {brand?.brand}
               </option>
             ))}
           </select>

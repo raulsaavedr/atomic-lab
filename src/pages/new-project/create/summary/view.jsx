@@ -178,7 +178,7 @@ function View({
                 >
                   {SUMMARY_OPTIONS["tiempo"].options.map((option, index) => (
                     <option key={index} value={option.text}>
-                      {option.text}
+                      {option.text} {option?.extra_text}
                     </option>
                   ))}
                 </select>

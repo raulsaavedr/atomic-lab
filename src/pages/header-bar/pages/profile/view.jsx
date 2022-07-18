@@ -20,7 +20,7 @@ function View({ userData }) {
               <input
                 {...input}
                 id={input.id}
-                value={
+                defaultValue={
                   !input.id.includes("password")
                     ? userData[input.id]
                       ? userData[input.id]
