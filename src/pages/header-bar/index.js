@@ -44,6 +44,10 @@ function Index({ setIsAuthenticated }) {
 
   const user_id = JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id;
 
+  const fetchAndSetStates = () => {
+
+  };
+
   useEffect(() => {
     getNotifications(user_id).then(({ data }) => {
       setNotifications(data.response);
@@ -60,7 +64,7 @@ function Index({ setIsAuthenticated }) {
     getAllProjects(user_id).then(({ data }) => {
       setAllProjects(data.response);
     });
-  }, []);
+  }, [user_id]);
 
   const updateTour = () => {
     updateTourView({ user_id: user_id, value: 0 });
