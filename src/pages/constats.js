@@ -41,7 +41,7 @@ export const MAIN_SUBMENU = (
   setModalHelp,
   modalHelp
 ) => {
-  console.log(rol);
+
   const listContent = [
     {
       view: true,
@@ -643,6 +643,30 @@ export const DETAIL_PROJECT_DATA = {
   /*   post: "Post", */
 };
 
+// export const ALL_PROJECTS_DETAILS_DATA = {
+//   left_table: {
+//     full_name: "Dueño del Proyecto",
+//     type_publication: "Tipo de publicación",
+//     type_post: "Tipo de post",
+//     social_network: "Red social",
+//     name_project: "Nombre del proyeto",
+//     public_goal: "Publico objetivo",
+//     palete_colors: "Paleta de colores",
+//     references: "Referencias",
+//     idea_post: "Idea a desarollar",
+//     designer_freedom: "Libertad del diseñador",
+//     costo_base: "Costo base",
+//     tiempo_entrega: "Tiempo de entrega",
+//     formato_entrega: "Formato de entrega",
+//     revisiones: "Revisiones",
+//     archivos_editables: "Archivos editables",
+//   },
+//   right_table: {
+//     designer: "Diseñador",
+//     brand_select: "marca",
+//   }
+// };
+
 export const FORM_INPUTS_PROFILE = [
   {
     id: "name",
@@ -905,7 +929,7 @@ export const PROJECTS = (
       field: "name_project",
       icon: null,
       onClick() {
-        navigate(`/project-detail/${project?.id}`);
+        navigate(`/all-project-details/${project?.id}`);
       },
     },
 

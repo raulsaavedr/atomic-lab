@@ -26,9 +26,7 @@ function View({
 
         <div className="inputs-main">
           <div className="inputs">
-            <p className="text-purple">
-              <h2>Inicia sesión</h2>
-            </p>
+            <h2 >Inicia sesión</h2>
             <input
               type="email"
               placeholder="Email"
@@ -96,7 +94,7 @@ function View({
             >
               Iniciar sesión
             </div> */}
-            <p className="not-account">
+            <span className="not-account">
               ¿No tienes una cuenta?
               <div
                 className="text-purple"
@@ -104,7 +102,7 @@ function View({
               >
                 Crea una cuenta
               </div>
-            </p>
+            </span>
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { getDataUser } from "./services";
 
 import AuthContext from "./auth-context";
@@ -28,6 +27,7 @@ import Onboarding from "./pages/onboarding";
 import Reviews from "./pages/reviews";
 import MoreInfo from "./pages/more-info";
 import ProjectDetail from "./pages/project-detail";
+import AllProjectDetails from "./pages/all-project-details";
 
 import Projects from "./pages/projects";
 
@@ -135,6 +135,7 @@ function App() {
                 <Route path="reviews/:id" element={<Reviews />} />
                 <Route path="more-info/:id" element={<MoreInfo />} />
                 <Route path="project-detail/:id" element={<ProjectDetail />} />
+                <Route path="all-project-details/:id" element={<AllProjectDetails />} />
                 <Route path="projects-active" element={<Projects />} />
                 <Route path="projects-inactive" element={<Projects />} />
               </>

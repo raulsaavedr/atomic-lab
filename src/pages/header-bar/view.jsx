@@ -186,7 +186,7 @@ function View({
                   ) : (
                     <li
                       key={index}
-                      className={menu.text === "Cerrar sesión" && "text-purple"}
+                      className={menu.text === "Cerrar sesión"? "text-purple" : undefined}
                       onClick={() => menu.onClick()}
                     >
                       {menu.text}

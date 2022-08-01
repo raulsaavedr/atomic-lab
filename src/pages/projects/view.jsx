@@ -108,8 +108,8 @@ function View({
                         flow_active,
                         userData?.rol_id,
                         setModalReviews
-                      ).map((project_field) => (
-                        <td>
+                      ).map((project_field, index) => (
+                        <td key={index}>
                           <div
                             onClick={project_field?.onClick}
                             className={

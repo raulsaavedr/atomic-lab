@@ -1,0 +1,135 @@
+.all-project-details {
+  &-content {
+    margin-top: 30px;
+    flex-wrap: wrap;
+
+    .value {
+      flex: 1 0 48%;
+      border-bottom: 1px solid #70707042;
+      min-height: 50px;
+      padding: 10px 10px 10px 0;
+
+      p {
+        flex: 1;
+        text-transform: capitalize;      
+      }
+      .title {
+        font-weight: bold;
+      }
+    }
+
+    .post-dat-all {
+      border: none;
+
+      .post-container {
+        display: flex;
+        gap: 20px;
+      }
+      .post-data {
+        flex: 2;
+
+        p {
+          margin: 10px 0;
+        }
+        .img-container {
+          width: 400px;
+          height: 200px;
+          img {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+
+  .table-data {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+
+    th {
+      text-align: left;
+    }
+    td {
+      text-align: right;
+      padding: 20px 10px;      
+    }
+
+    tr {
+      border-bottom: 1px solid #70707042;
+    }
+
+    tr:last-child {
+      border-bottom: none;
+    }
+
+    .title {
+      font-weight: bold;
+    }
+
+    .table-text {
+      margin-bottom: 20px;
+      p {
+        flex: 1;
+        gap: 10px;
+      }
+    }    
+  }
+
+  .table-row {
+    display: flex;
+    gap: 115px;
+    margin-left:-10px;
+    margin-right:-10px;
+    margin-top: 30px;
+  
+    th {
+      text-align: left;
+    }
+
+    td {
+      text-align: left;
+    }
+
+    tr {
+      border-bottom: 1px solid #70707042;
+    }
+
+    tr:last-child {
+      border-bottom: none;
+    }
+    
+    th, td {
+      padding: 20px 10px;
+    }
+
+    .title {
+      font-weight: bold;
+    }    
+  }
+
+  .table-column {
+    flex: 50%;
+  }
+  
+  .resume {
+    margin-bottom: 10px;
+    div {
+      flex: 1;
+    }
+  }
+
+  .section-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 0;
+  }
+  table {
+    border-collapse: collapse;
+  }
+}
