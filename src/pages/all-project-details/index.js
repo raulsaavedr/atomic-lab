@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import DataContext from "../../data-context";
 import { useParams, useNavigate } from "react-router-dom";
-import { URL_IMG } from "../constats";// eslint-disable-next-line
+// import { URL_IMG } from "../constats";
 import { getAssignDesignerProject } from "../../services";
 import View from "./view";
 
