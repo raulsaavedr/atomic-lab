@@ -6,6 +6,7 @@ import "./styles.scss";
 function View({
   filterProject,
   projectValues,
+  references,
   userData,
   navigate,
   designers,
@@ -54,16 +55,7 @@ function View({
             <tr>
               <th className="title">Referencias</th>
               {/* TODO REFERENCES IS AN ARRAY projectValues?.references */}
-              <td>
-                {
-                  projectValues?.references.map((reference, index) => (
-                    <div className="table-text flex">
-                      <p>#{index + 1} {reference.name_file?.split("images/")[1]}</p>
-                      <p>{reference.text}</p>
-                    </div>
-                  ))
-                }
-              </td>
+              <td>{references}</td>
             </tr>
             <tr>
               <th className="title">Imagen a incluir</th>

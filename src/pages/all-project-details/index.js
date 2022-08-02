@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import DataContext from "../../data-context";
 import { useParams, useNavigate } from "react-router-dom";
-import { URL_IMG } from "../constats";
+import { URL_IMG } from "../constats";// eslint-disable-next-line
 import { getAssignDesignerProject } from "../../services";
 import View from "./view";
 
@@ -37,11 +37,19 @@ function Index() {
   const [modalZoomImg, setModalZoomImg] = useState(false);
   const [dataModals, setDataModals] = useState(false);
 
+  // Create the references
+  const references = projectValues?.references.map((reference, index) => (
+    <div className="table-text flex" key={index}>
+      <p>#{index + 1} {reference.name_file?.split("images/")[1]}</p>
+      <p>{reference.text}</p>
+    </div>
+  ))
 
   const properties = {
     filterProject,
     projectValues,
     userData,
+    references,
     navigate,
     designers,
     modalZoomImg,

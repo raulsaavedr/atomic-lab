@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.c86d8c3d.css",
-    "main.js": "/static/js/main.f58d3ee5.js",
-    "static/js/787.64c462a3.chunk.js": "/static/js/787.64c462a3.chunk.js",
+    "main.css": "/static/css/main.7b7d9d53.css",
+    "main.js": "/static/js/main.e6846208.js",
+    "static/js/787.834050ae.chunk.js": "/static/js/787.834050ae.chunk.js",
     "static/media/header-redes-sociales.png": "/static/media/header-redes-sociales.ddf841026cf7b309d022.png",
     "static/media/Poppins-Regular.ttf": "/static/media/Poppins-Regular.8081832fc5cfbf634aa6.ttf",
     "static/media/impresion.png": "/static/media/impresion.7afb6eb695c810b61f2f.png",
@@ -18,12 +18,12 @@
     "static/media/login_main.png": "/static/media/login_main.6dd66f7c99a1d9be8fc7.png",
     "static/media/logotipo.png": "/static/media/logotipo.52ae73764bf10ebcdfde.png",
     "index.html": "/index.html",
-    "main.c86d8c3d.css.map": "/static/css/main.c86d8c3d.css.map",
-    "main.f58d3ee5.js.map": "/static/js/main.f58d3ee5.js.map",
-    "787.64c462a3.chunk.js.map": "/static/js/787.64c462a3.chunk.js.map"
+    "main.7b7d9d53.css.map": "/static/css/main.7b7d9d53.css.map",
+    "main.e6846208.js.map": "/static/js/main.e6846208.js.map",
+    "787.834050ae.chunk.js.map": "/static/js/787.834050ae.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c86d8c3d.css",
-    "static/js/main.f58d3ee5.js"
+    "static/css/main.7b7d9d53.css",
+    "static/js/main.e6846208.js"
   ]
 }

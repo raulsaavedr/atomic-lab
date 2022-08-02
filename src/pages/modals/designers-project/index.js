@@ -25,7 +25,7 @@ function Index({ close, data }) {
       .catch((error) => { });
 
     setTeamFilter(team?.filter((user) => user.rol_id === 3));
-  }, [data]);
+  }, [data, team]);
 
   const deleteDesigner = (designer_id, union_id) => {
     setListDesigner(
@@ -65,15 +65,15 @@ function Index({ close, data }) {
 
 
   };
+  // I think this is no implemented: TODO!!
+  // const [state, setState] = useState("idle"); 
 
-  const [state, setState] = useState("idle");
-
-  const onClickHandler = () => {
-    setState("loading");
-    setTimeout(() => {
-      /*   onSubmit(); */
-    }, 2000);
-  };
+  // const onClickHandler = () => {
+  //   setState("loading");
+  //   setTimeout(() => {
+  //     /*   onSubmit(); */
+  //   }, 2000);
+  // };
 
   const properties = {
     close,
