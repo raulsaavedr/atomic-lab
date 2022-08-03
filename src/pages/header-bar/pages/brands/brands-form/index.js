@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import DataContext from "../../../../../data-context";
 import { useParams, useNavigate } from "react-router-dom";
 import {
@@ -19,23 +19,23 @@ function Index() {
 
   const redirectTo = (route) => navigate(route);
 
-  const dataBrand =
+  const dataBrand = useMemo(() => (
     brands && brands
       ? brands.filter((brand) => brand.id === parseInt(id))[0]
-      : [];
-
+      : [])
+    , [id, brands]);
   const {
     register,
     handleSubmit,
-    watch,
-    setValue,
+    // watch,
+    // setValue,
     reset,
-    formState: { errors },
+    // formState: { errors },
   } = useForm();
 
   useEffect(() => {
     id && reset(dataBrand);
-  }, []);
+  }, [id, dataBrand, reset]);
 
   const [selectedImg, setSelectedImg] = useState();
   const [selectedImgArray, setSelectedImgArray] = useState([]);
@@ -51,6 +51,7 @@ function Index() {
     setSelectedImg(e.target.files[0]);
   };
 
+  // What does this effect?
   useEffect(() => {
     if (!selectedImg) {
       return;
@@ -97,25 +98,25 @@ function Index() {
 
     id
       ? putUpdateBrand({ data: formData, brand_id: id })
-          .then((res) => {
-            getBrands(
-              JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id
-            ).then(({ data }) => {
-              setBrands(data.brands);
-            });
-            redirectTo("/brands");
-          })
-          .catch((error) => {})
+        .then((res) => {
+          getBrands(
+            JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id
+          ).then(({ data }) => {
+            setBrands(data.brands);
+          });
+          redirectTo("/brands");
+        })
+        .catch((error) => {})
       : postCreateBrand(formData)
-          .then((res) => {
-            getBrands(
-              JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id
-            ).then(({ data }) => {
-              setBrands(data.brands);
-            });
-            redirectTo("/brands");
-          })
-          .catch((error) => {});
+        .then((res) => {
+          getBrands(
+            JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id
+          ).then(({ data }) => {
+            setBrands(data.brands);
+          });
+          redirectTo("/brands");
+        })
+        .catch((error) => { });
   };
 
   const properties = {

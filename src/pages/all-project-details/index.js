@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 // import { URL_IMG } from "../constats";
 import { getAssignDesignerProject } from "../../services";
 import View from "./view";
+import { Icons } from "../icons";
 
 function Index() {
   const navigate = useNavigate();
@@ -29,8 +30,9 @@ function Index() {
       .catch((error) => { console.log(error) });
   }, [id]);
 
-  console.log(allProjects)
-  console.log(userData)
+  console.log(projectValues?.references)
+  // console.log(allProjects)
+  // console.log(userData)
   // Check all the other designers
   // console.log(designers)
 
@@ -39,8 +41,19 @@ function Index() {
 
   // Create the references
   const references = projectValues?.references.map((reference, index) => (
-    <div className="table-text flex" key={index}>
-      <p>#{index + 1} {reference.name_file?.split("images/")[1]}</p>
+    <div className="reference" key={index}>
+      <span>
+        <a
+          rel="noreferrer"
+          download={reference.name_file?.split("images/")[1]}
+          target="_blank"
+          href={reference.name_file}
+          title={reference.name_file?.split("images/")[1]}
+        >
+          {Icons('download')}
+        </a>
+        <p>{reference.name_file?.split("images/")[1]}</p>
+      </span>
       <p>{reference.text}</p>
     </div>
   ))

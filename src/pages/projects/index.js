@@ -57,7 +57,7 @@ function Index({ type_home, page }) {
           setAllProjects(data.response);
         });
       })
-      .catch((error) => {});
+      .catch((error) => {console.log("Error in updateDateNextReview:", error)});
   };
 
   const [projectsFilter, setProjectsFilter] = useState([]);

@@ -15,7 +15,6 @@ function View({
   dataModals,
   setDataModals
 }) {
-
   return (
     <div className="page all-project-details">
       <PageTitle user={true} title={projectValues?.name_project} />
@@ -55,7 +54,7 @@ function View({
             <tr>
               <th className="title">Referencias</th>
               {/* TODO REFERENCES IS AN ARRAY projectValues?.references */}
-              <td>{references}</td>
+              <td>{references?.length > 0? references: "-"}</td>
             </tr>
             <tr>
               <th className="title">Imagen a incluir</th>
