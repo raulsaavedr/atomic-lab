@@ -1,5 +1,5 @@
 import React from "react";
-import ReactiveButton from "reactive-button";
+// import ReactiveButton from "reactive-button";
 import "../../modals/styles.scss";
 import "./styles.scss";
 

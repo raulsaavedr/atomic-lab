@@ -14,6 +14,7 @@ function Index() {
 
   const { userData, allProjects } = useContext(DataContext);
   const [designers, setDesigners] = useState([]);
+  const { brands } = useContext(DataContext);
   // Get the actual requested project by the project_id
   const filterProject = allProjects.filter((project) => project.id === parseInt(id))[0];
   // Get the project values from  the project filtered
@@ -30,16 +31,17 @@ function Index() {
       .catch((error) => { console.log(error) });
   }, [id]);
 
-  console.log(projectValues?.references)
+  console.log(projectValues)
   // console.log(allProjects)
   // console.log(userData)
   // Check all the other designers
   // console.log(designers)
+  console.log(brands)
 
   const [modalZoomImg, setModalZoomImg] = useState(false);
   const [dataModals, setDataModals] = useState(false);
 
-  // Create the references
+  // Create the references section
   const references = projectValues?.references.map((reference, index) => (
     <div className="reference" key={index}>
       <span>
@@ -58,17 +60,47 @@ function Index() {
     </div>
   ))
 
+  // Create the images section
+  const images = projectValues?.post?.map((item, index) => (
+    <div className="post-data" key={item.id}>
+      <span>
+        <a
+          rel="noreferrer"
+          download={item.name_img?.split("images/")[1]}
+          target="_blank"
+          href={item.name_img}
+          title={item.name_img?.split("images/")[1]}
+        >
+          {Icons('download')}
+        </a>
+        <p>{item.name_img?.split("images/")[1]}</p>
+      </span>
+      <p>Objetivo: {item.objetive}</p>
+      <p>Texto: {item.text}</p>
+    </div>
+  ));
+
+  // We compare the actual project against all the brands this user has
+  // to get the brand id to be able navigate to the brand page
+  const brandId = brands.filter(brand => projectValues?.brand_select === brand.name)[0]?.id;
+  console.log(brandId)
+  const redirectToBrandForm = () =>
+    navigate(brandId ? `/brands/brands-form/${brandId}` : `/brands/brands-form`);
+
+
   const properties = {
     filterProject,
     projectValues,
     userData,
     references,
+    images,
     navigate,
     designers,
     modalZoomImg,
     setModalZoomImg,
     dataModals,
-    setDataModals
+    setDataModals,
+    redirectToBrandForm
   };
 
   return <View {...properties} />;

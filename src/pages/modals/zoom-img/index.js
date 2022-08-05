@@ -31,7 +31,7 @@ function Index({ close, data }) {
         JSON.parse(data.annotations[0].annotations)
       );
     });
-  }, []);
+  }, [data]);
 
 
   useEffect(() => {

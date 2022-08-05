@@ -51,14 +51,15 @@ function View({
       )}
       {tourActive && <div className="back-white"></div>}
 
-      <div className="icon-logo">{Icons("logo")}</div>
+      <div className="icon-logo" onClick={() => redirectTo("/")}>
+        {Icons("logo")}
+      </div>
 
       {MAIN_MENU(userData?.rol_id).map((item, index) => (
         <div
           key={index}
-          className={`home option ${
-            item.active?.some((el) => path.includes(el)) && "active"
-          } ${item.tour_title.replaceAll(" ", "-").toLowerCase()}`}
+          className={`home option ${item.active?.some((el) => path.includes(el)) && "active"
+            } ${item.tour_title.replaceAll(" ", "-").toLowerCase()}`}
           onClick={() => redirectTo(item.redirect)}
         >
           {tourActive && tourStep === item.id && (
@@ -186,7 +187,7 @@ function View({
                   ) : (
                     <li
                       key={index}
-                      className={menu.text === "Cerrar sesión"? "text-purple" : undefined}
+                      className={menu.text === "Cerrar sesión" ? "text-purple" : undefined}
                       onClick={() => menu.onClick()}
                     >
                       {menu.text}

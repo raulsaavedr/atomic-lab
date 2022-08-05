@@ -7,13 +7,15 @@ function View({
   filterProject,
   projectValues,
   references,
+  images,
   userData,
   navigate,
   designers,
   modalZoomImg,
   setModalZoomImg,
   dataModals,
-  setDataModals
+  setDataModals,
+  redirectToBrandForm
 }) {
   return (
     <div className="page all-project-details">
@@ -53,13 +55,12 @@ function View({
             </tr>
             <tr>
               <th className="title">Referencias</th>
-              {/* TODO REFERENCES IS AN ARRAY projectValues?.references */}
-              <td>{references?.length > 0? references: "-"}</td>
+              <td>{references?.length > 0 ? references : "-"}</td>
             </tr>
             <tr>
               <th className="title">Imagen a incluir</th>
               {/* TODO IMGS IS AN ARRAY projectValues?.img_array*/}
-              <td>{"-"}</td>
+              <td>{images?.length > 0 ? images : "-"}</td>
             </tr>
             <tr>
               <th className="title">Libertad diseñador</th>
@@ -91,7 +92,9 @@ function View({
             </tr>
             <tr>
               <th className="title">Marca</th>
-              <td>{projectValues?.brand_select}</td>
+              <td className="brand-select" onClick={() => redirectToBrandForm()}>
+                {projectValues?.brand_select}
+              </td>
             </tr>
             <tr>
               <th className="title">Red social</th>
@@ -107,7 +110,7 @@ function View({
             </tr>
             <tr>
               <th className="title">Texto a incluir</th>
-              <td>{projectValues?.included_text}</td>
+              <td>{projectValues?.included_text || "-"}</td>
             </tr>
             <tr>
               <th className="title">Formato de entrega</th>
