@@ -31,12 +31,12 @@ function Index() {
       .catch((error) => { console.log(error) });
   }, [id]);
 
-  console.log(projectValues)
+  // console.log(projectValues)
   // console.log(allProjects)
   // console.log(userData)
   // Check all the other designers
   // console.log(designers)
-  console.log(brands)
+  // console.log(brands)
 
   const [modalZoomImg, setModalZoomImg] = useState(false);
   const [dataModals, setDataModals] = useState(false);
@@ -83,7 +83,7 @@ function Index() {
   // We compare the actual project against all the brands this user has
   // to get the brand id to be able navigate to the brand page
   const brandId = brands.filter(brand => projectValues?.brand_select === brand.name)[0]?.id;
-  console.log(brandId)
+  // console.log(brandId)
   const redirectToBrandForm = () =>
     navigate(brandId ? `/brands/brands-form/${brandId}` : `/brands/brands-form`);
 

@@ -12,7 +12,24 @@ import View from "./view";
 function Index() {
   const { brands, setBrands, userData } = useContext(DataContext);
 
-  console.log(userData);
+  // TODO Fix this error 
+  // Warning: A component is changing a controlled input to be uncontrolled. This is likely caused by the value changing from a defined to undefined, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components
+  // input
+  // div
+  // td
+  // tr
+  // tbody
+  // table
+  // section
+  // div
+  // form
+  // View@http://localhost:3000/static/js/bundle.js:3669:7
+  // Index@http://localhost:3000/static/js/bundle.js:3464:56
+  // Routes@http://localhost:3000/static/js/bundle.js:82211:7
+  // Router@http://localhost:3000/static/js/bundle.js:82148:7
+  // HashRouter@http://localhost:3000/static/js/bundle.js:80988:7
+  // div
+  // App@http://localhost:3000/static/js/bundle.js:94:9
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -24,6 +41,7 @@ function Index() {
       ? brands.filter((brand) => brand.id === parseInt(id))[0]
       : [])
     , [id, brands]);
+
   const {
     register,
     handleSubmit,
@@ -96,6 +114,11 @@ function Index() {
 
     formData.append("jsondataRequest", JSON.safeStringify(dataBrand));
 
+    // Display the key/value pairs of Form Data
+    for (var pair of formData.entries()) {
+      console.log(pair[0]+ ', ' + pair[1]); 
+    }
+
     id
       ? putUpdateBrand({ data: formData, brand_id: id })
         .then((res) => {
@@ -106,7 +129,7 @@ function Index() {
           });
           redirectTo("/brands");
         })
-        .catch((error) => {})
+        .catch((error) => {console.log(error)})
       : postCreateBrand(formData)
         .then((res) => {
           getBrands(
@@ -116,7 +139,7 @@ function Index() {
           });
           redirectTo("/brands");
         })
-        .catch((error) => { });
+        .catch((error) => {console.log(error)});
   };
 
   const properties = {
