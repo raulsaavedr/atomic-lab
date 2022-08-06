@@ -26,7 +26,6 @@ function Index() {
         setNoCommentsVersion(config.notification_comment)
         setUploadVersion(config.notification_designer)
         setLanguaje(config.languaje)
-        console.log("All of the configuration was setted")
       } catch (error) {
         console.log(error)
       }

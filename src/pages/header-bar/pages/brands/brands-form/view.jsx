@@ -103,7 +103,6 @@ function View({
                   </div>
                   <div className="flex">
                     <input
-                      {...option}
                       id={option.id}
                       checked={
                         option.type === "checkbox" &&
@@ -111,11 +110,13 @@ function View({
                         dataBrand["offers"] === option.id &&
                         true
                       }
+                      {...option}                      
+                      icon={"None"}
                       {...register(option.id)}
                       disabled={rol === 3}
                     />
 
-                    {option.type !== "checkbox" && Icons("edit")}
+                    {/* {option.type !== "checkbox" && Icons("edit")} */}
                   </div>
                 </div>
               ))}
