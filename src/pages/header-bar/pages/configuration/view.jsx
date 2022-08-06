@@ -38,11 +38,12 @@ function View({
             id="languaje_select"
             className="select"
             onChange={(e) => setLanguaje(e.target.value)}
+            defaultValue={languaje}
           >
-            <option value="español" selected={languaje === "español"}>
+            <option value="español">
               Español
             </option>
-            <option value="ingles" selected={languaje === "ingles"}>
+            <option value="ingles">
               Ingles
             </option>
           </select>
