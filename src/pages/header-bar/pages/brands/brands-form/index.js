@@ -11,29 +11,8 @@ import View from "./view";
 
 function Index() {
   const { brands, setBrands, userData } = useContext(DataContext);
-
-  // TODO Fix this error 
-  // Warning: A component is changing a controlled input to be uncontrolled. This is likely caused by the value changing from a defined to undefined, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components
-  // input
-  // div
-  // td
-  // tr
-  // tbody
-  // table
-  // section
-  // div
-  // form
-  // View@http://localhost:3000/static/js/bundle.js:3669:7
-  // Index@http://localhost:3000/static/js/bundle.js:3464:56
-  // Routes@http://localhost:3000/static/js/bundle.js:82211:7
-  // Router@http://localhost:3000/static/js/bundle.js:82148:7
-  // HashRouter@http://localhost:3000/static/js/bundle.js:80988:7
-  // div
-  // App@http://localhost:3000/static/js/bundle.js:94:9
-
   const { id } = useParams();
   const navigate = useNavigate();
-
   const redirectTo = (route) => navigate(route);
 
   const dataBrand = useMemo(() => (

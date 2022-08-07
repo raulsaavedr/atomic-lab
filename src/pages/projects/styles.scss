@@ -44,4 +44,37 @@
   .review {
     gap: 5px;
   }
+  .tooltip {
+    display: none;
+    background-color: #dddddd;
+    padding: 5px 10px;
+    margin-top: 70px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    position: absolute;
+    // left: 18.7em;
+    white-space: nowrap;
+
+    .corner {
+      width: 0px;
+      height: 0px;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 14px solid #dddddd;
+      position: absolute;
+      top: -0.5em;
+      left: 3em;
+    }
+  }
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .status:hover {
+    .tooltip-status {
+      display: block;
+    }
+  }
+  
 }

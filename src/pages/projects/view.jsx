@@ -1,6 +1,6 @@
 import React from "react";
 import { Icons } from "../icons";
-import { PROJECTS } from "../constats";
+import { PROJECTS, STATUS_TABLES_FLOW } from "../constats";
 import ModalPrivateNotes from "../modals/private-notes";
 import ModalZoomImg from "../modals/zoom-img";
 import ModalReviews from "../modals/reviews";
@@ -45,9 +45,8 @@ function View({
 
       {projectsFilter && projectsFilter.length <= 0 ? (
         <div className="message">
-          <h3 className="text-purple">{`No tienes proyectos ${
-            typeFin === "active" ? "activos" : "terminados"
-          }`}</h3>
+          <h3 className="text-purple">{`No tienes proyectos ${typeFin === "active" ? "activos" : "terminados"
+            }`}</h3>
           {userData?.rol_id !== 3 && (
             <div className="button" onClick={() => navigate("/new-project")}>
               Empezar proyecto
@@ -81,12 +80,11 @@ function View({
                   const projectValues = project?.values[0] || [];
 
                   const flows = project.flow && JSON.parse(project?.flow);
-                  const flow_active =
-                    "status_check_" +
-                    parseInt(
-                      Array.isArray(flows) &&
-                        flows.filter((flow) => flow.status === "active")[0].id
-                    );
+                  const flow_id = parseInt(
+                    Array.isArray(flows) &&
+                    flows.filter((flow) => flow.status === "active")[0].id
+                  );
+                  const flow_active = "status_check_" + flow_id;
 
                   return (
                     <tr key={index}>
@@ -113,11 +111,24 @@ function View({
                           <div
                             onClick={project_field?.onClick}
                             className={
-                              project_field?.onClick
-                                ? project_field.field + " pointer"
-                                : project_field.field
+                              project_field.field + " pointer"
+                              // project_field?.onClick
+                              // ? project_field.field + " pointer"
+                              // : project_field.field + ` tooltip-status`
+                              // : project_field.field + ` pointer tooltip-${project_field?.icon}`
                             }
                           >
+                            {/* Adding status hover functionalty */}
+                            {project_field?.field === "status" ?
+                              <div className="tooltip tooltip-status">
+                                <div className="corner"></div>
+                                {STATUS_TABLES_FLOW.filter(
+                                  (item) => item.id === flow_id
+                                )[0].text}
+                              </div>
+                              :
+                              ""
+                            }
                             {project_field?.type === "date" ? (
                               <input
                                 className="select-date"
@@ -150,9 +161,9 @@ function View({
                                   {project[project_field?.field]} de{" "}
                                   {projectValues?.revisiones?.includes("Hasta")
                                     ? projectValues?.revisiones?.replace(
-                                        "Hasta ",
-                                        ""
-                                      )
+                                      "Hasta ",
+                                      ""
+                                    )
                                     : "∞"}
                                 </p>
                                 {projectValues?.revisiones?.includes("Hasta") &&
@@ -167,9 +178,8 @@ function View({
 
                             {project_field?.subtitle && (
                               <p
-                                className={`view-more ${
-                                  project_field?.subtitle?.onClick && "pointer"
-                                }`}
+                                className={`view-more ${project_field?.subtitle?.onClick && "pointer"
+                                  }`}
                                 onClick={project_field?.subtitle?.onClick}
                               >
                                 {project_field?.subtitle.text}
