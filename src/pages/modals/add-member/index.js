@@ -31,6 +31,10 @@ function Index({ close, data }) {
         close();
       })
       .catch((error) => {
+        (error.response?.data?.message.includes("Duplicate entry")) ?
+          alert("Vaya! Hubo un problema al procesar tu solicitud. No pueden existir correos duplicados")
+          :
+          console.log(error)
         setState("idle");
       });
   };
