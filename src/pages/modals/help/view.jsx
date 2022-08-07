@@ -5,7 +5,7 @@ import "./styles.scss";
 
 function View({ close, data }) {
   return (
-    <div id="myModal" className="modal help" onClick={() => close()}>
+    <div id="myModal" className="modal help">
       <div className="modal-content">
         <h3>Ayuda</h3>
 
@@ -21,14 +21,18 @@ function View({ close, data }) {
                 <td>
                   <div className="flex">
                     <div className="icon">{Icons("tel")}</div>
-                    <p className="text-blue">Teléfono</p>
-                    <p>301 652 14 88</p>
+                    <p className="button-blue">
+                      <a href="tel:+573152253744" target="_blank" rel="noopener noreferrer">Teléfono</a>
+                    </p>
+                    <p>+57 315 225 37 44</p>
                   </div>
                 </td>
                 <td>
                   <div className="flex">
                     <div className="icon">{Icons("email")} </div>
-                    <p className="text-blue">Email</p>
+                    <p className="button-blue">
+                      <a href="mailto:info@atomiclabco.com">Email</a>
+                    </p>
                     <p>info@atomiclabco.com</p>
                   </div>
                 </td>
@@ -37,7 +41,9 @@ function View({ close, data }) {
                 <td>
                   <div className="flex">
                     <div className="icon">{Icons("whatsapp")} </div>
-                    <p className="text-blue">WhatsApp</p>
+                    <p className="button-blue">
+                      <a href="https://wa.me/573016541790" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    </p>
                     <p>301 654 17 90</p>
                   </div>
                 </td>
@@ -52,13 +58,21 @@ function View({ close, data }) {
                 <td>
                   <div className="flex">
                     <div className="icon">{Icons("idea")} </div>
-                    <p className="button-blue">FAQ - Preguntas Frecuentes</p>
+                    <p className="button-blue">
+                      <a href="https://www.atomiclabco.com/#FAQ" target="_blank" rel="noopener noreferrer">
+                        FAQ - Preguntas Frecuentes
+                      </a>
+                    </p>
                   </div>
                 </td>
                 <td>
                   <div className="flex">
                     <div className="icon">{Icons("blog")} </div>
-                    <p className="button-gray">Blog</p>
+                    <p className="button-blue">
+                      <a href="https://www.atomiclabco.com/blog" target="_blank" rel="noopener noreferrer">
+                        Blog
+                      </a>
+                    </p>
                   </div>
                 </td>
               </tr>
@@ -66,7 +80,11 @@ function View({ close, data }) {
                 <td>
                   <div className="flex">
                     <div className="icon">{Icons("form")} </div>
-                    <p className="text-blue">Formulario</p>
+                    <p className="button-blue">
+                      <a href="https://www.atomiclabco.com/#Contact" target="_blank" rel="noopener noreferrer">
+                        Formulario
+                      </a>
+                    </p>
                   </div>
                 </td>
                 <td>
@@ -93,18 +111,25 @@ function View({ close, data }) {
           </p>
         </div>
 
-        <section className="footer-modal">
+        <section className="footer-modal flex">
+          <div class="button" onClick={() => close()}>Atrás</div>
           <section className="section-buttons flex">
             <div className="icons">
-              {Icons("linkedin_black")}
-              {Icons("twitter_black")}
-              {Icons("facebook_black")}
-              {Icons("twitter_black")}
-              {Icons("instagram_black")}
+              <a href="https://www.linkedin.com/company/atomiclab" target="_blank" rel="noopener noreferrer">
+                {Icons("linkedin_black")}
+              </a>
+              <a href="https://www.linkedin.com/company/atomiclab" target="_blank" rel="noopener noreferrer">
+                {Icons("twitter_black")}
+              </a>
+              <a href="https://www.linkedin.com/company/atomiclab" target="_blank" rel="noopener noreferrer">
+                {Icons("facebook_black")}
+              </a>
+              <a href="https://www.linkedin.com/company/atomiclab" target="_blank" rel="noopener noreferrer">
+                {Icons("instagram_black")}
+              </a>
             </div>
-
-            <div className="button">Enviar</div>
           </section>
+          <div className="button">Enviar</div>
         </section>
       </div>
     </div>

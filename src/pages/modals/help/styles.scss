@@ -39,6 +39,9 @@
 
     .footer-modal {
         margin-bottom: 20px;
+        justify-content: center;
+        gap:200px;
+        margin-left: -30px;
         .icons {
             display: flex;
             gap: 20px;
@@ -46,9 +49,14 @@
         .section-buttons {
             justify-content: space-between;
 
-            .button {
-                margin-right: 35px;
-            }
+            // .button {
+            //     margin-right: 35px;
+            // }
+        }
+    }
+    .button-blue{
+        a {
+            color: white;
         }
     }
 }
