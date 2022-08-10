@@ -12,39 +12,48 @@ function View({ redirectToBrandForm, brands }) {
         marcas, las puedes agregar aqui.
       </div>
 
-      <section className="content flex">
+      <section className="cards">
+        {console.log(brands)}
         {brands?.map((brand, index) => (
           <div
             key={index}
-            className="brand-card"
+            className="card"
             onClick={() => redirectToBrandForm(brand.id)}
           >
-            <div className="card-content">
-              <p>Perfil de la marca</p>
-
-              <p>
-                {brand.url_image ? (
-                  <img src={brand.url_image} alt={brand.url_image} />
-                ) : (
-                  Icons("icon_img_post")
-                )}
-              </p>
-              <p>{brand.name}</p>
+            <div
+              className={brand.url_image.endsWith("svg") ?
+                "card-header svg-img" : "card-header normal-img"}
+            >
+              {brand.url_image ? (
+                <img 
+                src={brand.url_image} 
+                alt={brand.url_image} 
+                />
+              ) : (
+                Icons("icon_img_post")
+              )}
             </div>
-            <div className="footer">
-              {brand.predeterminate === 1 && <p>Predeterminada</p>}
+            <div className="card-body">
+              {/* <p>Perfil de la marca</p> */}
+              {brand.industry ?
+                <span className="tag tag-teal">{brand.industry}</span> :
+                undefined
+              }
+              <h3>{brand.name}</h3>
+
             </div>
           </div>
-        ))}
-        <div className="brand-card" onClick={() => redirectToBrandForm()}>
-          <div className="card-content">
-            <p>Perfil de la marca</p>
-
+        ))
+        }
+        <div className="card" onClick={() => redirectToBrandForm()}>
+          <div className="card-header plus-icon">
             {Icons("add_brand")}
-
-            <p>Añadir otra marca</p>
           </div>
-          <div className="footer"></div>
+          <div className="card-body">
+            {/* <p>Perfil de la marca</p> */}
+            <h3>Añadir otra marca</h3>
+            {/* <span className="tag">This is tag</span> */}
+          </div>
         </div>
       </section>
     </div>
