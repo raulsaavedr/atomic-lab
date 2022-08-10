@@ -2,6 +2,7 @@ import React from "react";
 import PageTitle from "../../../page-title";
 import "./styles.scss";
 import { Icons } from "../../../icons";
+import BrandCard from "./components/BrandCard";
 
 function View({ redirectToBrandForm, brands }) {
   return (
@@ -15,34 +16,41 @@ function View({ redirectToBrandForm, brands }) {
       <section className="cards">
         {console.log(brands)}
         {brands?.map((brand, index) => (
-          <div
-            key={index}
-            className="card"
-            onClick={() => redirectToBrandForm(brand.id)}
-          >
-            <div
-              className={brand.url_image.endsWith("svg") ?
-                "card-header svg-img" : "card-header normal-img"}
-            >
-              {brand.url_image ? (
-                <img 
-                src={brand.url_image} 
-                alt={brand.url_image} 
-                />
-              ) : (
-                Icons("icon_img_post")
-              )}
-            </div>
-            <div className="card-body">
-              {/* <p>Perfil de la marca</p> */}
-              {brand.industry ?
-                <span className="tag tag-teal">{brand.industry}</span> :
-                undefined
-              }
-              <h3>{brand.name}</h3>
+          // <div
+          //   key={index}
+          //   className="card"
+          //   onClick={() => redirectToBrandForm(brand.id)}
+          // >
+          //   <div
+          //     className={brand.url_image.endsWith("svg") ?
+          //       "card-header svg-img" : "card-header normal-img"}
+          //   >
+          //     {brand.url_image ? (
+          //       // <ImageWithFallback
+          //       //   fallback={icon_img_post}
+          //       //   src={brand.url_image}
+          //       //   alt={brand.url_image}
+          //       // />
+          //       console.log("fixing...")
+          //     ) : (
+          //       Icons("icon_img_post")
+          //     )}
+          //   </div>
+          //   <div className="card-body">
+          //     {/* <p>Perfil de la marca</p> */}
+          //     {brand.industry ?
+          //       <span className="tag tag-teal">{brand.industry}</span> :
+          //       undefined
+          //     }
+          //     <h3>{brand.name}</h3>
 
-            </div>
-          </div>
+          //   </div>
+          // </div>
+          <BrandCard
+            key={index}
+            brand={brand}
+            redirectToBrandForm={redirectToBrandForm}
+          />
         ))
         }
         <div className="card" onClick={() => redirectToBrandForm()}>
