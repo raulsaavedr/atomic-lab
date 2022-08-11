@@ -11,7 +11,11 @@ function Index() {
   const redirectToBrandForm = (id) =>
     navigate(id ? `/brands/brands-form/${id}` : `/brands/brands-form`);
 
-  const properties = { redirectToBrandForm, brands };
+
+  const properties = { 
+    redirectToBrandForm, 
+    brands,
+  };
 
   return <View {...properties} />;
 }

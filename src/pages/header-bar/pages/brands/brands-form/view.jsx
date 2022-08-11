@@ -15,6 +15,7 @@ function View({
   filesBrands,
   setFilesBrands,
   rol,
+  deleteBranAndProcess,
 }) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -109,7 +110,7 @@ function View({
                         dataBrand["offers"] === option.id &&
                         true
                       }
-                      {...option}                      
+                      {...option}
                       icon={"None"}
                       {...register(option.id)}
                       disabled={rol === 3}
@@ -121,6 +122,14 @@ function View({
               ))}
             </div>
           ))}
+          {id &&
+            <div className="danger-zone">
+              <p>Eliminar esta marca: Una vez que eliminas una marca, no hay vuelta atrás. Por favor, esté seguro.</p>
+              <div className="button-red" onClick={() => deleteBranAndProcess(id)}>
+                Eliminar marca
+              </div>
+            </div>
+          }
 
           <table className="table">
             <tbody>
@@ -185,7 +194,7 @@ function View({
                         <input
                           type="text"
                           className="input-txt"
-                          value={
+                          defaultValue={
                             dataBrand.materiales.filter(
                               (material) =>
                                 material.type ===
@@ -198,7 +207,7 @@ function View({
                         <input
                           type="text"
                           className="input-txt"
-                          value={
+                          defaultValue={
                             filesBrands.filter((file) => file.id === item.id)[0]
                               ?.file.name || ""
                           }

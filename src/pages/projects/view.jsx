@@ -118,15 +118,15 @@ function View({
                               // : project_field.field + ` pointer tooltip-${project_field?.icon}`
                             }
                           >
-                            {/* Adding status hover functionalty */}
-                            {project_field?.field === "status" ?
+                            {/* Adding status tooltip hover functionalty */}
+                            {project_field?.field === "status" ? (
                               <div className="tooltip tooltip-status">
                                 <div className="corner"></div>
                                 {STATUS_TABLES_FLOW.filter(
                                   (item) => item.id === flow_id
                                 )[0].text}
                               </div>
-                              :
+                            ) :
                               ""
                             }
                             {project_field?.type === "date" ? (
@@ -175,8 +175,8 @@ function View({
                               projectValues[project_field?.field] ||
                               project[project_field?.field]
                             )}
-
-                            {project_field?.subtitle && (
+                            {/* Ver mas... */}
+                            {/* {project_field?.subtitle && (
                               <p
                                 className={`view-more ${project_field?.subtitle?.onClick && "pointer"
                                   }`}
@@ -184,13 +184,14 @@ function View({
                               >
                                 {project_field?.subtitle.text}
                               </p>
-                            )}
+                            )} */}
 
                             {project_field.isMenu && (
                               <>
                                 {Icons("menu_points")}
                                 {menuFloat === project?.id && (
-                                  <div className={`menu-float ${project?.id} `}>
+                                  // ${project?.id}
+                                  <div className={`menu-float  `}>
                                     {project_field.isMenu.map((item_menu) => (
                                       <div
                                         className="menu-float-item flex"

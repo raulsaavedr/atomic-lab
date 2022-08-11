@@ -84,6 +84,17 @@ textarea {
   color: #ffffff;
   cursor: pointer;
 }
+
+.button-red {
+  padding: 10px 30px;
+  width: fit-content;
+  border-radius: 22px;
+  background-color: #EB1D36;
+  border: 1px solid #EB1D36;
+  color: #ffffff;
+  cursor: pointer;
+}
+
 .button-blue {
   padding: 10px 30px;
   width: fit-content;
@@ -128,6 +139,10 @@ textarea {
 }
 .button-purple:hover {
   background-color: #545cf9;
+  color: #ffffff;
+}
+.button-red:hover {
+  background-color: #f31120;
   color: #ffffff;
 }
 

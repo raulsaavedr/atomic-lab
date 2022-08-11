@@ -90,6 +90,8 @@ export const postCreateBrand = async (data) =>
   axios.post(`https://api.ticvzla.xyz/public/api/brands`, data);
 export const putUpdateBrand = async ({ data, brand_id }) =>
   axios.put(`https://api.ticvzla.xyz/public/api/brands/${brand_id}`, data);
+export const deleteBrand = async ({ brand_id }) =>
+  axios.delete(`https://api.ticvzla.xyz/public/api/brands/${brand_id}`);
 
 //team
 export const getTeam = async (user_id) =>

@@ -102,4 +102,11 @@
   .input-icon {
     cursor: pointer;
   }
+  .danger-zone {
+    margin-bottom: 20px;
+    margin-right: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

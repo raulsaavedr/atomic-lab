@@ -45,7 +45,6 @@ export const BrandCard = ({ brand, redirectToBrandForm }) => {
         <h3 onClick={() => redirectToBrandForm(brand.id)}>
           {brand.name}
         </h3>
-        <span className="dots-button">&#xFE19;</span>
       </div>
     </div>
   )

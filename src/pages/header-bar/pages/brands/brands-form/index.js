@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import {
   postCreateBrand,
   putUpdateBrand,
+  deleteBrand,
   getBrands,
 } from "../../../../../services";
 import { useForm } from "react-hook-form";
@@ -95,7 +96,7 @@ function Index() {
 
     // Display the key/value pairs of Form Data
     for (var pair of formData.entries()) {
-      console.log(pair[0]+ ', ' + pair[1]); 
+      console.log(pair[0] + ', ' + pair[1]);
     }
 
     id
@@ -108,7 +109,7 @@ function Index() {
           });
           redirectTo("/brands");
         })
-        .catch((error) => {console.log(error)})
+        .catch((error) => { console.log(error) })
       : postCreateBrand(formData)
         .then((res) => {
           getBrands(
@@ -118,8 +119,22 @@ function Index() {
           });
           redirectTo("/brands");
         })
-        .catch((error) => {console.log(error)});
+        .catch((error) => { console.log(error) });
   };
+
+  // We create a function that deletes the brand and fetch the brands again
+  const deleteBranAndProcess = (id) => {
+    id && deleteBrand({ brand_id: id })
+      .then((res) => {
+        getBrands(
+          JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id
+        ).then(({ data }) => {
+          setBrands(data.brands);
+        });
+        redirectTo("/brands");
+      })
+      .catch((error) => { console.log(error) })
+  }
 
   const properties = {
     id,
@@ -133,6 +148,7 @@ function Index() {
     filesBrands,
     setFilesBrands,
     rol: userData?.rol_id,
+    deleteBranAndProcess,
   };
 
   return <View {...properties} />;

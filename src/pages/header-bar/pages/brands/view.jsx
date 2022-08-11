@@ -14,7 +14,6 @@ function View({ redirectToBrandForm, brands }) {
       </div>
 
       <section className="cards">
-        {console.log(brands)}
         {brands?.map((brand, index) => (
           <BrandCard
             key={index}
@@ -28,9 +27,11 @@ function View({ redirectToBrandForm, brands }) {
             {Icons("add_brand")}
           </div>
           <div className="card-body">
-            <span className="tag tag-teal">Perfil de la marca</span>
-            {/* <p>Perfil de la marca</p> */}
-            <h3 onClick={() => redirectToBrandForm()}>Añadir otra marca</h3>
+            <div>
+              <span className="tag tag-teal">Perfil de la marca</span>
+              {/* <p>Perfil de la marca</p> */}
+              <h3 onClick={() => redirectToBrandForm()}>Añadir otra marca</h3>
+            </div>
           </div>
         </div>
       </section>
