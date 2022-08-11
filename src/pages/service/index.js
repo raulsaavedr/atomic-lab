@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import CreateFormContext from "../../create-form-context";
 import DataContext from "../../data-context";
 import { useLocation, useNavigate } from "react-router-dom";
-import { SERVICES_DATA } from "../constats";
+import { SERVICES_DATA } from "../constants";
 
 import View from "./view";
 

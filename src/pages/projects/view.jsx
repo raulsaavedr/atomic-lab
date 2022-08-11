@@ -1,6 +1,6 @@
 import React from "react";
 import { Icons } from "../icons";
-import { PROJECTS, STATUS_TABLES_FLOW } from "../constats";
+import { PROJECTS, STATUS_TABLES_FLOW } from "../constants";
 import ModalPrivateNotes from "../modals/private-notes";
 import ModalZoomImg from "../modals/zoom-img";
 import ModalReviews from "../modals/reviews";

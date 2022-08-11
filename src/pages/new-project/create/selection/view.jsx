@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import PageTitle from "../../../page-title";
 import { Icons } from "../../../icons";
-import { FORM_INPUTS } from "../../../constats";
+import { FORM_INPUTS } from "../../../constants";
 import CreateFormContext from "../../../../create-form-context";
 import Post from "./post";
 import "../styles.scss";

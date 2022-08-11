@@ -1,6 +1,6 @@
 import React from "react";
 import PageTitle from "../../../page-title";
-import { FORM_INPUTS_PROFILE } from "../../../constats";
+import { FORM_INPUTS_PROFILE } from "../../../constants";
 import { Icons } from "../../../icons";
 
 import "./styles.scss";

@@ -1,7 +1,7 @@
 import React from "react";
 import PageTitle from "../../page-title";
 import Service from "./components/service";
-import { SERVICES_DATA } from "../../constats";
+import { SERVICES_DATA } from "../../constants";
 import "./styles.scss";
 
 function View() {

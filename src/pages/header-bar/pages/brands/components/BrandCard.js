@@ -21,12 +21,11 @@ export const BrandCard = ({ brand, redirectToBrandForm }) => {
   }
   return (
     <div
-      // key={index}
       className="card"
-      onClick={() => redirectToBrandForm(brand.id)}
     >
       <div
         className={cardHeaderClassName}
+        onClick={() => redirectToBrandForm(brand.id)}
       >
         {imgSrc ? (
           <img
@@ -43,8 +42,10 @@ export const BrandCard = ({ brand, redirectToBrandForm }) => {
           <span className="tag tag-teal">{brand.industry}</span> :
           undefined
         }
-        <h3>{brand.name}</h3>
-
+        <h3 onClick={() => redirectToBrandForm(brand.id)}>
+          {brand.name}
+        </h3>
+        <span className="dots-button">&#xFE19;</span>
       </div>
     </div>
   )

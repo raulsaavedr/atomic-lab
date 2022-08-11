@@ -1,6 +1,6 @@
 import React from "react";
 
-import { TYPE_PUBLICATION_DATA } from "../constats";
+import { TYPE_PUBLICATION_DATA } from "../constants";
 import PageTitle from "../page-title";
 import parse from "html-react-parser";
 import ModalMessage from "../modals/message";

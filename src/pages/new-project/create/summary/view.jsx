@@ -1,7 +1,7 @@
 import React from "react";
 import PageTitle from "../../../page-title";
 import { Icons } from "../../../icons";
-import { SUMMARY_OPTIONS } from "../../../constats";
+import { SUMMARY_OPTIONS } from "../../../constants";
 import ModalMessage from "../../../modals/message";
 import ModalBuyCredits from "../../../modals/buy-credits";
 

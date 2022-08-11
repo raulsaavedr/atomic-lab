@@ -1,6 +1,6 @@
 import React from "react";
 import PageTitle from "../page-title";
-import { STATUS_TABLES, STATUS_TABLES_FLOW } from "../constats";
+import { STATUS_TABLES, STATUS_TABLES_FLOW } from "../constants";
 import { Icons } from "../icons";
 import moment from "moment";
 

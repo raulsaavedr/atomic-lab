@@ -1,10 +1,10 @@
 import React from "react";
-import { USER_DATA } from "../constats";
+import { USER_DATA } from "../constants";
 import { Icons } from "../icons";
 import Tour from "./pages/tour";
 import ModalBuyCredits from "../modals/buy-credits";
 import ModalHelp from "../modals/help";
-import { MAIN_MENU, MAIN_SUBMENU } from "../constats";
+import { MAIN_MENU, MAIN_SUBMENU } from "../constants";
 import "./styles.scss";
 
 function View({

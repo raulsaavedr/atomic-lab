@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import DataContext from "../../data-context";
 import { useParams, useNavigate } from "react-router-dom";
-// import { URL_IMG } from "../constats";
+// import { URL_IMG } from "../constants";
 import { getAssignDesignerProject } from "../../services";
 import View from "./view";
 import { Icons } from "../icons";

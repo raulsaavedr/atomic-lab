@@ -3,7 +3,7 @@ import PageTitle from "../../../page-title";
 import "./styles.scss";
 import { Icons } from "../../../icons";
 import ModalAddMember from "../../../modals/add-member";
-import { TEAM_ROL } from "../../../constats";
+import { TEAM_ROL } from "../../../constants";
 
 function View({
   modalAddMember,

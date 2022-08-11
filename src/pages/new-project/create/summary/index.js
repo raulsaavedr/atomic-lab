@@ -8,7 +8,7 @@ import {
   getDataUser,
   getAllProjects,
 } from "../../../../services";
-import { SUMMARY_OPTIONS } from "../../../constats";
+import { SUMMARY_OPTIONS } from "../../../constants";
 
 import View from "./view";
 

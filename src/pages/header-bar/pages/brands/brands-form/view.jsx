@@ -1,5 +1,5 @@
 import PageTitle from "../../../../page-title";
-import { FORM_INPUTS_BRANDS, FROM_BRAND_TABLES } from "../../../../constats";
+import { FORM_INPUTS_BRANDS, FROM_BRAND_TABLES } from "../../../../constants";
 import "./styles.scss";
 import { Icons } from "../../../../icons";
 

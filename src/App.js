@@ -26,7 +26,6 @@ import RecoverPasswordEmail from "./pages/recover-password/send-email";
 import Onboarding from "./pages/onboarding";
 import Reviews from "./pages/reviews";
 import MoreInfo from "./pages/more-info";
-import ProjectDetail from "./pages/project-detail";
 import AllProjectDetails from "./pages/all-project-details";
 
 import Projects from "./pages/projects";
@@ -134,7 +133,6 @@ function App() {
                 {/* <Route path="onboarding" element={<Onboarding />} /> */}
                 <Route path="reviews/:id" element={<Reviews />} />
                 <Route path="more-info/:id" element={<MoreInfo />} />
-                <Route path="project-detail/:id" element={<ProjectDetail />} />
                 <Route path="all-project-details/:id" element={<AllProjectDetails />} />
                 <Route path="projects-active" element={<Projects />} />
                 <Route path="projects-inactive" element={<Projects />} />

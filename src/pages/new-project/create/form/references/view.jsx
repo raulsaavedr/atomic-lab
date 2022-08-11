@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Icons } from "../../../../icons";
-import { FORM_INPUTS } from "../../../../constats";
+import { FORM_INPUTS } from "../../../../constants";
 import "./styles.scss";
 
 function View({

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactiveButton from "reactive-button";
 
-import { METHOD_SELECT } from "../../constats";
+import { METHOD_SELECT } from "../../constants";
 
 import "../../modals/styles.scss";
 import "./styles.scss";

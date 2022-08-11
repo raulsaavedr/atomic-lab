@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import CreateFormContext from "../../../../create-form-context";
-import { FORM_INPUTS } from "../../../constats";
+import { FORM_INPUTS } from "../../../constants";
 import PageTitle from "../../../page-title";
 import { Icons } from "../../../icons";
 import References from "./references";

@@ -16,36 +16,6 @@ function View({ redirectToBrandForm, brands }) {
       <section className="cards">
         {console.log(brands)}
         {brands?.map((brand, index) => (
-          // <div
-          //   key={index}
-          //   className="card"
-          //   onClick={() => redirectToBrandForm(brand.id)}
-          // >
-          //   <div
-          //     className={brand.url_image.endsWith("svg") ?
-          //       "card-header svg-img" : "card-header normal-img"}
-          //   >
-          //     {brand.url_image ? (
-          //       // <ImageWithFallback
-          //       //   fallback={icon_img_post}
-          //       //   src={brand.url_image}
-          //       //   alt={brand.url_image}
-          //       // />
-          //       console.log("fixing...")
-          //     ) : (
-          //       Icons("icon_img_post")
-          //     )}
-          //   </div>
-          //   <div className="card-body">
-          //     {/* <p>Perfil de la marca</p> */}
-          //     {brand.industry ?
-          //       <span className="tag tag-teal">{brand.industry}</span> :
-          //       undefined
-          //     }
-          //     <h3>{brand.name}</h3>
-
-          //   </div>
-          // </div>
           <BrandCard
             key={index}
             brand={brand}
@@ -53,14 +23,14 @@ function View({ redirectToBrandForm, brands }) {
           />
         ))
         }
-        <div className="card" onClick={() => redirectToBrandForm()}>
-          <div className="card-header plus-icon">
+        <div className="card">
+          <div className="card-header plus-icon" onClick={() => redirectToBrandForm()}>
             {Icons("add_brand")}
           </div>
           <div className="card-body">
+            <span className="tag tag-teal">Perfil de la marca</span>
             {/* <p>Perfil de la marca</p> */}
-            <h3>Añadir otra marca</h3>
-            {/* <span className="tag">This is tag</span> */}
+            <h3 onClick={() => redirectToBrandForm()}>Añadir otra marca</h3>
           </div>
         </div>
       </section>
