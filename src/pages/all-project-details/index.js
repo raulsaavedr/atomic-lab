@@ -82,8 +82,10 @@ function Index() {
 
   // We compare the actual project against all the brands this user has
   // to get the brand id to be able navigate to the brand page
-  const brandId = brands.filter(brand => projectValues?.brand_select === brand.name)[0]?.id;
+  const brandId = brands.filter(brand => projectValues?.brand_select === brand.brand)[0]?.id;
   // console.log(brandId)
+  // console.log(brands)
+  // console.log(projectValues)
   const redirectToBrandForm = () =>
     navigate(brandId ? `/brands/brands-form/${brandId}` : `/brands/brands-form`);
 

@@ -138,7 +138,7 @@ function Index() {
 
   const properties = {
     id,
-    redirectTo,
+    navigate,
     dataBrand,
     onSubmit,
     handleSubmit,

@@ -13,7 +13,6 @@ function View({
   numberSteps
 }) {
   const navigate = useNavigate();
-  console.log(title)
   return (
     <div className={`tour tour-${tourStep}`}>
       <div className={`tour-content tour-step-${tourStep}`}>

@@ -57,7 +57,6 @@ function View({
       <div className="icon-logo" onClick={() => redirectTo("/")}>
         {Icons("logo")}
       </div>
-      {console.log(MAIN_MENU(userData?.rol_id))}
       {MAIN_MENU(userData?.rol_id).map((item, index) => (
         <div
           key={index}

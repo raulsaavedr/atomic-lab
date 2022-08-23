@@ -5,7 +5,7 @@ import { Icons } from "../../../../icons";
 
 function View({
   id,
-  redirectTo,
+  navigate,
   dataBrand,
   onSubmit,
   handleSubmit,
@@ -122,7 +122,7 @@ function View({
               ))}
             </div>
           ))}
-          {id &&
+          {id && rol !== 3 &&
             <div className="danger-zone">
               <p>Eliminar esta marca: Una vez que eliminas una marca, no hay vuelta atrás. Por favor, esté seguro.</p>
               <div className="button-red" onClick={() => deleteBranAndProcess(id)}>
@@ -226,7 +226,7 @@ function View({
         </section>
         <section className="footer">
           <section className="section-buttons flex">
-            <div className="button" onClick={() => redirectTo("/brands")}>
+            <div className="button" onClick={() => navigate(-1, { replace: true })}>
               Atrás
             </div>
             {rol !== 3 && (
