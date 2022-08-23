@@ -20,11 +20,11 @@ function Index() {
   // Get the project values from  the project filtered
   const projectValues = filterProject?.values[0];
 
-  // Custom Hook ?
+  // Custom Hook AssignDesigner?
   useEffect(() => {
     getAssignDesignerProject(id)
       .then((res) => {
-        console.log(`Designer for project ${id}: ${res.data}`);
+        // console.log(`Designer for project ${id}:`, res.data?.data);
 
         (typeof res.data === 'object') && setDesigners(res.data.data);
       })
