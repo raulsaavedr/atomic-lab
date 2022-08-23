@@ -133,7 +133,7 @@ export const MAIN_MENU = (rol) => {
     },
     {
       view: true,
-      id: 3,
+      id: rol === 1 ? 3 : 2,
       id_text: "active",
       redirect: "/projects-active",
       active: [
@@ -149,7 +149,7 @@ export const MAIN_MENU = (rol) => {
     },
     {
       view: true,
-      id: 4,
+      id: rol === 1 ? 4 : 3,
       id_text: "finish",
       redirect: "/projects-inactive",
       active: ["projects-inactive"],

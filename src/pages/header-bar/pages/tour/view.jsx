@@ -10,8 +10,10 @@ function View({
   title,
   text,
   updateTour,
+  numberSteps
 }) {
   const navigate = useNavigate();
+  console.log(title)
   return (
     <div className={`tour tour-${tourStep}`}>
       <div className={`tour-content tour-step-${tourStep}`}>
@@ -19,7 +21,7 @@ function View({
           <>
             <div className="corner"></div>
             <div className="steps-title flex">
-              <p>{tourStep} / 4</p>
+              <p>{tourStep} / {numberSteps}</p>
 
               <p onClick={() => setTourActive(false)}>{Icons("close_white")}</p>
             </div>
@@ -52,7 +54,7 @@ function View({
               Siguiente
             </div>
           )}
-          {tourStep === 4 && (
+          {tourStep === numberSteps && (
             <div
               className="button"
               onClick={() => {

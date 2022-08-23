@@ -37,6 +37,7 @@ function View({
 
   return (
     <div className="header-bar flex">
+      {/* Se agrega el primer paso del tour */}
       {tourActive && tourStep === 0 && (
         <Tour
           setTourActive={setTourActive}
@@ -49,12 +50,14 @@ function View({
           updateTour={updateTour}
         />
       )}
+
+      {/* Baground blanco */}
       {tourActive && <div className="back-white"></div>}
 
       <div className="icon-logo" onClick={() => redirectTo("/")}>
         {Icons("logo")}
       </div>
-
+      {console.log(MAIN_MENU(userData?.rol_id))}
       {MAIN_MENU(userData?.rol_id).map((item, index) => (
         <div
           key={index}
@@ -70,6 +73,7 @@ function View({
               title={item.tour_title}
               text={item.tour_text}
               updateTour={updateTour}
+              rol={userData?.rol_id}
             />
           )}
           {Icons(
