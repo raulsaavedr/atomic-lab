@@ -67,7 +67,6 @@ function Index({ type_home, page }) {
       allProjects?.filter((p) => JSON.parse(p?.flow)[3].status !== typeFin)
     );
   }, [typeFin, allProjects]);
-
   const properties = {
     page,
     setModalPrivateNotes,

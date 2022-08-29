@@ -104,8 +104,9 @@ function View({
             onChange={(e) =>
               setFormData({ ...formData, brand_select: e.target.value })
             }
+            defaultValue={"default"}
           >
-            <option disabled selected>
+            <option disabled value="default">
               Selecciona una opción
             </option>
             {brands?.map((brand, index) => (
@@ -133,7 +134,7 @@ function View({
             <label key={index} className="flex">
               <div className="circle-check">
                 <input
-                  checked={typePublication === option}
+                  defaultChecked={typePublication === option}
                   key={index}
                   type="checkbox"
                   id="p_type"
@@ -158,7 +159,7 @@ function View({
           <>
             <p className="type-check-desc">
               Selecciona el tipo de {typePublication.toLowerCase()} que
-              nesecitas
+              necesitas
             </p>
             <div className="type-cards flex">
               {TYPE_PUBLICATION_DATA[typePublication].options.map(
@@ -247,36 +248,36 @@ function View({
 
 export default View;
 
-const x = {
-  user_id: "1",
-  designer_freedom: "high",
-  social_network: "Facebook",
-  brand_select: "Pepsi",
-  type_publication: "post",
-  type_post: "post",
-  name_project: "Mi nuevo proyecto",
-  public_goal: "mi público objetivo",
-  palete_colors: "mi paleta de colores",
-  references: [
-    {
-      id: 0,
-      text: "mi referencia 1",
-      content: {},
-    },
-  ],
-  idea_post: "Mi idea a desarrollar",
-  post: [
-    {
-      id: 1,
-      objetive: "mi objetivo imagen 1",
-      text: "Mi texto a incluir",
-      file_img: {},
-    },
-    {
-      id: 2,
-      text: "texto imagen 2",
-      objetive: "mi objetivo imagen2",
-      file_img: {},
-    },
-  ],
-};
+// const x = {
+//   user_id: "1",
+//   designer_freedom: "high",
+//   social_network: "Facebook",
+//   brand_select: "Pepsi",
+//   type_publication: "post",
+//   type_post: "post",
+//   name_project: "Mi nuevo proyecto",
+//   public_goal: "mi público objetivo",
+//   palete_colors: "mi paleta de colores",
+//   references: [
+//     {
+//       id: 0,
+//       text: "mi referencia 1",
+//       content: {},
+//     },
+//   ],
+//   idea_post: "Mi idea a desarrollar",
+//   post: [
+//     {
+//       id: 1,
+//       objetive: "mi objetivo imagen 1",
+//       text: "Mi texto a incluir",
+//       file_img: {},
+//     },
+//     {
+//       id: 2,
+//       text: "texto imagen 2",
+//       objetive: "mi objetivo imagen2",
+//       file_img: {},
+//     },
+//   ],
+// };
